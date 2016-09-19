@@ -6,21 +6,24 @@
   <head>
    
     
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+    <title></title>
+	
   </head>
   
-  <body>
+ 
     
-    <a href="${pageContext.request.contextPath}/sys/user/list.do">User List</a><br>
+   
+  <body class="easyui-layout">
+    <div data-options="region:'north',title:'North Title',split:true" style="height:100px;">
+    	  
+    </div>
+    <div data-options="region:'south',title:'South Title',split:true" style="height:100px;">
+    	<a href="${pageContext.request.contextPath}/sys/user/list.do">User List</a><br>
    <a href="${pageContext.request.contextPath}/sys/role/list.do">role List</a><br>
    <a href="${pageContext.request.contextPath}/sys/resources/list.do">resources List</a>
-  </body>
+    </div>
+    <div data-options="region:'east',title:'East',split:true" style="width:100px;"></div>
+    <div data-options="region:'west',title:'West',split:true" style="width:100px;"></div>
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;"></div>
+</body>
 </html>

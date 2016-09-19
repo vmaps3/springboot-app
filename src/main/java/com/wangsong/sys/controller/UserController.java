@@ -34,7 +34,6 @@ public class UserController {
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd() {
 		ModelAndView mav= new ModelAndView("sys/user/add");
-		
 		mav.addObject("list", roleService.selectAll());
 		return mav;
 	}

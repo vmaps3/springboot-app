@@ -8,6 +8,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
    
 	<context:component-scan base-package="com.wangsong.*.controller" />
 
+	<mvc:annotation-driven/>
+	
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
@@ -38,6 +40,10 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 			<value>4096</value>
 		</property>
 	</bean>
+	
+	<!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/> 
+	
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 

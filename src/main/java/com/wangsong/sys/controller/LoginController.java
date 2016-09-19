@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController  {
    
 	
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/index.do")
     public String index(Model model) {
         return "index";
     }
 
   
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
     public String login() {
       
         if (SecurityUtils.getSubject().isAuthenticated()) {
@@ -33,12 +33,12 @@ public class LoginController  {
     }
 
   
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
 
     public String loginPost(String username, String password) {
     	Subject user = SecurityUtils.getSubject();
-    	// UsernamePasswordToken token = new UsernamePasswordToken(username, DigestUtils.md5Hex(password).toCharArray());
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
+    	UsernamePasswordToken token = new UsernamePasswordToken(username, DigestUtils.md5Hex(password).toCharArray());
+
         try {
             user.login(token);
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class LoginController  {
     }
 
   
-    @RequestMapping(value = "/unauth")
+    @RequestMapping(value = "/unauth.do")
     public String unauth() {
         if (SecurityUtils.getSubject().isAuthenticated() == false) {
             return "redirect:/login.do";
@@ -57,7 +57,7 @@ public class LoginController  {
     }
 
   
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout.do")
     public String logout() {
     	Subject subject = SecurityUtils.getSubject();
         subject.logout();

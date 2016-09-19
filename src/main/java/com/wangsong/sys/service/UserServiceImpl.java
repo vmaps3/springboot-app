@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserServiceI{
 	public int insert(User user,String[] roleId) {
 		String id = UUID.randomUUID().toString();
 		user.setId(id);
+		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
@@ -75,6 +77,7 @@ public class UserServiceImpl implements UserServiceI{
 
 	@Override
 	public int update(User user,String[] roleId) {
+		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		userRoleMapper.deleteByUser(user);
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
