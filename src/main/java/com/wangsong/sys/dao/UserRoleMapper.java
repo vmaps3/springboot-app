@@ -14,5 +14,6 @@ public interface UserRoleMapper {
 
     List<UserRole> selectByUser(User user);
 
-   
+	List<String> findRoleIdListByUserId(String id);
+
 }

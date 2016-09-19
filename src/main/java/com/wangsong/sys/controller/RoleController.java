@@ -64,9 +64,9 @@ public class RoleController {
 	}
 
 	@RequestMapping(value="/update")
-	public String update(Role mrole) {
+	public String update(Role mrole,String[] resourcesId) {
 		
-		roleService.update(mrole);
+		roleService.update(mrole,resourcesId);
 		return "redirect:/sys/role/list.do";
 	}
 }

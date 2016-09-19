@@ -23,6 +23,9 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 	@Autowired
 	private ResourcesMapper resourcesMapper;
 	
+	@Autowired
+	private RoleResourcesMapper roleResourcesMapper;
+	
 	
 	
 	@Override
@@ -46,7 +49,9 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 
 	@Override
 	public int delete(String id) {
-	
+		Resources resources=new Resources();
+		resources.setId(id);
+		roleResourcesMapper.deleteByResources(resources);
 		return resourcesMapper.deleteByPrimaryKey(id);
 	}
 
@@ -66,7 +71,7 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 			map.put("id", r.getId());
 			map.put("name",r.getName());
 			
-			if(resources.getPid().equals(r.getId())){
+			if(resources.getPid()!=null&&r.getPid()!=null&&resources.getPid().equals(r.getId())){
 				map.put("selected",true);
 			}else{
 				map.put("selected",false);
@@ -74,6 +79,12 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 			mapList.add(map);
 		}
 		return mapList;
+	}
+
+	@Override
+	public List<String> findResourceListByRoleId(String roleId) {
+		// TODO Auto-generated method stub
+		return resourcesMapper.findResourceListByRoleId(roleId);
 	}
 
 	

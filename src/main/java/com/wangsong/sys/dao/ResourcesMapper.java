@@ -13,4 +13,6 @@ public interface ResourcesMapper {
     List<Resources> selectAll();
 
     int updateByPrimaryKey(Resources record);
+
+	List<String> findResourceListByRoleId(String roleId);
 }

@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					
 					
-						<select name="roleId" multiple=”multiple”>
+						<select name="resourcesId" multiple=”multiple”>
 							<c:forEach items="${list}" var="roleResources">
 								
 								<c:choose>

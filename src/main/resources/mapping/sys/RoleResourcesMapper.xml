@@ -6,9 +6,13 @@
     <result column="resources_id" jdbcType="VARCHAR" property="resourcesId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByRole" parameterType="com.wangsong.sys.model.Role">
     delete from sys_role_resources
-    where id = #{id,jdbcType=VARCHAR}
+    where role_id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByResources" parameterType="com.wangsong.sys.model.Resources">
+    delete from sys_role_resources
+    where resources_id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.wangsong.sys.model.RoleResources">
     insert into sys_role_resources (id, resources_id, role_id

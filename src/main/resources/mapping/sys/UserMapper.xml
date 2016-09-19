@@ -31,4 +31,10 @@
     select id, username, password
     from sys_user
   </select>
+   <select id="findUserByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password
+    from sys_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  
 </mapper>

@@ -19,4 +19,6 @@ public interface UserServiceI {
     int delete(String id);
     
     List<Map<String, Object>> selectUserRoleAll(User user);
+
+	User findUserByLoginName(String username);
 }

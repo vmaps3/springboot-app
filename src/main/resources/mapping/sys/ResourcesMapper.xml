@@ -33,4 +33,11 @@
     select id, pid, name, url
     from sys_resources
   </select>
+   <select id="findResourceListByRoleId" parameterType="java.lang.String" resultType="java.lang.String">
+    select url
+    from sys_resources,sys_role_resources
+    where sys_resources.id=sys_role_resources.resources_id
+    and sys_role_resources.role_id = #{id,jdbcType=VARCHAR}
+  </select>
+  
 </mapper>

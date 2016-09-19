@@ -24,4 +24,9 @@
     select id, user_id, role_id
     from sys_user_role  where user_id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="findRoleIdListByUserId" resultType="java.lang.String" parameterType="java.lang.String">
+    select role_id
+    from sys_user_role  where user_id = #{id,jdbcType=VARCHAR}
+  </select>
+  
 </mapper>

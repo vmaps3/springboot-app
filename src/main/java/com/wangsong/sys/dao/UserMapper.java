@@ -13,4 +13,6 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
+
+	User findUserByLoginName(String username);
 }

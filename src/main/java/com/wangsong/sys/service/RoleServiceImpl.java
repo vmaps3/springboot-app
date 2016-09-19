@@ -40,19 +40,31 @@ public class RoleServiceImpl implements RoleServiceI{
 	public int insert(Role role, String[] resourcesId) {
 		String id = UUID.randomUUID().toString();
 		role.setId(id);
-		for(int i=0;i<resourcesId.length;i++){
-			RoleResources roleResources=new RoleResources();
-			roleResources.setId(UUID.randomUUID().toString());
-			roleResources.setResourcesId(resourcesId[i]);
-			roleResources.setRoleId(id);
-			roleResourcesMapper.insert(roleResources);
+		if(resourcesId!=null){
+			for(int i=0;i<resourcesId.length;i++){
+				RoleResources roleResources=new RoleResources();
+				roleResources.setId(UUID.randomUUID().toString());
+				roleResources.setResourcesId(resourcesId[i]);
+				roleResources.setRoleId(id);
+				roleResourcesMapper.insert(roleResources);
+			}
 		}
+		
 		return roleMapper.insert(role);
 	}
 
 	@Override
-	public int update(Role role) {
-		
+	public int update(Role role,String[] resourcesId) {
+		roleResourcesMapper.deleteByRole(role);
+		if(resourcesId!=null){
+			for(int i=0;i<resourcesId.length;i++){
+				RoleResources roleResources=new RoleResources();
+				roleResources.setId(UUID.randomUUID().toString());
+				roleResources.setRoleId(role.getId());
+				roleResources.setResourcesId(resourcesId[i]);
+				roleResourcesMapper.insert(roleResources);
+			}
+		}
 		return roleMapper.updateByPrimaryKey(role);
 	}
 
@@ -61,6 +73,7 @@ public class RoleServiceImpl implements RoleServiceI{
 		Role role=new Role();
 		role.setId(id);
 		userRoleMapper.deleteByRole(role);
+		roleResourcesMapper.deleteByRole(role);
 		return roleMapper.deleteByPrimaryKey(id);
 	}
 
@@ -91,6 +104,11 @@ public class RoleServiceImpl implements RoleServiceI{
 			mapList.add(map);
 		}
 		return mapList;
+	}
+
+	@Override
+	public List<String> findRoleIdListByUserId(String id) {
+		return userRoleMapper.findRoleIdListByUserId(id);
 	}
 
 }

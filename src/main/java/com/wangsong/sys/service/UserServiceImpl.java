@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserServiceI{
 	private UserRoleMapper userRoleMapper;
 	@Autowired
 	private RoleServiceI roleService;
+	
 	@Override
 	public List<User> selectAll() {	
 		return userMapper.selectAll();
@@ -60,14 +61,15 @@ public class UserServiceImpl implements UserServiceI{
 	public int insert(User user,String[] roleId) {
 		String id = UUID.randomUUID().toString();
 		user.setId(id);
-		for(int i=0;i<roleId.length;i++){
-			UserRole userRole=new UserRole();
-			userRole.setId(UUID.randomUUID().toString());
-			userRole.setUserId(id);
-			userRole.setRoleId(roleId[i]);
-			userRoleMapper.insert(userRole);
+		if(roleId!=null){
+			for(int i=0;i<roleId.length;i++){
+				UserRole userRole=new UserRole();
+				userRole.setId(UUID.randomUUID().toString());
+				userRole.setUserId(id);
+				userRole.setRoleId(roleId[i]);
+				userRoleMapper.insert(userRole);
+			}
 		}
-		
 		return userMapper.insert(user);
 	}
 
@@ -88,7 +90,9 @@ public class UserServiceImpl implements UserServiceI{
 
 	@Override
 	public int delete(String id) {
-	
+		User user=new User();
+		user.setId(id);
+		userRoleMapper.deleteByUser(user);
 		return userMapper.deleteByPrimaryKey(id);
 	}
 
@@ -96,6 +100,11 @@ public class UserServiceImpl implements UserServiceI{
 	public User selectByPrimaryKey(String id) {
 		
 		return userMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public User findUserByLoginName(String username) {
+		return userMapper.findUserByLoginName(username);
 	}
 
 }

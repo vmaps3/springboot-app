@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class UserController {
 		request.setAttribute("list", list);
 		return "sys/user/list";
 	}
-	
+	@RequiresPermissions("sys/user")
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd() {
 		ModelAndView mav= new ModelAndView("sys/user/add");
@@ -49,7 +50,7 @@ public class UserController {
 		userService.delete(id);
 		return "redirect:/sys/user/list.do";
 	}
-	
+	@RequiresPermissions("sys/user/updata")
 	@RequestMapping(value="/toUpdate")
 	public ModelAndView toUpdate(String id) {
 		User muser = userService.selectByPrimaryKey(id);
