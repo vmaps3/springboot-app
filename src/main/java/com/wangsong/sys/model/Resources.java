@@ -8,8 +8,18 @@ public class Resources {
     private String name;
 
     private String url;
+    
+    private String type;
+    
+    public String getType() {
+		return type;
+	}
 
-    public String getId() {
+	public void setType(String type) {
+		 this.type = type == null ? null : type.trim();
+	}
+
+	public String getId() {
         return id;
     }
 

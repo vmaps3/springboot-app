@@ -1,13 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/commons/include.jsp"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
+   
     
     <title>My JSP 'index.jsp' starting page</title>
 	<meta http-equiv="pragma" content="no-cache">
@@ -21,10 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Spring core + Spring MVC + MyBatis <br>
     
-    <a href="<%=path %>/sys/user/list.do">User List</a><br>
-   <a href="<%=path %>/sys/role/list.do">role List</a><br>
-   <a href="<%=path %>/sys/resources/list.do">resources List</a>
+    <a href="${pageContext.request.contextPath}/sys/user/list.do">User List</a><br>
+   <a href="${pageContext.request.contextPath}/sys/role/list.do">role List</a><br>
+   <a href="${pageContext.request.contextPath}/sys/resources/list.do">resources List</a>
   </body>
 </html>

@@ -1,9 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ include file="/WEB-INF/commons/include.jsp"%>
 
 <html>
 	<head>
@@ -11,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<form action="<%=path %>/sys/user/update.do" method="POST">
+		<form action="${pageContext.request.contextPath}/sys/user/update.do" method="POST">
 			<input type="hidden" name="id" value="${user.id }">
 			<table>
 				<tr>
