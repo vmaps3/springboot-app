@@ -29,6 +29,10 @@
 					<td>url:</td>
 					<td><input type="text" name="url"></td>
 				</tr>
+				<tr>
+					<td>type:</td>
+					<td><input type="text" name="type"></td>
+				</tr>
 				
 				
 				<tr>

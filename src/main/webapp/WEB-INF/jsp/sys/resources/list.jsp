@@ -16,7 +16,7 @@
    			<td>pid</td>
    			<td>name</td>
    			<td>url</td>
-   			
+   			<td>type</td>
    			
    			<td>Delete</td>
    			<td>Update</td>
@@ -27,6 +27,7 @@
    			<td>${resources.pid }</td>
    			<td>${resources.name }</td>
    			<td>${resources.url }</td>
+   			<td>${resources.type }</td>
    			<td><a href="${pageContext.request.contextPath}/sys/resources/delete.do?id=${resources.id }">Delete</a></td>
    			<td><a href="${pageContext.request.contextPath}/sys/resources/toUpdate.do?id=${resources.id }">Update</a></td>
    		</tr>

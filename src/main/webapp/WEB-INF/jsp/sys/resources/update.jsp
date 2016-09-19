@@ -51,6 +51,14 @@
 						<input type="text" name="url" value="${resources.url }">
 					</td>
 				</tr>
+				<tr>
+					<td>
+						type: 
+					</td>
+					<td>
+						<input type="text" name="type" value="${resources.type }">
+					</td>
+				</tr>
 				
 				<tr>
 					<td>
