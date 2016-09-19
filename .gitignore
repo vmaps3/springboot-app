@@ -10,9 +10,3 @@ target/
 /.settings/org.eclipse.wst.jsdt.ui.superType.container
 /.settings/org.eclipse.wst.jsdt.ui.superType.name
 /.settings/org.eclipse.wst.validation.prefs
-/src/main/java/com/wangsong/sys/controller/LoginController.java
-/src/main/java/com/wangsong/sys/util/ShiroDbRealm.java
-/src/main/resources/ehcache-shiro.xml
-/src/main/resources/spring-shiro.xml
-/src/main/webapp/WEB-INF/jsp/index.jsp
-/src/main/webapp/WEB-INF/jsp/login.jsp
