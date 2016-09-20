@@ -93,12 +93,12 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 	}
 
 	@Override
-	public List<Map<String, Object>> findResourceListByType() {
+	public List<Map<String, Object>> findResourceListByType(String pid) {
 			List<Map<String, Object>> mapList=new ArrayList<>();
 			Map<String,Object> map=new HashMap<>();
 			map.put("type", "1");
 			map.put("id",( (User)SecurityUtils.getSubject().getPrincipal()).getId());
-			map.put("pid","-1");
+			map.put("pid",pid);
 			List<Resources> resourcesList=resourcesMapper.findResourceListByType(map);
 			if (null != resourcesList && resourcesList.size() > 0) { 
 				for(int i=0;i<resourcesList.size();i++){
@@ -106,23 +106,13 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 					Map<String, Object> map2=new HashMap<>();
 					map2.put("id", resources.getId());
 					map2.put("text", resources.getName());
-					map.put("pid",resources.getId());
-					List<Resources> resourcesList2=resourcesMapper.findResourceListByType(map);
-					 if (resourcesList2 != null && resourcesList2.size() > 0)  {
-						 List<Map<String,Object>> maplist = new ArrayList<>();  
-			                for (Resources resources3 : resourcesList2)    {  
-			                	Map<String,Object> map3 = new HashMap<>();
-			                	map3.put("id",resources3.getId());  
-			                	map3.put("text",resources3.getName());  
-			                	maplist.add(map3);  
-			                }  
-			                map2.put("children", maplist);
-					 }
-					 mapList.add(map2) ;
+					mapList.add(map2);
 				}
 			}
 		return mapList;
 	}
+	
+
 
 	
 

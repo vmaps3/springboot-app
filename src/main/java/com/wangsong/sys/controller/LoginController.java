@@ -27,7 +27,7 @@ public class LoginController  {
     @RequestMapping(value = "/")
     public ModelAndView index(Model model) {
     	ModelAndView mav=new ModelAndView("index");
-    	mav.addObject("resourceList", resourcesService.findResourceListByType());
+    	mav.addObject("resourceList", "");
         return mav;
     }
 

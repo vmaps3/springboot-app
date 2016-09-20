@@ -59,7 +59,7 @@ public class ResourcesController {
 		ModelAndView mav= new ModelAndView("sys/resources/update");
 		Resources mresources = resourcesService.selectByPrimaryKey(id);
 		mav.addObject("resources", mresources);
-		mav.addObject("list", resourcesService.selectAll(mresources));
+		mav.addObject("list", resourcesService.selectAll());
 		return mav;
 	}
 
@@ -72,9 +72,9 @@ public class ResourcesController {
 	
 	@RequestMapping(value="/findResourceListByType")
 	@ResponseBody
-	public Object findResourceListByType() {
+	public Object findResourceListByType(String pid) {
 		
-		return resourcesService.findResourceListByType();
+		return resourcesService.findResourceListByType(pid);
 	}
 	
 }
