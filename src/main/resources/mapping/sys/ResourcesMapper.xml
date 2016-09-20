@@ -42,5 +42,14 @@
     where sys_resources.id=sys_role_resources.resources_id
     and sys_role_resources.role_id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="findResourceListByType" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select  sys_resources.id, sys_resources.pid, sys_resources.name, sys_resources.url,sys_resources.type  
+    from sys_resources,sys_role_resources,sys_user_role
+    where sys_resources.id=sys_role_resources.resources_id
+    and sys_user_role.role_id=sys_role_resources.role_id
+    and sys_resources.type = #{type,jdbcType=VARCHAR}
+    and sys_user_role.user_id = #{id,jdbcType=VARCHAR}
+  </select>
+  
   
 </mapper>

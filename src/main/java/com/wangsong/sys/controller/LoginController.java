@@ -7,19 +7,28 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.wangsong.sys.service.ResourcesServiceI;
 
 
 @Controller
 public class LoginController  {
-   
+	@Autowired
+	private ResourcesServiceI resourcesService;
 	
-    @RequestMapping(value = "/index.do")
-    public String index(Model model) {
-        return "index";
+	
+	
+    @RequestMapping(value = "/")
+    public ModelAndView index(Model model) {
+    	ModelAndView mav=new ModelAndView("index");
+    	mav.addObject("resourceList", resourcesService.findResourceListByType());
+        return mav;
     }
 
   
@@ -27,7 +36,7 @@ public class LoginController  {
     public String login() {
       
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            return "redirect:/index.do";
+            return "redirect:/";
         }
         return "login";
     }
@@ -44,7 +53,7 @@ public class LoginController  {
         } catch (Exception e) {
         	return "login";
         }
-        return "index";
+        return "redirect:/";
     }
 
   

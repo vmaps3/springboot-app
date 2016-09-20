@@ -2,6 +2,7 @@ package com.wangsong.sys.dao;
 
 import com.wangsong.sys.model.Resources;
 import java.util.List;
+import java.util.Map;
 
 public interface ResourcesMapper {
     int deleteByPrimaryKey(String id);
@@ -15,4 +16,6 @@ public interface ResourcesMapper {
     int updateByPrimaryKey(Resources record);
 
 	List<String> findResourceListByRoleId(String roleId);
+
+	List<Map<String, Object>> findResourceListByType(Map<String, Object> map);
 }

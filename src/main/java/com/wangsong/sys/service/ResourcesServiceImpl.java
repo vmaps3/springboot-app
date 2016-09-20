@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
+import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 
 
@@ -85,6 +87,15 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 	public List<String> findResourceListByRoleId(String roleId) {
 		// TODO Auto-generated method stub
 		return resourcesMapper.findResourceListByRoleId(roleId);
+	}
+
+	@Override
+	public List<Map<String, Object>> findResourceListByType() {
+			Map<String,Object> map=new HashMap<>();
+			map.put("type", "1");
+			map.put("id",( (User)SecurityUtils.getSubject().getPrincipal()).getId());
+			
+		return resourcesMapper.findResourceListByType(map);
 	}
 
 	
