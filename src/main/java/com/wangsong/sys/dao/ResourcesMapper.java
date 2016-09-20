@@ -17,5 +17,5 @@ public interface ResourcesMapper {
 
 	List<String> findResourceListByRoleId(String roleId);
 
-	List<Map<String, Object>> findResourceListByType(Map<String, Object> map);
+	List<Resources> findResourceListByType(Map<String, Object> map);
 }

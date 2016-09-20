@@ -40,6 +40,9 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 	public int insert(Resources resources) {
 		String id = UUID.randomUUID().toString();
 		resources.setId(id);
+		if(resources.getPid()==null){
+			resources.setPid("-1");
+		}
 		return resourcesMapper.insert(resources);
 	}
 
@@ -91,11 +94,13 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 
 	@Override
 	public List<Map<String, Object>> findResourceListByType() {
+			List<Map<String, Object>> mapList=new ArrayList<>();
 			Map<String,Object> map=new HashMap<>();
 			map.put("type", "1");
 			map.put("id",( (User)SecurityUtils.getSubject().getPrincipal()).getId());
-			
-		return resourcesMapper.findResourceListByType(map);
+			map.put("pid","");
+			List<Resources> resources=resourcesMapper.findResourceListByType(map);
+		return mapList;
 	}
 
 	

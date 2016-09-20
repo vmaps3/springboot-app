@@ -19,7 +19,7 @@
 					
 					
 					
-						<select name="pId" >
+						<select name="pid" >
 							<c:forEach items="${list}" var="pId">
 								
 								<c:choose>
