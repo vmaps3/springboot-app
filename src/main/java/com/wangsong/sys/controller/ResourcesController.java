@@ -72,9 +72,9 @@ public class ResourcesController {
 	
 	@RequestMapping(value="/findResourceListByType")
 	@ResponseBody
-	public Object findResourceListByType(String pid) {
+	public Object findResourceListByType() {
 		
-		return resourcesService.findResourceListByType(pid);
+		return resourcesService.findResourceListByType();
 	}
 	
 }

@@ -49,7 +49,7 @@
     and sys_user_role.role_id=sys_role_resources.role_id
     and sys_resources.type = #{type,jdbcType=VARCHAR}
     and sys_user_role.user_id = #{id,jdbcType=VARCHAR}
-     and sys_resources.pid = #{pid,jdbcType=VARCHAR}
+    
   </select>
   
   

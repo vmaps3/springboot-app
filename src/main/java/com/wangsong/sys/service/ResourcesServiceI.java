@@ -22,6 +22,6 @@ public interface ResourcesServiceI {
 
 	List<String> findResourceListByRoleId(String roleId);
 	
-	List<Map<String, Object>> findResourceListByType(String pid);
+	List<Resources> findResourceListByType();
 	
 }
