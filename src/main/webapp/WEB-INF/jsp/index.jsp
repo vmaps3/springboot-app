@@ -78,6 +78,13 @@
 			    }
 			});
 		}); 
+		function logout(){
+			  $.messager.confirm("确认", "确认注销吗？", function (r) {
+			        if (r) {
+			        	window.location="${pageContext.request.contextPath}/logout.do";
+			        }
+			    });
+		}
 	</script>
   </head>
   
@@ -86,7 +93,10 @@
    
   <body class="easyui-layout">
     <div data-options="region:'north',split:true" style="height:70px;">
-    	 <h1>娱乐管理系统</h1>
+    	<div style="margin-top: 20px;padding-left: 50px;">
+	    	 <span style="font-size: 20px;">娱乐管理系统</span>
+	    	  <a href="javascript:void(0)" class="easyui-linkbutton"  style="float: right;margin-right: 50px;" onclick="logout()">退出</a>
+           </div>
     </div>
     
    
