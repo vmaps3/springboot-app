@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
+import com.wangsong.sys.util.Page;
 
 
 @Service("muserService")
@@ -31,8 +33,13 @@ public class UserServiceImpl implements UserServiceI{
 	private RoleServiceI roleService;
 	
 	@Override
-	public List<User> selectAll() {	
-		return userMapper.selectAll();
+	public Page<User> selectAll(Page<User> page) {	
+		 PageHelper.startPage(page.getFirst()-1, page.getPageSize());
+		 List<User> userList=userMapper.selectAll();
+		 page.setResult(userList);
+		 int  count=userMapper.selectAllCount();
+		 page.setTotalCount(count);
+		 return page;
 	}
 	
 	@Override

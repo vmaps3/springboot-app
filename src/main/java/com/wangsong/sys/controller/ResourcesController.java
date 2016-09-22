@@ -59,7 +59,7 @@ public class ResourcesController {
 		ModelAndView mav= new ModelAndView("sys/resources/update");
 		Resources mresources = resourcesService.selectByPrimaryKey(id);
 		mav.addObject("resources", mresources);
-		mav.addObject("list", resourcesService.selectAll());
+		mav.addObject("list", resourcesService.selectAll(mresources));
 		return mav;
 	}
 

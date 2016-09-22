@@ -86,19 +86,12 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 
 	@Override
 	public List<String> findResourceListByRoleId(String roleId) {
-		// TODO Auto-generated method stub
 		return resourcesMapper.findResourceListByRoleId(roleId);
 	}
 
 	@Override
 	public List<Resources> findResourceListByType() {
-			List<Map<String, Object>> mapList=new ArrayList<>();
-			Map<String,Object> map=new HashMap<>();
-			map.put("type", "1");
-			map.put("id",( (User)SecurityUtils.getSubject().getPrincipal()).getId());
-			List<Resources> resourcesList=resourcesMapper.findResourceListByType(map);
-			
-		return resourcesList;
+		return resourcesMapper.findResourceListByType((User)SecurityUtils.getSubject().getPrincipal());
 	}
 	
 	

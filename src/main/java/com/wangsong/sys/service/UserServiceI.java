@@ -5,10 +5,11 @@ import java.util.Map;
 
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
+import com.wangsong.sys.util.Page;
 
 public interface UserServiceI {
 
-	List<User> selectAll();
+	Page<User> selectAll(Page<User> page);
 	
 	User selectByPrimaryKey(String id);
 	

@@ -8,27 +8,24 @@
 <title>User list</title>
 </head>
 <body>
-  	<h3>UserList</h3>
-  	<a href="${pageContext.request.contextPath}/sys/user/toAdd.do">Add User</a><br/>
-	<table border="1" width="70%">
-   		<tr>
-   			<td>Id</td>
-   			<td>UserName</td>
-   			<td>PassWord</td>
-   			
-   			<td>Delete</td>
-   			<td>Update</td>
-   		</tr>
-   		<c:forEach items="${list}" var="user">
-   		<tr>
-   			<td>${user.id }</td>
-   			<td>${user.username }</td>
-   			<td>${user.password }</td>
-   			<td><a href="${pageContext.request.contextPath}/sys/user/delete.do?id=${user.id }">Delete</a></td>
-   			<td><a href="${pageContext.request.contextPath}/sys/user/toUpdate.do?id=${user.id }">Update</a></td>
-   		</tr>
-   		</c:forEach>
-   </table>
-   
+  	
+   <table id="dg"  class="easyui-datagrid"  fit="true" 
+            url="${pageContext.request.contextPath}/sys/user/list.do"
+            toolbar="#toolbar" pagination="true"
+            rownumbers="true" fitColumns="true" singleSelect="true" >
+        <thead>
+            <tr>
+                <th field="id" width="50">id</th>
+                <th field="username" width="50">username</th>
+                <th field="password" width="50">password</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+    </div>
+
 </body>
 </html>

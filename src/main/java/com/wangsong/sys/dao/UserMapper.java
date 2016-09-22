@@ -1,6 +1,8 @@
 package com.wangsong.sys.dao;
 
 import com.wangsong.sys.model.User;
+import com.wangsong.sys.util.Page;
+
 import java.util.List;
 
 public interface UserMapper {
@@ -15,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
 	User findUserByLoginName(String username);
+	
+	int selectAllCount();
 }
