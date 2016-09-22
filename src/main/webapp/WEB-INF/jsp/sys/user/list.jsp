@@ -6,6 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User list</title>
+<script type="text/javascript">
+//删除
+function del(){
+	var row = $("#dg").datagrid('getSelected');
+	if(row==null) return;
+	
+	 $.messager.confirm("确认", "确认删除吗？", function (r) {
+	        if (r) {
+	        	window.location="${pageContext.request.contextPath}/sys/user/delete.do?id="+row.id;
+	        }
+	 });
+}
+
+//弹窗修改
+function upd(){
+	var row =  $("#dg").datagrid('getSelected');
+	if(row==null) return;
+	window.location="${pageContext.request.contextPath}/sys/user/toUpdate.do?id="+row.id;
+}
+
+</script>
 </head>
 <body>
   	
@@ -22,9 +43,9 @@
         </thead>
     </table>
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+        <a href="${pageContext.request.contextPath}/sys/user/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
     </div>
 
 </body>

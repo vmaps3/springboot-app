@@ -59,7 +59,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/add")
 	public String add(User user,String[] roleId) {
 		userService.insert(user,roleId);
-		return "redirect:/sys/user/list.do";
+		return "redirect:/sys/user/toList.do";
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -74,12 +74,12 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/update")
 	public String update(User muser,String[] roleId) {
 		userService.update(muser,roleId);
-		return "redirect:/sys/user/list.do";
+		return "redirect:/sys/user/toList.do";
 	}
 	
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		userService.delete(id);
-		return "redirect:/sys/user/list.do";
+		return "redirect:/sys/user/toList.do";
 	}
 }
