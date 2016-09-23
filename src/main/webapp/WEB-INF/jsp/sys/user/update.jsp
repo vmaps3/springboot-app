@@ -4,10 +4,18 @@
 <html>
 	<head>
 		<title>My JSP 'updateUser.jsp' starting page</title>
+		<script type="text/javascript">
+			function submitForm(){
+				$('#ff').submit()
+			}
+			function toList(){
+				window.location="${pageContext.request.contextPath}/sys/user/toList.do";
+			}
+		</script>
 	</head>
 
 	<body>
-		<form action="${pageContext.request.contextPath}/sys/user/update.do" method="POST">
+		<form id="ff" action="${pageContext.request.contextPath}/sys/user/update.do" method="POST">
 			<input type="hidden" name="id" value="${user.id }">
 			<table>
 				<tr>
@@ -15,7 +23,7 @@
 						username: 
 					</td>
 					<td>
-						<input type="text" name="username" value="${user.username }">
+						<input type="text" name="username" value="${user.username }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
@@ -23,7 +31,7 @@
 						password:
 					</td>
 					<td>
-						<input type="text" name="password" value="${user.password }">
+						<input type="text" name="password" value="${user.password }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
@@ -32,7 +40,7 @@
 					
 					
 					
-						<select name="roleId" multiple=”multiple”>
+						<select name="roleId" multiple="multiple" class="easyui-combobox">
 							<c:forEach items="${list}" var="userRole">
 								
 								<c:choose>
@@ -48,15 +56,12 @@
 						
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<input type="submit" value="Update">
-					</td>
-					<td>
-						<input type="reset" value="Reset">
-					</td>
-				</tr>
+				
 			</table>
 		</form>
+		<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
+		</div>
 	</body>
 </html>

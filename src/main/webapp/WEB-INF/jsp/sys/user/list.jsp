@@ -10,20 +10,25 @@
 //删除
 function del(){
 	var row = $("#dg").datagrid('getSelected');
-	if(row==null) return;
-	
-	 $.messager.confirm("确认", "确认删除吗？", function (r) {
-	        if (r) {
-	        	window.location="${pageContext.request.contextPath}/sys/user/delete.do?id="+row.id;
-	        }
-	 });
+	if(row!=null) {
+		 $.messager.confirm("确认", "确认删除吗？", function (r) {
+		        if (r) {
+		        	window.location="${pageContext.request.contextPath}/sys/user/delete.do?id="+row.id;
+		        }
+		 });
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
 }
 
 //弹窗修改
 function upd(){
 	var row =  $("#dg").datagrid('getSelected');
-	if(row==null) return;
-	window.location="${pageContext.request.contextPath}/sys/user/toUpdate.do?id="+row.id;
+	if(row!=null){
+		window.location="${pageContext.request.contextPath}/sys/user/toUpdate.do?id="+row.id;
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
 }
 
 </script>
