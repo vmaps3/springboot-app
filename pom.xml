@@ -10,10 +10,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <mysql.driver.version>5.1.30</mysql.driver.version>
-   	<spring.version>4.0.3.RELEASE</spring.version>
-	<mybatis.version>3.1.1</mybatis.version>
-	<mybatisspring.version>1.1.1</mybatisspring.version>
+   	<spring.version>4.1.9.RELEASE</spring.version>
+	<mybatis.version>3.2.8</mybatis.version>
+	<mybatis-spring.version>1.2.3</mybatis-spring.version>
 	<shiro.version>1.2.4</shiro.version>
+	<jackson.version>2.2.3</jackson.version>
   </properties>
   
   <dependencies>
@@ -24,24 +25,39 @@
 	</dependency>
 	<dependency>
 		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
 		<artifactId>spring-webmvc</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-test</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
 	<dependency>
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis</artifactId>
-		<version>${mybatis.version}</version>
-	</dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	<dependency>
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis-spring</artifactId>
-		<version>${mybatisspring.version}</version>
-	</dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
   
 	<dependency>
 		<groupId>junit</groupId>
@@ -135,6 +151,27 @@
 		    <groupId>com.github.pagehelper</groupId>
 		    <artifactId>pagehelper</artifactId>
 		    <version>4.1.6</version>
+		</dependency>
+		<!-- jackson json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
   </dependencies>
   <build>

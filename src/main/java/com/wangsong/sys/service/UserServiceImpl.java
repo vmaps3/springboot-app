@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
-import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.Role;
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserServiceI{
 	
 	@Override
 	public Page<User> selectAll(Page<User> page) {	
-		 PageHelper.startPage(page.getFirst()-1, page.getPageSize());
+		 PageHelper.startPage(page.getFirst(), page.getPageSize());
 		 List<User> userList=userMapper.selectAll();
 		 page.setResult(userList);
 		 int  count=userMapper.selectAllCount();

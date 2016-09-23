@@ -10,7 +10,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<mvc:annotation-driven/>
 	
-	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
 				<value>text/html;charset=UTF-8</value>
