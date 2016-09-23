@@ -4,10 +4,18 @@
 <html>
 	<head>
 		<title>My JSP 'updateUser.jsp' starting page</title>
+		<script type="text/javascript">
+			function submitForm(){
+				$('#ff').submit()
+			}
+			function toList(){
+				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
+			}
+		</script>
 	</head>
 
 	<body>
-		<form action="${pageContext.request.contextPath}/sys/resources/update.do" method="POST">
+		<form id="ff" action="${pageContext.request.contextPath}/sys/resources/update.do" method="POST">
 			<input type="hidden" name="id" value="${resources.id }">
 			<table>
 				<tr>
@@ -19,7 +27,7 @@
 					
 					
 					
-						<select name="pid" >
+						<select name="pid"  class="easyui-combobox">
 							<c:forEach items="${list}" var="pId">
 								
 								<c:choose>
@@ -40,7 +48,7 @@
 						name: 
 					</td>
 					<td>
-						<input type="text" name="name" value="${resources.name }">
+						<input type="text" name="name" value="${resources.name }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
@@ -48,7 +56,7 @@
 						url: 
 					</td>
 					<td>
-						<input type="text" name="url" value="${resources.url }">
+						<input type="text" name="url" value="${resources.url }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
@@ -56,19 +64,16 @@
 						type: 
 					</td>
 					<td>
-						<input type="text" name="type" value="${resources.type }">
+						<input type="text" name="type" value="${resources.type }" class="easyui-textbox">
 					</td>
 				</tr>
 				
-				<tr>
-					<td>
-						<input type="submit" value="Update">
-					</td>
-					<td>
-						<input type="reset" value="Reset">
-					</td>
-				</tr>
+			
 			</table>
 		</form>
+		<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
+		</div>
 	</body>
 </html>

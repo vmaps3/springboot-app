@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
@@ -17,6 +18,7 @@ import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.UserRole;
+import com.wangsong.sys.util.Page;
 
 
 @Service
@@ -109,6 +111,16 @@ public class RoleServiceImpl implements RoleServiceI{
 	@Override
 	public List<String> findRoleIdListByUserId(String id) {
 		return userRoleMapper.findRoleIdListByUserId(id);
+	}
+
+	@Override
+	public Page<Role> selectAll(Page<Role> page) {
+		PageHelper.startPage(page.getFirst(), page.getPageSize());
+		 List<Role> userList=roleMapper.selectAll();
+		 page.setResult(userList);
+		 int  count=roleMapper.selectAllCount();
+		 page.setTotalCount(count);
+		 return page;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
@@ -18,6 +19,7 @@ import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
+import com.wangsong.sys.util.Page;
 
 
 @Service
@@ -92,6 +94,16 @@ public class ResourcesServiceImpl implements ResourcesServiceI{
 	@Override
 	public List<Resources> findResourceListByType() {
 		return resourcesMapper.findResourceListByType((User)SecurityUtils.getSubject().getPrincipal());
+	}
+
+	@Override
+	public Page<Resources> selectAll(Page<Resources> page) {
+		 PageHelper.startPage(page.getFirst(), page.getPageSize());
+		 List<Resources> userList=resourcesMapper.selectAll();
+		 page.setResult(userList);
+		 int  count=resourcesMapper.selectAllCount();
+		 page.setTotalCount(count);
+		 return page;
 	}
 	
 	

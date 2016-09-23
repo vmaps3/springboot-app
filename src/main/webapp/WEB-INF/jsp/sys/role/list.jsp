@@ -6,29 +6,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User list</title>
+<script type="text/javascript">
+//删除
+function del(){
+	var row = $("#dg").datagrid('getSelected');
+	if(row!=null) {
+		 $.messager.confirm("确认", "确认删除吗？", function (r) {
+		        if (r) {
+		        	window.location="${pageContext.request.contextPath}/sys/role/delete.do?id="+row.id;
+		        }
+		 });
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
+}
+
+//弹窗修改
+function upd(){
+	var row =  $("#dg").datagrid('getSelected');
+	if(row!=null){
+		window.location="${pageContext.request.contextPath}/sys/role/toUpdate.do?id="+row.id;
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
+}
+
+</script>
 </head>
 <body>
-  	<h3>UserList</h3>
-  	<a href="${pageContext.request.contextPath}/sys/role/toAdd.do">Add User</a><br/>
-	<table border="1" width="70%">
-   		<tr>
-   			<td>Id</td>
-   			<td>Name</td>
-   			
-   			
-   			<td>Delete</td>
-   			<td>Update</td>
-   		</tr>
-   		<c:forEach items="${list}" var="role">
-   		<tr>
-   			<td>${role.id }</td>
-   			<td>${role.name }</td>
-   			
-   			<td><a href="${pageContext.request.contextPath}/sys/role/delete.do?id=${role.id }">Delete</a></td>
-   			<td><a href="${pageContext.request.contextPath}/sys/role/toUpdate.do?id=${role.id }">Update</a></td>
-   		</tr>
-   		</c:forEach>
-   </table>
+   <table id="dg"  class="easyui-datagrid"  fit="true" 
+            url="${pageContext.request.contextPath}/sys/role/list.do"
+            toolbar="#toolbar" pagination="true"
+            rownumbers="true" fitColumns="true" singleSelect="true" >
+        <thead>
+            <tr>
+                <th field="id" width="50">id</th>
+                <th field="name" width="50">name</th>
+               
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="${pageContext.request.contextPath}/sys/role/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+    </div>
    
 </body>
 </html>

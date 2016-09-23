@@ -26,13 +26,6 @@ public class UserController extends BaseController{
 	private UserServiceI userService;
 	@Autowired
 	private RoleServiceI roleService;
-
-//	@RequestMapping(value="/list")
-//	public String list(HttpServletRequest request) {
-//		List <User> list = userService.selectAll();
-//		request.setAttribute("list", list);
-//		return "sys/user/list";
-//	}
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

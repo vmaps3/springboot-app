@@ -13,23 +13,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
+import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesServiceI;
+import com.wangsong.sys.util.BaseController;
+import com.wangsong.sys.util.Page;
 
 
 
 @Controller
 @RequestMapping("/sys/resources")
-public class ResourcesController {
+public class ResourcesController extends BaseController {
 	@Autowired
 	private ResourcesServiceI resourcesService;
-
-	@RequestMapping(value="/list")
-	public String list(HttpServletRequest request) {
-		
-		List <Resources> list = resourcesService.selectAll();
-		request.setAttribute("list", list);
+	
+	@RequestMapping(value="/toList")
+	public String toList() {
 		return "sys/resources/list";
 	}
+	
+	@RequestMapping(value="/list")
+	@ResponseBody
+	public Object list(HttpServletRequest request) {
+		Page<Resources> page = getPage(request);
+		page = resourcesService.selectAll(page);
+		return getEasyUIData(page);
+	}
+	
+	
 	
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd() {
@@ -44,14 +54,14 @@ public class ResourcesController {
 			
 		
 		resourcesService.insert(resources);
-		return "redirect:/sys/resources/list.do";
+		return "redirect:/sys/resources/toList.do";
 	}
 	
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		
 		resourcesService.delete(id);
-		return "redirect:/sys/resources/list.do";
+		return "redirect:/sys/resources/toList.do";
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -67,7 +77,7 @@ public class ResourcesController {
 	public String update(Resources mresources) {
 		
 		resourcesService.update(mresources);
-		return "redirect:/sys/resources/list.do";
+		return "redirect:/sys/resources/toList.do";
 	}
 	
 	@RequestMapping(value="/findResourceListByType")

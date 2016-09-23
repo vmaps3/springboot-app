@@ -6,33 +6,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User list</title>
+<script type="text/javascript">
+//删除
+function del(){
+	var row = $("#dg").datagrid('getSelected');
+	if(row!=null) {
+		 $.messager.confirm("确认", "确认删除吗？", function (r) {
+		        if (r) {
+		        	window.location="${pageContext.request.contextPath}/sys/resources/delete.do?id="+row.id;
+		        }
+		 });
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
+}
+
+//弹窗修改
+function upd(){
+	var row =  $("#dg").datagrid('getSelected');
+	if(row!=null){
+		window.location="${pageContext.request.contextPath}/sys/resources/toUpdate.do?id="+row.id;
+	}else{
+		$.messager.alert('提示','请选择一条');
+	}
+}
+
+</script>
 </head>
 <body>
-  	<h3>UserList</h3>
-  	<a href="${pageContext.request.contextPath}/sys/resources/toAdd.do">Add User</a><br/>
-	<table border="1" width="70%">
-   		<tr>
-   			<td>Id</td>
-   			<td>pid</td>
-   			<td>name</td>
-   			<td>url</td>
-   			<td>type</td>
-   			
-   			<td>Delete</td>
-   			<td>Update</td>
-   		</tr>
-   		<c:forEach items="${list}" var="resources">
-   		<tr>
-   			<td>${resources.id }</td>
-   			<td>${resources.pid }</td>
-   			<td>${resources.name }</td>
-   			<td>${resources.url }</td>
-   			<td>${resources.type }</td>
-   			<td><a href="${pageContext.request.contextPath}/sys/resources/delete.do?id=${resources.id }">Delete</a></td>
-   			<td><a href="${pageContext.request.contextPath}/sys/resources/toUpdate.do?id=${resources.id }">Update</a></td>
-   		</tr>
-   		</c:forEach>
-   </table>
-   
+  	
+   <table id="dg"  class="easyui-datagrid"  fit="true" 
+            url="${pageContext.request.contextPath}/sys/resources/list.do"
+            toolbar="#toolbar" pagination="true"
+            rownumbers="true" fitColumns="true" singleSelect="true" >
+        <thead>
+            <tr>
+                <th field="id" width="50">id</th>
+                <th field="pid" width="50">pid</th>
+                <th field="name" width="50">name</th>
+                <th field="url" width="50">url</th>
+                <th field="type" width="50">type</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="${pageContext.request.contextPath}/sys/user/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+    </div>
 </body>
 </html>

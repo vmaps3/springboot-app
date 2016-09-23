@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
+import com.wangsong.sys.model.User;
+import com.wangsong.sys.util.Page;
 
 public interface ResourcesServiceI {
 
@@ -23,5 +25,8 @@ public interface ResourcesServiceI {
 	List<String> findResourceListByRoleId(String roleId);
 	
 	List<Resources> findResourceListByType();
+
+	Page<Resources> selectAll(Page<Resources> page);
+
 	
 }

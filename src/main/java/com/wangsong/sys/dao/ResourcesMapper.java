@@ -20,4 +20,6 @@ public interface ResourcesMapper {
 	List<String> findResourceListByRoleId(String roleId);
 
 	List<Resources> findResourceListByType(User user);
+
+	int selectAllCount();
 }
