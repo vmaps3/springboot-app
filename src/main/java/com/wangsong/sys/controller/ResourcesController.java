@@ -87,4 +87,12 @@ public class ResourcesController extends BaseController {
 		return resourcesService.findResourceListByType();
 	}
 	
+
+	@RequestMapping(value="/findMapListByType")
+	@ResponseBody
+	public Object findMapListByType() {
+		
+		return resourcesService.findMapListByType();
+	}
+	
 }

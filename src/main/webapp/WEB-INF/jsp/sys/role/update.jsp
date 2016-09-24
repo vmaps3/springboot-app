@@ -11,6 +11,14 @@
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/role/toList.do";
 			}
+			$(function(){ 
+				var s= new Array();
+				<c:forEach items="${list}" var="roleResources">
+				s. push('${roleResources.resourcesId}');
+		  		</c:forEach>
+		  		$("#cc").combotree('setValues',s);
+				
+			}); 
 		</script>
 	</head>
 
@@ -29,23 +37,7 @@
 				<tr>
 					<td>resources:</td>
 					<td>
-					
-					
-					
-						<select name="resourcesId" multiple="multiple" class="easyui-combobox">
-							<c:forEach items="${list}" var="roleResources">
-								
-								<c:choose>
-										<c:when test="${roleResources.selected == true}">
-											<option value ="${roleResources.id }" selected="${roleResources.selected}">${roleResources.name }</option>
-										</c:when>  
-										<c:otherwise>  
-											<option value ="${roleResources.id }" >${roleResources.name }</option>
-										</c:otherwise>
-									</c:choose>
-						  	</c:forEach>
-						</select>
-						
+						<input name="resourcesId" id="cc" class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/findResourceListByType.do'" multiple >
 					</td>
 				</tr>
 				

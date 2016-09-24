@@ -36,6 +36,10 @@
     select id, pid, name, url,type
     from sys_resources
   </select>
+  <select id="selectAllCount" resultType="java.lang.Integer"  >
+    select count(*)
+    from sys_resources 
+  </select>
    <select id="findResourceListByRoleId" parameterType="java.lang.String" resultType="java.lang.String">
     select url
     from sys_resources,sys_role_resources

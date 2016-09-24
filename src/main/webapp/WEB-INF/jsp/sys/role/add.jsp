@@ -24,12 +24,8 @@
 				<tr>
 					<td>resources:</td>
 					<td>
-						<select name="resourcesId" multiple="multiple" class="easyui-combobox">
-							<c:forEach items="${list}" var="resources">
-						  		<option value ="${resources.id }">${resources.name }</option>
-						  	</c:forEach>
-						  
-						</select>
+						<input name="resourcesId" class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/findResourceListByType.do'" multiple >
+
 					</td>
 				</tr>
 				

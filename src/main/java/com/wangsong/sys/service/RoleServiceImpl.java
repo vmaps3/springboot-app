@@ -86,26 +86,9 @@ public class RoleServiceImpl implements RoleServiceI{
 	}
 
 	@Override
-	public List<Map<String, Object>> selectRoleResourcesAll(Role mrole) {
-		List<Resources> resourcesList=resourcesMapper.selectAll();
-		List<RoleResources> userRoleList= roleResourcesMapper.selectByRole(mrole);
-		List<Map<String,Object>> mapList=new ArrayList<>();
-		for(int i=0;i<resourcesList.size();i++){
-			Map<String,Object> map=new HashMap<>();
-			Resources role=resourcesList.get(i);
-			map.put("id", role.getId());
-			map.put("name",role.getName());
-			boolean selected=false;
-			for(int j=0;j<userRoleList.size();j++){
-				RoleResources  userRole =userRoleList.get(j);
-				if(userRole.getResourcesId().equals(role.getId())){
-					selected=true;
-				}
-			}
-			map.put("selected",selected);
-			mapList.add(map);
-		}
-		return mapList;
+	public List<RoleResources> selectRoleResourcesAll(Role mrole) {
+		List<RoleResources> userRoleList= roleResourcesMapper.selectByRole(mrole);		
+		return userRoleList;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
+import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.util.Page;
 
@@ -20,7 +21,7 @@ public interface RoleServiceI {
     
     int delete(String id);
 
-	List<Map<String, Object>> selectRoleResourcesAll(Role mrole);
+	List<RoleResources> selectRoleResourcesAll(Role mrole);
 
 	List<String> findRoleIdListByUserId(String id);
 

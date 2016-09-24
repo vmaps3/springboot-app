@@ -42,20 +42,14 @@ public class RoleController  extends BaseController{
 		return getEasyUIData(page);
 	}
 	
-	
-	
-	
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd() {
 		ModelAndView mav= new ModelAndView("sys/role/add");
-		mav.addObject("list", resourcesService.selectAll());
 		return mav;
 	}
 	
 	@RequestMapping(value="/add")
 	public String add(Role role,String[] resourcesId) {
-			
-		
 		roleService.insert(role,resourcesId);
 		return "redirect:/sys/role/toList.do";
 	}
