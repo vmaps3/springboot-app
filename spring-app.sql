@@ -34,7 +34,7 @@ INSERT INTO `sys_resources` (`id`, `pid`, `name`, `url`, `type`) VALUES
 	('2b56b958-3b0d-46d4-8988-d7c5ae1d804b', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '用户管理', '/sys/user/list.do', '1'),
 	('a9b97767-54ff-4477-a81a-274d6e2b5ce9', 'c8870105-8c1e-4807-91d8-85d44caf39b6', '系统管理', '', '1'),
 	('c56d6e95-5515-492b-866a-b8555e7b647c', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '角色管理', '/sys/role/list.do', '1'),
-	('c8870105-8c1e-4807-91d8-85d44caf39b6', '-1', '菜单', '', '1');
+	('c8870105-8c1e-4807-91d8-85d44caf39b6', '', '菜单', '', '1');
 /*!40000 ALTER TABLE `sys_resources` ENABLE KEYS */;
 
 

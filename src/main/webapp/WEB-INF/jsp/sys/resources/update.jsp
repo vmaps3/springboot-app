@@ -11,38 +11,16 @@
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
 			}
+			
 		</script>
 	</head>
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/sys/resources/update.do" method="POST">
 			<input type="hidden" name="id" value="${resources.id }">
+			<input type="hidden" name="pid" value="${pid}"/>
 			<table>
-				<tr>
-					<td>
-						pid: 
-					</td>
-					<td>
-					
-					
-					
-					
-						<select name="pid"  class="easyui-combobox">
-							<c:forEach items="${list}" var="pId">
-								
-								<c:choose>
-										<c:when test="${pId.selected == true}">
-											<option value ="${pId.id }" selected="${pId.selected}">${pId.name }</option>
-										</c:when>  
-										<c:otherwise>  
-											<option value ="${pId.id }" >${pId.name }</option>
-										</c:otherwise>
-									</c:choose>
-						  	</c:forEach>
-						</select>
-						
-					</td>
-				</tr>
+				
 				<tr>
 					<td>
 						name: 

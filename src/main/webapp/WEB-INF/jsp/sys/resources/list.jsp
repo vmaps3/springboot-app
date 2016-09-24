@@ -7,52 +7,51 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User list</title>
 <script type="text/javascript">
-//删除
-function del(){
-	var row = $("#dg").datagrid('getSelected');
-	if(row!=null) {
-		 $.messager.confirm("确认", "确认删除吗？", function (r) {
-		        if (r) {
-		        	window.location="${pageContext.request.contextPath}/sys/resources/delete.do?id="+row.id;
-		        }
-		 });
-	}else{
-		$.messager.alert('提示','请选择一条');
-	}
+function append(){
+	var t = $('#tt');
+	var node = t.tree('getSelected');
+	window.location='${pageContext.request.contextPath}/sys/resources/toAdd.do?pid='+node.id
+}
+function removeit(){
+	var node = $('#tt').tree('getSelected');
+	$('#tt').tree('remove', node.target);
+	 $.messager.confirm("确认", "确认删除吗？", function (r) {
+	        if (r) {
+	        	window.location="${pageContext.request.contextPath}/sys/resources/delete.do?id="+node.id;
+	        }
+	 });
+}
+function up(){
+	var node = $('#tt').tree('getSelected');
+	window.location='${pageContext.request.contextPath}/sys/resources/toUpdate.do?id='+node.id+'&pid='+node.pid;
+	      
 }
 
-//弹窗修改
-function upd(){
-	var row =  $("#dg").datagrid('getSelected');
-	if(row!=null){
-		window.location="${pageContext.request.contextPath}/sys/resources/toUpdate.do?id="+row.id;
-	}else{
-		$.messager.alert('提示','请选择一条');
-	}
-}
 
 </script>
 </head>
-<body>
+<body >
   	
-   <table id="dg"  class="easyui-datagrid"  fit="true" 
-            url="${pageContext.request.contextPath}/sys/resources/list.do"
-            toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true" >
-        <thead>
-            <tr>
-                <th field="id" width="50">id</th>
-                <th field="pid" width="50">pid</th>
-                <th field="name" width="50">name</th>
-                <th field="url" width="50">url</th>
-                <th field="type" width="50">type</th>
-            </tr>
-        </thead>
-    </table>
-    <div id="toolbar">
-        <a href="${pageContext.request.contextPath}/sys/resources/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
-    </div>
+   
+	<ul id="tt" class="easyui-tree" data-options="
+			url: '${pageContext.request.contextPath}/sys/resources/findResourceListByType.do',
+			method: 'get',
+			animate: true,
+			onContextMenu: function(e,node){
+				e.preventDefault();
+				$(this).tree('select',node.target);
+				$('#mm').menu('show',{
+					left: e.pageX,
+					top: e.pageY
+				});
+			}
+		"></ul>
+    
+   
+    <div id="mm" class="easyui-menu" style="width:120px;">
+		<div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
+		<div onclick="up()" data-options="iconCls:'icon-add'">更改</div>
+		<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>	
+	</div>
 </body>
 </html>

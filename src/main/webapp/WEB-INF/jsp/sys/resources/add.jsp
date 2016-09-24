@@ -6,29 +6,21 @@
 		<title>My JSP 'addUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				$('#ff').submit()
+				$('#ff').submit();
 			}
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
 			}
+			
 		</script>
 	</head>
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/sys/resources/add.do" method="POST">
+			<input type="hidden" name="pid" value="${pid}"/>
 			<table>
-				<tr>
-					<td>pid:</td>
-					
-					<td>
-						<select name="pid" class="easyui-combobox">
-							<c:forEach items="${list}" var="resources">
-						  		<option value ="${resources.id }">${resources.name }</option>
-						  	</c:forEach>
-						  
-						</select>
-					</td>
-				</tr>
+				
+				
 				<tr>
 					<td>name:</td>
 					<td><input type="text" name="name" class="easyui-textbox"></td>
