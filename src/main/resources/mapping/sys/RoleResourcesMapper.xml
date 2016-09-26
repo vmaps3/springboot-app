@@ -6,20 +6,16 @@
     <result column="resources_id" jdbcType="VARCHAR" property="resourcesId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
-  <delete id="deleteByRole" parameterType="com.wangsong.sys.model.Role">
-    delete from sys_role_resources
-    where role_id = #{id,jdbcType=VARCHAR}
-  </delete>
-    <delete id="deleteByResources" parameterType="com.wangsong.sys.model.Resources">
-    delete from sys_role_resources
-    where resources_id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.wangsong.sys.model.RoleResources">
+   <insert id="insert" parameterType="com.wangsong.sys.model.RoleResources">
     insert into sys_role_resources (id, resources_id, role_id
       )
     values (#{id,jdbcType=VARCHAR}, #{resourcesId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
       )
   </insert>
+  <delete id="deleteByPrimaryKey" parameterType="com.wangsong.sys.model.RoleResources">
+    delete from sys_role_resources
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.RoleResources">
     update sys_role_resources
     set resources_id = #{resourcesId,jdbcType=VARCHAR},
@@ -31,12 +27,22 @@
     from sys_role_resources
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  
-  
-  
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select id, resources_id, role_id
+    from sys_role_resources
+  </select>
+ 
   <select id="selectByRole" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.Role" >
     select id, resources_id, role_id
     from sys_role_resources 
     where role_id = #{id,jdbcType=VARCHAR}
   </select>
+  <delete id="deleteByRole" parameterType="com.wangsong.sys.model.Role">
+    delete from sys_role_resources
+    where role_id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByResources" parameterType="com.wangsong.sys.model.Resources">
+    delete from sys_role_resources
+    where resources_id = #{id,jdbcType=VARCHAR}
+  </delete>
 </mapper>

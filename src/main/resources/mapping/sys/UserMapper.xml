@@ -6,16 +6,16 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_user
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
   <insert id="insert" parameterType="com.wangsong.sys.model.User">
     insert into sys_user (id, username, password
       )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.User">
     update sys_user
     set username = #{username,jdbcType=VARCHAR},

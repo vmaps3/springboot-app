@@ -5,14 +5,14 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_role
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
   <insert id="insert" parameterType="com.wangsong.sys.model.Role">
     insert into sys_role (id, name)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.Role">
     update sys_role
     set name = #{name,jdbcType=VARCHAR}
@@ -27,6 +27,7 @@
     select id, name
     from sys_role
   </select>
+  
   <select id="selectAllCount" resultType="java.lang.Integer" >
     select count(*)
     from sys_role

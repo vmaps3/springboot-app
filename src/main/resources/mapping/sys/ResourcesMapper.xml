@@ -9,16 +9,16 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_resources
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
   <insert id="insert" parameterType="com.wangsong.sys.model.Resources">
     insert into sys_resources (id, pid, name, 
       url,type)
     values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR})
   </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_resources
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.Resources">
     update sys_resources
     set pid = #{pid,jdbcType=VARCHAR},
@@ -36,6 +36,7 @@
     select id, pid, name, url,type
     from sys_resources
   </select>
+  
   <select id="selectAllCount" resultType="java.lang.Integer"  >
     select count(*)
     from sys_resources 
