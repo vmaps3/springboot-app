@@ -19,12 +19,8 @@ import com.wangsong.sys.service.ResourcesServiceI;
 
 @Controller
 public class LoginController  {
-	@Autowired
-	private ResourcesServiceI resourcesService;
 	
-	
-	
-    @RequestMapping(value = "/")
+	@RequestMapping(value = "/")
     public ModelAndView index(Model model) {
     	ModelAndView mav=new ModelAndView("index");
     	mav.addObject("resourceList", "");

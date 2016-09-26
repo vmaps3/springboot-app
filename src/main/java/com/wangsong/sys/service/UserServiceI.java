@@ -3,15 +3,15 @@ package com.wangsong.sys.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.util.Page;
 
-public interface UserServiceI {
+public interface UserServiceI extends BaseServiceI<User>{
 
-	Page<User> selectAll(Page<User> page);
+	Page selectAll(Page page);
 	
-	User selectByPrimaryKey(String id);
 	
     int insert(User muser, String[] roleId);
     

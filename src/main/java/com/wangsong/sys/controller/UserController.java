@@ -35,7 +35,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
-		Page<User> page = getPage(request);
+		Page page = getPage(request);
 		page = userService.selectAll(page);
 		return getEasyUIData(page);
 	}

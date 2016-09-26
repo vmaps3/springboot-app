@@ -5,14 +5,7 @@ import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
 import java.util.List;
 
-public interface RoleResourcesMapper {
-    int insert(RoleResources record);
-
-    RoleResources selectByPrimaryKey(String id);
-
-    List<RoleResources> selectAll();
-
-    int updateByPrimaryKey(RoleResources record);
+public interface RoleResourcesMapper extends BaseMapper<RoleResources>{
 
 	List<RoleResources> selectByRole(Role mrole);
 

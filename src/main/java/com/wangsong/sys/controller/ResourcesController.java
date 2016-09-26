@@ -31,16 +31,6 @@ public class ResourcesController extends BaseController {
 		return "sys/resources/list";
 	}
 	
-	@RequestMapping(value="/list")
-	@ResponseBody
-	public Object list(HttpServletRequest request) {
-		Page<Resources> page = getPage(request);
-		page = resourcesService.selectAll(page);
-		return getEasyUIData(page);
-	}
-	
-	
-	
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd(String pid) {
 		ModelAndView mav= new ModelAndView("sys/resources/add");
@@ -60,7 +50,7 @@ public class ResourcesController extends BaseController {
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		
-		resourcesService.delete(id);
+		resourcesService.deleteByPrimaryKey(id);
 		return "redirect:/sys/resources/toList.do";
 	}
 	
@@ -76,7 +66,7 @@ public class ResourcesController extends BaseController {
 	@RequestMapping(value="/update")
 	public String update(Resources mresources) {
 		
-		resourcesService.update(mresources);
+		resourcesService.updateByPrimaryKey(mresources);
 		return "redirect:/sys/resources/toList.do";
 	}
 	

@@ -22,15 +22,14 @@ import com.wangsong.sys.util.Page;
 
 
 @Service
-public class RoleServiceImpl implements RoleServiceI{
+public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServiceI {
 	@Autowired
 	private RoleMapper roleMapper;
 	@Autowired
 	private UserRoleMapper userRoleMapper;
 	@Autowired
 	private RoleResourcesMapper roleResourcesMapper;
-	@Autowired
-	private ResourcesMapper resourcesMapper;
+	
 	
 	@Override
 	public List<Role> selectAll() {
@@ -79,11 +78,7 @@ public class RoleServiceImpl implements RoleServiceI{
 		return roleMapper.deleteByPrimaryKey(id);
 	}
 
-	@Override
-	public Role selectByPrimaryKey(String id) {
-		
-		return roleMapper.selectByPrimaryKey(id);
-	}
+
 
 	@Override
 	public List<RoleResources> selectRoleResourcesAll(Role mrole) {
@@ -97,8 +92,8 @@ public class RoleServiceImpl implements RoleServiceI{
 	}
 
 	@Override
-	public Page<Role> selectAll(Page<Role> page) {
-		PageHelper.startPage(page.getFirst(), page.getPageSize());
+	public Page selectAll(Page page) {
+		PageHelper.startPage(page.getPageNo(), page.getPageSize());
 		 List<Role> userList=roleMapper.selectAll();
 		 page.setResult(userList);
 		 int  count=roleMapper.selectAllCount();

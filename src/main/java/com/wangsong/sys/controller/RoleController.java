@@ -37,7 +37,7 @@ public class RoleController  extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
-		Page<Role> page = getPage(request);
+		Page page = getPage(request);
 		page = roleService.selectAll(page);
 		return getEasyUIData(page);
 	}

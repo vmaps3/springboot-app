@@ -9,25 +9,12 @@ import com.wangsong.sys.model.User;
 import com.wangsong.sys.util.JsonTreeData;
 import com.wangsong.sys.util.Page;
 
-public interface ResourcesServiceI {
+public interface ResourcesServiceI extends BaseServiceI<Resources>{
 
-	List<Resources> selectAll();
 	
-	Resources selectByPrimaryKey(String id);
-	
-    int insert(Resources resources);
-    
-    int update(Resources resources);
-    
-    int delete(String id);
-
-    List<Map<String, Object>> selectAll(Resources mresources);
-
 	List<String> findResourceListByRoleId(String roleId);
 	
 	List<JsonTreeData> findResourceListByType();
-
-	Page<Resources> selectAll(Page<Resources> page);
 
 	List<JsonTreeData> findMapListByType();
 

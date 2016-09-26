@@ -5,12 +5,10 @@ import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 import java.util.List;
 
-public interface UserRoleMapper {
+public interface UserRoleMapper  extends BaseMapper<UserRole>{
     int deleteByUser(User user);
     
     int deleteByRole(Role role);
-
-    int insert(UserRole record);
 
     List<UserRole> selectByUser(User user);
 

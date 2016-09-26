@@ -22,7 +22,7 @@ import com.wangsong.sys.util.Page;
 
 @Service("muserService")
 @Transactional
-public class UserServiceImpl implements UserServiceI{
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserServiceI{
 	@Autowired
 	private UserMapper userMapper;
 	
@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserServiceI{
 	private RoleServiceI roleService;
 	
 	@Override
-	public Page<User> selectAll(Page<User> page) {	
-		 PageHelper.startPage(page.getFirst(), page.getPageSize());
+	public Page selectAll(Page page) {	
+		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
 		 List<User> userList=userMapper.selectAll();
 		 page.setResult(userList);
 		 int  count=userMapper.selectAllCount();
@@ -105,12 +105,7 @@ public class UserServiceImpl implements UserServiceI{
 		return userMapper.deleteByPrimaryKey(id);
 	}
 
-	@Override
-	public User selectByPrimaryKey(String id) {
-		
-		return userMapper.selectByPrimaryKey(id);
-	}
-
+	
 	@Override
 	public User findUserByLoginName(String username) {
 		return userMapper.findUserByLoginName(username);
