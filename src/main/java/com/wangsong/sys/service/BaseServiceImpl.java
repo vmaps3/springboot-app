@@ -1,7 +1,9 @@
 package com.wangsong.sys.service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,16 @@ public abstract class BaseServiceImpl<T> implements BaseServiceI<T>{
 	}
 	@Override
     public int insert(T t){
+		String id = UUID.randomUUID().toString();
+		Field field;
+		try {
+			field = t.getClass().getDeclaredField("id");
+			field.setAccessible(true);
+			field.set(t, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
     	return baseMapper.insert(t);
     	
     }

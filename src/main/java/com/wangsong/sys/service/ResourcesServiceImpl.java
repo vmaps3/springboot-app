@@ -29,13 +29,6 @@ import com.wangsong.sys.util.TreeNodeUtil;
 public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements ResourcesServiceI {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
-	
-	@Override
-	public int insert(Resources resources) {
-		String id = UUID.randomUUID().toString();
-		resources.setId(id);
-		return resourcesMapper.insert(resources);
-	}
 
 	@Override
 	public List<String> findResourceListByRoleId(String roleId) {
