@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.UserServiceI;
-import com.wangsong.sys.util.BaseController;
 import com.wangsong.sys.util.Page;
 
 @Controller

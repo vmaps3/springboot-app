@@ -1,4 +1,4 @@
-package com.wangsong.sys.util;
+package com.wangsong.sys.util.tree;
 
 public class Attributes {
 	private String url;

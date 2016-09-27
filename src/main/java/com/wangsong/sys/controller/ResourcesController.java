@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.service.ResourcesServiceI;
-import com.wangsong.sys.util.BaseController;
 
 
 
@@ -44,7 +43,7 @@ public class ResourcesController extends BaseController {
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		
-		resourcesService.deleteByPrimaryKey(id);
+		resourcesService.delete(id);
 		return "redirect:/sys/resources/toList.do";
 	}
 	

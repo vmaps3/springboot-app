@@ -11,9 +11,10 @@ import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.util.Attributes;
-import com.wangsong.sys.util.JsonTreeData;
-import com.wangsong.sys.util.TreeNodeUtil;
+import com.wangsong.sys.util.tree.Attributes;
+import com.wangsong.sys.util.tree.JsonTreeData;
+import com.wangsong.sys.util.tree.TreeNodeUtil;
+
 
 
 @Service

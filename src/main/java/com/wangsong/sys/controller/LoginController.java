@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class LoginController  {
+public class LoginController  extends BaseController {
 	
 	@RequestMapping(value = "/")
     public ModelAndView index(Model model) {
