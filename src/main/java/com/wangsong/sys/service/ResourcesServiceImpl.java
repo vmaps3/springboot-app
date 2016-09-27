@@ -1,7 +1,9 @@
 package com.wangsong.sys.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,11 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 	
 	@Override
-	public List<String> findResourceListByRoleId(String roleId) {
-		return resourcesMapper.findResourceListByRoleId(roleId);
+	public List<Resources> findResourceListByMap(String roleId) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("id", roleId);
+		map.put("type", "2");
+		return resourcesMapper.findResourceListByMap(map);
 	}
 
 	@Override
@@ -63,7 +68,10 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	
 	@Override
 	public List<JsonTreeData> findMapListByType() {
-		List<Resources> resourcesList =resourcesMapper.findResourceListByType((User)SecurityUtils.getSubject().getPrincipal());
+		Map<String, Object> map=new HashMap<>();
+		map.put("id", ((User)SecurityUtils.getSubject().getPrincipal()).getId());
+		map.put("type", "1");
+		List<Resources> resourcesList =resourcesMapper.findResourceListByMap(map);
 		 List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
          /*为了整理成公用的方法，所以将查询结果进行二次转换。
           * 其中specid为主键ID，varchar类型UUID生成

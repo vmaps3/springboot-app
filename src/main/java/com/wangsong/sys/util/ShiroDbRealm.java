@@ -8,9 +8,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesServiceI;
-import com.wangsong.sys.service.RoleServiceI;
 import com.wangsong.sys.service.UserServiceI;
 
 import java.util.HashSet;
@@ -22,15 +22,13 @@ public class ShiroDbRealm extends AuthorizingRealm {
     @Autowired
     private UserServiceI userService;
     @Autowired
-    private RoleServiceI roleService;
-    @Autowired
     private ResourcesServiceI resourcesService;
 
     
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
-            AuthenticationToken authcToken) throws AuthenticationException {
-        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+    		AuthenticationToken authcToken) throws AuthenticationException {
+    	UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         User user = userService.findUserByLoginName(token.getUsername());
       
         // 认证缓存信息
@@ -46,16 +44,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
             PrincipalCollection principals) {
 
     	User shiroUser = (User) principals.getPrimaryPrincipal();
-    	List<String> roleList = roleService.findRoleIdListByUserId(shiroUser.getId());
-
-        Set<String> urlSet = new HashSet<String>();
-        for (String roleId : roleList) {
-            List<String> roleResourceList = resourcesService.findResourceListByRoleId(roleId);
-            if (roleResourceList != null) {
-                for (String map : roleResourceList) {
-                	urlSet.add(map);
-                }
-            }
+    	List<Resources> roleList = resourcesService.findResourceListByMap(shiroUser.getId());
+    	Set<String> urlSet = new HashSet<String>();
+        for (Resources roleId : roleList) {
+        	urlSet.add(roleId.getUrl());
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.addStringPermissions(urlSet);

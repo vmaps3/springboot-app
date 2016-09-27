@@ -9,7 +9,7 @@ public interface ResourcesServiceI extends BaseServiceI<Resources>{
 
 	int delete(String id);
 	
-	List<String> findResourceListByRoleId(String roleId);
+	List<Resources> findResourceListByMap(String roleId);
 	
 	List<JsonTreeData> findResourceListByType();
 

@@ -12,6 +12,4 @@ public interface UserRoleMapper  extends BaseMapper<UserRole>{
 
     List<UserRole> selectByUser(User user);
 
-	List<String> findRoleIdListByUserId(String id);
-
 }

@@ -81,11 +81,6 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public List<String> findRoleIdListByUserId(String id) {
-		return userRoleMapper.findRoleIdListByUserId(id);
-	}
-
-	@Override
 	public Page selectAll(Page page) {
 		PageHelper.startPage(page.getPageNo(), page.getPageSize());
 		 List<Role> userList=roleMapper.selectAll();

@@ -16,8 +16,6 @@ public interface RoleServiceI extends BaseServiceI<Role>{
 
 	List<RoleResources> selectRoleResourcesAll(Role mrole);
 
-	List<String> findRoleIdListByUserId(String id);
-
 	Page selectAll(Page page);
 
 }
