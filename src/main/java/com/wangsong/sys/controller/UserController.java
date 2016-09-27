@@ -1,8 +1,5 @@
 package com.wangsong.sys.controller;
 
-import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.RoleServiceI;
 import com.wangsong.sys.service.UserServiceI;
 import com.wangsong.sys.util.BaseController;
 import com.wangsong.sys.util.Page;
@@ -24,8 +19,6 @@ import com.wangsong.sys.util.Page;
 public class UserController extends BaseController{
 	@Autowired
 	private UserServiceI userService;
-	@Autowired
-	private RoleServiceI roleService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {
@@ -43,10 +36,8 @@ public class UserController extends BaseController{
 	
 	@RequiresPermissions("/sys/user/toAdd")
 	@RequestMapping(value="/toAdd")
-	public ModelAndView toAdd() {
-		ModelAndView mav= new ModelAndView("sys/user/add");
-		mav.addObject("list", roleService.selectAll());
-		return mav;
+	public String toAdd() {
+		return "sys/user/add";
 	}
 	
 	@RequestMapping(value="/add")

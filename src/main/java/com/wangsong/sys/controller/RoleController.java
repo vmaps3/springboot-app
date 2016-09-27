@@ -1,7 +1,5 @@
 package com.wangsong.sys.controller;
 
-import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.Role;
-import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.ResourcesServiceI;
 import com.wangsong.sys.service.RoleServiceI;
 import com.wangsong.sys.util.BaseController;
 import com.wangsong.sys.util.Page;
@@ -26,8 +21,6 @@ import com.wangsong.sys.util.Page;
 public class RoleController  extends BaseController{
 	@Autowired
 	private RoleServiceI roleService;
-	@Autowired
-	private ResourcesServiceI resourcesService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {
@@ -75,5 +68,11 @@ public class RoleController  extends BaseController{
 		
 		roleService.update(mrole,resourcesId);
 		return "redirect:/sys/role/toList.do";
+	}
+	
+	@RequestMapping(value="/listAll")
+	@ResponseBody
+	public Object listAll() {
+		return roleService.selectAll();
 	}
 }

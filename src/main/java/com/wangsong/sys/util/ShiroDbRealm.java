@@ -6,12 +6,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesServiceI;
 import com.wangsong.sys.service.RoleServiceI;
@@ -19,7 +15,6 @@ import com.wangsong.sys.service.UserServiceI;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {

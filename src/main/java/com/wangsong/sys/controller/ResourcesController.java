@@ -1,9 +1,6 @@
 package com.wangsong.sys.controller;
 
-import java.util.List;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.model.Role;
-import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesServiceI;
 import com.wangsong.sys.util.BaseController;
-import com.wangsong.sys.util.Page;
 
 
 

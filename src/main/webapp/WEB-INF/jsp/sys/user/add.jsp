@@ -27,11 +27,15 @@
 				<tr>
 					<td>role:</td>
 					<td>
-						<select name="roleId" multiple="multiple"  class="easyui-combobox">
-							<c:forEach items="${list}" var="role">
-						  		<option value ="${role.id }">${role.name }</option>
-						  	</c:forEach>
-						</select>
+						
+						<input class="easyui-combobox" name="roleId"  multiple="multiple" 
+							data-options="
+								url:'${pageContext.request.contextPath}/sys/role/listAll.do',
+								method:'get',
+								valueField:'id',
+								textField:'name',
+								panelHeight:'auto'
+							">
 					</td>
 				</tr>
 				

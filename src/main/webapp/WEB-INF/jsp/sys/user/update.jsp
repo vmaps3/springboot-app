@@ -11,6 +11,13 @@
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/user/toList.do";
 			}
+			$(function(){ 
+				var s= new Array();
+				<c:forEach items="${list}" var="userRole">
+				s.push('${userRole.roleId}');
+		  		</c:forEach>
+				$('#cc').combobox('setValues',s); 
+			})
 		</script>
 	</head>
 
@@ -38,22 +45,15 @@
 					<td>role:</td>
 					<td>
 					
+						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" 
+							data-options="
+								url:'${pageContext.request.contextPath}/sys/role/listAll.do',
+								method:'get',
+								valueField:'id',
+								textField:'name',
+								panelHeight:'auto'
+							">
 					
-					
-						<select name="roleId" multiple="multiple" class="easyui-combobox">
-							<c:forEach items="${list}" var="userRole">
-								
-								<c:choose>
-										<c:when test="${userRole.selected == true}">
-											<option value ="${userRole.id }" selected="${userRole.selected}">${userRole.name }</option>
-										</c:when>  
-										<c:otherwise>  
-											<option value ="${userRole.id }" >${userRole.name }</option>
-										</c:otherwise>
-									</c:choose>
-						  	</c:forEach>
-						</select>
-						
 					</td>
 				</tr>
 				

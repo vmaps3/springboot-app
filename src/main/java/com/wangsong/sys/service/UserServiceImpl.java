@@ -1,9 +1,6 @@
 package com.wangsong.sys.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -14,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
-import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.util.Page;
@@ -28,8 +24,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	@Autowired
 	private UserRoleMapper userRoleMapper;
-	@Autowired
-	private RoleServiceI roleService;
+	
 	
 	@Override
 	public Page selectAll(Page page) {	
@@ -42,26 +37,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectUserRoleAll(User user) {	
-		List<Role> roleList=roleService.selectAll();
+	public List<UserRole> selectUserRoleAll(User user) {	
+		
 		List<UserRole> userRoleList= userRoleMapper.selectByUser(user);
-		List<Map<String,Object>> mapList=new ArrayList<>();
-		for(int i=0;i<roleList.size();i++){
-			Map<String,Object> map=new HashMap<>();
-			Role role=roleList.get(i);
-			map.put("id", role.getId());
-			map.put("name",role.getName());
-			boolean selected=false;
-			for(int j=0;j<userRoleList.size();j++){
-				UserRole  userRole =userRoleList.get(j);
-				if(userRole.getRoleId().equals(role.getId())){
-					selected=true;
-				}
-			}
-			map.put("selected",selected);
-			mapList.add(map);
-		}
-		return mapList;
+		
+		return userRoleList;
 	}
 
 	@Override

@@ -7,8 +7,6 @@ package com.wangsong.sys.util;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.collect.Lists;
 
 /**
@@ -29,7 +27,7 @@ public class Page {
 	
 
 	//-- 返回结果 --//
-	protected List result = Lists.newArrayList();
+	protected  List<?> result = Lists.newArrayList();
 	protected long totalCount = -1;
 
 	
@@ -64,20 +62,8 @@ public class Page {
 		this.pageSize = pageSize;
 	}
 
-
-
-	public List getResult() {
-		return result;
-	}
-
-
-
-	public void setResult(List result) {
-		this.result = result;
-	}
-
-
-
+	
+	
 	public long getTotalCount() {
 		return totalCount;
 	}
@@ -86,6 +72,18 @@ public class Page {
 
 	public void setTotalCount(long totalCount) {
 		this.totalCount = totalCount;
+	}
+
+
+
+	public List<?> getResult() {
+		return result;
+	}
+
+
+
+	public void setResult(List<?> result) {
+		this.result = result;
 	}
 
 	

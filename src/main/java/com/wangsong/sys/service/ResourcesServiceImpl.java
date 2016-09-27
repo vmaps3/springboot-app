@@ -1,27 +1,18 @@
 package com.wangsong.sys.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.ResourcesMapper;
-import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.model.Role;
-import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.util.Attributes;
 import com.wangsong.sys.util.JsonTreeData;
-import com.wangsong.sys.util.Page;
 import com.wangsong.sys.util.TreeNodeUtil;
 
 
@@ -29,7 +20,17 @@ import com.wangsong.sys.util.TreeNodeUtil;
 public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements ResourcesServiceI {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
-
+	@Autowired
+	private RoleResourcesMapper roleResourcesMapper;
+	
+	@Override
+	public int delete(String id) {
+		Resources resources=new Resources();
+		resources.setId(id);
+		roleResourcesMapper.deleteByResources(resources);
+		return resourcesMapper.deleteByPrimaryKey(id);
+	}
+	
 	@Override
 	public List<String> findResourceListByRoleId(String roleId) {
 		return resourcesMapper.findResourceListByRoleId(roleId);
