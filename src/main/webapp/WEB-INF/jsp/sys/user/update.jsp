@@ -38,7 +38,7 @@
 						password:
 					</td>
 					<td>
-						<input type="text" name="password" value="${user.password }" class="easyui-textbox">
+						<input type="password" name="password" value="${user.password }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>

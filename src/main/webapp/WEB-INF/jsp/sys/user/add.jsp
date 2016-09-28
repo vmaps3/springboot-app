@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td>password:</td>
-					<td><input type="text" name="password" class="easyui-textbox"></td>
+					<td><input type="password" name="password" class="easyui-textbox"></td>
 				</tr>
 				<tr>
 					<td>role:</td>
