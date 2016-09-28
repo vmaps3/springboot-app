@@ -18,8 +18,11 @@
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.User">
     update sys_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
+    set username = #{username,jdbcType=VARCHAR}
+		<if test="password!= null and password != ''">
+			,password = #{password,jdbcType=VARCHAR}
+		</if>
+		 
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

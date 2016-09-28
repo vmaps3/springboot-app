@@ -10,6 +10,7 @@ public interface UserServiceI extends BaseServiceI<User>{
 
 	Page selectAll(Page page);
 	
+	User selectByPrimaryKey(String id);
 	
     int insert(User muser, String[] roleId);
     

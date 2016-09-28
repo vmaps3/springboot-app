@@ -63,7 +63,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Override
 	public int update(User user,String[] roleId) {
-		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+		if(!"".equals(user.getPassword())){
+			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+		}
+		
 		userRoleMapper.deleteByUser(user);
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
@@ -90,5 +93,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public User findUserByLoginName(String username) {
 		return userMapper.findUserByLoginName(username);
 	}
-
+	@Override
+	public User selectByPrimaryKey(String id){
+		User u=userMapper.selectByPrimaryKey(id);
+		u.setPassword("");
+		return u;
+	}
 }
