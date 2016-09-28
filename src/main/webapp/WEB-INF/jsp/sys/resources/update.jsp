@@ -12,6 +12,10 @@
 				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
 			}
 			
+			$(function(){ 
+				
+				$('#cc').combobox('setValue','${resources.type }'); 
+			})
 		</script>
 	</head>
 
@@ -42,7 +46,14 @@
 						type: 
 					</td>
 					<td>
-						<input type="text" name="type" value="${resources.type }" class="easyui-textbox">
+						<input id="cc" class="easyui-combobox" name="type" 
+							data-options="
+								url:'${pageContext.request.contextPath}/sys/dict/selectByDict.do?type=1',
+								method:'get',
+								valueField:'code',
+								textField:'name',
+								panelHeight:'auto'
+							">
 					</td>
 				</tr>
 				

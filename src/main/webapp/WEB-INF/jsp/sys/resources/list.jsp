@@ -14,9 +14,10 @@ function append(){
 }
 function removeit(){
 	var node = $('#tt').tree('getSelected');
-	$('#tt').tree('remove', node.target);
+	
 	 $.messager.confirm("确认", "确认删除吗？", function (r) {
 	        if (r) {
+	        	$('#tt').tree('remove', node.target);
 	        	window.location="${pageContext.request.contextPath}/sys/resources/delete.do?id="+node.id;
 	        }
 	 });

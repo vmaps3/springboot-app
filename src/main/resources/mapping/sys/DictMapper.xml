@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.sys.dao.DictMapper">
+ <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Dict">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_dict
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangsong.sys.model.Dict">
+    insert into sys_dict (id, code, name, 
+      type)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.Dict">
+    update sys_dict
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+  </select>
+  
+   <select id="selectAllCount" resultType="java.lang.Integer"  >
+    select count(*)
+    from sys_dict 
+  </select>
+  <select id="selectByDict" parameterType="com.wangsong.sys.model.Dict" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

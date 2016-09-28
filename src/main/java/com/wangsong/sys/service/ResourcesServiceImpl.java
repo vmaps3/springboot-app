@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,33 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	
 	@Override
 	public int delete(String id) {
-		Resources resources=new Resources();
+		int i=0;
+		if(!"1".equals(id)){
+			Resources resources=new Resources();
+			resources.setId(id);
+			roleResourcesMapper.deleteByResources(resources);
+			i=resourcesMapper.deleteByPrimaryKey(id);
+		}
+		
+		return i;
+	}
+	
+	@Override
+	public int insert(Resources resources) {
+		String id = UUID.randomUUID().toString();
 		resources.setId(id);
-		roleResourcesMapper.deleteByResources(resources);
-		return resourcesMapper.deleteByPrimaryKey(id);
+		if("".equals(resources.getUrl())){
+			resources.setUrl("/");
+		}
+		return resourcesMapper.insert(resources);
+	}
+	
+	@Override
+	public int updateByPrimaryKey(Resources resources) {
+		if("".equals(resources.getUrl())){
+			resources.setUrl("/");
+		}
+		return resourcesMapper.updateByPrimaryKey(resources);
 	}
 	
 	@Override

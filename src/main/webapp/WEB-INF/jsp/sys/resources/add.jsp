@@ -31,7 +31,16 @@
 				</tr>
 				<tr>
 					<td>type:</td>
-					<td><input type="text" name="type" class="easyui-textbox"></td>
+					<td>
+						<input class="easyui-combobox" name="type" 
+							data-options="
+								url:'${pageContext.request.contextPath}/sys/dict/selectByDict.do?type=1',
+								method:'get',
+								valueField:'code',
+								textField:'name',
+								panelHeight:'auto'
+							">
+					</td>
 				</tr>
 				
 				

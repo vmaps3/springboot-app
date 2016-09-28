@@ -1,7 +1,6 @@
 package com.wangsong.sys.dao;
 
 import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.model.User;
 
 import java.util.List;
 import java.util.Map;
