@@ -6,7 +6,9 @@
 		<title>My JSP 'addUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				$('#ff').submit()
+				if($("#ff").form('validate')==true){
+					$('#ff').submit()
+				}
 			}
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/role/toList.do";
@@ -19,12 +21,12 @@
 			<table>
 				<tr>
 					<td>role:</td>
-					<td><input type="text" name="name" class="easyui-textbox"></td>
+					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
 					<td>resources:</td>
 					<td>
-						<input name="resourcesId" class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/findResourceListByType.do'" multiple >
+						<input name="resourcesId" required="true" class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/findResourceListByType.do'" multiple >
 
 					</td>
 				</tr>

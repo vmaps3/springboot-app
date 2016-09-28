@@ -51,7 +51,7 @@ function up(){
    
     <div id="mm" class="easyui-menu" style="width:120px;">
 		<div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
-		<div onclick="up()" data-options="iconCls:'icon-add'">更改</div>
+		<div onclick="up()" data-options="iconCls:'icon-edit'">更改</div>
 		<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>	
 	</div>
 </body>

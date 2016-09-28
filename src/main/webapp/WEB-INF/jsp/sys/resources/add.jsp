@@ -6,7 +6,9 @@
 		<title>My JSP 'addUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				$('#ff').submit();
+				if($("#ff").form('validate')==true){
+					$('#ff').submit();
+				}
 			}
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
@@ -23,16 +25,16 @@
 				
 				<tr>
 					<td>name:</td>
-					<td><input type="text" name="name" class="easyui-textbox"></td>
+					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
 					<td>url:</td>
-					<td><input type="text" name="url" class="easyui-textbox"></td>
+					<td><input type="text" name="url" class="easyui-textbox" validType="length[0,25]"></td>
 				</tr>
 				<tr>
 					<td>type:</td>
 					<td>
-						<input class="easyui-combobox" name="type" 
+						<input class="easyui-combobox" name="type" required="true"
 							data-options="
 								url:'${pageContext.request.contextPath}/sys/dict/selectByDict.do?type=1',
 								method:'get',

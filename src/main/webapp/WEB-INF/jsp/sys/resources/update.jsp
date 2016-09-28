@@ -30,7 +30,7 @@
 						name: 
 					</td>
 					<td>
-						<input type="text" name="name" value="${resources.name }" class="easyui-textbox">
+						<input type="text" name="name" value="${resources.name }" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -38,7 +38,7 @@
 						url: 
 					</td>
 					<td>
-						<input type="text" name="url" value="${resources.url }" class="easyui-textbox">
+						<input type="text" name="url" value="${resources.url }" class="easyui-textbox" validType="length[0,25]">
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +46,7 @@
 						type: 
 					</td>
 					<td>
-						<input id="cc" class="easyui-combobox" name="type" 
+						<input id="cc" class="easyui-combobox" name="type" required="true"
 							data-options="
 								url:'${pageContext.request.contextPath}/sys/dict/selectByDict.do?type=1',
 								method:'get',

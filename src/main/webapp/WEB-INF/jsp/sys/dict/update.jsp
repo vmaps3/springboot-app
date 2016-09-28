@@ -6,7 +6,9 @@
 		<title>My JSP 'updateUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				$('#ff').submit()
+				if($("#ff").form('validate')==true){
+					$('#ff').submit();
+				}
 			}
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/dict/toList.do";
@@ -30,7 +32,7 @@
 						code: 
 					</td>
 					<td>
-						<input type="text" name="code" value="${dict.code }" class="easyui-textbox">
+						<input type="text" name="code" value="${dict.code }" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -38,7 +40,7 @@
 						name: 
 					</td>
 					<td>
-						<input type="text" name="name" value="${dict.name }" class="easyui-textbox">
+						<input type="text" name="name" value="${dict.name }" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +48,7 @@
 						type:
 					</td>
 					<td>
-						<input type="text" name="type" value="${dict.type }" class="easyui-textbox">
+						<input type="text" name="type" value="${dict.type }" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 			</table>
