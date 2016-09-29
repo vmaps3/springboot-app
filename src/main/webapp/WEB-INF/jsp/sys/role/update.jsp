@@ -33,13 +33,13 @@
 						role: 
 					</td>
 					<td>
-						<input type="text" name="name" required="true" validType="length[1,25]" value="${role.name }" class="easyui-textbox">
+						<input type="text"   name="name" required="true" validType="length[1,25]" value="${role.name }" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
 					<td>resources:</td>
 					<td>
-						<input name="resourcesId" id="cc" required="true"  class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/list.do'" multiple >
+						<input name="resourcesId" id="cc"   cascadeCheck ="false" required="true"  class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/list.do'" multiple >
 					</td>
 				</tr>
 				

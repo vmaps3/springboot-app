@@ -47,7 +47,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 
-				<prop key="org.apache.shiro.authz.UnauthorizedException">/error/302</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/unauth</prop>
 			 </props> 
 		 </property> 
 	</bean> 

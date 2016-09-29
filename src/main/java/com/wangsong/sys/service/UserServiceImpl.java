@@ -16,7 +16,7 @@ import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.util.Page;
 
 
-@Service("muserService")
+@Service
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserServiceI{
 	@Autowired

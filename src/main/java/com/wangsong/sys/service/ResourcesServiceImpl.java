@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
@@ -21,6 +22,7 @@ import com.wangsong.sys.util.tree.TreeNodeUtil;
 
 
 @Service
+@Transactional
 public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements ResourcesServiceI {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
