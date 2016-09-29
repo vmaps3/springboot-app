@@ -26,6 +26,7 @@ public class DictController extends BaseController{
 		return "sys/dict/list";
 	}
 	
+	@RequiresPermissions("/sys/dict/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
@@ -33,14 +34,13 @@ public class DictController extends BaseController{
 		page = dictService.selectAll(page);
 		return getEasyUIData(page);
 	}
-	
-	
-	@RequiresPermissions("/sys/user/toAdd")
+
 	@RequestMapping(value="/toAdd")
 	public String toAdd() {
 		return "sys/dict/add";
 	}
 	
+	@RequiresPermissions("/sys/dict/add")
 	@RequestMapping(value="/add")
 	public String add(Dict dict) {
 		dictService.insert(dict);
@@ -55,12 +55,14 @@ public class DictController extends BaseController{
 		return mav;
 	}
 
+	@RequiresPermissions("/sys/dict/update")
 	@RequestMapping(value="/update")
 	public String update(Dict dict) {
 		dictService.updateByPrimaryKey(dict);
 		return "redirect:/sys/dict/toList.do";
 	}
 	
+	@RequiresPermissions("/sys/dict/delete")
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		dictService.deleteByPrimaryKey(id);

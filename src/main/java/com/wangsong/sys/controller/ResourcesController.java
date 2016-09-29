@@ -2,6 +2,7 @@ package com.wangsong.sys.controller;
 
 
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,7 @@ public class ResourcesController extends BaseController {
 		return mav;
 	}
 	
+	@RequiresPermissions("/sys/resources/add")
 	@RequestMapping(value="/add")
 	public String add(Resources resources) {
 			
@@ -40,6 +42,7 @@ public class ResourcesController extends BaseController {
 		return "redirect:/sys/resources/toList.do";
 	}
 	
+	@RequiresPermissions("/sys/resources/delete")
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		
@@ -55,7 +58,8 @@ public class ResourcesController extends BaseController {
 		mav.addObject("pid", pid);
 		return mav;
 	}
-
+	
+	@RequiresPermissions("/sys/resources/update")
 	@RequestMapping(value="/update")
 	public String update(Resources mresources) {
 		
@@ -63,11 +67,11 @@ public class ResourcesController extends BaseController {
 		return "redirect:/sys/resources/toList.do";
 	}
 	
-	@RequestMapping(value="/findResourceListByType")
+	@RequiresPermissions("/sys/resources/list")
+	@RequestMapping(value="/list")
 	@ResponseBody
-	public Object findResourceListByType() {
-		
-		return resourcesService.findResourceListByType();
+	public Object list() {
+		return resourcesService.selectAllJson();
 	}
 	
 

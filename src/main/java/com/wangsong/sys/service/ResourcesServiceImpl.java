@@ -67,7 +67,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 
 	@Override
-	public List<JsonTreeData> findResourceListByType() {
+	public List<JsonTreeData> selectAllJson() {
 		List<Resources> resourcesList =resourcesMapper.selectAll();
 		 List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
         /*为了整理成公用的方法，所以将查询结果进行二次转换。

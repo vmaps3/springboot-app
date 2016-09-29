@@ -41,7 +41,7 @@ function upd(){
             rownumbers="true" fitColumns="true" singleSelect="true" >
         <thead>
             <tr>
-                <th field="id" width="50">id</th>
+               
                 <th field="code" width="50">code</th>
                 <th field="name" width="50">name</th>
                 <th field="type" width="50">type</th>
@@ -49,9 +49,15 @@ function upd(){
         </thead>
     </table>
     <div id="toolbar">
-        <a href="${pageContext.request.contextPath}/sys/dict/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+    	<shiro:hasPermission name="/sys/dict/add">
+	        <a href="${pageContext.request.contextPath}/sys/dict/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+	    </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/dict/update">
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+	    </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/dict/delete">
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+	    </shiro:hasPermission>
     </div>
 
 </body>

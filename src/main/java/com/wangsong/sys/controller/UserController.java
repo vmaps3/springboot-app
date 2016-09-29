@@ -24,6 +24,7 @@ public class UserController extends BaseController{
 		return "sys/user/list";
 	}
 	
+	@RequiresPermissions("/sys/user/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
@@ -32,13 +33,11 @@ public class UserController extends BaseController{
 		return getEasyUIData(page);
 	}
 	
-	
-	@RequiresPermissions("/sys/user/toAdd")
 	@RequestMapping(value="/toAdd")
 	public String toAdd() {
 		return "sys/user/add";
 	}
-	
+	@RequiresPermissions("/sys/user/add")
 	@RequestMapping(value="/add")
 	public String add(User user,String[] roleId) {
 		userService.insert(user,roleId);
@@ -53,13 +52,15 @@ public class UserController extends BaseController{
 		mav.addObject("list", userService.selectUserRoleAll(muser));
 		return mav;
 	}
-
+	
+	@RequiresPermissions("/sys/user/update")
 	@RequestMapping(value="/update")
 	public String update(User muser,String[] roleId) {
 		userService.update(muser,roleId);
 		return "redirect:/sys/user/toList.do";
 	}
 	
+	@RequiresPermissions("/sys/user/delete")
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		userService.delete(id);

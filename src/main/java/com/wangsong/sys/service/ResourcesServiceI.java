@@ -11,7 +11,7 @@ public interface ResourcesServiceI extends BaseServiceI<Resources>{
 	
 	List<Resources> findResourceListByMap(String roleId);
 	
-	List<JsonTreeData> findResourceListByType();
+	List<JsonTreeData> selectAllJson();
 
 	List<JsonTreeData> findMapListByType();
 

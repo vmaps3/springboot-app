@@ -3,6 +3,7 @@ package com.wangsong.sys.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class RoleController  extends BaseController{
 		return "sys/role/list";
 	}
 	
+	@RequiresPermissions("/sys/role/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
@@ -40,12 +42,14 @@ public class RoleController  extends BaseController{
 		return mav;
 	}
 	
+	@RequiresPermissions("/sys/role/add")
 	@RequestMapping(value="/add")
 	public String add(Role role,String[] resourcesId) {
 		roleService.insert(role,resourcesId);
 		return "redirect:/sys/role/toList.do";
 	}
 	
+	@RequiresPermissions("/sys/role/delete")
 	@RequestMapping(value="/delete")
 	public String delete(String id) {
 		
@@ -62,6 +66,7 @@ public class RoleController  extends BaseController{
 		return mav;
 	}
 
+	@RequiresPermissions("/sys/role/update")
 	@RequestMapping(value="/update")
 	public String update(Role mrole,String[] resourcesId) {
 		

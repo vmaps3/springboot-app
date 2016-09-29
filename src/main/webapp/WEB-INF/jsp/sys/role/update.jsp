@@ -39,7 +39,7 @@
 				<tr>
 					<td>resources:</td>
 					<td>
-						<input name="resourcesId" id="cc" required="true"  class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/findResourceListByType.do'" multiple >
+						<input name="resourcesId" id="cc" required="true"  class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/sys/resources/list.do'" multiple >
 					</td>
 				</tr>
 				

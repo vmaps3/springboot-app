@@ -13,20 +13,23 @@
 			
 			
 			function findUserByLoginName(){
+				var a=false;
 				$.ajax({   
 					     url:'${pageContext.request.contextPath}/sys/user/findUserByLoginName.do',   
 					     type:'post',   
 					     async : false,
 					     data:'username='+$("#username").val(), 
 					     success:function(data){   
-					        if(data.username!=null){
-					        	$.messager.alert('提示','用户名重名');
-					        	return false;
+					        if(data==""){
+					        	a= true;
 					        }else{
-					        	return true;
+					        	$.messager.alert('提示','用户名重名');
+					        	a= false;
+					        	
 					        }
 					     }
 				 });
+				return a;
 			}
 			
 			function toList(){

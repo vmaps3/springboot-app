@@ -40,16 +40,22 @@ function upd(){
             rownumbers="true" fitColumns="true" singleSelect="true" >
         <thead>
             <tr>
-                <th field="id" width="50">id</th>
+               
                 <th field="name" width="50">name</th>
                
             </tr>
         </thead>
     </table>
     <div id="toolbar">
-        <a href="${pageContext.request.contextPath}/sys/role/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+    	<shiro:hasPermission name="/sys/role/add">
+        	<a href="${pageContext.request.contextPath}/sys/role/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/role/update">
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+         </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/role/delete">
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+        </shiro:hasPermission>
     </div>
    
 </body>

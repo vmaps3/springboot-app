@@ -35,7 +35,7 @@ function up(){
   	
    
 	<ul id="tt" class="easyui-tree" data-options="
-			url: '${pageContext.request.contextPath}/sys/resources/findResourceListByType.do',
+			url: '${pageContext.request.contextPath}/sys/resources/list.do',
 			method: 'get',
 			animate: true,
 			onContextMenu: function(e,node){
@@ -50,9 +50,15 @@ function up(){
     
    
     <div id="mm" class="easyui-menu" style="width:120px;">
-		<div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
-		<div onclick="up()" data-options="iconCls:'icon-edit'">更改</div>
-		<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>	
+    	<shiro:hasPermission name="/sys/resources/add">
+			<div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
+		 </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/resources/update">
+			<div onclick="up()" data-options="iconCls:'icon-edit'">更改</div>
+		 </shiro:hasPermission>
+        <shiro:hasPermission name="/sys/resources/delete">
+			<div onclick="removeit()" data-options="iconCls:'icon-remove'">删除</div>	
+		</shiro:hasPermission>
 	</div>
 </body>
 </html>
