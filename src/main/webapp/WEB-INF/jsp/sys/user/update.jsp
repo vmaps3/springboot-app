@@ -32,7 +32,7 @@
 						username: 
 					</td>
 					<td>
-						<input type="text" name="username" value="${user.username }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text" readOnly="true" name="username" value="${user.username }" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>

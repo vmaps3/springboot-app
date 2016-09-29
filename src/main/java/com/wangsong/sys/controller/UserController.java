@@ -65,4 +65,10 @@ public class UserController extends BaseController{
 		userService.delete(id);
 		return "redirect:/sys/user/toList.do";
 	}
+	
+	@RequestMapping(value="/findUserByLoginName")
+	@ResponseBody
+	public Object findUserByLoginName(String username) {
+		return userService.findUserByLoginName(username);
+	}
 }

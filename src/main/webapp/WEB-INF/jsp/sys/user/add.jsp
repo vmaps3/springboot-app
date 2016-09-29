@@ -6,10 +6,29 @@
 		<title>My JSP 'addUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				if($("#ff").form('validate')==true){
+				if($("#ff").form('validate')&&findUserByLoginName()){
 					$('#ff').submit();
 				}
 			}
+			
+			
+			function findUserByLoginName(){
+				$.ajax({   
+					     url:'${pageContext.request.contextPath}/sys/user/findUserByLoginName.do',   
+					     type:'post',   
+					     async : false,
+					     data:'username='+$("#username").val(), 
+					     success:function(data){   
+					        if(data.username!=null){
+					        	$.messager.alert('提示','用户名重名');
+					        	return false;
+					        }else{
+					        	return true;
+					        }
+					     }
+				 });
+			}
+			
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/user/toList.do";
 			}
@@ -20,7 +39,7 @@
 			<table>
 				<tr>
 					<td>username:</td>
-					<td><input type="text" name="username" class="easyui-textbox" required="true" validType="length[1,25]"></td>
+					<td><input type="text" id="username" name="username" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
 					<td>password:</td>
