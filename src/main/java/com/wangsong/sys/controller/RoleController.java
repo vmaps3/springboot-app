@@ -1,6 +1,9 @@
 package com.wangsong.sys.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -44,17 +47,20 @@ public class RoleController  extends BaseController{
 	
 	@RequiresPermissions("/sys/role/add")
 	@RequestMapping(value="/add")
-	public String add(Role role,String[] resourcesId) {
+	@ResponseBody
+	public Object add(Role role,String[] resourcesId) {
+		Map<String, Object>	map=new HashMap<>();
 		roleService.insert(role,resourcesId);
-		return "redirect:/sys/role/toList.do";
+		return map;
 	}
 	
 	@RequiresPermissions("/sys/role/delete")
 	@RequestMapping(value="/delete")
-	public String delete(String id) {
-		
+	@ResponseBody
+	public Object delete(String id) {
+		Map<String, Object>	map=new HashMap<>();
 		roleService.delete(id);
-		return "redirect:/sys/role/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -68,10 +74,11 @@ public class RoleController  extends BaseController{
 
 	@RequiresPermissions("/sys/role/update")
 	@RequestMapping(value="/update")
-	public String update(Role mrole,String[] resourcesId) {
-		
+	@ResponseBody
+	public Object update(Role mrole,String[] resourcesId) {
+		Map<String, Object>	map=new HashMap<>();
 		roleService.update(mrole,resourcesId);
-		return "redirect:/sys/role/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/listAll")

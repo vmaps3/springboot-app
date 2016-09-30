@@ -2,6 +2,9 @@ package com.wangsong.sys.controller;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,19 +38,21 @@ public class ResourcesController extends BaseController {
 	
 	@RequiresPermissions("/sys/resources/add")
 	@RequestMapping(value="/add")
-	public String add(Resources resources) {
+	@ResponseBody
+	public Object add(Resources resources) {
 			
-		
+		Map<String, Object>	map=new HashMap<>();
 		resourcesService.insert(resources);
-		return "redirect:/sys/resources/toList.do";
+		return map;
 	}
 	
 	@RequiresPermissions("/sys/resources/delete")
 	@RequestMapping(value="/delete")
-	public String delete(String id) {
-		
+	@ResponseBody
+	public Object delete(String id) {
+		Map<String, Object>	map=new HashMap<>();
 		resourcesService.delete(id);
-		return "redirect:/sys/resources/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -61,10 +66,11 @@ public class ResourcesController extends BaseController {
 	
 	@RequiresPermissions("/sys/resources/update")
 	@RequestMapping(value="/update")
-	public String update(Resources mresources) {
-		
+	@ResponseBody
+	public Object update(Resources mresources) {
+		Map<String, Object>	map=new HashMap<>();
 		resourcesService.updateByPrimaryKey(mresources);
-		return "redirect:/sys/resources/toList.do";
+		return map;
 	}
 	
 	@RequiresPermissions("/sys/resources/list")

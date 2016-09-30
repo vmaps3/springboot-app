@@ -7,7 +7,18 @@
 		<script type="text/javascript">
 			function submitForm(){
 				if($("#ff").form('validate')==true){
-					$('#ff').submit();
+					$.ajax({   
+					     url:$("#ff").attr("action"),   
+					     type:$("#ff").attr("method"),   
+					     data:$("#ff").serializeArray(),
+					     success:function(data){   
+					        if(data.msg==null){
+					        	window.location="${pageContext.request.contextPath}/sys/user/toList.do";
+					        }else{
+					        	$.messager.alert('提示',data.msg);
+					        }
+					     }
+					});
 				}
 			}
 			function toList(){

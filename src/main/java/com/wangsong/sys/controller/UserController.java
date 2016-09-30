@@ -1,5 +1,8 @@
 package com.wangsong.sys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -39,9 +42,11 @@ public class UserController extends BaseController{
 	}
 	@RequiresPermissions("/sys/user/add")
 	@RequestMapping(value="/add")
-	public String add(User user,String[] roleId) {
+	@ResponseBody
+	public Object add(User user,String[] roleId) {
+		Map<String, Object>	map=new HashMap<>();
 		userService.insert(user,roleId);
-		return "redirect:/sys/user/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -55,16 +60,20 @@ public class UserController extends BaseController{
 	
 	@RequiresPermissions("/sys/user/update")
 	@RequestMapping(value="/update")
-	public String update(User muser,String[] roleId) {
+	@ResponseBody
+	public Object update(User muser,String[] roleId) {
+		Map<String, Object>	map=new HashMap<>();
 		userService.update(muser,roleId);
-		return "redirect:/sys/user/toList.do";
+		return map;
 	}
 	
 	@RequiresPermissions("/sys/user/delete")
 	@RequestMapping(value="/delete")
-	public String delete(String id) {
+	@ResponseBody
+	public Object delete(String id) {
+		Map<String, Object>	map=new HashMap<>();
 		userService.delete(id);
-		return "redirect:/sys/user/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/findUserByLoginName")

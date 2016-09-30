@@ -18,7 +18,18 @@ function removeit(){
 	 $.messager.confirm("确认", "确认删除吗？", function (r) {
 	        if (r) {
 	        	$('#tt').tree('remove', node.target);
-	        	window.location="${pageContext.request.contextPath}/sys/resources/delete.do?id="+node.id;
+	        	$.ajax({   
+				     url:'${pageContext.request.contextPath}/sys/resources/delete.do',   
+				     type:'post',   
+				     data:"id="+node.id,
+				     success:function(data){   
+				        if(data.msg==null){
+				        	window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
+				        }else{
+				        	$.messager.alert('提示',data.msg);
+				        }
+				     }
+				});
 	        }
 	 });
 }

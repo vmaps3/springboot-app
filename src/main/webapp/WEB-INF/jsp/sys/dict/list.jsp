@@ -13,7 +13,18 @@ function del(){
 	if(row!=null) {
 		 $.messager.confirm("确认", "确认删除吗？", function (r) {
 		        if (r) {
-		        	window.location="${pageContext.request.contextPath}/sys/dict/delete.do?id="+row.id;
+		        	$.ajax({   
+					     url:'${pageContext.request.contextPath}/sys/dict/delete.do',   
+					     type:'post',   
+					     data:"id="+row.id,
+					     success:function(data){   
+					        if(data.msg==null){
+					        	window.location="${pageContext.request.contextPath}/sys/dict/toList.do";
+					        }else{
+					        	$.messager.alert('提示',data.msg);
+					        }
+					     }
+					});
 		        }
 		 });
 	}else{

@@ -24,10 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController  extends BaseController {
 	
 	@RequestMapping(value = "/")
-    public ModelAndView index(Model model) {
-    	ModelAndView mav=new ModelAndView("index");
-    	mav.addObject("resourceList", "");
-        return mav;
+    public String index() {
+        return "index";
     }
 
   

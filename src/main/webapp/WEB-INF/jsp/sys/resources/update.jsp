@@ -6,7 +6,18 @@
 		<title>My JSP 'updateUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				$('#ff').submit()
+				$.ajax({   
+				     url:$("#ff").attr("action"),   
+				     type:$("#ff").attr("method"),   
+				     data:$("#ff").serializeArray(),
+				     success:function(data){   
+				        if(data.msg==null){
+				        	window.location="${pageContext.request.contextPath}/sys/resources/toList.do";
+				        }else{
+				        	$.messager.alert('提示',data.msg);
+				        }
+				     }
+				});
 			}
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/resources/toList.do";

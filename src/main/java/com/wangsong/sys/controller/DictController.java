@@ -1,5 +1,8 @@
 package com.wangsong.sys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -42,9 +45,11 @@ public class DictController extends BaseController{
 	
 	@RequiresPermissions("/sys/dict/add")
 	@RequestMapping(value="/add")
-	public String add(Dict dict) {
+	@ResponseBody
+	public Object add(Dict dict) {
+		Map<String, Object>	map=new HashMap<>();
 		dictService.insert(dict);
-		return "redirect:/sys/dict/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/toUpdate")
@@ -57,16 +62,20 @@ public class DictController extends BaseController{
 
 	@RequiresPermissions("/sys/dict/update")
 	@RequestMapping(value="/update")
-	public String update(Dict dict) {
+	@ResponseBody
+	public Object update(Dict dict) {
+		Map<String, Object>	map=new HashMap<>();
 		dictService.updateByPrimaryKey(dict);
-		return "redirect:/sys/dict/toList.do";
+		return map;
 	}
 	
 	@RequiresPermissions("/sys/dict/delete")
 	@RequestMapping(value="/delete")
-	public String delete(String id) {
+	@ResponseBody
+	public Object delete(String id) {
+		Map<String, Object>	map=new HashMap<>();
 		dictService.deleteByPrimaryKey(id);
-		return "redirect:/sys/dict/toList.do";
+		return map;
 	}
 	
 	@RequestMapping(value="/selectByDict")
