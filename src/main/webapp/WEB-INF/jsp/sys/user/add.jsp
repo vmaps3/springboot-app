@@ -25,10 +25,9 @@
 					        }else{
 					        	$.messager.alert('提示','用户名重名');
 					        	a= false;
-					        	
 					        }
 					     }
-				 });
+				});
 				return a;
 			}
 			
