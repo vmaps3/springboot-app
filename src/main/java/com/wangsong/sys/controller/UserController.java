@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.UserServiceI;
 import com.wangsong.sys.util.Page;
@@ -49,13 +50,33 @@ public class UserController extends BaseController{
 		return map;
 	}
 	
+//	@RequestMapping(value="/toUpdate")
+//	public ModelAndView toUpdate(String id) {
+//		User muser = userService.selectByPrimaryKey(id);
+//		ModelAndView mav= new ModelAndView("sys/user/update");
+//		mav.addObject("user", muser);
+//		mav.addObject("list", userService.selectUserRoleAll(muser));
+//		return mav;
+//	}
+	
 	@RequestMapping(value="/toUpdate")
 	public ModelAndView toUpdate(String id) {
-		User muser = userService.selectByPrimaryKey(id);
 		ModelAndView mav= new ModelAndView("sys/user/update");
-		mav.addObject("user", muser);
-		mav.addObject("list", userService.selectUserRoleAll(muser));
+		mav.addObject("id", id);
 		return mav;
+	}
+	
+	@RequestMapping(value="/selectByPrimaryKey")
+	@ResponseBody
+	public Object selectByPrimaryKey(String id) {
+		User muser = userService.selectByPrimaryKey(id);
+		return muser;
+	}
+	
+	@RequestMapping(value="/selectUserRoleAll")
+	@ResponseBody
+	public Object selectUserRoleAll(User muser) {
+		return userService.selectUserRoleAll(muser);
 	}
 	
 	@RequiresPermissions("/sys/user/update")

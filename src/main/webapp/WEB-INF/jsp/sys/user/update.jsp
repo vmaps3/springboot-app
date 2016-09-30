@@ -24,26 +24,41 @@
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/user/toList.do";
 			}
-			$(function(){ 
-				var s= new Array();
-				<c:forEach items="${list}" var="userRole">
-				s.push('${userRole.roleId}');
-		  		</c:forEach>
-				$('#cc').combobox('setValues',s); 
+			$(document).ready(function() { 
+				$.ajax({   
+				     url:'${pageContext.request.contextPath}/sys/user/selectByPrimaryKey.do',   
+				     type:'post',   
+				     data:'id=${id}',
+				     success:function(data){   
+				    	 $('#ff').form('load',data);
+							$.ajax({   
+							     	url:'${pageContext.request.contextPath}/sys/user/selectUserRoleAll.do',   
+							     	type:'post',   
+							     	data:'id='+data.id,
+							     	success:function(data){   
+										var s= new Array();
+								     	for(var i=0;i<data.length;i++){
+								    	  	s.push(data[i].roleId);
+								      	}
+								      	$('#cc').combobox('setValues',s); 
+							     	}
+							});
+				     }
+				});
 			})
 		</script>
 	</head>
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/sys/user/update.do" method="POST">
-			<input type="hidden" name="id" value="${user.id }">
+			<input type="hidden" id="id" name="id" value="">
 			<table>
 				<tr>
 					<td>
 						username: 
 					</td>
 					<td>
-						<input type="text" readOnly="true" name="username" value="${user.username }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text"  id="username" name="username"  readonly="true" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -51,7 +66,7 @@
 						password:
 					</td>
 					<td>
-						<input type="password" name="password" value="${user.password }" class="easyui-textbox"  validType="length[0,25]">
+						<input type="password" name="password" id="password"   class="easyui-textbox"  validType="length[0,25]">
 					</td>
 				</tr>
 				<tr>
@@ -76,5 +91,6 @@
 			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
 		</div>
+		
 	</body>
 </html>
