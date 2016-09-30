@@ -50,15 +50,6 @@ public class UserController extends BaseController{
 		return map;
 	}
 	
-//	@RequestMapping(value="/toUpdate")
-//	public ModelAndView toUpdate(String id) {
-//		User muser = userService.selectByPrimaryKey(id);
-//		ModelAndView mav= new ModelAndView("sys/user/update");
-//		mav.addObject("user", muser);
-//		mav.addObject("list", userService.selectUserRoleAll(muser));
-//		return mav;
-//	}
-	
 	@RequestMapping(value="/toUpdate")
 	public ModelAndView toUpdate(String id) {
 		ModelAndView mav= new ModelAndView("sys/user/update");
