@@ -24,7 +24,7 @@
 			function toList(){
 				window.location="${pageContext.request.contextPath}/sys/user/toList.do";
 			}
-			$(document).ready(function() { 
+			$(function(){ 
 				$.ajax({   
 				     url:'${pageContext.request.contextPath}/sys/user/selectByPrimaryKey.do',   
 				     type:'post',   
