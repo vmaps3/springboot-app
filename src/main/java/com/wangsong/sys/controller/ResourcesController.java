@@ -32,7 +32,6 @@ public class ResourcesController extends BaseController {
 	public ModelAndView toAdd(String pid) {
 		ModelAndView mav= new ModelAndView("sys/resources/add");
 		mav.addObject("pid", pid);
-		mav.addObject("list", resourcesService.selectAll());
 		return mav;
 	}
 	
@@ -56,11 +55,9 @@ public class ResourcesController extends BaseController {
 	}
 	
 	@RequestMapping(value="/toUpdate")
-	public ModelAndView toUpdate(String id,String pid) {
+	public ModelAndView toUpdate(String id) {
 		ModelAndView mav= new ModelAndView("sys/resources/update");
-		Resources mresources = resourcesService.selectByPrimaryKey(id);
-		mav.addObject("resources", mresources);
-		mav.addObject("pid", pid);
+		mav.addObject("id", id);
 		return mav;
 	}
 	
@@ -86,6 +83,12 @@ public class ResourcesController extends BaseController {
 	public Object findMapListByType() {
 		
 		return resourcesService.findMapListByType();
+	}
+	
+	@RequestMapping(value="/selectByPrimaryKey")
+	@ResponseBody
+	public Object selectByPrimaryKey(String id) {
+		return resourcesService.selectByPrimaryKey(id);
 	}
 	
 }

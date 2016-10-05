@@ -25,11 +25,26 @@
 				window.location="${pageContext.request.contextPath}/sys/role/toList.do";
 			}
 			$(function(){ 
-				var s= new Array();
-				<c:forEach items="${list}" var="roleResources">
-				s. push('${roleResources.resourcesId}');
-		  		</c:forEach>
-		  		$("#cc").combotree('setValues',s);
+				$.ajax({   
+				     url:'${pageContext.request.contextPath}/sys/role/selectByPrimaryKey.do',   
+				     type:'post',   
+				     data:'id=${id}',
+				     success:function(data){   
+				    	 $('#ff').form('load',data);
+							$.ajax({   
+							     	url:'${pageContext.request.contextPath}/sys/role/selectRoleResourcesAll.do',   
+							     	type:'post',   
+							     	data:'id='+data.id,
+							     	success:function(data){   
+										var s= new Array();
+								     	for(var i=0;i<data.length;i++){
+								    	  	s.push(data[i].resourcesId);
+								      	}
+								     	$("#cc").combotree('setValues',s);
+							     	}
+							});
+				     }
+				});
 				
 			}); 
 		</script>
@@ -37,14 +52,14 @@
 
 	<body>
 		<form id="ff"  action="${pageContext.request.contextPath}/sys/role/update.do" method="POST">
-			<input type="hidden" name="id" value="${role.id }">
+			<input type="hidden" name="id" >
 			<table>
 				<tr>
 					<td>
 						role: 
 					</td>
 					<td>
-						<input type="text"   name="name" required="true" validType="length[1,25]" value="${role.name }" class="easyui-textbox">
+						<input type="text"   name="name" required="true" validType="length[1,25]" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>

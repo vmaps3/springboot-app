@@ -35,7 +35,7 @@ function removeit(){
 }
 function up(){
 	var node = $('#tt').tree('getSelected');
-	window.location='${pageContext.request.contextPath}/sys/resources/toUpdate.do?id='+node.id+'&pid='+node.pid;
+	window.location='${pageContext.request.contextPath}/sys/resources/toUpdate.do?id='+node.id;
 	      
 }
 

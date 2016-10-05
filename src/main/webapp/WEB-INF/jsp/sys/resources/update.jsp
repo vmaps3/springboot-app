@@ -24,16 +24,24 @@
 			}
 			
 			$(function(){ 
+				$.ajax({   
+				     url:'${pageContext.request.contextPath}/sys/resources/selectByPrimaryKey.do',   
+				     type:'post',   
+				     data:'id=${id}',
+				     success:function(data){   
+				    	 $('#ff').form('load',data);
+				    	 $('#cc').combobox('setValue',data.type); 
+				     }
+				});
 				
-				$('#cc').combobox('setValue','${resources.type }'); 
 			})
 		</script>
 	</head>
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/sys/resources/update.do" method="POST">
-			<input type="hidden" name="id" value="${resources.id }">
-			<input type="hidden" name="pid" value="${pid}"/>
+			<input type="hidden" name="id" >
+			<input type="hidden" name="pid"/>
 			<table>
 				
 				<tr>
@@ -41,7 +49,7 @@
 						name: 
 					</td>
 					<td>
-						<input type="text" name="name" value="${resources.name }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text" name="name"  class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +57,7 @@
 						url: 
 					</td>
 					<td>
-						<input type="text" name="url" value="${resources.url }" class="easyui-textbox" validType="length[0,25]">
+						<input type="text" name="url" class="easyui-textbox" validType="length[0,25]">
 					</td>
 				</tr>
 				<tr>

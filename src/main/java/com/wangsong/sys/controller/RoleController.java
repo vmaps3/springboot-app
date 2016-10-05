@@ -66,9 +66,7 @@ public class RoleController  extends BaseController{
 	@RequestMapping(value="/toUpdate")
 	public ModelAndView toUpdate(String id) {
 		ModelAndView mav= new ModelAndView("sys/role/update");
-		Role mrole = roleService.selectByPrimaryKey(id);
-		mav.addObject("role", mrole);
-		mav.addObject("list", roleService.selectRoleResourcesAll(mrole));
+		mav.addObject("id", id);
 		return mav;
 	}
 
@@ -86,4 +84,18 @@ public class RoleController  extends BaseController{
 	public Object listAll() {
 		return roleService.selectAll();
 	}
+	
+	@RequestMapping(value="/selectByPrimaryKey")
+	@ResponseBody
+	public Object selectByPrimaryKey(String id) {
+		return roleService.selectByPrimaryKey(id);
+	}
+	
+	@RequestMapping(value="/selectRoleResourcesAll")
+	@ResponseBody
+	public Object selectRoleResourcesAll(Role role) {
+		return roleService.selectRoleResourcesAll(role);
+	}
+	
+	
 }

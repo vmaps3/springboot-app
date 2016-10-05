@@ -54,9 +54,8 @@ public class DictController extends BaseController{
 	
 	@RequestMapping(value="/toUpdate")
 	public ModelAndView toUpdate(String id) {
-		Dict muser = dictService.selectByPrimaryKey(id);
 		ModelAndView mav= new ModelAndView("sys/dict/update");
-		mav.addObject("dict", muser);
+		mav.addObject("id", id);
 		return mav;
 	}
 
@@ -82,6 +81,13 @@ public class DictController extends BaseController{
 	@ResponseBody
 	public Object selectByDict(Dict dict) {
 		return dictService.selectByDict(dict);
+	}
+	
+	
+	@RequestMapping(value="/selectByPrimaryKey")
+	@ResponseBody
+	public Object selectByPrimaryKey(String id) {
+		return dictService.selectByPrimaryKey(id);
 	}
 	
 }

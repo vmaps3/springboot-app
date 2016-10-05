@@ -25,25 +25,29 @@
 				window.location="${pageContext.request.contextPath}/sys/dict/toList.do";
 			}
 			$(function(){ 
-				var s= new Array();
-				<c:forEach items="${list}" var="userRole">
-				s.push('${userRole.roleId}');
-		  		</c:forEach>
-				$('#cc').combobox('setValues',s); 
+				$.ajax({   
+				     url:'${pageContext.request.contextPath}/sys/dict/selectByPrimaryKey.do',   
+				     type:'post',   
+				     data:'id=${id}',
+				     success:function(data){   
+				    	 $('#ff').form('load',data);
+							
+				     }
+				});
 			})
 		</script>
 	</head>
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/sys/dict/update.do" method="POST">
-			<input type="hidden" name="id" value="${dict.id }">
+			<input type="hidden" name="id" >
 			<table>
 				<tr>
 					<td>
 						code: 
 					</td>
 					<td>
-						<input type="text" name="code" value="${dict.code }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text" name="code" class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -51,7 +55,7 @@
 						name: 
 					</td>
 					<td>
-						<input type="text" name="name" value="${dict.name }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text" name="name"  class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +63,7 @@
 						type:
 					</td>
 					<td>
-						<input type="text" name="type" value="${dict.type }" class="easyui-textbox" required="true" validType="length[1,25]">
+						<input type="text" name="type"  class="easyui-textbox" required="true" validType="length[1,25]">
 					</td>
 				</tr>
 			</table>
