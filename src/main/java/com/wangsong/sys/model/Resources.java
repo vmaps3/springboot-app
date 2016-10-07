@@ -11,6 +11,8 @@ public class Resources {
     
     private String type;
     
+    private String sort;
+    
     public String getType() {
 		return type;
 	}
@@ -50,4 +52,12 @@ public class Resources {
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
     }
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		 this.sort = sort == null ? null : sort.trim();	
+	}
 }

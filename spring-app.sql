@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.6.28-log - MySQL Community Server (GPL)
+-- 服务器版本:                        5.7.11-log - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  9.3.0.4984
 -- --------------------------------------------------------
@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `sys_dict` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  spring-app.sys_dict 的数据：~2 rows (大约)
+DELETE FROM `sys_dict`;
 /*!40000 ALTER TABLE `sys_dict` DISABLE KEYS */;
 INSERT INTO `sys_dict` (`id`, `code`, `name`, `type`) VALUES
 	('0e05c0f2-a0bc-4b75-8240-7500c9879a04', '2', '按钮', '1'),
@@ -42,34 +43,36 @@ CREATE TABLE IF NOT EXISTS `sys_resources` (
   `name` varchar(50) DEFAULT NULL,
   `url` varchar(50) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
+  `sort` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.sys_resources 的数据：~7 rows (大约)
+-- 正在导出表  spring-app.sys_resources 的数据：~22 rows (大约)
+DELETE FROM `sys_resources`;
 /*!40000 ALTER TABLE `sys_resources` DISABLE KEYS */;
-INSERT INTO `sys_resources` (`id`, `pid`, `name`, `url`, `type`) VALUES
-	('0cf26ffd-88e9-42ca-91fb-374359e12f82', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '菜单管理', '/sys/resources/toList.do', '1'),
-	('0ff729fc-a43c-4a5c-a2bf-07fbeefa2520', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '删除', '/sys/dict/delete', '2'),
-	('1', '', '菜单', '/', '1'),
-	('1115d196-fd3a-4ca1-99c8-5452bae30c8f', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '增加', '/sys/resources/add', '2'),
-	('13fd01f1-20d8-49fd-9630-6fb7f8539920', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '字典管理', '/sys/dict/toList.do', '1'),
-	('21e9a57d-b7a2-45b0-8359-cc21d636c0fa', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '更改', '/sys/resources/update', '2'),
-	('2b56b958-3b0d-46d4-8988-d7c5ae1d804b', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '用户管理', '/sys/user/toList.do', '1'),
-	('32680760-3ad2-4ac5-bd2f-fca4917d8f74', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '更改', '/sys/user/update', '2'),
-	('51745327-1978-48ab-aa19-6986a3f628d7', 'c56d6e95-5515-492b-866a-b8555e7b647c', '添加', '/sys/role/add', '2'),
-	('63efc666-ee88-45f7-bdad-2b019c19eb1d', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '列表', '/sys/resources/list', '2'),
-	('652b3c26-5085-4739-94db-ebbbb1397acf', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '添加', '/sys/user/add', '2'),
-	('8d1d2815-d011-4da9-a66e-573a5f056f62', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '添加', '/sys/dict/add', '2'),
-	('8fec88df-50c5-4a5e-800e-621d203f7a55', 'c56d6e95-5515-492b-866a-b8555e7b647c', '删除', '/sys/role/delete', '2'),
-	('93400178-2c2f-47de-9b30-5d126b33e197', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '列表', '/sys/user/list', '2'),
-	('9ee4dade-b3af-4664-82c8-4d712f231db4', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '删除', '/sys/user/delete', '2'),
-	('a9b97767-54ff-4477-a81a-274d6e2b5ce9', '1', '系统管理', '/', '1'),
-	('c01620cd-4845-4a4a-a72f-1524b3c54d24', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '更改', '/sys/dict/update', '2'),
-	('c56d6e95-5515-492b-866a-b8555e7b647c', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '角色管理', '/sys/role/toList.do', '1'),
-	('c65e7c94-a3c1-43b7-a8c7-94e1d693f0b5', 'c56d6e95-5515-492b-866a-b8555e7b647c', '更改', '/sys/role/update', '2'),
-	('ea7a58c3-74d2-45c1-8b66-974cd82d1fbd', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '列表', '/sys/dict/list', '2'),
-	('ecb6527f-0548-40f7-b92e-6719ff3f9556', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '删除', '/sys/resources/delete', '2'),
-	('f0e5351e-7291-4d41-87c2-3ebfc5388d7c', 'c56d6e95-5515-492b-866a-b8555e7b647c', '列表', '/sys/role/list', '2');
+INSERT INTO `sys_resources` (`id`, `pid`, `name`, `url`, `type`, `sort`) VALUES
+	('0cf26ffd-88e9-42ca-91fb-374359e12f82', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '菜单管理', '/sys/resources/toList.do', '1', '3'),
+	('0ff729fc-a43c-4a5c-a2bf-07fbeefa2520', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '删除', '/sys/dict/delete', '2', NULL),
+	('1', '', '菜单', '/', '1', NULL),
+	('1115d196-fd3a-4ca1-99c8-5452bae30c8f', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '增加', '/sys/resources/add', '2', NULL),
+	('13fd01f1-20d8-49fd-9630-6fb7f8539920', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '字典管理', '/sys/dict/toList.do', '1', '4'),
+	('21e9a57d-b7a2-45b0-8359-cc21d636c0fa', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '更改', '/sys/resources/update', '2', NULL),
+	('2b56b958-3b0d-46d4-8988-d7c5ae1d804b', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '用户管理', '/sys/user/toList.do', '1', '1'),
+	('32680760-3ad2-4ac5-bd2f-fca4917d8f74', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '更改', '/sys/user/update', '2', NULL),
+	('51745327-1978-48ab-aa19-6986a3f628d7', 'c56d6e95-5515-492b-866a-b8555e7b647c', '添加', '/sys/role/add', '2', NULL),
+	('63efc666-ee88-45f7-bdad-2b019c19eb1d', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '列表', '/sys/resources/list', '2', NULL),
+	('652b3c26-5085-4739-94db-ebbbb1397acf', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '添加', '/sys/user/add', '2', NULL),
+	('8d1d2815-d011-4da9-a66e-573a5f056f62', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '添加', '/sys/dict/add', '2', NULL),
+	('8fec88df-50c5-4a5e-800e-621d203f7a55', 'c56d6e95-5515-492b-866a-b8555e7b647c', '删除', '/sys/role/delete', '2', NULL),
+	('93400178-2c2f-47de-9b30-5d126b33e197', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '列表', '/sys/user/list', '2', NULL),
+	('9ee4dade-b3af-4664-82c8-4d712f231db4', '2b56b958-3b0d-46d4-8988-d7c5ae1d804b', '删除', '/sys/user/delete', '2', NULL),
+	('a9b97767-54ff-4477-a81a-274d6e2b5ce9', '1', '系统管理', '/', '1', '1'),
+	('c01620cd-4845-4a4a-a72f-1524b3c54d24', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '更改', '/sys/dict/update', '2', NULL),
+	('c56d6e95-5515-492b-866a-b8555e7b647c', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '角色管理', '/sys/role/toList.do', '1', '2'),
+	('c65e7c94-a3c1-43b7-a8c7-94e1d693f0b5', 'c56d6e95-5515-492b-866a-b8555e7b647c', '更改', '/sys/role/update', '2', NULL),
+	('ea7a58c3-74d2-45c1-8b66-974cd82d1fbd', '13fd01f1-20d8-49fd-9630-6fb7f8539920', '列表', '/sys/dict/list', '2', NULL),
+	('ecb6527f-0548-40f7-b92e-6719ff3f9556', '0cf26ffd-88e9-42ca-91fb-374359e12f82', '删除', '/sys/resources/delete', '2', NULL),
+	('f0e5351e-7291-4d41-87c2-3ebfc5388d7c', 'c56d6e95-5515-492b-866a-b8555e7b647c', '列表', '/sys/role/list', '2', NULL);
 /*!40000 ALTER TABLE `sys_resources` ENABLE KEYS */;
 
 
@@ -82,8 +85,10 @@ CREATE TABLE IF NOT EXISTS `sys_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  spring-app.sys_role 的数据：~1 rows (大约)
+DELETE FROM `sys_role`;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
 INSERT INTO `sys_role` (`id`, `name`) VALUES
+	('ead8c256-7918-4696-a9b2-0b30ba75e178', '123'),
 	('f9127759-1116-4159-adcf-98dbe1d77576', '软件工程师');
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 
@@ -97,12 +102,15 @@ CREATE TABLE IF NOT EXISTS `sys_role_resources` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.sys_role_resources 的数据：~7 rows (大约)
+-- 正在导出表  spring-app.sys_role_resources 的数据：~24 rows (大约)
+DELETE FROM `sys_role_resources`;
 /*!40000 ALTER TABLE `sys_role_resources` DISABLE KEYS */;
 INSERT INTO `sys_role_resources` (`id`, `role_id`, `resources_id`) VALUES
 	('0405b5a8-7584-40c8-83a5-a3c220a2783b', 'f9127759-1116-4159-adcf-98dbe1d77576', 'f0e5351e-7291-4d41-87c2-3ebfc5388d7c'),
 	('0f58d03e-5c67-4ce5-a4a6-175d3455be79', 'f9127759-1116-4159-adcf-98dbe1d77576', '21e9a57d-b7a2-45b0-8359-cc21d636c0fa'),
 	('1c453559-5471-4880-a128-60c3811bd37f', 'f9127759-1116-4159-adcf-98dbe1d77576', '63efc666-ee88-45f7-bdad-2b019c19eb1d'),
+	('1da940cb-0507-4d95-b783-21df75772240', 'ead8c256-7918-4696-a9b2-0b30ba75e178', '0cf26ffd-88e9-42ca-91fb-374359e12f82'),
+	('1e639902-c118-43f9-8130-dc998733d7ab', 'ead8c256-7918-4696-a9b2-0b30ba75e178', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9'),
 	('37edb002-aa8e-487c-9951-5ec25548f506', 'f9127759-1116-4159-adcf-98dbe1d77576', '652b3c26-5085-4739-94db-ebbbb1397acf'),
 	('3dc77cc5-399d-4704-9189-813189a3e77d', 'f9127759-1116-4159-adcf-98dbe1d77576', '51745327-1978-48ab-aa19-6986a3f628d7'),
 	('4058a954-f1c3-48f3-8770-0f28594dc578', 'f9127759-1116-4159-adcf-98dbe1d77576', '1'),
@@ -134,7 +142,8 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.sys_user 的数据：~4 rows (大约)
+-- 正在导出表  spring-app.sys_user 的数据：~2 rows (大约)
+DELETE FROM `sys_user`;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
 INSERT INTO `sys_user` (`id`, `username`, `password`) VALUES
 	('62619962-c88c-4530-b424-ced43b30e1ea', 'wangsong', '532da1c5da9fb86bf61b2a63487f300c'),
@@ -152,6 +161,7 @@ CREATE TABLE IF NOT EXISTS `sys_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  spring-app.sys_user_role 的数据：~3 rows (大约)
+DELETE FROM `sys_user_role`;
 /*!40000 ALTER TABLE `sys_user_role` DISABLE KEYS */;
 INSERT INTO `sys_user_role` (`id`, `user_id`, `role_id`) VALUES
 	('25abe66c-6ed1-455b-a92b-aba46d1d78bf', 'f09b5fb6-50a8-4263-9b41-ba34cfb4c69d', 'f9127759-1116-4159-adcf-98dbe1d77576'),

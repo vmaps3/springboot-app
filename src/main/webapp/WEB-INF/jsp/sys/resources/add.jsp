@@ -55,6 +55,11 @@
 							">
 					</td>
 				</tr>
+				<tr>
+					<td>sort:</td>
+					<td><input type="text" name="sort" class="easyui-textbox" validType="length[0,25]"></td>
+				</tr>
+				
 				
 				
 				
