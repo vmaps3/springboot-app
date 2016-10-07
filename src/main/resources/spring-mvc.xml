@@ -60,4 +60,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	    <property name="securityManager" ref="securityManager"/>
 	</bean>
 	
+	<!-- 自定义拦截链配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.wangsong.sys.util.LogInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.sys.dao.LogMapper">
+  <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Log">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="parameter" jdbcType="VARCHAR" property="parameter" />
+    <result column="remote_addr" jdbcType="VARCHAR" property="remoteAddr" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangsong.sys.model.Log">
+    insert into sys_log (id, url, 
+      parameter, remote_addr, agent, 
+      user_id, begin_time, end_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parameter,jdbcType=VARCHAR}, #{remoteAddr,jdbcType=VARCHAR}, #{agent,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.Log">
+    update sys_log
+    set url = #{url,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      remote_addr = #{remoteAddr,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
+    from sys_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="java.util.HashMap">
+    select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
+    from sys_log
+    ORDER BY begin_time DESC
+  </select>
+  <select id="selectAllCount" resultType="java.lang.Integer"  >
+    select count(*)
+    from sys_log 
+  </select>
+</mapper>
