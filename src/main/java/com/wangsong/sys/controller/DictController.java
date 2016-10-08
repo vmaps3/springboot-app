@@ -14,15 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Dict;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.DictServiceI;
-import com.wangsong.sys.service.UserServiceI;
+import com.wangsong.sys.service.DictService;
+import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
 
 @Controller
 @RequestMapping("/sys/dict")
 public class DictController extends BaseController{
 	@Autowired
-	private DictServiceI dictService;
+	private DictService dictService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

@@ -1,4 +1,4 @@
-package com.wangsong.sys.service;
+package com.wangsong.sys.service.impl;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wangsong.sys.dao.BaseMapper;
+import com.wangsong.sys.service.BaseService;
 
 
 @Service
 @Transactional
-public abstract class BaseServiceImpl<T> implements BaseServiceI<T>{
+public abstract class BaseServiceImpl<T> implements BaseService<T>{
 	@Autowired
     protected BaseMapper<T> baseMapper;
 	@Override

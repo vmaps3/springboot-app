@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.ResourcesServiceI;
-import com.wangsong.sys.service.UserServiceI;
+import com.wangsong.sys.service.ResourcesService;
+import com.wangsong.sys.service.UserService;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.Set;
 public class ShiroDbRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserServiceI userService;
+    private UserService userService;
     @Autowired
-    private ResourcesServiceI resourcesService;
+    private ResourcesService resourcesService;
 
     
     @Override

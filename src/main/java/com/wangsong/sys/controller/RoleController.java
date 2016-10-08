@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Role;
-import com.wangsong.sys.service.RoleServiceI;
+import com.wangsong.sys.service.RoleService;
 import com.wangsong.sys.util.Page;
 
 
@@ -23,7 +23,7 @@ import com.wangsong.sys.util.Page;
 @RequestMapping("/sys/role")
 public class RoleController  extends BaseController{
 	@Autowired
-	private RoleServiceI roleService;
+	private RoleService roleService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

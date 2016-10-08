@@ -6,7 +6,7 @@ import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.util.Page;
 
-public interface RoleServiceI extends BaseServiceI<Role>{
+public interface RoleService extends BaseService<Role>{
 
     int insert(Role role, String[] resourcesId);
     

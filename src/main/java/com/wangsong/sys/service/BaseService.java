@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-public interface BaseServiceI<T> {
+public interface BaseService<T> {
 	
 	List<T> selectAll();
 	

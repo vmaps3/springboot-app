@@ -1,4 +1,4 @@
-package com.wangsong.sys.service;
+package com.wangsong.sys.service.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,12 +13,13 @@ import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
+import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
 
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceImpl<User> implements UserServiceI{
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.service.ResourcesServiceI;
+import com.wangsong.sys.service.ResourcesService;
 
 
 
@@ -21,7 +21,7 @@ import com.wangsong.sys.service.ResourcesServiceI;
 @RequestMapping("/sys/resources")
 public class ResourcesController extends BaseController {
 	@Autowired
-	private ResourcesServiceI resourcesService;
+	private ResourcesService resourcesService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

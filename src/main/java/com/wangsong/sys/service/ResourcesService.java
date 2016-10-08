@@ -5,7 +5,7 @@ import java.util.List;
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.util.tree.JsonTreeData;
 
-public interface ResourcesServiceI extends BaseServiceI<Resources>{
+public interface ResourcesService extends BaseService<Resources>{
 
 	int delete(String id);
 	

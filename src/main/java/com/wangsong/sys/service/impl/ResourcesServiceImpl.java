@@ -1,4 +1,4 @@
-package com.wangsong.sys.service;
+package com.wangsong.sys.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,7 @@ import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.User;
+import com.wangsong.sys.service.ResourcesService;
 import com.wangsong.sys.util.tree.Attributes;
 import com.wangsong.sys.util.tree.JsonTreeData;
 import com.wangsong.sys.util.tree.TreeNodeUtil;
@@ -23,7 +24,7 @@ import com.wangsong.sys.util.tree.TreeNodeUtil;
 
 @Service
 @Transactional
-public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements ResourcesServiceI {
+public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements ResourcesService {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
 	@Autowired

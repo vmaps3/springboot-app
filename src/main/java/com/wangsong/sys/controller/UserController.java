@@ -14,14 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.UserServiceI;
+import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
 
 @Controller
 @RequestMapping("/sys/user")
 public class UserController extends BaseController{
 	@Autowired
-	private UserServiceI userService;
+	private UserService userService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

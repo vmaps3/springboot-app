@@ -6,7 +6,7 @@ import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.util.Page;
 
-public interface UserServiceI extends BaseServiceI<User>{
+public interface UserService extends BaseService<User>{
 
 	Page findUserByUserLike(Page page,User user);
 	

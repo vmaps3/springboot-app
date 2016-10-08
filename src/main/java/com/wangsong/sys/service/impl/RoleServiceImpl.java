@@ -1,4 +1,4 @@
-package com.wangsong.sys.service;
+package com.wangsong.sys.service.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,12 +13,13 @@ import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
+import com.wangsong.sys.service.RoleService;
 import com.wangsong.sys.util.Page;
 
 
 @Service
 @Transactional
-public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServiceI {
+public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 	@Autowired
 	private RoleMapper roleMapper;
 	@Autowired

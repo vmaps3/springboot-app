@@ -9,14 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wangsong.sys.service.LogServiceI;
+import com.wangsong.sys.service.LogService;
 import com.wangsong.sys.util.Page;
 
 @Controller
 @RequestMapping("/sys/log")
 public class LogController extends BaseController{
 	@Autowired
-	private LogServiceI logService;
+	private LogService logService;
 	
 	@RequestMapping(value="/toList")
 	public String toList() {

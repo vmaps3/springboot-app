@@ -15,12 +15,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wangsong.sys.model.Log;
 import com.wangsong.sys.model.User;
-import com.wangsong.sys.service.LogServiceI;
+import com.wangsong.sys.service.LogService;
 
 public class LogInterceptor implements HandlerInterceptor {
 
 	@Autowired
-	private LogServiceI logService;
+	private LogService logService;
 	
 	
 	
