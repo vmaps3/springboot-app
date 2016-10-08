@@ -42,6 +42,11 @@ function upd(){
 	}
 }
 
+function cx(){
+	var obj=$("#searchFrom").serializeObject(); 
+	$("#dg").datagrid('load',obj); 
+}
+
 </script>
 </head>
 <body>
@@ -52,14 +57,16 @@ function upd(){
             rownumbers="true" fitColumns="true" singleSelect="true" >
         <thead>
             <tr>
-               
                 <th field="username" width="50">username</th>
-                
             </tr>
         </thead>
     </table>
-    <div id="toolbar">
-    	<shiro:hasPermission name="/sys/user/add">
+    <div id="toolbar" >
+    	<form id="searchFrom" action="">
+			username:<input type="text" name="username" class="easyui-validatebox" />
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
+		</form>
+		<shiro:hasPermission name="/sys/user/add">
 			<a href="${pageContext.request.contextPath}/sys/user/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
         </shiro:hasPermission>
         <shiro:hasPermission name="/sys/user/update">
@@ -69,6 +76,5 @@ function upd(){
         	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
         </shiro:hasPermission>
     </div>
-
 </body>
 </html>

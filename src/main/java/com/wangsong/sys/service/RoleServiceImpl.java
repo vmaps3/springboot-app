@@ -83,11 +83,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public Page selectAll(Page page) {
+	public Page selectAll(Page page,Role role) {
 		PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Role> userList=roleMapper.selectAll();
+		 List<Role> userList=roleMapper.selectAllByRole(role);
 		 page.setResult(userList);
-		 int  count=roleMapper.selectAllCount();
+		 int  count=roleMapper.selectAllCount(role);
 		 page.setTotalCount(count);
 		 return page;
 	}

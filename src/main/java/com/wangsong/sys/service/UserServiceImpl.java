@@ -27,11 +27,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	
 	@Override
-	public Page selectAll(Page page) {	
+	public Page selectAll(Page page,User user) {	
 		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<User> userList=userMapper.selectAll();
+		 List<User> userList=userMapper.selectAllByUser(user);
 		 page.setResult(userList);
-		 int  count=userMapper.selectAllCount();
+		 int  count=userMapper.selectAllCount(user);
 		 page.setTotalCount(count);
 		 return page;
 	}

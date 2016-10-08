@@ -17,15 +17,6 @@ import com.wangsong.sys.util.Page;
 import com.wangsong.sys.util.StringUtils;
 
 
-
-
-/**
- * 基础控制器 
- * 其他控制器继承此控制器获得日期字段类型转换和防止XSS攻击的功能
- * @description 
- * @author ty
- * @date 2014年3月19日
- */
 public class BaseController {
 
 	@InitBinder

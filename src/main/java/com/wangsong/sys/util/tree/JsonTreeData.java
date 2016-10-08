@@ -2,11 +2,6 @@ package com.wangsong.sys.util.tree;
 
 import java.util.List;
 
-/**
- * 树 json model 数据
- * @author glq
- *
- */
 public class JsonTreeData {
  
     public String id;       //json id

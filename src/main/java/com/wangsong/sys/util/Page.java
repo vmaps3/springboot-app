@@ -1,23 +1,11 @@
-/**
- * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
+
 package com.wangsong.sys.util;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.Lists;
 
-/**
- * 与具体ORM实现无关的分页参数及查询结果封装.
- * 
- * 注意所有序号从1开始.
- * 
- * @param  Page中记录的类型.
- * 
- * @author calvin
- */
 public class Page {
 
 
@@ -35,7 +23,6 @@ public class Page {
 	public Page(int pageNo,int pageSize){
 		this.pageNo=pageNo;
 		this.pageSize=pageSize;
-	
 	}
 
 
@@ -86,6 +73,7 @@ public class Page {
 		this.result = result;
 	}
 
-	
+
+
 	
 }

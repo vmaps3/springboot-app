@@ -17,12 +17,6 @@ import com.wangsong.sys.model.Log;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.LogServiceI;
 
-
-/**
- * 日志拦截器
- * @author ty
- * @date 2015年1月14日
- */
 public class LogInterceptor implements HandlerInterceptor {
 
 	@Autowired

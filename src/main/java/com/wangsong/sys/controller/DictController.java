@@ -32,9 +32,9 @@ public class DictController extends BaseController{
 	@RequiresPermissions("/sys/dict/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public Object list(HttpServletRequest request) {
+	public Object list(HttpServletRequest request,Dict dict) {
 		Page page = getPage(request);
-		page = dictService.selectAll(page);
+		page = dictService.selectAll(page, dict);
 		return getEasyUIData(page);
 	}
 

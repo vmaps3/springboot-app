@@ -41,7 +41,10 @@ function upd(){
 		$.messager.alert('提示','请选择一条');
 	}
 }
-
+function cx(){
+	var obj=$("#searchFrom").serializeObject(); 
+	$("#dg").datagrid('load',obj); 
+}
 </script>
 </head>
 <body>
@@ -58,6 +61,10 @@ function upd(){
         </thead>
     </table>
     <div id="toolbar">
+    	<form id="searchFrom" action="">
+			name:<input type="text" name="name" class="easyui-validatebox" />
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
+		</form>
     	<shiro:hasPermission name="/sys/role/add">
         	<a href="${pageContext.request.contextPath}/sys/role/toAdd.do" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
         </shiro:hasPermission>

@@ -31,9 +31,9 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/sys/user/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public Object list(HttpServletRequest request) {
+	public Object list(HttpServletRequest request,User user) {
 		Page page = getPage(request);
-		page = userService.selectAll(page);
+		page = userService.selectAll(page,user);
 		return getEasyUIData(page);
 	}
 	

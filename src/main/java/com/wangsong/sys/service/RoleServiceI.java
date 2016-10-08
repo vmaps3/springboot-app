@@ -16,6 +16,6 @@ public interface RoleServiceI extends BaseServiceI<Role>{
 
 	List<RoleResources> selectRoleResourcesAll(Role mrole);
 
-	Page selectAll(Page page);
+	Page selectAll(Page page,Role role);
 
 }

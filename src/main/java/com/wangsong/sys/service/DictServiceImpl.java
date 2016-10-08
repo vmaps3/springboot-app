@@ -27,11 +27,11 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
 	
 	
 	@Override
-	public Page selectAll(Page page) {	
+	public Page selectAll(Page page,Dict dict) {	
 		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Dict> userList=dictMapper.selectAll();
+		 List<Dict> userList=dictMapper.selectByDict(dict);
 		 page.setResult(userList);
-		 int  count=dictMapper.selectAllCount();
+		 int  count=dictMapper.selectAllCount(dict);
 		 page.setTotalCount(count);
 		 return page;
 	}

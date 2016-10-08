@@ -8,7 +8,7 @@ import com.wangsong.sys.util.Page;
 
 public interface UserServiceI extends BaseServiceI<User>{
 
-	Page selectAll(Page page);
+	Page selectAll(Page page,User user);
 	
 	User selectByPrimaryKey(String id);
 	
