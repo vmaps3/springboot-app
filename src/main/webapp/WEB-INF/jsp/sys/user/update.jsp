@@ -32,7 +32,7 @@
 				     success:function(data){   
 				    	 $('#ff').form('load',data);
 							$.ajax({   
-							     	url:'${pageContext.request.contextPath}/sys/user/selectUserRoleAll.do',   
+							     	url:'${pageContext.request.contextPath}/sys/user/findUserRoleByUser.do',   
 							     	type:'post',   
 							     	data:'id='+data.id,
 							     	success:function(data){   

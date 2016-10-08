@@ -32,15 +32,15 @@
     from sys_user_role
   </select>
   
-  <select id="selectByUser" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.User">
+  <select id="findUserRoleByUser" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.User">
     select id, user_id, role_id
     from sys_user_role  where user_id = #{id,jdbcType=VARCHAR}
   </select>
-   <delete id="deleteByUser" parameterType="com.wangsong.sys.model.User">
+   <delete id="deleteUserRoleByUser" parameterType="com.wangsong.sys.model.User">
     delete from sys_user_role
     where user_id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByRole" parameterType="com.wangsong.sys.model.Role">
+  <delete id="deleteUserRoleByRole" parameterType="com.wangsong.sys.model.Role">
     delete from sys_user_role
     where role_id = #{id,jdbcType=VARCHAR}
   </delete>

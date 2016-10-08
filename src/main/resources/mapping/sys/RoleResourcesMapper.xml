@@ -32,16 +32,16 @@
     from sys_role_resources
   </select>
  
-  <select id="selectByRole" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.Role" >
+  <select id="findRoleByRole" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.Role" >
     select id, resources_id, role_id
     from sys_role_resources 
     where role_id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByRole" parameterType="com.wangsong.sys.model.Role">
+  <delete id="deleteRoleResourcesByRole" parameterType="com.wangsong.sys.model.Role">
     delete from sys_role_resources
     where role_id = #{id,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByResources" parameterType="com.wangsong.sys.model.Resources">
+    <delete id="deleteRoleResourcesByResources" parameterType="com.wangsong.sys.model.Resources">
     delete from sys_role_resources
     where resources_id = #{id,jdbcType=VARCHAR}
   </delete>

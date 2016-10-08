@@ -52,7 +52,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 	@Override
 	public int update(Role role,String[] resourcesId) {
-		roleResourcesMapper.deleteByRole(role);
+		roleResourcesMapper.deleteRoleResourcesByRole(role);
 		if(resourcesId!=null){
 			for(int i=0;i<resourcesId.length;i++){
 				RoleResources roleResources=new RoleResources();
@@ -69,8 +69,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	public int delete(String id) {
 		Role role=new Role();
 		role.setId(id);
-		userRoleMapper.deleteByRole(role);
-		roleResourcesMapper.deleteByRole(role);
+		userRoleMapper.deleteUserRoleByRole(role);
+		roleResourcesMapper.deleteRoleResourcesByRole(role);
 		return roleMapper.deleteByPrimaryKey(id);
 	}
 
@@ -78,16 +78,16 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 	@Override
 	public List<RoleResources> selectRoleResourcesAll(Role mrole) {
-		List<RoleResources> userRoleList= roleResourcesMapper.selectByRole(mrole);		
+		List<RoleResources> userRoleList= roleResourcesMapper.findRoleByRole(mrole);		
 		return userRoleList;
 	}
 
 	@Override
-	public Page selectAll(Page page,Role role) {
+	public Page findRoleByRole(Page page,Role role) {
 		PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Role> userList=roleMapper.selectAllByRole(role);
+		 List<Role> userList=roleMapper.findRoleByRole(role);
 		 page.setResult(userList);
-		 int  count=roleMapper.selectAllCount(role);
+		 int  count=roleMapper.findRoleCountByRole(role);
 		 page.setTotalCount(count);
 		 return page;
 	}

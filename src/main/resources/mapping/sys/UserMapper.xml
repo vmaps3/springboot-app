@@ -35,7 +35,7 @@
     from sys_user 
   </select>
   
-  <select id="selectAllCount" resultType="java.lang.Integer"  parameterType="com.wangsong.sys.model.User">
+  <select id="findUserCountByUser" resultType="java.lang.Integer"  parameterType="com.wangsong.sys.model.User">
     select count(*)
     from sys_user 
      where 1=1
@@ -43,12 +43,12 @@
 		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
 	</if>
   </select>
-   <select id="findUserByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+   <select id="findUserByUser" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
     select id, username, password
     from sys_user
     where username = #{username,jdbcType=VARCHAR}
   </select>
-  <select id="selectAllByUser" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
+  <select id="findUserByUserLike" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
     select id, username, password
     from sys_user
     where 1=1

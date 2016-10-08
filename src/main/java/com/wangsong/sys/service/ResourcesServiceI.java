@@ -9,11 +9,11 @@ public interface ResourcesServiceI extends BaseServiceI<Resources>{
 
 	int delete(String id);
 	
-	List<Resources> findResourceListByMap(String roleId);
+	List<Resources> findResourcesShiroByResources(Resources resources);
 	
-	List<JsonTreeData> selectAllJson();
+	List<JsonTreeData> findResources();
 
-	List<JsonTreeData> findMapListByType();
+	List<JsonTreeData> findResourcesEMUByResources();
 
 	
 }

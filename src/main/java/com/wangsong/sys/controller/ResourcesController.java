@@ -74,15 +74,15 @@ public class ResourcesController extends BaseController {
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list() {
-		return resourcesService.selectAllJson();
+		return resourcesService.findResources();
 	}
 	
 
-	@RequestMapping(value="/findMapListByType")
+	@RequestMapping(value="/findResourcesEMUByResources")
 	@ResponseBody
-	public Object findMapListByType() {
+	public Object findResourcesEMUByResources() {
 		
-		return resourcesService.findMapListByType();
+		return resourcesService.findResourcesEMUByResources();
 	}
 	
 	@RequestMapping(value="/selectByPrimaryKey")

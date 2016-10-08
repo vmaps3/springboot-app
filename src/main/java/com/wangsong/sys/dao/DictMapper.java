@@ -6,6 +6,6 @@ import com.wangsong.sys.model.Dict;
 
 public interface DictMapper extends BaseMapper<Dict>{
 
-	int selectAllCount(Dict dict);
-	List<Dict> selectByDict(Dict dict);    
+	int findDictCountByDict(Dict dict);
+	List<Dict> findDictByDict(Dict dict);    
 }

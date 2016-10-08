@@ -8,7 +8,7 @@ import com.wangsong.sys.util.Page;
 
 public interface UserServiceI extends BaseServiceI<User>{
 
-	Page selectAll(Page page,User user);
+	Page findUserByUserLike(Page page,User user);
 	
 	User selectByPrimaryKey(String id);
 	
@@ -18,7 +18,7 @@ public interface UserServiceI extends BaseServiceI<User>{
     
     int delete(String id);
     
-    List<UserRole> selectUserRoleAll(User user);
+    List<UserRole> findUserRoleByUser(User user);
 
-	User findUserByLoginName(String username);
+	User findUserByUser(User user);
 }

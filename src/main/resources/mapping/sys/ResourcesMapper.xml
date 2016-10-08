@@ -42,13 +42,8 @@
     from sys_resources
     ORDER BY sys_resources.sort
   </select>
-  
-  <select id="selectAllCount" resultType="java.lang.Integer"  >
-    select count(*)
-    from sys_resources 
-  </select>
    
-  <select id="findResourceListByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+  <select id="findResourcesByResources" parameterType="com.wangsong.sys.model.Resources" resultMap="BaseResultMap">
     select  sys_resources.id, sys_resources.pid, sys_resources.name, sys_resources.url,sys_resources.type,sys_resources.sort
     from sys_resources,sys_role_resources,sys_user_role
     where sys_resources.id=sys_role_resources.resources_id

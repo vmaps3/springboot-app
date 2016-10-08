@@ -27,19 +27,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	
 	@Override
-	public Page selectAll(Page page,User user) {	
+	public Page findUserByUserLike(Page page,User user) {	
 		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<User> userList=userMapper.selectAllByUser(user);
+		 List<User> userList=userMapper.findUserByUserLike(user);
 		 page.setResult(userList);
-		 int  count=userMapper.selectAllCount(user);
+		 int  count=userMapper.findUserCountByUser(user);
 		 page.setTotalCount(count);
 		 return page;
 	}
 	
 	@Override
-	public List<UserRole> selectUserRoleAll(User user) {	
+	public List<UserRole> findUserRoleByUser(User user) {	
 		
-		List<UserRole> userRoleList= userRoleMapper.selectByUser(user);
+		List<UserRole> userRoleList= userRoleMapper.findUserRoleByUser(user);
 		
 		return userRoleList;
 	}
@@ -67,7 +67,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		}
 		
-		userRoleMapper.deleteByUser(user);
+		userRoleMapper.deleteUserRoleByUser(user);
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
@@ -84,14 +84,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public int delete(String id) {
 		User user=new User();
 		user.setId(id);
-		userRoleMapper.deleteByUser(user);
+		userRoleMapper.deleteUserRoleByUser(user);
 		return userMapper.deleteByPrimaryKey(id);
 	}
 
 	
 	@Override
-	public User findUserByLoginName(String username) {
-		return userMapper.findUserByLoginName(username);
+	public User findUserByUser(User user) {
+		
+		return userMapper.findUserByUser(user);
 	}
 	@Override
 	public User selectByPrimaryKey(String id){

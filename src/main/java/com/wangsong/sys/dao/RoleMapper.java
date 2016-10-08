@@ -6,7 +6,7 @@ import com.wangsong.sys.model.Role;
 
 public interface RoleMapper extends BaseMapper<Role>{
 
-	int selectAllCount(Role role);
+	int findRoleCountByRole(Role role);
 
-	List<Role> selectAllByRole(Role role);
+	List<Role> findRoleByRole(Role role);
 }

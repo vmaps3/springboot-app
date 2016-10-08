@@ -7,7 +7,5 @@ import java.util.Map;
 
 public interface ResourcesMapper extends BaseMapper<Resources>{
 
-	List<Resources> findResourceListByMap(Map<String,Object> m);
-
-	int selectAllCount();
+	List<Resources> findResourcesByResources(Resources resources);
 }

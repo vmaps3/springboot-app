@@ -29,7 +29,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
     		AuthenticationToken authcToken) throws AuthenticationException {
     	UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        User user = userService.findUserByLoginName(token.getUsername());
+    	User user=new User();
+    	user.setUsername(token.getUsername());
+    	user = userService.findUserByUser(user);
       
         // 认证缓存信息
         return new SimpleAuthenticationInfo(user, user.getPassword().toCharArray(), getName());
@@ -44,7 +46,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
             PrincipalCollection principals) {
 
     	User shiroUser = (User) principals.getPrimaryPrincipal();
-    	List<Resources> roleList = resourcesService.findResourceListByMap(shiroUser.getId());
+    	Resources resources=new Resources();
+    	resources.setId(shiroUser.getId());
+    	List<Resources> roleList = resourcesService.findResourcesShiroByResources(resources);
     	Set<String> urlSet = new HashSet<String>();
         for (Resources roleId : roleList) {
         	urlSet.add(roleId.getUrl());

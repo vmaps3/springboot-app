@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface RoleResourcesMapper extends BaseMapper<RoleResources>{
 
-	List<RoleResources> selectByRole(Role mrole);
+	List<RoleResources> findRoleByRole(Role mrole);
 
-	int deleteByRole(Role role);
+	int deleteRoleResourcesByRole(Role role);
 
-	int deleteByResources(Resources resources);
+	int deleteRoleResourcesByResources(Resources resources);
 	
 	
 }

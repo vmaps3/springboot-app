@@ -35,7 +35,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 		if(!"1".equals(id)){
 			Resources resources=new Resources();
 			resources.setId(id);
-			roleResourcesMapper.deleteByResources(resources);
+			roleResourcesMapper.deleteRoleResourcesByResources(resources);
 			i=resourcesMapper.deleteByPrimaryKey(id);
 		}
 		
@@ -61,15 +61,13 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 	
 	@Override
-	public List<Resources> findResourceListByMap(String roleId) {
-		Map<String, Object> map=new HashMap<>();
-		map.put("id", roleId);
-		map.put("type", "2");
-		return resourcesMapper.findResourceListByMap(map);
+	public List<Resources> findResourcesShiroByResources(Resources resources) {
+		resources.setType("2");
+		return resourcesMapper.findResourcesByResources(resources);
 	}
 
 	@Override
-	public List<JsonTreeData> selectAllJson() {
+	public List<JsonTreeData> findResources() {
 		List<Resources> resourcesList =resourcesMapper.selectAll();
 		 List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
         /*为了整理成公用的方法，所以将查询结果进行二次转换。
@@ -93,12 +91,12 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 	
 	@Override
-	public List<JsonTreeData> findMapListByType() {
-		Map<String, Object> map=new HashMap<>();
-		map.put("id", ((User)SecurityUtils.getSubject().getPrincipal()).getId());
-		map.put("type", "1");
-		List<Resources> resourcesList =resourcesMapper.findResourceListByMap(map);
-		 List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
+	public List<JsonTreeData> findResourcesEMUByResources() {
+		Resources resources=new Resources();
+		resources.setId(((User)SecurityUtils.getSubject().getPrincipal()).getId());
+		resources.setType("1");
+		List<Resources> resourcesList =resourcesMapper.findResourcesByResources(resources);
+		List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
          /*为了整理成公用的方法，所以将查询结果进行二次转换。
           * 其中specid为主键ID，varchar类型UUID生成
           * parentid为父ID

@@ -34,11 +34,18 @@
     from sys_dict
   </select>
   
-   <select id="selectAllCount" resultType="java.lang.Integer"  >
+   <select id="findDictCountByDict" resultType="java.lang.Integer"  parameterType="com.wangsong.sys.model.Dict" >
     select count(*)
     from sys_dict 
+    where 1=1
+     <if test="name!= null and name != ''">
+		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+	</if>
+	<if test="type != null and type != ''">
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
   </select>
-  <select id="selectByDict" parameterType="com.wangsong.sys.model.Dict" resultMap="BaseResultMap">
+  <select id="findDictByDict" parameterType="com.wangsong.sys.model.Dict" resultMap="BaseResultMap">
     select id, code, name, type
     from sys_dict
     where 1=1

@@ -33,7 +33,7 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogServiceI{
 		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
 		 List<Log> userList=logMapper.selectAll();
 		 page.setResult(userList);
-		 int  count=logMapper.selectAllCount();
+		 int  count=logMapper.findLogCount();
 		 page.setTotalCount(count);
 		 return page;
 	}

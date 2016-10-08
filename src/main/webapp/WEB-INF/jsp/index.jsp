@@ -23,7 +23,7 @@
 		
 		$(function(){ 
 			$('#tree').tree({
-				url: '${pageContext.request.contextPath}/sys/resources/findMapListByType.do',
+				url: '${pageContext.request.contextPath}/sys/resources/findResourcesEMUByResources.do',
 			 	onClick: function(node){
 			       if($('#tree').tree('isLeaf',node.target)){//判断是否是叶子节点
 			    	   addTab(node.text,'${pageContext.request.contextPath}'+node.attributes.url)

@@ -34,7 +34,7 @@ public class DictController extends BaseController{
 	@ResponseBody
 	public Object list(HttpServletRequest request,Dict dict) {
 		Page page = getPage(request);
-		page = dictService.selectAll(page, dict);
+		page = dictService.findDictByDict(page, dict);
 		return getEasyUIData(page);
 	}
 
@@ -77,10 +77,10 @@ public class DictController extends BaseController{
 		return map;
 	}
 	
-	@RequestMapping(value="/selectByDict")
+	@RequestMapping(value="/findDictByDict")
 	@ResponseBody
-	public Object selectByDict(Dict dict) {
-		return dictService.selectByDict(dict);
+	public Object findDictByDict(Dict dict) {
+		return dictService.findDictByDict(dict);
 	}
 	
 	

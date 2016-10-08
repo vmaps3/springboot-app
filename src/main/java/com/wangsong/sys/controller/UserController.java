@@ -33,7 +33,7 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public Object list(HttpServletRequest request,User user) {
 		Page page = getPage(request);
-		page = userService.selectAll(page,user);
+		page = userService.findUserByUserLike(page,user);
 		return getEasyUIData(page);
 	}
 	
@@ -64,10 +64,10 @@ public class UserController extends BaseController{
 		return muser;
 	}
 	
-	@RequestMapping(value="/selectUserRoleAll")
+	@RequestMapping(value="/findUserRoleByUser")
 	@ResponseBody
-	public Object selectUserRoleAll(User muser) {
-		return userService.selectUserRoleAll(muser);
+	public Object findUserRoleByUser(User user) {
+		return userService.findUserRoleByUser(user);
 	}
 	
 	@RequiresPermissions("/sys/user/update")
@@ -88,9 +88,9 @@ public class UserController extends BaseController{
 		return map;
 	}
 	
-	@RequestMapping(value="/findUserByLoginName")
+	@RequestMapping(value="/findUserByUser")
 	@ResponseBody
-	public Object findUserByLoginName(String username) {
-		return userService.findUserByLoginName(username);
+	public Object findUserByLoginName(User user) {
+		return userService.findUserByUser(user);
 	}
 }

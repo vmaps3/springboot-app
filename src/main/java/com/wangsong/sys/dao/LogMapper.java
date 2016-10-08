@@ -4,6 +4,6 @@ import com.wangsong.sys.model.Log;
 
 public interface LogMapper  extends BaseMapper<Log>{
 
-	int selectAllCount();
+	int findLogCount();
    
 }

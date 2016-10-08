@@ -67,7 +67,7 @@
 					<td>
 						<input id="cc" class="easyui-combobox" name="type" required="true"
 							data-options="
-								url:'${pageContext.request.contextPath}/sys/dict/selectByDict.do?type=1',
+								url:'${pageContext.request.contextPath}/sys/dict/findDictByDict.do?type=1',
 								method:'get',
 								valueField:'code',
 								textField:'name',

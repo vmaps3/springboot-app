@@ -27,11 +27,11 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
 	
 	
 	@Override
-	public Page selectAll(Page page,Dict dict) {	
+	public Page findDictByDict(Page page,Dict dict) {	
 		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Dict> userList=dictMapper.selectByDict(dict);
+		 List<Dict> userList=dictMapper.findDictByDict(dict);
 		 page.setResult(userList);
-		 int  count=dictMapper.selectAllCount(dict);
+		 int  count=dictMapper.findDictCountByDict(dict);
 		 page.setTotalCount(count);
 		 return page;
 	}
@@ -39,8 +39,8 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
 
 
 	@Override
-	public List<Dict> selectByDict(Dict dict) {
-		return dictMapper.selectByDict(dict);
+	public List<Dict> findDictByDict(Dict dict) {
+		return dictMapper.findDictByDict(dict);
 	}
 
 

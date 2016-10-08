@@ -6,7 +6,7 @@
 		<title>My JSP 'addUser.jsp' starting page</title>
 		<script type="text/javascript">
 			function submitForm(){
-				if($("#ff").form('validate')&&findUserByLoginName()){
+				if($("#ff").form('validate')&&findUserByUser()){
 					$.ajax({   
 					     url:$("#ff").attr("action"),   
 					     type:$("#ff").attr("method"),   
@@ -23,10 +23,10 @@
 			}
 			
 			
-			function findUserByLoginName(){
+			function findUserByUser(){
 				var a=false;
 				$.ajax({   
-					     url:'${pageContext.request.contextPath}/sys/user/findUserByLoginName.do',   
+					     url:'${pageContext.request.contextPath}/sys/user/findUserByUser.do',   
 					     type:'post',   
 					     async : false,
 					     data:'username='+$("#username").val(), 

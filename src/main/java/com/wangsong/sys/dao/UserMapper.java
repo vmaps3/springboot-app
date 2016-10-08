@@ -8,9 +8,9 @@ import com.wangsong.sys.model.User;
 
 public interface UserMapper extends BaseMapper<User>{
 
-	User findUserByLoginName(String username);
+	User findUserByUser(User user);
 	
-	int selectAllCount(User user);
+	int findUserCountByUser(User user);
 
-	List<User> selectAllByUser(User user);
+	List<User> findUserByUserLike(User user);
 }
