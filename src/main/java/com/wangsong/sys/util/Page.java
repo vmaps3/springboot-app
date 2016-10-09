@@ -13,6 +13,7 @@ public class Page {
 	protected int pageNo = 1;
 	protected int pageSize = -1;
 
+
 	//-- 返回结果 --//
 	protected  List<?> result = Lists.newArrayList();
 	protected long totalCount = -1;
@@ -22,6 +23,7 @@ public class Page {
 	public Page(int pageNo,int pageSize){
 		this.pageNo=pageNo;
 		this.pageSize=pageSize;
+
 	}
 
 
@@ -71,6 +73,7 @@ public class Page {
 	public void setResult(List<?> result) {
 		this.result = result;
 	}
+
 
 
 }

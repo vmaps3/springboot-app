@@ -27,7 +27,4 @@
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 	<!-- <import resource="classpath:shiro/shiro-ehcache.xml" /> -->
 	<import resource="classpath:shiro/shiro-redis.xml" />
-	
-     
-     
 </beans>
