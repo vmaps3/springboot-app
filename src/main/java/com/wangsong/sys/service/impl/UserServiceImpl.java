@@ -68,7 +68,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		}
 		
-		userRoleMapper.deleteUserRoleByUser(user);
+		userRoleMapper.deleteUserRoleByUser(new User[]{user});
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
@@ -82,11 +82,17 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int delete(String id) {
-		User user=new User();
-		user.setId(id);
-		userRoleMapper.deleteUserRoleByUser(user);
-		return userMapper.deleteByPrimaryKey(id);
+	public int delete(String[] id) {
+		User[] u=new User[id.length];
+		for(int i=0;i<id.length;i++){
+			User user=new User();
+			user.setId(id[i]);
+			u[i]=user;
+		}
+			userRoleMapper.deleteUserRoleByUser(u);
+			userMapper.deleteByPrimaryKey(id);
+		
+		return 0;
 	}
 
 	

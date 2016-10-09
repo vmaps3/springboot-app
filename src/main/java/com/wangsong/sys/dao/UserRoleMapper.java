@@ -6,9 +6,9 @@ import com.wangsong.sys.model.UserRole;
 import java.util.List;
 
 public interface UserRoleMapper  extends BaseMapper<UserRole>{
-    int deleteUserRoleByUser(User user);
+    int deleteUserRoleByUser(User[] users);
     
-    int deleteUserRoleByRole(Role role);
+    int deleteUserRoleByRole(Role[] r);
 
     List<UserRole> findUserRoleByUser(User user);
 

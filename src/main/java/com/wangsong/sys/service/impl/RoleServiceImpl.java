@@ -13,6 +13,7 @@ import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
+import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.RoleService;
 import com.wangsong.sys.util.Page;
 
@@ -53,7 +54,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 	@Override
 	public int update(Role role,String[] resourcesId) {
-		roleResourcesMapper.deleteRoleResourcesByRole(role);
+		roleResourcesMapper.deleteRoleResourcesByRole(new Role[]{role});
 		if(resourcesId!=null){
 			for(int i=0;i<resourcesId.length;i++){
 				RoleResources roleResources=new RoleResources();
@@ -67,11 +68,16 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public int delete(String id) {
-		Role role=new Role();
-		role.setId(id);
-		userRoleMapper.deleteUserRoleByRole(role);
-		roleResourcesMapper.deleteRoleResourcesByRole(role);
+	public int delete(String[] id) {
+		Role[] r=new Role[id.length];
+		for(int i=0;i<id.length;i++){
+			Role role=new Role();
+			role.setId(id[i]);
+			r[i]=role;
+		}
+
+		userRoleMapper.deleteUserRoleByRole(r);
+		roleResourcesMapper.deleteRoleResourcesByRole(r);
 		return roleMapper.deleteByPrimaryKey(id);
 	}
 

@@ -71,7 +71,7 @@ public class DictController extends BaseController{
 	@RequiresPermissions("/sys/dict/delete")
 	@RequestMapping(value="/delete")
 	@ResponseBody
-	public Object delete(String id) {
+	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		dictService.deleteByPrimaryKey(id);
 		return map;

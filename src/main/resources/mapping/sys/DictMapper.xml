@@ -7,9 +7,12 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" >
     delete from sys_dict
-    where id = #{id,jdbcType=VARCHAR}
+    where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
   </delete>
   <insert id="insert" parameterType="com.wangsong.sys.model.Dict">
     insert into sys_dict (id, code, name, 

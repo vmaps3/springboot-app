@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
+import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesService;
 import com.wangsong.sys.util.tree.Attributes;
@@ -31,16 +32,31 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	private RoleResourcesMapper roleResourcesMapper;
 	
 	@Override
-	public int delete(String id) {
-		int i=0;
-		if(!"1".equals(id)){
-			Resources resources=new Resources();
-			resources.setId(id);
-			roleResourcesMapper.deleteRoleResourcesByResources(resources);
-			i=resourcesMapper.deleteByPrimaryKey(id);
+	public int delete(String[] id) {
+		int j=0;
+		
+		for(int i=0;i<id.length;i++){
+			if(!"1".equals(id[i])){
+				j++;
+			}
 		}
 		
-		return i;
+		Resources[] r=new Resources[j];
+		
+		for(int i=0;i<id.length;i++){
+			if(!"1".equals(id[i])){
+				Resources resources=new Resources();
+				resources.setId(id[i]);
+				r[i]=resources;
+			}
+		}
+		
+		if(j!=0){
+			roleResourcesMapper.deleteRoleResourcesByResources(r);
+			resourcesMapper.deleteByPrimaryKey(id);
+		}
+	
+		return 0;
 	}
 	
 	@Override

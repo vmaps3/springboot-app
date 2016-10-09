@@ -48,7 +48,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     	
     }
     @Override
-    public int deleteByPrimaryKey(String id){
+    public int deleteByPrimaryKey(String[] id){
     	return baseMapper.deleteByPrimaryKey(id);
     	
     }

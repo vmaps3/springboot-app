@@ -57,7 +57,7 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/sys/role/delete")
 	@RequestMapping(value="/delete")
 	@ResponseBody
-	public Object delete(String id) {
+	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		roleService.delete(id);
 		return map;

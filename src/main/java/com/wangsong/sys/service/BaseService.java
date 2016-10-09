@@ -15,7 +15,7 @@ public interface BaseService<T> {
     
     int updateByPrimaryKey(T t);
     
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String[] id);
 
 
 	

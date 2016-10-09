@@ -9,14 +9,18 @@
 <script type="text/javascript">
 //删除
 function del(){
-	var row = $("#dg").datagrid('getSelected');
-	if(row!=null) {
+	var row = $("#dg").datagrid('getSelections');
+	if(row.length!=0) {
 		 $.messager.confirm("确认", "确认删除吗？", function (r) {
 		        if (r) {
+		        	var myArray=new Array();
+		        	for(var i=0;i<row.length;i++){
+		        		myArray.push(row[i].id);
+		        	}
 		        	$.ajax({   
 					     url:'${pageContext.request.contextPath}/sys/dict/delete.do',   
 					     type:'post',   
-					     data:"id="+row.id,
+					     data:"id="+myArray,
 					     success:function(data){   
 					        if(data.msg==null){
 					        	window.location="${pageContext.request.contextPath}/sys/dict/toList.do";
@@ -37,9 +41,9 @@ function cx(){
 }
 //弹窗修改
 function upd(){
-	var row =  $("#dg").datagrid('getSelected');
-	if(row!=null){
-		window.location="${pageContext.request.contextPath}/sys/dict/toUpdate.do?id="+row.id;
+	var row =  $("#dg").datagrid('getSelections');
+	if(row.length==1){
+		window.location="${pageContext.request.contextPath}/sys/dict/toUpdate.do?id="+row[0].id;
 	}else{
 		$.messager.alert('提示','请选择一条');
 	}
@@ -52,10 +56,10 @@ function upd(){
    <table id="dg"  class="easyui-datagrid"  fit="true" 
             url="${pageContext.request.contextPath}/sys/dict/list.do"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true" >
+            rownumbers="true" fitColumns="true" singleSelect="false" >
         <thead>
             <tr>
-               
+               	<th field=""  data-options="checkbox:true"></th>
                 <th field="code" width="50">code</th>
                 <th field="name" width="50">name</th>
                 <th field="type" width="50">type</th>

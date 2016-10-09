@@ -16,7 +16,7 @@ public interface UserService extends BaseService<User>{
     
     int update(User muser, String[] roleId);
     
-    int delete(String id);
+    int delete(String[] id);
     
     List<UserRole> findUserRoleByUser(User user);
 

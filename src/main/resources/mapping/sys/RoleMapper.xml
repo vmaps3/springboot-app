@@ -9,9 +9,12 @@
     insert into sys_role (id, name)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <delete id="deleteByPrimaryKey" >
     delete from sys_role
-    where id = #{id,jdbcType=VARCHAR}
+    where id in
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.Role">
     update sys_role

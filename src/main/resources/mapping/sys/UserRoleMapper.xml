@@ -36,12 +36,18 @@
     select id, user_id, role_id
     from sys_user_role  where user_id = #{id,jdbcType=VARCHAR}
   </select>
-   <delete id="deleteUserRoleByUser" parameterType="com.wangsong.sys.model.User">
+   <delete id="deleteUserRoleByUser" >
     delete from sys_user_role
-    where user_id = #{id,jdbcType=VARCHAR}
+    where user_id in 
+    	<foreach item="user" collection="array" open="(" separator="," close=")">  
+			#{user.id}  
+		</foreach>  
   </delete>
-  <delete id="deleteUserRoleByRole" parameterType="com.wangsong.sys.model.Role">
+  <delete id="deleteUserRoleByRole" >
     delete from sys_user_role
-    where role_id = #{id,jdbcType=VARCHAR}
+    where role_id in
+    	<foreach item="role" collection="array" open="(" separator="," close=")">  
+			#{role.id}  
+		</foreach>  
   </delete>
 </mapper>

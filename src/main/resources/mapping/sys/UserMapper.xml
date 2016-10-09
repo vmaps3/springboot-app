@@ -12,9 +12,12 @@
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+   <delete id="deleteByPrimaryKey" >
     delete from sys_user
-    where id = #{id,jdbcType=VARCHAR}
+    where id in
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.sys.model.User">
     update sys_user

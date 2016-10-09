@@ -12,7 +12,7 @@ public interface RoleService extends BaseService<Role>{
     
     int update(Role role, String[] resourcesId);
     
-    int delete(String id);
+    int delete(String[] id);
 
 	List<RoleResources> selectRoleResourcesAll(Role mrole);
 

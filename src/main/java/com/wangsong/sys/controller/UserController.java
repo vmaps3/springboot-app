@@ -82,7 +82,7 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/sys/user/delete")
 	@RequestMapping(value="/delete")
 	@ResponseBody
-	public Object delete(String id) {
+	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		userService.delete(id);
 		return map;

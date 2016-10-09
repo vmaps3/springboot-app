@@ -48,7 +48,7 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("/sys/resources/delete")
 	@RequestMapping(value="/delete")
 	@ResponseBody
-	public Object delete(String id) {
+	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		resourcesService.delete(id);
 		return map;

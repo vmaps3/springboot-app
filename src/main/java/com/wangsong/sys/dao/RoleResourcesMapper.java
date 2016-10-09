@@ -9,9 +9,9 @@ public interface RoleResourcesMapper extends BaseMapper<RoleResources>{
 
 	List<RoleResources> findRoleByRole(Role mrole);
 
-	int deleteRoleResourcesByRole(Role role);
+	int deleteRoleResourcesByRole(Role[] r);
 
-	int deleteRoleResourcesByResources(Resources resources);
+	int deleteRoleResourcesByResources(Resources[] r);
 	
 	
 }

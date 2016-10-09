@@ -18,6 +18,8 @@ public class Log {
     private Date beginTime;
 
     private Date endTime;
+    
+    private User user;
 
     public String getId() {
         return id;
@@ -84,5 +86,13 @@ public class Log {
 		this.endTime = endTime;
 	}
 
-   
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 }

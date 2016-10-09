@@ -37,12 +37,18 @@
     from sys_role_resources 
     where role_id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteRoleResourcesByRole" parameterType="com.wangsong.sys.model.Role">
+  <delete id="deleteRoleResourcesByRole" >
     delete from sys_role_resources
-    where role_id = #{id,jdbcType=VARCHAR}
+    where role_id in
+    	<foreach item="role" collection="array" open="(" separator="," close=")">  
+			#{role.id}  
+		</foreach>  
   </delete>
-    <delete id="deleteRoleResourcesByResources" parameterType="com.wangsong.sys.model.Resources">
+    <delete id="deleteRoleResourcesByResources" >
     delete from sys_role_resources
-    where resources_id = #{id,jdbcType=VARCHAR}
+    where resources_id in
+    	<foreach item="resources" collection="array" open="(" separator="," close=")">  
+			#{resources.id}  
+		</foreach>  
   </delete>
 </mapper>

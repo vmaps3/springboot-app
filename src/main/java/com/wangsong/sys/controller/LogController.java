@@ -1,6 +1,9 @@
 package com.wangsong.sys.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -32,4 +35,12 @@ public class LogController extends BaseController{
 		return getEasyUIData(page);
 	}
 
+	@RequiresPermissions("/sys/log/delete")
+	@RequestMapping(value="/delete")
+	@ResponseBody
+	public Object delete(String[] id) {
+		Map<String, Object>	map=new HashMap<>();
+		logService.deleteByPrimaryKey(id);
+		return map;
+	}
 }
