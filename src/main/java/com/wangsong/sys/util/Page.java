@@ -12,7 +12,6 @@ public class Page {
 	//-- 分页参数 --//
 	protected int pageNo = 1;
 	protected int pageSize = -1;
-	protected int first;
 
 	//-- 返回结果 --//
 	protected  List<?> result = Lists.newArrayList();
@@ -23,7 +22,6 @@ public class Page {
 	public Page(int pageNo,int pageSize){
 		this.pageNo=pageNo;
 		this.pageSize=pageSize;
-		this.first=((pageNo - 1) * pageSize) + 1;
 	}
 
 
@@ -75,17 +73,4 @@ public class Page {
 	}
 
 
-
-	public int getFirst() {
-		return first;
-	}
-
-
-
-	public void setFirst(int first) {
-		this.first = first;
-	}
-
-	
-	
 }
