@@ -4,15 +4,7 @@
        default-lazy-init="true">
 
     <description>Shiro安全配置</description>
-
-    <!--安全管理器-->
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--设置自定义Realm-->
-        <property name="realm" ref="shiroDbRealm"/>
-        <!--将缓存管理器，交给安全管理器-->
-        <property name="cacheManager" ref="shiroEhcacheManager"/>
-    </bean>
-
+    
     <!-- 項目自定义的Realm -->
     <bean id="shiroDbRealm" class="com.wangsong.sys.util.ShiroDbRealm"/>
 
@@ -31,16 +23,10 @@
             </value>
         </property>
     </bean>
-
-   
-	<!-- 用户授权信息Cache, 采用EhCache -->
-	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
-	</bean>
-	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-	
+	<import resource="classpath:shiro/shiro-ehcache.xml" />
+	<!-- <import resource="classpath:shiro/shiro-redis.xml" /> -->
 	
      
      

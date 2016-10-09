@@ -173,7 +173,6 @@
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		
   </dependencies>
   <build>
      <plugins>  

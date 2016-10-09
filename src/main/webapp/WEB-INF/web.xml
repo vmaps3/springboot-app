@@ -5,9 +5,7 @@
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:spring.xml,
-			classpath:spring-shiro.xml,
-			classpath:spring-mybatis.xml
+			classpath:spring.xml
 		</param-value>
   	</context-param>
 	

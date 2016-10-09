@@ -1,7 +1,14 @@
 package com.wangsong.sys.model;
 
-public class User {
-    private String id;
+import java.io.Serializable;
+
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7484136779753770396L;
+
+	private String id;
 
     private String username;
 
