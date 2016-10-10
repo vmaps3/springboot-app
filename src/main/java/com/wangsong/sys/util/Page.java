@@ -18,15 +18,15 @@ public class Page {
 	protected  List<?> result = Lists.newArrayList();
 	protected long totalCount = -1;
 
-	
+	protected int first;
 	
 	public Page(int pageNo,int pageSize){
 		this.pageNo=pageNo;
 		this.pageSize=pageSize;
-
+		this.first=(pageNo - 1) * pageSize;
 	}
 
-
+	
 
 	public int getPageNo() {
 		return pageNo;
