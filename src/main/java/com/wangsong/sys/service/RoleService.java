@@ -16,6 +16,6 @@ public interface RoleService extends BaseService<Role>{
 
 	List<RoleResources> selectRoleResourcesAll(Role mrole);
 
-	Page findRoleByRole(Page page,Role role);
+	Page<Role> findRoleByPage(Page<Role> page);
 
 }

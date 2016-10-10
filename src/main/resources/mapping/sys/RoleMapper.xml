@@ -41,13 +41,13 @@
     
   </select>
   
-   <select id="findRoleByRole" parameterType="com.wangsong.sys.model.Role" resultMap="BaseResultMap">
+   <select id="findRoleByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
     select id, name
     from sys_role
     where 1=1
-    <if test="name!= null and name != ''">
-		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+    <if test="t.name!= null and t.name != ''">
+		and	 name like CONCAT('%', #{t.name,jdbcType=VARCHAR}, '%')
 	</if>
-    
+     limit  #{first}, #{pageSize}
   </select>
 </mapper>

@@ -51,13 +51,13 @@
     from sys_user
     where username = #{username,jdbcType=VARCHAR}
   </select>
-  <select id="findUserByUserLike" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
+  <select id="findUserByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
     select id, username, password
     from sys_user
     where 1=1
-    <if test="username!= null and username != ''">
-		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
+    <if test="t.username!= null and t.username != ''">
+		and	 username like CONCAT('%', #{t.username,jdbcType=VARCHAR}, '%')
 	</if>
-    
+    limit  #{first}, #{pageSize}
   </select>
 </mapper>

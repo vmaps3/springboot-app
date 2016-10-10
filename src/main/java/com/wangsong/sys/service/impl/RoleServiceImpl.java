@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
@@ -90,11 +89,10 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public Page findRoleByRole(Page page,Role role) {
-		PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Role> userList=roleMapper.findRoleByRole(role);
+	public Page findRoleByPage(Page<Role> page) {
+		 List<Role> userList=roleMapper.findRoleByPage(page);
 		 page.setResult(userList);
-		 int  count=roleMapper.findRoleCountByRole(role);
+		 int  count=roleMapper.findRoleCountByRole(page.getT());
 		 page.setTotalCount(count);
 		 return page;
 	}

@@ -34,8 +34,9 @@ public class RoleController  extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request,Role role) {
-		Page page = getPage(request);
-		page = roleService.findRoleByRole(page,role);
+		Page<Role> page = getPage(request);
+		page.setT(role);
+		page = roleService.findRoleByPage(page);
 		return getEasyUIData(page);
 	}
 	

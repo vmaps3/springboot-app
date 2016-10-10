@@ -32,8 +32,9 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request,User user) {
-		Page page = getPage(request);
-		page = userService.findUserByUserLike(page,user);
+		Page<User> page = getPage(request);
+		page.setT(user);
+		page = userService.findUserByPage(page);
 		return getEasyUIData(page);
 	}
 	

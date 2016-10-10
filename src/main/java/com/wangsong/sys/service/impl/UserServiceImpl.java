@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.User;
@@ -28,11 +27,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	
 	@Override
-	public Page findUserByUserLike(Page page,User user) {	
-		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<User> userList=userMapper.findUserByUserLike(user);
+	public Page<User> findUserByPage(Page<User> page) {	
+		 List<User> userList=userMapper.findUserByPage(page);
 		 page.setResult(userList);
-		 int  count=userMapper.findUserCountByUser(user);
+		 int  count=userMapper.findUserCountByUser(page.getT());
 		 page.setTotalCount(count);
 		 return page;
 	}

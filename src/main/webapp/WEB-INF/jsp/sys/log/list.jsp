@@ -12,7 +12,12 @@
  		return unixTimestamp.toLocaleString();
 	}
 	function usernameFormatter(value,row,index){
-		  return row.user.username;
+		if(row.user.username==null){
+			return "";
+		}else{
+			return row.user.username;
+		}
+		 
 	}
 	//删除
 	function del(){

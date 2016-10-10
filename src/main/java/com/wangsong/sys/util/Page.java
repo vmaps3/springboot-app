@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.google.common.collect.Lists;
 
-public class Page {
+public class Page<T> {
 
 
 	//-- 分页参数 --//
@@ -19,6 +19,8 @@ public class Page {
 	protected long totalCount = -1;
 
 	protected int first;
+	
+	protected T t;
 	
 	public Page(int pageNo,int pageSize){
 		this.pageNo=pageNo;
@@ -76,4 +78,15 @@ public class Page {
 
 
 
+	public T getT() {
+		return t;
+	}
+
+
+
+	public void setT(T t) {
+		this.t = t;
+	}
+	
+	
 }

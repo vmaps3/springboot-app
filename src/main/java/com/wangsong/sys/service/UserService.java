@@ -8,7 +8,7 @@ import com.wangsong.sys.util.Page;
 
 public interface UserService extends BaseService<User>{
 
-	Page findUserByUserLike(Page page,User user);
+	Page<User> findUserByPage(Page<User> page);
 	
 	User selectByPrimaryKey(String id);
 	

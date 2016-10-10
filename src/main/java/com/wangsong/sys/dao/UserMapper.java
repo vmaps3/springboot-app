@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wangsong.sys.model.User;
+import com.wangsong.sys.util.Page;
 
 
 public interface UserMapper extends BaseMapper<User>{
@@ -12,5 +13,5 @@ public interface UserMapper extends BaseMapper<User>{
 	
 	int findUserCountByUser(User user);
 
-	List<User> findUserByUserLike(User user);
+	List<User> findUserByPage(Page<User> page);
 }

@@ -8,6 +8,6 @@ import com.wangsong.sys.util.Page;
 
 public interface DictService extends BaseService<Dict>{
 
-	Page findDictByDict(Page page, Dict dict);
+	Page<Dict> findDictByDict(Page<Dict> page);
 	List<Dict> findDictByDict(Dict dict);
 }

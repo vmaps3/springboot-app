@@ -33,8 +33,9 @@ public class DictController extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request,Dict dict) {
-		Page page = getPage(request);
-		page = dictService.findDictByDict(page, dict);
+		Page<Dict> page = getPage(request);
+		page.setT(dict);
+		page = dictService.findDictByDict(page);
 		return getEasyUIData(page);
 	}
 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.DictMapper;
 import com.wangsong.sys.dao.LogMapper;
 import com.wangsong.sys.dao.UserMapper;

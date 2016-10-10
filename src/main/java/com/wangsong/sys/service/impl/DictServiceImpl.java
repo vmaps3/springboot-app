@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageHelper;
 import com.wangsong.sys.dao.DictMapper;
 import com.wangsong.sys.dao.UserMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
@@ -28,11 +27,10 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
 	
 	
 	@Override
-	public Page findDictByDict(Page page,Dict dict) {	
-		 PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Dict> userList=dictMapper.findDictByDict(dict);
+	public Page<Dict> findDictByDict(Page<Dict> page) {	
+		 List<Dict> userList=dictMapper.findDictByPage(page);
 		 page.setResult(userList);
-		 int  count=dictMapper.findDictCountByDict(dict);
+		 int  count=dictMapper.findDictCountByDict(page.getT());
 		 page.setTotalCount(count);
 		 return page;
 	}

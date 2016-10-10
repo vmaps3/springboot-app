@@ -60,4 +60,17 @@
 	</if>
   </select>
   
+   <select id="findDictByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where 1=1
+    <if test="t.name!= null and t.name != ''">
+		and	 name like CONCAT('%', #{t.name,jdbcType=VARCHAR}, '%')
+	</if>
+	<if test="t.type != null and t.type != ''">
+		and type = #{t.type,jdbcType=VARCHAR}
+	</if>
+	limit  #{first}, #{pageSize}
+  </select>
+  
 </mapper>
