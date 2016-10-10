@@ -1,10 +1,9 @@
 package com.wangsong.sys.model;
 
+import java.io.Serializable;
 
 public class User{
-    /**
-	 * 
-	 */
+
 
 	private String id;
 

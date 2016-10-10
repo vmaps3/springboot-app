@@ -54,6 +54,7 @@ public class LoginController  extends BaseController {
         } catch (IncorrectCredentialsException e) {
         	map.put("msg", "密码错误");
         } catch (RuntimeException e) {
+        	e.printStackTrace();
         	map.put("msg", "未知错误,请联系管理员");
         }
         return map;
