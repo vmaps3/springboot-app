@@ -45,7 +45,11 @@
     from sys_log
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.wangsong.sys.util.Page">
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
+    from sys_log 
+  </select>
+  <select id="findLogByPage" resultMap="BaseResultMap" parameterType="com.wangsong.sys.util.Page">
     select l.id, l.url, l.parameter, l.remote_addr, l.agent, u.username, l.begin_time, l.end_time
     from sys_log l
     left join sys_user u on u.id=l.user_id
@@ -53,6 +57,7 @@
     ORDER BY begin_time DESC
     limit  #{first}, #{pageSize}
   </select>
+  
   <select id="findLogCount" resultType="java.lang.Integer"  >
     select count(*)
     from sys_log 

@@ -9,6 +9,6 @@ public interface LogMapper  extends BaseMapper<Log>{
 
 	int findLogCount();
 
-	List<Log> selectAll(Page page);
+	List<Log> findLogByPage(Page<Log> page);
    
 }

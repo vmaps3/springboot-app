@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wangsong.sys.model.Log;
 import com.wangsong.sys.service.LogService;
 import com.wangsong.sys.util.Page;
 
@@ -30,8 +31,8 @@ public class LogController extends BaseController{
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Object list(HttpServletRequest request) {
-		Page page = getPage(request);
-		page = logService.selectAll(page);
+		Page<Log> page = getPage(request);
+		page = logService.findLogByPage(page);
 		return getEasyUIData(page);
 	}
 

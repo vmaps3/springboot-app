@@ -29,9 +29,9 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService{
 	
 	
 	@Override
-	public Page selectAll(Page page) {	
+	public Page<Log> findLogByPage(Page<Log> page) {	
 		 //PageHelper.startPage(page.getPageNo(), page.getPageSize());
-		 List<Log> userList=logMapper.selectAll(page);
+		 List<Log> userList=logMapper.findLogByPage(page);
 		 page.setResult(userList);
 		 int  count=logMapper.findLogCount();
 		 page.setTotalCount(count);

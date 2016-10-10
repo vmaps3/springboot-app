@@ -7,5 +7,5 @@ import com.wangsong.sys.util.Page;
 
 public interface LogService extends BaseService<Log>{
 
-	Page selectAll(Page page);
+	Page<Log> findLogByPage(Page<Log> page);
 }
