@@ -57,7 +57,7 @@ public class BaseController {
 	 * @param request
 	 * @return page对象
 	 */
-	public Page getPage(HttpServletRequest request){
+	public <T> Page<T>  getPage(HttpServletRequest request){
 		int pageNo=1;	//当前页码
 		int pageSize=20;	//每页行数
 		
@@ -66,7 +66,7 @@ public class BaseController {
 		if(StringUtils.isNotEmpty(request.getParameter("rows")))
 			pageSize=Integer.valueOf(request.getParameter("rows"));
 		
-		return new Page(pageNo, pageSize);
+		return new Page<T> (pageNo, pageSize);
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class BaseController {
 	 * @param page
 	 * @return map对象
 	 */
-	public <T> Map<String, Object> getEasyUIData(Page page){
+	public  <T>Map<String, Object> getEasyUIData(Page<T> page){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("rows", page.getResult());
 		map.put("total", page.getTotalCount());

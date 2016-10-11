@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
@@ -33,8 +32,7 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public Object list(HttpServletRequest request,User user) {
 		Page<User> page = getPage(request);
-		page.setT(user);
-		page = userService.findUserByPage(page);
+		page = userService.findTByPage(page,user);
 		return getEasyUIData(page);
 	}
 	

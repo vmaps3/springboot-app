@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Dict;
-import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.DictService;
-import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
 
 @Controller
@@ -34,8 +32,7 @@ public class DictController extends BaseController{
 	@ResponseBody
 	public Object list(HttpServletRequest request,Dict dict) {
 		Page<Dict> page = getPage(request);
-		page.setT(dict);
-		page = dictService.findDictByDict(page);
+		page = dictService.findTByPage(page,dict);
 		return getEasyUIData(page);
 	}
 

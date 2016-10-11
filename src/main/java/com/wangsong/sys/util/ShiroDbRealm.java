@@ -1,30 +1,19 @@
 package com.wangsong.sys.util;
 
 import org.apache.shiro.authc.*;
-
 import org.apache.shiro.authz.AuthorizationInfo;
-
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-
 import org.apache.shiro.realm.AuthorizingRealm;
-
 import org.apache.shiro.subject.PrincipalCollection;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.wangsong.sys.model.Resources;
-
 import com.wangsong.sys.model.User;
-
 import com.wangsong.sys.service.ResourcesService;
-
 import com.wangsong.sys.service.UserService;
 
 import java.util.HashSet;
-
 import java.util.List;
-
 import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {

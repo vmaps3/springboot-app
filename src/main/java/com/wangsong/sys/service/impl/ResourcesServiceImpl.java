@@ -1,9 +1,7 @@
 package com.wangsong.sys.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.shiro.SecurityUtils;
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
-import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesService;
 import com.wangsong.sys.util.tree.Attributes;

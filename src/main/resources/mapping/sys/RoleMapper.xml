@@ -31,7 +31,7 @@
     from sys_role
   </select>
   
-  <select id="findRoleCountByRole" resultType="java.lang.Integer" >
+  <select id="findTCountByT" resultType="java.lang.Integer" >
     select count(*)
     from sys_role
      where 1=1
@@ -41,7 +41,7 @@
     
   </select>
   
-   <select id="findRoleByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
+   <select id="findTByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
     select id, name
     from sys_role
     where 1=1

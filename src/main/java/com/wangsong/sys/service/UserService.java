@@ -4,11 +4,8 @@ import java.util.List;
 
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
-import com.wangsong.sys.util.Page;
 
 public interface UserService extends BaseService<User>{
-
-	Page<User> findUserByPage(Page<User> page);
 	
 	User selectByPrimaryKey(String id);
 	
@@ -21,4 +18,6 @@ public interface UserService extends BaseService<User>{
     List<UserRole> findUserRoleByUser(User user);
 
 	User findUserByUser(User user);
+
+	
 }

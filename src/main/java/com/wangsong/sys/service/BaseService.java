@@ -2,6 +2,8 @@ package com.wangsong.sys.service;
 
 import java.util.List;
 
+import com.wangsong.sys.util.Page;
+
 
 
 
@@ -17,7 +19,7 @@ public interface BaseService<T> {
     
     int deleteByPrimaryKey(String[] id);
 
-
+    Page<T> findTByPage(Page<T> page, T t);
 	
 
 	

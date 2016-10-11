@@ -30,9 +30,9 @@ public class LogController extends BaseController{
 	@RequiresPermissions("/sys/log/list")
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public Object list(HttpServletRequest request) {
+	public Object list(HttpServletRequest request,Log log) {
 		Page<Log> page = getPage(request);
-		page = logService.findLogByPage(page);
+		page = logService.findTByPage(page,log);
 		return getEasyUIData(page);
 	}
 

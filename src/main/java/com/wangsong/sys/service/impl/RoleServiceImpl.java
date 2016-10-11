@@ -12,9 +12,7 @@ import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
-import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.RoleService;
-import com.wangsong.sys.util.Page;
 
 
 @Service
@@ -83,18 +81,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 
 	@Override
-	public List<RoleResources> selectRoleResourcesAll(Role mrole) {
+	public List<RoleResources> findRoleResourcesByRole(Role mrole) {
 		List<RoleResources> userRoleList= roleResourcesMapper.findRoleByRole(mrole);		
 		return userRoleList;
-	}
-
-	@Override
-	public Page findRoleByPage(Page<Role> page) {
-		 List<Role> userList=roleMapper.findRoleByPage(page);
-		 page.setResult(userList);
-		 int  count=roleMapper.findRoleCountByRole(page.getT());
-		 page.setTotalCount(count);
-		 return page;
 	}
 
 }

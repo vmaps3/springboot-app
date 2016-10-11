@@ -35,8 +35,7 @@ public class RoleController  extends BaseController{
 	@ResponseBody
 	public Object list(HttpServletRequest request,Role role) {
 		Page<Role> page = getPage(request);
-		page.setT(role);
-		page = roleService.findRoleByPage(page);
+		page = roleService.findTByPage(page,role);
 		return getEasyUIData(page);
 	}
 	
@@ -92,10 +91,10 @@ public class RoleController  extends BaseController{
 		return roleService.selectByPrimaryKey(id);
 	}
 	
-	@RequestMapping(value="/selectRoleResourcesAll")
+	@RequestMapping(value="/findRoleResourcesByRole")
 	@ResponseBody
-	public Object selectRoleResourcesAll(Role role) {
-		return roleService.selectRoleResourcesAll(role);
+	public Object findRoleResourcesByRole(Role role) {
+		return roleService.findRoleResourcesByRole(role);
 	}
 	
 	

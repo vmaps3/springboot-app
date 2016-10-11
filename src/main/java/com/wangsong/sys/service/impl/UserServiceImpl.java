@@ -13,8 +13,6 @@ import com.wangsong.sys.dao.UserRoleMapper;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.service.UserService;
-import com.wangsong.sys.util.Page;
-
 
 @Service
 @Transactional
@@ -26,14 +24,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	private UserRoleMapper userRoleMapper;
 	
 	
-	@Override
-	public Page<User> findUserByPage(Page<User> page) {	
-		 List<User> userList=userMapper.findUserByPage(page);
-		 page.setResult(userList);
-		 int  count=userMapper.findUserCountByUser(page.getT());
-		 page.setTotalCount(count);
-		 return page;
-	}
+	
 	
 	@Override
 	public List<UserRole> findUserRoleByUser(User user) {	
