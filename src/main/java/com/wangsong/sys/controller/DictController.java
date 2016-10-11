@@ -78,7 +78,7 @@ public class DictController extends BaseController{
 	@RequestMapping(value="/findDictByDict")
 	@ResponseBody
 	public Object findDictByDict(Dict dict) {
-		return dictService.findDictByDict(dict);
+		return dictService.findTByT(dict);
 	}
 	
 	

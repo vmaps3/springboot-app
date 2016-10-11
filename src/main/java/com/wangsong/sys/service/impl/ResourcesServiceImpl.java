@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
+import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesService;
 import com.wangsong.sys.util.tree.Attributes;
@@ -38,18 +39,18 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 			}
 		}
 		
-		Resources[] r=new Resources[j];
+		RoleResources[] r=new RoleResources[j];
 		
 		for(int i=0;i<id.length;i++){
 			if(!"1".equals(id[i])){
-				Resources resources=new Resources();
-				resources.setId(id[i]);
-				r[i]=resources;
+				RoleResources roleResources=new RoleResources();
+				roleResources.setResourcesId(id[i]);
+				r[i]=roleResources;
 			}
 		}
 		
 		if(j!=0){
-			roleResourcesMapper.deleteRoleResourcesByResources(r);
+			roleResourcesMapper.deleteTByT(r);
 			resourcesMapper.deleteByPrimaryKey(id);
 		}
 	
@@ -77,7 +78,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	@Override
 	public List<Resources> findResourcesShiroByResources(Resources resources) {
 		resources.setType("2");
-		return resourcesMapper.findResourcesByResources(resources);
+		return resourcesMapper.findTByT(resources);
 	}
 
 	@Override
@@ -109,7 +110,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 		Resources resources=new Resources();
 		resources.setId(((User)SecurityUtils.getSubject().getPrincipal()).getId());
 		resources.setType("1");
-		List<Resources> resourcesList =resourcesMapper.findResourcesByResources(resources);
+		List<Resources> resourcesList =resourcesMapper.findTByT(resources);
 		List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
          /*为了整理成公用的方法，所以将查询结果进行二次转换。
           * 其中specid为主键ID，varchar类型UUID生成

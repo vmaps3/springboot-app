@@ -21,6 +21,8 @@ public interface BaseService<T> {
 
     Page<T> findTByPage(Page<T> page, T t);
 	
-
+    List<T> findTByT(T t);
+    
+    T findTByTOne(T t);
 	
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wangsong.sys.dao.BaseMapper;
-import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.BaseService;
 import com.wangsong.sys.util.Page;
 
@@ -59,12 +58,27 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     @Override
 	public Page<T> findTByPage(Page<T> page,T t) {	
     	page.setT(t);
-		List<User> userList=baseMapper.findTByPage(page);
+		List<T> userList=baseMapper.findTByPage(page);
 		page.setResult(userList);
 		int  count=baseMapper.findTCountByT(page.getT());
 		page.setTotalCount(count);
 		return page;
 	}
-
+    @Override
+    public List<T> findTByT(T t){
+    	
+		return baseMapper.findTByT(t);
+    }
+    
+    @Override
+    public T findTByTOne(T t){
+    	List<T> tOne=baseMapper.findTByT(t);
+    	if(tOne.size()>0){
+    		return tOne.get(0);
+    	}else{
+    		return null;
+    	}
+		
+    }
 	
 }

@@ -13,13 +13,5 @@ import com.wangsong.sys.service.DictService;
 @Service
 @Transactional
 public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictService{
-	@Autowired
-	private DictMapper dictMapper;
-
-	@Override
-	public List<Dict> findDictByDict(Dict dict) {
-		return dictMapper.findDictByDict(dict);
-	}
-
 
 }

@@ -27,11 +27,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	
 	@Override
-	public List<UserRole> findUserRoleByUser(User user) {	
+	public List<UserRole> findUserRoleByUserRole(UserRole userRole) {	
 		
-		List<UserRole> userRoleList= userRoleMapper.findUserRoleByUser(user);
-		
-		return userRoleList;
+		return userRoleMapper.findTByT(userRole);
 	}
 
 	@Override
@@ -56,8 +54,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		if(!"".equals(user.getPassword())){
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		}
-		
-		userRoleMapper.deleteUserRoleByUser(new User[]{user});
+		UserRole userRole2=new UserRole();
+		userRole2.setUserId(user.getId());
+		userRoleMapper.deleteTByT(new UserRole[]{userRole2});
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
@@ -72,24 +71,18 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Override
 	public int delete(String[] id) {
-		User[] u=new User[id.length];
+		UserRole[] u=new UserRole[id.length];
 		for(int i=0;i<id.length;i++){
-			User user=new User();
-			user.setId(id[i]);
+			UserRole user=new UserRole();
+			user.setUserId(id[i]);
 			u[i]=user;
 		}
-			userRoleMapper.deleteUserRoleByUser(u);
-			userMapper.deleteByPrimaryKey(id);
+		userRoleMapper.deleteTByT(u);
+		userMapper.deleteByPrimaryKey(id);
 		
 		return 0;
 	}
 
-	
-	@Override
-	public User findUserByUser(User user) {
-		
-		return userMapper.findUserByUser(user);
-	}
 	@Override
 	public User selectByPrimaryKey(String id){
 		User u=userMapper.selectByPrimaryKey(id);

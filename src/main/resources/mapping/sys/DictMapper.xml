@@ -48,7 +48,7 @@
 		and type = #{type,jdbcType=VARCHAR}
 	</if>
   </select>
-  <select id="findDictByDict" parameterType="com.wangsong.sys.model.Dict" resultMap="BaseResultMap">
+  <select id="findTByT" parameterType="com.wangsong.sys.model.Dict" resultMap="BaseResultMap">
     select id, code, name, type
     from sys_dict
     where 1=1

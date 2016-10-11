@@ -46,7 +46,7 @@
 		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
 	</if>
   </select>
-   <select id="findUserByUser" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
+   <select id="findTByT" parameterType="com.wangsong.sys.model.User" resultMap="BaseResultMap">
     select id, username, password
     from sys_user
     where username = #{username,jdbcType=VARCHAR}

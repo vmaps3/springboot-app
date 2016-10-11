@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.User;
+import com.wangsong.sys.model.UserRole;
 import com.wangsong.sys.service.UserService;
 import com.wangsong.sys.util.Page;
 
@@ -65,8 +66,8 @@ public class UserController extends BaseController{
 	
 	@RequestMapping(value="/findUserRoleByUser")
 	@ResponseBody
-	public Object findUserRoleByUser(User user) {
-		return userService.findUserRoleByUser(user);
+	public Object findUserRoleByUserRole(UserRole userRole) {
+		return userService.findUserRoleByUserRole(userRole);
 	}
 	
 	@RequiresPermissions("/sys/user/update")
@@ -89,7 +90,7 @@ public class UserController extends BaseController{
 	
 	@RequestMapping(value="/findUserByUser")
 	@ResponseBody
-	public Object findUserByLoginName(User user) {
-		return userService.findUserByUser(user);
+	public Object findUserByUser(User user) {
+		return userService.findTByTOne(user);
 	}
 }

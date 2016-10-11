@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.sys.model.Role;
+import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.service.RoleService;
 import com.wangsong.sys.util.Page;
 
@@ -91,10 +92,10 @@ public class RoleController  extends BaseController{
 		return roleService.selectByPrimaryKey(id);
 	}
 	
-	@RequestMapping(value="/findRoleResourcesByRole")
+	@RequestMapping(value="/findRoleResourcesByRoleResources")
 	@ResponseBody
-	public Object findRoleResourcesByRole(Role role) {
-		return roleService.findRoleResourcesByRole(role);
+	public Object findRoleResourcesByRoleResources(RoleResources roleResources) {
+		return roleService.findRoleResourcesByRoleResources(roleResources);
 	}
 	
 	

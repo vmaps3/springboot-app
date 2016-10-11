@@ -29,7 +29,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		User user = new User();
 		user.setUsername(token.getUsername());
-		user = userService.findUserByUser(user);
+		user = userService.findTByTOne(user);
 		// 认证缓存信息
 		return new SimpleAuthenticationInfo(user, user.getPassword().toCharArray(), getName());
 	}

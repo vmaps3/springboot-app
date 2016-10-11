@@ -2,7 +2,6 @@ package com.wangsong.sys.dao;
 
 import java.util.List;
 
-import com.wangsong.sys.model.User;
 import com.wangsong.sys.util.Page;
 
 public interface BaseMapper<T> {
@@ -16,9 +15,11 @@ public interface BaseMapper<T> {
 
     int updateByPrimaryKey(T t);
 
-	List<User> findTByPage(Page<T> page);
+	List<T> findTByPage(Page<T> page);
 
 	int findTCountByT(T t);
 
-
+	List<T> findTByT(T t);
+	
+	int deleteTByT (T[] Ts);
 }

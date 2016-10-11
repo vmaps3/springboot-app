@@ -49,7 +49,7 @@
     ORDER BY sys_resources.sort
   </select>
    
-  <select id="findResourcesByResources" parameterType="com.wangsong.sys.model.Resources" resultMap="BaseResultMap">
+  <select id="findTByT" parameterType="com.wangsong.sys.model.Resources" resultMap="BaseResultMap">
     select  sys_resources.id, sys_resources.pid, sys_resources.name, sys_resources.url,sys_resources.type,sys_resources.sort
     from sys_resources,sys_role_resources,sys_user_role
     where sys_resources.id=sys_role_resources.resources_id

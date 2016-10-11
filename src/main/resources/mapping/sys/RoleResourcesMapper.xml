@@ -32,23 +32,21 @@
     from sys_role_resources
   </select>
  
-  <select id="findRoleByRole" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.Role" >
+  <select id="findTByT" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.RoleResources" >
     select id, resources_id, role_id
     from sys_role_resources 
-    where role_id = #{id,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteRoleResourcesByRole" >
+  <delete id="deleteTByT" >
     delete from sys_role_resources
     where role_id in
-    	<foreach item="role" collection="array" open="(" separator="," close=")">  
-			#{role.id}  
+    	<foreach item="roleResources" collection="array" open="(" separator="," close=")">  
+			#{roleResources.roleId}  
+		</foreach> 
+		or  resources_id in
+    	<foreach item="roleResources" collection="array" open="(" separator="," close=")">  
+			#{roleResources.resourcesId}  
 		</foreach>  
   </delete>
-    <delete id="deleteRoleResourcesByResources" >
-    delete from sys_role_resources
-    where resources_id in
-    	<foreach item="resources" collection="array" open="(" separator="," close=")">  
-			#{resources.id}  
-		</foreach>  
-  </delete>
+   
 </mapper>

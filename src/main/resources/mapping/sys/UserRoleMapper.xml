@@ -32,22 +32,20 @@
     from sys_user_role
   </select>
   
-  <select id="findUserRoleByUser" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.User">
+  <select id="findTByT" resultMap="BaseResultMap" parameterType="com.wangsong.sys.model.UserRole">
     select id, user_id, role_id
-    from sys_user_role  where user_id = #{id,jdbcType=VARCHAR}
+    from sys_user_role  where user_id = #{userId,jdbcType=VARCHAR}
   </select>
-   <delete id="deleteUserRoleByUser" >
+   <delete id="deleteTByT" >
     delete from sys_user_role
     where user_id in 
-    	<foreach item="user" collection="array" open="(" separator="," close=")">  
-			#{user.id}  
+    	<foreach item="userRole" collection="array" open="(" separator="," close=")">  
+			#{userRole.userId}  
+		</foreach>  
+		or role_id in
+    	<foreach item="userRole" collection="array" open="(" separator="," close=")">  
+			#{userRole.roleId}  
 		</foreach>  
   </delete>
-  <delete id="deleteUserRoleByRole" >
-    delete from sys_user_role
-    where role_id in
-    	<foreach item="role" collection="array" open="(" separator="," close=")">  
-			#{role.id}  
-		</foreach>  
-  </delete>
+ 
 </mapper>

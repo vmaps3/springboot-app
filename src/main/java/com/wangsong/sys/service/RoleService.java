@@ -13,6 +13,6 @@ public interface RoleService extends BaseService<Role>{
     
     int delete(String[] id);
 
-	List<RoleResources> findRoleResourcesByRole(Role mrole);
+	List<RoleResources> findRoleResourcesByRoleResources(RoleResources roleResources);
 
 }
