@@ -44,7 +44,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		User shiroUser = (User) principals.getPrimaryPrincipal();
 		Resources resources = new Resources();
 		resources.setId(shiroUser.getId());
-		List<Resources> roleList = resourcesService.findResourcesShiroByResources(resources);
+		resources.setType("2");
+		List<Resources> roleList = resourcesService.findTByT(resources);
 		Set<String> urlSet = new HashSet<String>();
 		for (Resources roleId : roleList) {
 			urlSet.add(roleId.getUrl());

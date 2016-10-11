@@ -56,7 +56,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 		UserRole userRole2=new UserRole();
 		userRole2.setUserId(user.getId());
-		userRoleMapper.deleteTByT(new UserRole[]{userRole2});
+		userRoleMapper.deleteByT(new UserRole[]{userRole2});
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
@@ -77,7 +77,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			user.setUserId(id[i]);
 			u[i]=user;
 		}
-		userRoleMapper.deleteTByT(u);
+		userRoleMapper.deleteByT(u);
 		userMapper.deleteByPrimaryKey(id);
 		
 		return 0;

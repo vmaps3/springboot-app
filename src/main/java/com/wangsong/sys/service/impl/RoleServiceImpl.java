@@ -54,7 +54,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	public int update(Role role,String[] resourcesId) {
 		RoleResources roleResources2=new RoleResources();
 		roleResources2.setRoleId(role.getId());
-		roleResourcesMapper.deleteTByT(new RoleResources[]{roleResources2});
+		roleResourcesMapper.deleteByT(new RoleResources[]{roleResources2});
 		if(resourcesId!=null){
 			for(int i=0;i<resourcesId.length;i++){
 				RoleResources roleResources=new RoleResources();
@@ -80,8 +80,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 			u[i]=userRole;
 		}
 
-		userRoleMapper.deleteTByT(u);
-		roleResourcesMapper.deleteTByT(r);
+		userRoleMapper.deleteByT(u);
+		roleResourcesMapper.deleteByT(r);
 		return roleMapper.deleteByPrimaryKey(id);
 	}
 

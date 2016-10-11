@@ -50,7 +50,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 		}
 		
 		if(j!=0){
-			roleResourcesMapper.deleteTByT(r);
+			roleResourcesMapper.deleteByT(r);
 			resourcesMapper.deleteByPrimaryKey(id);
 		}
 	
@@ -73,12 +73,6 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 			resources.setUrl("/");
 		}
 		return resourcesMapper.updateByPrimaryKey(resources);
-	}
-	
-	@Override
-	public List<Resources> findResourcesShiroByResources(Resources resources) {
-		resources.setType("2");
-		return resourcesMapper.findTByT(resources);
 	}
 
 	@Override

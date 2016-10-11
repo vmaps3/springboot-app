@@ -21,5 +21,5 @@ public interface BaseMapper<T> {
 
 	List<T> findTByT(T t);
 	
-	int deleteTByT (T[] Ts);
+	int deleteByT (T[] Ts);
 }

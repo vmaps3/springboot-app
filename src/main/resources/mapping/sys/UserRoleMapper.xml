@@ -36,7 +36,7 @@
     select id, user_id, role_id
     from sys_user_role  where user_id = #{userId,jdbcType=VARCHAR}
   </select>
-   <delete id="deleteTByT" >
+   <delete id="deleteByT" >
     delete from sys_user_role
     where user_id in 
     	<foreach item="userRole" collection="array" open="(" separator="," close=")">  

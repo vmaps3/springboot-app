@@ -37,7 +37,7 @@
     from sys_role_resources 
     where role_id = #{roleId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteTByT" >
+  <delete id="deleteByT" >
     delete from sys_role_resources
     where role_id in
     	<foreach item="roleResources" collection="array" open="(" separator="," close=")">  

@@ -9,8 +9,6 @@ public interface ResourcesService extends BaseService<Resources>{
 
 	int delete(String[] id);
 	
-	List<Resources> findResourcesShiroByResources(Resources resources);
-	
 	List<JsonTreeData> findResources();
 
 	List<JsonTreeData> findResourcesEMUByResources();
