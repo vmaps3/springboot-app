@@ -12,7 +12,7 @@
  		return unixTimestamp.toLocaleString();
 	}
 	function usernameFormatter(value,row,index){
-		if(row.user.username==null){
+		if(row.user==null){
 			return "";
 		}else{
 			return row.user.username;
