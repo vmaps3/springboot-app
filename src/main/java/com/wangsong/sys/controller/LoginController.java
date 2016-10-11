@@ -58,16 +58,6 @@ public class LoginController  extends BaseController {
         return map;
     }
 
-  
-    @RequestMapping(value = "/unauth.do")
-    public String unauth() {
-        if (SecurityUtils.getSubject().isAuthenticated() == false) {
-            return "redirect:/login.do";
-        }
-        return "unauth";
-    }
-
-  
     @RequestMapping(value = "/logout.do")
     public String logout() {
     	Subject subject = SecurityUtils.getSubject();

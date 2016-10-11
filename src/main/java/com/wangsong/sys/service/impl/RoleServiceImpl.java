@@ -88,7 +88,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 
 	@Override
-	public List<RoleResources> findRoleResourcesByRoleResources(RoleResources roleResources) {
+	public List<RoleResources> findRoleResourcesByRole(Role role) {
+		RoleResources roleResources=new RoleResources();
+		roleResources.setRoleId(role.getId());
 		return roleResourcesMapper.findTByT(roleResources);
 	}
 

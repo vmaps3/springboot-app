@@ -27,8 +27,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	
 	@Override
-	public List<UserRole> findUserRoleByUserRole(UserRole userRole) {	
-		
+	public List<UserRole> findUserRoleByUser(User user) {	
+		UserRole userRole=new UserRole();
+		userRole.setUserId(user.getId());
 		return userRoleMapper.findTByT(userRole);
 	}
 

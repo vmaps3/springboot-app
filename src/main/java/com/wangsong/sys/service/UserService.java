@@ -15,7 +15,7 @@ public interface UserService extends BaseService<User>{
     
     int delete(String[] id);
     
-    List<UserRole> findUserRoleByUserRole(UserRole userRole);
+    List<UserRole> findUserRoleByUser(User user);
 
 
 	

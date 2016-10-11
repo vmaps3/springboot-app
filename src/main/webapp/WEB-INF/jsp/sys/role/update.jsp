@@ -32,9 +32,9 @@
 				     success:function(data){   
 				    	 $('#ff').form('load',data);
 							$.ajax({   
-							     	url:'${pageContext.request.contextPath}/sys/role/findRoleResourcesByRoleResources.do',   
+							     	url:'${pageContext.request.contextPath}/sys/role/findRoleResourcesByRole.do',   
 							     	type:'post',   
-							     	data:'roleId='+data.id,
+							     	data:'id='+data.id,
 							     	success:function(data){   
 										var s= new Array();
 								     	for(var i=0;i<data.length;i++){

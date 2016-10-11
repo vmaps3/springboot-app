@@ -32,15 +32,12 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	@Override
 	public int delete(String[] id) {
 		int j=0;
-		
 		for(int i=0;i<id.length;i++){
 			if(!"1".equals(id[i])){
 				j++;
 			}
 		}
-		
 		RoleResources[] r=new RoleResources[j];
-		
 		for(int i=0;i<id.length;i++){
 			if(!"1".equals(id[i])){
 				RoleResources roleResources=new RoleResources();
@@ -48,12 +45,10 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 				r[i]=roleResources;
 			}
 		}
-		
 		if(j!=0){
 			roleResourcesMapper.deleteByT(r);
 			resourcesMapper.deleteByPrimaryKey(id);
 		}
-	
 		return 0;
 	}
 	

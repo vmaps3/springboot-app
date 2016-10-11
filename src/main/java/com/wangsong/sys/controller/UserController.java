@@ -66,8 +66,8 @@ public class UserController extends BaseController{
 	
 	@RequestMapping(value="/findUserRoleByUser")
 	@ResponseBody
-	public Object findUserRoleByUserRole(UserRole userRole) {
-		return userService.findUserRoleByUserRole(userRole);
+	public Object findUserRoleByUser(User user) {
+		return userService.findUserRoleByUser(user);
 	}
 	
 	@RequiresPermissions("/sys/user/update")
