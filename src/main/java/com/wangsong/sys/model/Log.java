@@ -1,9 +1,15 @@
 package com.wangsong.sys.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Log {
-    private String id;
+public class Log  implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4947347940116804022L;
+
+	private String id;
 
     private String url;
 

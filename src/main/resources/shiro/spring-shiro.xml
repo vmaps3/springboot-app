@@ -4,11 +4,8 @@
        default-lazy-init="true">
 
     <description>Shiro安全配置</description>
-    
-    <!-- 項目自定义的Realm -->
-    <bean id="shiroDbRealm" class="com.wangsong.sys.util.ShiroDbRealm"/>
-
-    <!-- Shiro Filter -->
+     <!-- Shiro Filter --> 
+     
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- 安全管理器 -->
         <property name="securityManager" ref="securityManager"/>
@@ -23,8 +20,11 @@
             </value>
         </property>
     </bean>
+     <!-- 項目自定义的Realm -->
+    <bean id="shiroDbRealm" class="com.wangsong.sys.util.ShiroDbRealm"/>
+	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-	<import resource="classpath:shiro/shiro-ehcache.xml" />
-	
+	<!-- <import resource="classpath:shiro/shiro-ehcache.xml" /> -->
+	<import resource="classpath:shiro/shiro-redis.xml" />
 </beans>

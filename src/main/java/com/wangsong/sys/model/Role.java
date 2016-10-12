@@ -1,7 +1,14 @@
 package com.wangsong.sys.model;
 
-public class Role {
-    private String id;
+import java.io.Serializable;
+
+public class Role  implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3582588209589180635L;
+
+	private String id;
 
     private String name;
 

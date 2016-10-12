@@ -41,9 +41,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		</property>
 	</bean>
 	
-	<!-- 静态资源映射 -->
-    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/> 
-	
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.sys.dao.DictMapper">
- <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Dict">
+  <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Dict">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />

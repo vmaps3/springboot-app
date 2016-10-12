@@ -1,7 +1,14 @@
 package com.wangsong.sys.model;
 
-public class Dict {
-    private String id;
+import java.io.Serializable;
+
+public class Dict  implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3138060792826655366L;
+
+	private String id;
 
     private String name;
 

@@ -1,7 +1,14 @@
 package com.wangsong.sys.model;
 
-public class Resources {
-    private String id;
+import java.io.Serializable;
+
+public class Resources  implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4125580367922291000L;
+
+	private String id;
 
     private String pid;
 

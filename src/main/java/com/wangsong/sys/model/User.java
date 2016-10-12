@@ -1,7 +1,14 @@
 package com.wangsong.sys.model;
 
-public class User{
+import java.io.Serializable;
 
+public class User implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7484136779753770396L;
 
 	private String id;
 
@@ -32,4 +39,6 @@ public class User{
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+
 }
