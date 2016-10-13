@@ -9,10 +9,13 @@
 	   <property name="realm" ref="shiroDbRealm"/>
 	   <!--将缓存管理器，交给安全管理器-->
 	    <property name="cacheManager" ref="shiroEhcacheManager"/>
-
+		<property name="sessionManager" ref="sessionManager"/>
 	</bean>
-   
-		
+   	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 会话超时时间，单位：毫秒 -->
+		<property name="globalSessionTimeout" value="10000" />
+	</bean>
 	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml"/>
 	</bean>
