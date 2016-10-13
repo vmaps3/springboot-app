@@ -14,7 +14,7 @@
    	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<!-- 会话超时时间，单位：毫秒 -->
-		<property name="globalSessionTimeout" value="10000" />
+		<property name="globalSessionTimeout" value="60000" />
 	</bean>
 	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml"/>

@@ -28,5 +28,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
        </property>
     </bean>  
 
+
+	<bean class="com.wangsong.sys.util.mybatis.RedisCacheTransfer">
+    <property name="redisTemplate" ref="redisTemplate"/>
+</bean>
   
 </beans>

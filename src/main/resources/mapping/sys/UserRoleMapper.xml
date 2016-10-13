@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.sys.dao.UserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.wangsong.sys.model.UserRole">
+<cache type="com.wangsong.sys.util.mybatis.RedisCache" />  
+<resultMap id="BaseResultMap" type="com.wangsong.sys.model.UserRole">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
