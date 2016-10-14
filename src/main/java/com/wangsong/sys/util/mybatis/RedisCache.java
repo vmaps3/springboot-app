@@ -15,7 +15,7 @@ public final class RedisCache implements Cache {
 
 	private String id;
 	private static RedisTemplate<String, Object> redisTemplate;
-	private static ValueOperations<String, Object> ValueOperations;
+	private static ValueOperations<String, Object> valueOperations;
 	private static int expire;
 	/**
 	 * construct cache 
@@ -51,7 +51,7 @@ public final class RedisCache implements Cache {
 	 */
 	public void putObject(final Object key, final Object value) {
 		log.debug("Put Object Key [{}], Value [{}].", key, value);
-		ValueOperations.set(prefixedKey(key), 
+		valueOperations.set(prefixedKey(key), 
 			value, expire, TimeUnit.MILLISECONDS);
 	}
 	
@@ -59,7 +59,7 @@ public final class RedisCache implements Cache {
 	 * {@inheritDoc}
 	 */
 	public Object getObject(final Object key) {
-		Object value = ValueOperations.get(prefixedKey(key));
+		Object value = valueOperations.get(prefixedKey(key));
 		log.debug("Get Object Key [{}], Value [{}].", key, value);
 		return value;
 	}
@@ -118,7 +118,7 @@ public final class RedisCache implements Cache {
 
 	public static void setRedisTemplate(RedisTemplate<String,Object> redisTemplate) {
 		RedisCache.redisTemplate = redisTemplate;
-		ValueOperations = redisTemplate.opsForValue();
+		valueOperations = redisTemplate.opsForValue();
 		
 	}
 

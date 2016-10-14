@@ -40,5 +40,10 @@ public class User implements Serializable{
         this.password = password == null ? null : password.trim();
     }
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+	}
+
 
 }
