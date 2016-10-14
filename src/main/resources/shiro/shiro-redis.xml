@@ -20,19 +20,13 @@
 </bean>
  
 <!-- shiro redisManager -->
-<bean id="redisManager" class="org.crazycake.shiro.RedisManager">
-    <property name="host" value="${redis_host}"/>
-    <property name="port" value="${redis_port}"/>
-    <property name="expire" value="60"/>
-    
-    <!-- optional properties:
-    <property name="timeout" value="10000"/>
-    <property name="password" value="123456"/>
-    -->
+<bean id="redisManager" class="com.wangsong.sys.util.shiro.RedisManager">
+    <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
+    <property name="expire" value="60000"/>
 </bean>
  
 <!-- redisSessionDAO -->
-<bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+<bean id="redisSessionDAO" class="com.wangsong.sys.util.shiro.RedisSessionDAO">
     <property name="redisManager" ref="redisManager" />
 </bean>
  
@@ -42,7 +36,7 @@
 </bean>
  
 <!-- cacheManager -->
-<bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
+<bean id="cacheManager" class="com.wangsong.sys.util.shiro.RedisCacheManager">
     <property name="redisManager" ref="redisManager" />
 </bean>
 </beans>

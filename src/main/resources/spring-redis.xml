@@ -30,7 +30,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 
 
 	<bean class="com.wangsong.sys.util.mybatis.RedisCacheTransfer">
-    <property name="redisTemplate" ref="redisTemplate"/>
-</bean>
+	    <property name="redisTemplate" ref="redisTemplate"/>
+	    <property name="expire" value="10000"/>
+	</bean>
   
 </beans>
