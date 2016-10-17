@@ -113,7 +113,7 @@ public final class RedisCache implements Cache {
 	 * @return cache prefix
 	 */
 	String prefix() {
-		return id + ":";
+		return "mybatis_redis_cache:"+id + ":";
 	}
 
 	public static void setRedisTemplate(RedisTemplate<String,Object> redisTemplate) {

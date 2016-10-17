@@ -24,7 +24,7 @@
 <!-- redisSessionDAO -->
 <bean id="redisSessionDAO" class="com.wangsong.sys.util.shiro.RedisSessionDAO">
     	<property name="redisTemplate" ref="redisTemplate"/>
-	    <property name="expire" value="60000"/>
+	    <property name="expire" value="${shiro_redis_session}"/>
 </bean>
 
  
@@ -35,8 +35,8 @@
  
 <!-- cacheManager -->
 <bean id="cacheManager" class="com.wangsong.sys.util.shiro.RedisCacheManager">
-	<property name="expire" value="60000"/>
     <property name="redisTemplate" ref="redisTemplate" />
+    <property name="expire" value="${shiro_redis_cache}"/>
 </bean>
 
  
