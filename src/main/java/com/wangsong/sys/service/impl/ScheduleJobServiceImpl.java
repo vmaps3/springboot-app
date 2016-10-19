@@ -11,6 +11,7 @@ import org.quartz.JobDetail;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
+import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
@@ -51,7 +52,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService{
 		JobDetail jobDetail = JobBuilder.newJob(job).withIdentity(scheduleJob.getName(), scheduleJob.getGroup()).build(); 
 		//表达式调度构建器（可判断创建SimpleScheduleBuilder）
 		CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
-		
+		jobDetail.getJobDataMap().put("scheduleJob", scheduleJob);
 		//按新的cronExpression表达式构建一个新的trigger
 		CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(scheduleJob.getName(), scheduleJob.getGroup()).withSchedule(scheduleBuilder).build();
 		try {
@@ -82,8 +83,11 @@ public class ScheduleJobServiceImpl implements ScheduleJobService{
 			        //获取要执行的定时任务类名
 			        JobDetail jobDetail=scheduler.getJobDetail(jobKey);
 				    scheduleJob.setClassName(jobDetail.getJobClass().getName());
-					CronTrigger cron = (CronTrigger) trigger;
-					scheduleJob.setCronExpression(cron.getCronExpression());
+				  
+					if (trigger instanceof CronTrigger) {
+						CronTrigger cron = (CronTrigger) trigger;
+						scheduleJob.setCronExpression(cron.getCronExpression());
+					}
 			        scheduleJobList.add(scheduleJob);
 			    }
 			}
