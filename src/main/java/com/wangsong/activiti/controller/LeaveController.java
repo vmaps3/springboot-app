@@ -3,6 +3,7 @@ package com.wangsong.activiti.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -67,8 +68,6 @@ public class LeaveController extends BaseController{
 	@ResponseBody
 	public String create(Leave leave, Model model) {
 		leaveService.save(leave);
-		workflowService.workflowStartListen(leave.getClass().getSimpleName()+"."+leave.getId());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),"提交",null);
 		return "success";
 	}
 

@@ -46,6 +46,7 @@ public class LeaveService extends BaseServiceImpl<Leave>{
 		leave.setId(UUID.randomUUID().toString());
 		leaveMapper.insert(leave);
 		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId());
-		
+		workflowService.workflowStartListen(leave.getClass().getSimpleName()+"."+leave.getId());
+		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),"提交",null);
 	}
 }
