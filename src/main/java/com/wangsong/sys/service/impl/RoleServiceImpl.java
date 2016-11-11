@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wangsong.commons.service.impl.BaseServiceImpl;
 import com.wangsong.sys.dao.RoleMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.dao.UserRoleMapper;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.sys.dao.LogMapper">
-<cache type="com.wangsong.sys.util.mybatis.RedisCache" /> 
+<cache type="com.wangsong.commons.util.mybatis.RedisCache" /> 
  <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Log">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -50,7 +50,7 @@
     select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
     from sys_log 
   </select>
-  <select id="findTByPage" resultMap="BaseResultMap" parameterType="com.wangsong.sys.util.Page">
+  <select id="findTByPage" resultMap="BaseResultMap" parameterType="com.wangsong.commons.util.Page">
     select l.id, l.url, l.parameter, l.remote_addr, l.agent, u.username, l.begin_time, l.end_time
     from sys_log l
     left join sys_user u on u.id=l.user_id

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.sys.dao.RoleMapper">
-<cache type="com.wangsong.sys.util.mybatis.RedisCache" /> 
+<cache type="com.wangsong.commons.util.mybatis.RedisCache" /> 
 <resultMap id="BaseResultMap" type="com.wangsong.sys.model.Role">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -42,7 +42,7 @@
     
   </select>
   
-   <select id="findTByPage" parameterType="com.wangsong.sys.util.Page" resultMap="BaseResultMap">
+   <select id="findTByPage" parameterType="com.wangsong.commons.util.Page" resultMap="BaseResultMap">
     select id, name
     from sys_role
     where 1=1

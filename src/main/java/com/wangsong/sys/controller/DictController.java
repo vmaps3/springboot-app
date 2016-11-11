@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wangsong.commons.controller.BaseController;
+import com.wangsong.commons.util.Page;
 import com.wangsong.sys.model.Dict;
 import com.wangsong.sys.service.DictService;
-import com.wangsong.sys.util.Page;
 
 @Controller
 @RequestMapping("/sys/dict")

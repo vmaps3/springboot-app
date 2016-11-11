@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wangsong.commons.controller.BaseController;
+import com.wangsong.commons.util.Page;
 import com.wangsong.sys.model.Role;
 import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.service.RoleService;
-import com.wangsong.sys.util.Page;
 
 
 

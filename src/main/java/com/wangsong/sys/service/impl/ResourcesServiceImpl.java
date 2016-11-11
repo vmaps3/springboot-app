@@ -9,15 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wangsong.commons.service.impl.BaseServiceImpl;
+import com.wangsong.commons.util.tree.Attributes;
+import com.wangsong.commons.util.tree.JsonTreeData;
+import com.wangsong.commons.util.tree.TreeNodeUtil;
 import com.wangsong.sys.dao.ResourcesMapper;
 import com.wangsong.sys.dao.RoleResourcesMapper;
 import com.wangsong.sys.model.Resources;
 import com.wangsong.sys.model.RoleResources;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.ResourcesService;
-import com.wangsong.sys.util.tree.Attributes;
-import com.wangsong.sys.util.tree.JsonTreeData;
-import com.wangsong.sys.util.tree.TreeNodeUtil;
 
 
 

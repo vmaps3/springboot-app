@@ -2,6 +2,7 @@ package com.wangsong.sys.service;
 
 import java.util.List;
 
+import com.wangsong.commons.service.BaseService;
 import com.wangsong.sys.model.User;
 import com.wangsong.sys.model.UserRole;
 

@@ -12,9 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wangsong.commons.controller.BaseController;
+import com.wangsong.commons.util.Page;
 import com.wangsong.sys.model.Log;
 import com.wangsong.sys.service.LogService;
-import com.wangsong.sys.util.Page;
 
 @Controller
 @RequestMapping("/sys/log")
