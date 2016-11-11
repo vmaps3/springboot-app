@@ -49,7 +49,7 @@ public class HistoryController extends BaseController{
 	/**
 	 * 默认页面
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="toList")
 	public String list() {
 		return "activiti/history/list";
 	}
@@ -58,7 +58,7 @@ public class HistoryController extends BaseController{
 	 * 获取字典json
 	 */
 	
-	@RequestMapping(value="json",method = RequestMethod.GET)
+	@RequestMapping(value="list")
 	@ResponseBody
 	public Map<String, Object> dictList(HttpServletRequest request) {
 		Page<Map<String, Object>> page = getPage(request);
@@ -75,12 +75,12 @@ public class HistoryController extends BaseController{
 	 * @return
 	 */
 	
-	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("id") String taskId, Model model) {
-		HistoricTaskInstance historicTaskInstance = workflowService.findHistoricTaskInstanceByTaskId(taskId);
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateForm(String id, Model model) {
+		HistoricTaskInstance historicTaskInstance = workflowService.findHistoricTaskInstanceByTaskId(id);
 		String url = historicTaskInstance.getFormKey();
 		Integer sid = workflowService.findHistoryIdByTaskId(historicTaskInstance.getProcessInstanceId());
-		return "redirect:"+url+sid+"/no";
+		return "redirect:"+url+"?id="+sid+"&display=/no";
 	}
 	
 	@RequestMapping(value = "toViewImage", method = RequestMethod.GET)

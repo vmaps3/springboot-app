@@ -38,7 +38,7 @@ var dg;
 $(function(){   
 	dg=$('#dg').datagrid({    
 	method: "get",
-    url:'${pageContext.request.contextPath}/workflow/workflowHistory/json', 
+    url:'${pageContext.request.contextPath}/activiti/history/list.do', 
     fit : true,
 	fitColumns : true,
 	border : false,
@@ -70,7 +70,7 @@ function upd2(){
 	var row = dg.datagrid('getSelected');
 	if(rowIsNull(row)) return;
 
-	window.open('${pageContext.request.contextPath}/workflow/workflowHistory/toViewImage?taskId='+row.id,"流程图","left=500,top=200,width=800,height=500,alwaysRaised:yes");
+	window.open('${pageContext.request.contextPath}/activiti/History/toViewImage.do?taskId='+row.id,"流程图","left=500,top=200,width=800,height=500,alwaysRaised:yes");
 	
 }
 
@@ -82,7 +82,7 @@ function upd(){
 	    title: '修改用户',    
 	    width: 500,    
 	    height: 500,    
-	    href:'${pageContext.request.contextPath}/workflow/workflowHistory/update/'+row.id,
+	    href:'${pageContext.request.contextPath}/activiti/history/update.do?id='+row.id,
 	    maximizable:true,
 	    modal:true,
 	  
