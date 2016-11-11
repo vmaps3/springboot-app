@@ -70,7 +70,7 @@ function upd2(){
 	var row = dg.datagrid('getSelected');
 	if(rowIsNull(row)) return;
 
-	window.open('${pageContext.request.contextPath}/activiti/History/toViewImage.do?taskId='+row.id,"流程图","left=500,top=200,width=800,height=500,alwaysRaised:yes");
+	window.open('${pageContext.request.contextPath}/activiti/history/toViewImage.do?taskId='+row.id,"流程图","left=500,top=200,width=800,height=500,alwaysRaised:yes");
 	
 }
 
