@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.activiti.service.LeaveService;
-import com.wangsong.activiti.service.WorkflowService;
+import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.commons.controller.BaseController;
 
 /**
@@ -31,13 +31,13 @@ import com.wangsong.commons.controller.BaseController;
  * @date 2015年1月13日
  */
 @Controller
-@RequestMapping("workflow/leave")
+@RequestMapping("/activiti/leave")
 public class LeaveController extends BaseController{
 	
 	@Autowired
 	private LeaveService leaveService;
 	@Autowired
-	private WorkflowService workflowService;
+	private ActivitiService workflowService;
 	
 	
 	/**
@@ -46,14 +46,14 @@ public class LeaveController extends BaseController{
 	 * @param model
 	 */
 	
-	@RequestMapping(value = "create", method = RequestMethod.GET)
+	@RequestMapping(value = "/toAdd")
 	public String createForm(Model model) {
 		model.addAttribute("leave", new Leave());
-		model.addAttribute("action", "create");
+		model.addAttribute("action", "add");
 		List<String> buttonList=new ArrayList<String>();
 		buttonList.add("提交");
 		model.addAttribute("buttonList",buttonList);
-		return "workflow/leave/form";
+		return "activiti/leave/form";
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class LeaveController extends BaseController{
 	 * @param model
 	 */
 	
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "/add")
 	@ResponseBody
 	public String create(Leave leave, Model model) {
 		leaveService.save(leave);
@@ -80,10 +80,9 @@ public class LeaveController extends BaseController{
 	 * @return
 	 */
 	
-	@RequestMapping(value = "update/{id}/{display}", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("id") Integer id, @PathVariable("display") String display,Model model) {
-		//Leave leave=leaveService.get(id);
-		Leave leave = null;
+	@RequestMapping(value = "/update")
+	public String updateForm(String id,  String display,Model model) {
+		Leave leave=leaveService.selectByPrimaryKey(id);
 		String businessKey=	leave.getClass().getSimpleName()+"."+leave.getId();
 		model.addAttribute("leave",leave);
 		model.addAttribute("action", "update");
@@ -99,7 +98,7 @@ public class LeaveController extends BaseController{
 		/**三：查询所有历史审核人的审核信息，帮助当前人完成审核，返回List<Comment>*/
 		model.addAttribute("buttonList",buttonList);
 		model.addAttribute("commentList",commentList);
-		return "workflow/leave/form";
+		return "activiti/leave/form";
 	}
 
 	/**

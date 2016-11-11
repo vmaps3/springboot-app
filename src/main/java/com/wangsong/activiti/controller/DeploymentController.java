@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.wangsong.activiti.service.WorkflowService;
+import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.commons.controller.BaseController;
 import com.wangsong.commons.util.Page;
 
@@ -28,25 +28,24 @@ import com.wangsong.commons.util.Page;
  * @date 2015年1月13日
  */
 @Controller
-@RequestMapping("workflow/deployment")
+@RequestMapping("activiti/deployment")
 public class DeploymentController extends BaseController{
 	
 	@Autowired
-	private WorkflowService workflowService;
+	private ActivitiService workflowService;
 	
 	/**
 	 * 默认页面
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="toList")
 	public String list() {
-		return "workflow/deployment/list";
+		return "activiti/deployment/list";
 	}
 
 	/**
 	 * 获取字典json
 	 */
-	@RequiresPermissions("workflow:deployment:view")
-	@RequestMapping(value="json",method = RequestMethod.GET)
+	@RequestMapping(value="list")
 	@ResponseBody
 	public Map<String, Object> list(HttpServletRequest request) {
 		Page<Map<String,Object>> page = getPage(request);
@@ -62,11 +61,9 @@ public class DeploymentController extends BaseController{
 	 * 
 	 * @param model
 	 */
-	@RequiresPermissions("workflow:deployment:add")
-	@RequestMapping(value = "create", method = RequestMethod.GET)
+	@RequestMapping(value = "/toAdd")
 	public String createForm(Model model) {
-		model.addAttribute("action", "create");
-		return "workflow/deployment/form";
+		return "activiti/deployment/add";
 	}
 
 	/**
@@ -75,8 +72,7 @@ public class DeploymentController extends BaseController{
 	 * @param dict
 	 * @param model
 	 */
-	@RequiresPermissions("workflow:deployment:add")
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "/add")
 	@ResponseBody
 	public String create(MultipartFile file,String filename, Model model) {
 		workflowService.saveNewDeploye(file ,filename);
@@ -91,10 +87,9 @@ public class DeploymentController extends BaseController{
 	 * @param id
 	 * @return
 	 */
-	@RequiresPermissions("workflow:deployment:delete")
-	@RequestMapping(value = "delete/{id}")
+	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public String delete(@PathVariable("id") String id) {
+	public String delete(String id) {
 		
 		workflowService.deleteProcessDefinitionByDeploymentId(id);
 		return "success";

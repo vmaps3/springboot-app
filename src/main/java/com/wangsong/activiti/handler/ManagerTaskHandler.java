@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.wangsong.commons.util.SpringContextUtil;
+import com.wangsong.commons.util.UserUtil;
+import com.wangsong.sys.model.User;
 import com.wangsong.sys.service.UserService;
 
 
@@ -24,9 +27,8 @@ public class ManagerTaskHandler implements TaskListener {
 	
 	@Override
 	public void notify(DelegateTask delegateTask) {
-		//UserService userService = (UserService)SpringContextUtil.getBean("userService");
-		//List<String> userId=userService.findUserIdByUserIdRoleCode(UserUtil.getCurrentUser().getId(),"70002");
-		//delegateTask.setAssignee(userId.get(0));
+		
+		delegateTask.setAssignee("18151fda-09e7-4491-a7dd-4e2bdd02ecc8");
 		
 	}
 

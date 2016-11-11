@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<td>url:</td>
-					<td><input type="text" name="url" class="easyui-textbox" validType="length[0,25]"></td>
+					<td><input type="text" name="url" class="easyui-textbox" validType="length[0,50]"></td>
 				</tr>
 				<tr>
 					<td>type:</td>

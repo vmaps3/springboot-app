@@ -12,13 +12,13 @@
 			<tr>
 				<td>天数：</td>
 				<td>
-				<input type="hidden" name="id" value="${id }" />
-				<input name="days" type="text" value="${leave.days }"   class="easyui-validatebox" required="required"/>
+				<input type="hidden" name="id" value="${leave.id }" />
+				<input name="days" type="text" value="${leave.days }"   class="easyui-textbox"  required="required"/>
 				</td>
 			</tr>
 			<tr>
 				<td>事由：</td>
-				<td><input name="reason" type="text"  value="${leave.reason }" class="easyui-validatebox" required="required"/></td>
+				<td><input name="reason" type="text"  value="${leave.reason }"  class="easyui-textbox"  required="required"/></td>
 			</tr>
 			<c:if test="${display=='yes'}">
 				<tr>
@@ -47,7 +47,7 @@
 		</table>
 	</c:if>
 	
-	<div style="text-align:center;padding:5px">
+	<div id="dlg-buttons">
 		<c:forEach items="${buttonList}" varStatus="i" var="button" > 
 			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="approval('${button}  ')">${button}</a>
 		</c:forEach>
@@ -56,19 +56,17 @@
 
 <script type="text/javascript">
 function approval(value){
-	var isValid = $(this).form('validate');
-	if(isValid==true){
+
 		$("#buttonValue").val(value);
-		var str_data=$('#mainform').serialize() ;
 		$.ajax({
 			   type: "POST",
-			   url: "${pageContext.request.contextPath}/workflow/leave/${action}",
-			   data: str_data,
+			   url: "${pageContext.request.contextPath}/activiti/leave/${action}.do",
+			   data: $('#mainform').serializeArray(),
 			   success: function(data){
-					successTip(data,dg,d);
+					window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
 			   }
 			});
-	}
+
 }
 
 

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.wangsong.activiti.service.WorkflowService;
+import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.commons.controller.BaseController;
 import com.wangsong.commons.util.Page;
 
@@ -31,29 +31,27 @@ import com.wangsong.commons.util.Page;
  * @date 2015年1月13日
  */
 @Controller
-@RequestMapping("workflow/processDefinition")
+@RequestMapping("activiti/processDefinition")
 public class ProcessDefinitionController extends BaseController{
 	
 	@Autowired
-	private WorkflowService processDefinitionService;
+	private ActivitiService processDefinitionService;
 	
 	/**
 	 * 默认页面
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/toList")
 	public String list() {
-		return "workflow/processDefinition/list";
+		return "activiti/processDefinition/list";
 	}
 
 	/**
 	 * 获取字典json
 	 */
-	@RequiresPermissions("workflow:processDefinition:view")
-	@RequestMapping(value="json",method = RequestMethod.GET)
+	@RequestMapping(value="/list")
 	@ResponseBody
 	public Map<String, Object> list(HttpServletRequest request) {
-		Page<Map<String,Object>> page = getPage(request);
-		
+		Page<Map<String,Object>> page = getPage(request);	
 		page= processDefinitionService.findProcessDefinitionList(page);
 		return getEasyUIData(page);
 	}
@@ -63,20 +61,18 @@ public class ProcessDefinitionController extends BaseController{
 	 * 
 	 * @param model
 	 */
-	@RequiresPermissions("workflow:processDefinition:view")
-	@RequestMapping(value = "toViewImage", method = RequestMethod.GET)
+	@RequestMapping(value = "/toViewImage")
 	public String toViewImage(String deploymentId,String diagramResourceName,Model model) {
 		model.addAttribute("deploymentId", deploymentId);
 		model.addAttribute("diagramResourceName",diagramResourceName);
-		return "workflow/processDefinition/viewImage";
+		return "activiti/processDefinition/viewImage";
 	}
 	
 	/**
 	 * 查看流程图
 	 * @throws Exception 
 	 */
-	@RequiresPermissions("workflow:processDefinition:view")
-	@RequestMapping(value="viewImage",method = RequestMethod.GET)
+	@RequestMapping(value="/viewImage")
 	public void viewImage(String deploymentId,String diagramResourceName,HttpServletResponse response) throws Exception{
 	
 		//2：获取资源文件表（act_ge_bytearray）中资源图片输入流InputStream

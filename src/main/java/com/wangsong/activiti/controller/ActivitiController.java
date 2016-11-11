@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.activiti.service.LeaveService;
-import com.wangsong.activiti.service.WorkflowService;
+import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.commons.controller.BaseController;
 import com.wangsong.commons.util.Page;
 import com.wangsong.commons.util.UserUtil;
@@ -38,25 +38,25 @@ import com.wangsong.commons.util.UserUtil;
  * @date 2015年1月13日
  */
 @Controller
-@RequestMapping("workflow/workflow")
-public class WorkflowController extends BaseController{
+@RequestMapping("activiti/activiti")
+public class ActivitiController extends BaseController{
 	
 	@Autowired
-	private WorkflowService workflowService;
+	private ActivitiService workflowService;
 
 	/**
 	 * 默认页面
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/toList")
 	public String list() {
-		return "workflow/workflow/list";
+		return "activiti/activiti/list";
 	}
 	
 	/**
 	 * 获取字典json
 	 */
 	
-	@RequestMapping(value="json",method = RequestMethod.GET)
+	@RequestMapping(value="/list")
 	@ResponseBody
 	public Map<String, Object> dictList(HttpServletRequest request) {
 		Page<Map<String, Object>> page = getPage(request);
@@ -72,25 +72,25 @@ public class WorkflowController extends BaseController{
 	 * @return
 	 */
 	
-	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("id") String id, Model model) {
+	@RequestMapping(value = "/toUpdate")
+	public String updateForm(String id, Model model) {
 		String url = workflowService.findTaskFormKeyByTaskId(id);
-		Integer sid = workflowService.findIdByTaskId(id);
-		return "redirect:"+url+sid+"/yes";
+		String sid = workflowService.findIdByTaskId(id);
+		return "redirect:"+url+"?id="+sid+"&display=yes";
 	}
 	
-	@RequestMapping(value = "toViewImage", method = RequestMethod.GET)
+	@RequestMapping(value = "/toViewImage")
 	public String toViewImage(String taskId,Model model) {
 		ProcessDefinition pd = workflowService.findProcessDefinitionByTaskId(taskId);
 		model.addAttribute("deploymentId", pd.getDeploymentId());
 		model.addAttribute("diagramResourceName",pd.getDiagramResourceName());
 		Map<String, Object> map = workflowService.findCoordingByTaskId(taskId);
 		model.addAttribute("acs", map);
-		return "workflow/workflow/viewImage";
+		return "activiti/activiti/viewImage";
 	}
 	
 	
-	@RequestMapping(value="viewImage",method = RequestMethod.GET)
+	@RequestMapping(value="/viewImage")
 	public void viewImage(String deploymentId,String diagramResourceName,HttpServletResponse response) throws Exception{
 	
 		//2：获取资源文件表（act_ge_bytearray）中资源图片输入流InputStream

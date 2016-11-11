@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.activiti.service.LeaveService;
-import com.wangsong.activiti.service.WorkflowService;
+import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.commons.controller.BaseController;
 import com.wangsong.commons.util.Page;
 import com.wangsong.commons.util.UserUtil;
@@ -40,18 +40,18 @@ import com.wangsong.commons.util.UserUtil;
  * @date 2015年1月13日
  */
 @Controller
-@RequestMapping("workflow/workflowHistory")
-public class WorkflowHistoryController extends BaseController{
+@RequestMapping("activiti/history")
+public class HistoryController extends BaseController{
 	
 	@Autowired
-	private WorkflowService workflowService;
+	private ActivitiService workflowService;
 	
 	/**
 	 * 默认页面
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String list() {
-		return "workflow/workflowHistory/list";
+		return "activiti/history/list";
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class WorkflowHistoryController extends BaseController{
 		}
 		
 		
-		return "workflow/workflowHistory/viewImage";
+		return "activiti/history/viewImage";
 	}
 	
 	

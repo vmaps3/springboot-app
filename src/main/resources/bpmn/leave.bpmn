@@ -3,15 +3,15 @@
   <process id="Leave" name="请假流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <endEvent id="endevent1" name="End"></endEvent>
-    <userTask id="usertask2" name="主管审核" activiti:formKey="/workflow/leave/update/">
+    <userTask id="usertask2" name="主管审核" activiti:formKey="/activiti/leave/update.do">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.crht.bms2.workflow.handler.ManagerTaskHandler"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.wangsong.activiti.handler.ManagerTaskHandler"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow3" name="同意" sourceRef="usertask2" targetRef="endevent1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${message=='同意'}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="usertask3" name="流程提交" activiti:async="true" activiti:assignee="${inputUser}" activiti:formKey="/workflow/leave/update/"></userTask>
+    <userTask id="usertask3" name="流程提交" activiti:async="true" activiti:assignee="${inputUser}" activiti:formKey="/activiti/leave/update.do"></userTask>
     <sequenceFlow id="flow5" sourceRef="startevent1" targetRef="usertask3"></sequenceFlow>
     <sequenceFlow id="flow6" name="提交" sourceRef="usertask3" targetRef="usertask2"></sequenceFlow>
     <sequenceFlow id="flow7" name="不同意" sourceRef="usertask2" targetRef="usertask3">

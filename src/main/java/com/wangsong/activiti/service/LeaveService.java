@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -18,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.wangsong.activiti.dao.LeaveMapper;
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.commons.service.impl.BaseServiceImpl;
 
@@ -32,17 +33,18 @@ import com.wangsong.commons.service.impl.BaseServiceImpl;
 @Service
 @Transactional(readOnly=true)
 public class LeaveService extends BaseServiceImpl<Leave>{
-	
-
+	@Autowired
+	private LeaveMapper leaveMapper;
 	
 	@Autowired
-	private WorkflowService workflowService;
+	private ActivitiService workflowService;
 	
 	
 	/**更新请假状态，启动流程实例，让启动的流程实例关联业务*/
 	@Transactional(readOnly = false)
 	public void save(Leave leave) {
-		//leaveDao.save(leave);
+		leave.setId(UUID.randomUUID().toString());
+		leaveMapper.insert(leave);
 		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId());
 		
 	}

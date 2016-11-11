@@ -49,7 +49,7 @@ import com.wangsong.sys.service.UserService;
  */
 @Service
 @Transactional(readOnly=true)
-public class WorkflowService {
+public class ActivitiService {
 	@Autowired
 	private RepositoryService repositoryService;
 	@Autowired
@@ -107,7 +107,7 @@ public class WorkflowService {
 
 		page.setTotalCount(deploymentQuery.count());
 		List<Deployment> list = deploymentQuery.orderByDeploymenTime().asc()//
-				.listPage(page.getFirst() - 1, page.getPageSize());
+				.listPage(page.getFirst(), page.getPageSize());
 
 		for (int i = 0; i < list.size(); i++) {
 			Deployment d = list.get(i);
@@ -143,7 +143,7 @@ public class WorkflowService {
 		ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();// 创建流程定义查询
 		page.setTotalCount(processDefinitionQuery.count());
 		List<ProcessDefinition> list = processDefinitionQuery.orderByProcessDefinitionVersion().asc()//
-				.listPage(page.getFirst() - 1, page.getPageSize());
+				.listPage(page.getFirst(), page.getPageSize());
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		for (int i = 0; i < list.size(); i++) {
 			ProcessDefinition p = list.get(i);
@@ -215,7 +215,7 @@ public class WorkflowService {
 	}
 	// 保存任务
 	@Transactional(readOnly = false)
-	public void startProcessInstanceByKey(String name, Integer id) {
+	public void startProcessInstanceByKey(String name, String id) {
 
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("inputUser", UserUtil.getUser().getId().toString());// 表示惟一用户
@@ -225,7 +225,7 @@ public class WorkflowService {
 	}
 	// 办理任务
 	@Transactional(readOnly = false)
-	public void complete(String name, Integer id, String buttonValue, String message) {
+	public void complete(String name, String id, String buttonValue, String message) {
 
 		String businessKey = name + "." + id;
 		// 使用任务ID，查询任务对象，获取流程流程实例ID
@@ -251,7 +251,7 @@ String userId) {
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		TaskQuery taskQuery = taskService.createTaskQuery().taskAssignee(userId);
 		page.setTotalCount(taskQuery.count());
-		List<Task> list = taskQuery.orderByTaskCreateTime().asc().listPage(page.getFirst() - 1, page.getPageSize());
+		List<Task> list = taskQuery.orderByTaskCreateTime().asc().listPage(page.getFirst(), page.getPageSize());
 
 		for (int i = 0; i < list.size(); i++) {
 			Task d = list.get(i);
@@ -293,7 +293,7 @@ String userId) {
 
 		page.setTotalCount(histTaskQuery.count());
 		List<HistoricTaskInstance> histList = histTaskQuery.includeProcessVariables()
-				.orderByHistoricTaskInstanceEndTime().desc().listPage(page.getFirst() - 1, page.getPageSize());
+				.orderByHistoricTaskInstanceEndTime().desc().listPage(page.getFirst(), page.getPageSize());
 		for (int i = 0; i < histList.size(); i++) {
 			HistoricTaskInstance historicTaskInstance = histList.get(i);
 			Map<String, Object> map = new HashMap<>();
@@ -352,7 +352,7 @@ String userId) {
 	}
 
 	// 通过任务ID获取实例ID
-	public Integer findIdByTaskId(String taskId) {
+	public String findIdByTaskId(String taskId) {
 		// 2：使用任务对象Task获取流程实例ID
 		String processInstanceId = findTaskByTaskId(taskId).getProcessInstanceId();
 		// 3：使用流程实例ID，查询正在执行的执行对象表，返回流程实例对象
@@ -366,7 +366,7 @@ String userId) {
 			// 截取字符串，取buniness_key小数点的第2个值
 			id = buniness_key.split("\\.")[1];
 		}
-		return Integer.valueOf(id);
+		return id;
 	}
 
 	public Integer findHistoryIdByTaskId(String processInstanceId) {
