@@ -369,7 +369,7 @@ String userId) {
 		return id;
 	}
 
-	public Integer findHistoryIdByTaskId(String processInstanceId) {
+	public String findHistoryIdByTaskId(String processInstanceId) {
 		// 3：使用流程实例ID，查询正在执行的执行对象表，返回流程实例对象
 		HistoricProcessInstance historicProcessInstance = findHistoricProcessInstanceByProcessInstanceId(
 				processInstanceId);
@@ -381,7 +381,7 @@ String userId) {
 			// 截取字符串，取buniness_key小数点的第2个值
 			id = buniness_key.split("\\.")[1];
 		}
-		return Integer.valueOf(id);
+		return id;
 	}
 
 	/**

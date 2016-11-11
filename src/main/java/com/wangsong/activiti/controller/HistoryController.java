@@ -75,12 +75,12 @@ public class HistoryController extends BaseController{
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/toUpdate")
 	public String updateForm(String id, Model model) {
 		HistoricTaskInstance historicTaskInstance = workflowService.findHistoricTaskInstanceByTaskId(id);
 		String url = historicTaskInstance.getFormKey();
-		Integer sid = workflowService.findHistoryIdByTaskId(historicTaskInstance.getProcessInstanceId());
-		return "redirect:"+url+"?id="+sid+"&display=/no";
+		String sid = workflowService.findHistoryIdByTaskId(historicTaskInstance.getProcessInstanceId());
+		return "redirect:"+url+"?id="+sid+"&display=no";
 	}
 	
 	@RequestMapping(value = "toViewImage", method = RequestMethod.GET)
