@@ -20,4 +20,15 @@ ORM mybatis
 数据库二级缓存 mybatis-redis 
 集群 shiro-redis 
 单机 shiro-ehcahce
+构建 maven
+容器 tomcat
+连接池 druid
+调度 quartz
+工作流 activiti
+数据库 mysql
 页面UI easyui
+
+##部署方法
+1.maven导入
+2.运行spring-app.sql
+3.更改config.properties
