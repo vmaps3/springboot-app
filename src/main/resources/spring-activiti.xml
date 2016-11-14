@@ -12,8 +12,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		<property name="dataSource" ref="dataSource" />
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="databaseSchemaUpdate" value="true" />
-		
+		<property name="idGenerator" ref="uuidGenerator"/>
 	</bean>
+
+
+	<bean id="uuidGenerator" class="org.activiti.engine.impl.persistence.StrongUuidGenerator" />
+		
+	
 
 	<!-- Activiti引擎工厂 -->
 	<bean id="processEngineFactory" class="org.activiti.spring.ProcessEngineFactoryBean">

@@ -90,7 +90,8 @@ public class LeaveController extends BaseController{
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String update(@ModelAttribute @RequestBody Leave leave,Model model,String buttonValue,String message) {
+	public String update(Leave leave,Model model,String buttonValue,String message) {
+		leaveService.updateByPrimaryKey(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", UserUtil.getUser().getId().toString());
