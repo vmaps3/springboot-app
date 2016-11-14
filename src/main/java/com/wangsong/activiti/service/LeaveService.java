@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.activiti.dao.LeaveMapper;
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.commons.service.impl.BaseServiceImpl;
+import com.wangsong.commons.util.UserUtil;
 
 
 
@@ -45,8 +46,8 @@ public class LeaveService extends BaseServiceImpl<Leave>{
 	public void save(Leave leave) {
 		leave.setId(UUID.randomUUID().toString());
 		leaveMapper.insert(leave);
-		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId());
-		workflowService.workflowStartListen(leave.getClass().getSimpleName()+"."+leave.getId());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),"提交",null);
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("inputUser2", UserUtil.getUser().getId().toString());// 表示惟一用户
+		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
 	}
 }
