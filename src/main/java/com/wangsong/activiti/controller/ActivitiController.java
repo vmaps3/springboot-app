@@ -64,6 +64,16 @@ public class ActivitiController extends BaseController{
 		return getEasyUIData(page);
 	}
 	
+	@RequestMapping(value="/commentList")
+	@ResponseBody
+	public Map<String, Object> list(HttpServletRequest request,String businessKey) {
+		Page<Map<String, Object>> page = getPage(request);
+		List<Map<String, Object>> commentList =workflowService.findCommentByBusinessKey(businessKey);
+		page.setResult(commentList); 
+		page.setTotalCount(commentList.size());
+		return getEasyUIData(page);
+	}
+	
 	/**
 	 * 修改字典跳转
 	 * 

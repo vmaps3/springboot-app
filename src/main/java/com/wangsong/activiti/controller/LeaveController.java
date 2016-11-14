@@ -47,21 +47,20 @@ public class LeaveController extends BaseController{
 		leaveService.save(leave);
 		return "success";
 	}
-
+	
+	@RequestMapping(value="/selectByPrimaryKey")
+	@ResponseBody
+	public Object selectByPrimaryKey(String id) {
+		return leaveService.selectByPrimaryKey(id);
+	}
 	
 	@RequestMapping(value = "/toExamine")
 	public String updateForm(String id,  String display,Model model) {
-		Leave leave=leaveService.selectByPrimaryKey(id);
-		String businessKey=	leave.getClass().getSimpleName()+"."+leave.getId();
-		model.addAttribute("leave",leave);
-		List<Map<String, Object>> commentList =null;
+		model.addAttribute("businessKey",new Leave().getClass().getSimpleName()+"."+id);
+		model.addAttribute("id",id);
 		if(display.equals("yes")){
-			commentList = workflowService.findCommentByBusinessKey(businessKey);
-			model.addAttribute("commentList",commentList);
 			return "activiti/leave/examine";
 		}else{
-			commentList = workflowService.findHistoryCommentByBusinessKey(businessKey);
-			model.addAttribute("commentList",commentList);
 			return "activiti/leave/history";
 		}	
 	}
@@ -78,15 +77,11 @@ public class LeaveController extends BaseController{
 	
 	@RequestMapping(value = "/toUpdate")
 	public String update(String id,  String display,Model model) {
-		Leave leave=leaveService.selectByPrimaryKey(id);
-		String businessKey=	leave.getClass().getSimpleName()+"."+leave.getId();
-		model.addAttribute("leave",leave);
-		List<Map<String, Object>> commentList =null;
+		model.addAttribute("businessKey",new Leave().getClass().getSimpleName()+"."+id);
+		model.addAttribute("id",id);
 		if(display.equals("yes")){
-			commentList = workflowService.findCommentByBusinessKey(businessKey);
 			return "activiti/leave/update";
 		}else{
-			model.addAttribute("commentList",commentList);
 			return "activiti/leave/history";
 		}
 	

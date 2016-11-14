@@ -49,7 +49,7 @@ function del2(){
     <div id="toolbar">
     
         
-	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del2()">办理</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del2()">查看</a>
     		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">查看流程图</a>
     		
     </div>

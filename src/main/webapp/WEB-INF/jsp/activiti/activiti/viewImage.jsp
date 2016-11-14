@@ -18,8 +18,13 @@
 
 
 </div>
+<div id="dlg-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
+		</div>
 <script type="text/javascript">
-
+function toList(){
+	window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
+}
 </script>
 </body>
 </html>
