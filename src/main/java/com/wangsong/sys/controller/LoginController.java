@@ -25,23 +25,23 @@ import com.wangsong.commons.controller.BaseController;
 public class LoginController  extends BaseController {
 	
 	
-	@RequestMapping(value = "/index.do")
+	@RequestMapping(value = "/")
     public String index() {
         return "index";
     }
 
   
-    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
       
         if (SecurityUtils.getSubject().isAuthenticated()) {
-            return "redirect:/index.do";
+            return "redirect:/";
         }
         return "login";
     }
 
   
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Object loginPost(String username, String password) {
     	Subject user = SecurityUtils.getSubject();
@@ -62,7 +62,7 @@ public class LoginController  extends BaseController {
         return map;
     }
 
-    @RequestMapping(value = "/logout.do")
+    @RequestMapping(value = "/logout")
     public String logout() {
     	Subject subject = SecurityUtils.getSubject();
         subject.logout();
