@@ -32,3 +32,9 @@ ORM mybatis
 1.maven导入
 2.运行spring-app.sql
 3.更改config.properties
+##预览
+http://b.hiphotos.baidu.com/image/pic/item/9922720e0cf3d7ca4a650d4efb1fbe096b63a972.jpg
+http://a.hiphotos.baidu.com/image/pic/item/024f78f0f736afc391cf0d5dba19ebc4b64512c2.jpg
+http://a.hiphotos.baidu.com/image/pic/item/72f082025aafa40fabe0f3e5a264034f78f019e7.jpg
+http://f.hiphotos.baidu.com/image/pic/item/34fae6cd7b899e51da26082c4ba7d933c8950d59.jpg
+http://f.hiphotos.baidu.com/image/pic/item/91ef76c6a7efce1be0fcfaf2a651f3deb48f6536.jpg
