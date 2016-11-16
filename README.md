@@ -1,8 +1,8 @@
 #spring-app
 
 ##系统介绍
-spring-app 是J2EE开发基础平台，使用经典技术组合（Spring、SpringMVC、MyBatis、Shiro、redis、quartz、activiti、easyui），包括核心模块如：角色用户、权限授权、工作流等。
 
+spring-app 是J2EE开发基础平台，使用经典技术组合（Spring、SpringMVC、MyBatis、Shiro、redis、quartz、activiti、easyui），包括核心模块如：角色用户、权限授权、工作流等。
 ##业务功能
 1.用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2.角色管理：角色菜单权限分配。
@@ -11,28 +11,31 @@ spring-app 是J2EE开发基础平台，使用经典技术组合（Spring、Sprin
 5.日志管理：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
 ##技术栈
+
 核心 spring 
 MVC springmvc 
 ORM mybatis 
 权限 shiro 
 缓存 redis 
 定时器 quartz（持久化） 
-数据库二级缓存 mybatis-redis 
-集群 shiro-redis 
-单机 shiro-ehcahce
+工作流 activiti
+mybatis二级缓存 mybatis-redis 
+shiro集群 shiro-redis 
+shiro单机 shiro-ehcahce
+连接池 druid
+页面UI easyui
 构建 maven
 容器 tomcat
-连接池 druid
-调度 quartz
-工作流 activiti
 数据库 mysql
-页面UI easyui
 
 ##部署方法
-1.maven导入
-2.运行spring-app.sql
-3.更改config.properties
+
+1.使用maven导入工程项目
+2.导入数据库文件spring-app.sql
+3.更改配置文件相关参数config.properties
+
 ##预览
+
 ![](http://git.oschina.net/uploads/images/2016/1116/164543_5571d631_420150.png "登录")
 ![](http://git.oschina.net/uploads/images/2016/1116/164618_99cd6105_420150.png "角色权限树")
 ![](http://git.oschina.net/uploads/images/2016/1116/164633_6dd5c2e9_420150.png "权限右键操作树")
