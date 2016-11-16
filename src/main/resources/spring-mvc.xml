@@ -39,7 +39,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 
-				<prop key="org.apache.shiro.authz.UnauthorizedException">/unauth</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">commons/unauth</prop>
 			 </props> 
 		 </property> 
 	</bean> 
