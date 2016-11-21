@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wangsong.activiti.dao.LeaveMapper;
 import com.wangsong.activiti.model.Leave;
+import com.wangsong.commons.service.BaseService;
 import com.wangsong.commons.service.impl.BaseServiceImpl;
 import com.wangsong.commons.util.UserUtil;
 
@@ -20,23 +21,7 @@ import com.wangsong.commons.util.UserUtil;
  * @author ty
  * @date 2015年1月13日
  */
-@Service
-@Transactional(readOnly=true)
-public class LeaveService extends BaseServiceImpl<Leave>{
-	@Autowired
-	private LeaveMapper leaveMapper;
-	
-	@Autowired
-	private ActivitiService workflowService;
-	
-	
-	/**更新请假状态，启动流程实例，让启动的流程实例关联业务*/
-	@Transactional(readOnly = false)
-	public void save(Leave leave) {
-		leave.setId(UUID.randomUUID().toString());
-		leaveMapper.insert(leave);
-		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("inputUser2", UserUtil.getUser().getId().toString());// 表示惟一用户
-		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
-	}
+
+public interface LeaveService extends BaseService<Leave>{
+	public void save(Leave leave) ;
 }

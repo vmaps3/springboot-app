@@ -34,6 +34,23 @@ public class HahaController extends BaseController{
 		return map;
 	}
 	
+	@RequestMapping(value="/tozhuce")
+	public String tozhuce() {
+		
+		return "sys/haha/zhuce"; 
+	}
 	
+	@RequestMapping(value="/zhuce")
+	public String zhuce() {
+		//ahahhaah
+		return "redirect:http://127.0.0.1:8081/spring-app/haha/yewu.do"; 
+	}
+	
+	@RequestMapping(value="/yewu")
+	@ResponseBody
+	public String yewu(HttpServletRequest httpServletRequest) {
+		
+		return "yewu"; 
+	}
 	
 }

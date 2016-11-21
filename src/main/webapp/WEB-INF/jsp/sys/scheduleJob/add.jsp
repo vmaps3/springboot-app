@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<td>className:</td>
-					<td><input type="text" name="className" value="com.wangsong.commons.util.TaskA"  class="easyui-textbox" required="true" validType="length[1,50]"></td>
+					<td><input type="text" name="className" value="com.wangsong.job.TaskA"  class="easyui-textbox" required="true" validType="length[1,50]"></td>
 				</tr>
 				
 				

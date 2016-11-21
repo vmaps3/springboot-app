@@ -1,4 +1,4 @@
-package com.wangsong.commons.util;
+package com.wangsong.job;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
