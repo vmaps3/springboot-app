@@ -47,7 +47,7 @@
   <body class="easyui-layout">
     <div data-options="region:'north',split:true" style="height:70px;">
     	<div style="margin-top: 20px;padding-left: 50px;">
-	    	 <span style="font-size: 20px;">娱乐管理系统</span>
+	    	 <span style="font-size: 20px;">spring-app</span>
 	    	  <a href="javascript:void(0)" class="easyui-linkbutton"  style="float: right;margin-right: 50px;" onclick="logout()">退出</a>
            </div>
     </div>
@@ -58,7 +58,7 @@
     </div>
     <div id="tt"   class="easyui-tabs" data-options="region:'center'" style="padding:5px;background:#eee;">
     	<div title="首页" style="padding:10px">
-			<p style="font-size:14px">我最厉害</p>
+			<p style="font-size:14px">spring-app</p>
 			
 		</div>
 	
