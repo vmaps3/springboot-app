@@ -22,7 +22,7 @@
         </property>
     </bean>
      <!-- 項目自定义的Realm -->
-    <bean id="shiroDbRealm" class="com.wangsong.common.util.ShiroDbRealm"/>
+    <bean id="shiroDbRealm" class="com.wangsong.system.service.impl.ShiroDbRealm"/>
 	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

@@ -13,8 +13,8 @@ public class UserUtil {
 	 * 获取当前用户对象shiro
 	 * @return shirouser
 	 */
-	public static User getUser(){
-		User user=(User) SecurityUtils.getSubject().getPrincipal();
+	public static Object getUser(){
+		Object user=SecurityUtils.getSubject().getPrincipal();
 		return user;
 	}
 	

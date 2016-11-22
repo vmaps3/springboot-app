@@ -32,6 +32,7 @@ import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 import com.wangsong.common.util.UserUtil;
+import com.wangsong.system.model.User;
 
 /**
  * 字典controller
@@ -61,7 +62,7 @@ public class HistoryController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> dictList(HttpServletRequest request) {
 		Page<Map<String, Object>> page = getPage(request);
-		page= workflowService.findHistoryTaskListByUserId(page,UserUtil.getUser().getId().toString());
+		page= workflowService.findHistoryTaskListByUserId(page,((User)UserUtil.getUser()).getId().toString());
 		
 		return getEasyUIData(page);
 	}

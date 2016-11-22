@@ -1,4 +1,4 @@
-package com.wangsong.common.util;
+package com.wangsong.system.service.impl;
 
 import java.util.Date;
 

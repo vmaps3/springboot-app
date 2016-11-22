@@ -19,6 +19,7 @@ import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.util.UserUtil;
+import com.wangsong.system.model.User;
 
 /**
  * 字典controller
@@ -69,7 +70,7 @@ public class LeaveController extends BaseController{
 	public String examine(@ModelAttribute @RequestBody Leave leave,Model model,String buttonValue,String message) {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
-		variables.put("inputUser", UserUtil.getUser().getId().toString());
+		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
 		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
 		return "success";
 	}
@@ -93,7 +94,7 @@ public class LeaveController extends BaseController{
 		leaveService.updateByPrimaryKey(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
-		variables.put("inputUser", UserUtil.getUser().getId().toString());
+		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
 		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
 		return "success";
 	}

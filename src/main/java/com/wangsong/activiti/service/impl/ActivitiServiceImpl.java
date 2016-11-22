@@ -194,7 +194,7 @@ public class ActivitiServiceImpl implements ActivitiService{
 		// 获取流程实例ID
 		String processInstanceId = task.getProcessInstanceId();
 		if(message!=null){
-			Authentication.setAuthenticatedUserId(UserUtil.getUser().getId().toString());
+			Authentication.setAuthenticatedUserId(((User)UserUtil.getUser()).getId().toString());
 			taskService.addComment(task.getId(), processInstanceId, message);
 		}
 		taskService.complete(findTaskBybusinessKey(businessKey).getId(), variables);

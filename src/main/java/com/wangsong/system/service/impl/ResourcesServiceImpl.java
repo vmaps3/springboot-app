@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.TreeNodeUtil;
 import com.wangsong.common.model.Attributes;
 import com.wangsong.common.model.JsonTreeData;
 import com.wangsong.common.service.impl.BaseServiceImpl;
+import com.wangsong.common.util.TreeNodeUtil;
 import com.wangsong.system.dao.ResourcesMapper;
 import com.wangsong.system.dao.RoleResourcesMapper;
 import com.wangsong.system.model.Resources;

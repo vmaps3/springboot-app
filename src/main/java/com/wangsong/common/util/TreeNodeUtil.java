@@ -1,4 +1,4 @@
-package com.wangsong.common;
+package com.wangsong.common.util;
 
 import java.util.ArrayList;
 import java.util.List;

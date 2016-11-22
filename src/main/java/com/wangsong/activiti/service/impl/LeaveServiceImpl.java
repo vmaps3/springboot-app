@@ -13,6 +13,7 @@ import com.wangsong.activiti.model.Leave;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.service.impl.BaseServiceImpl;
 import com.wangsong.common.util.UserUtil;
+import com.wangsong.system.model.User;
 import com.wangsong.system.service.DictService;
 
 
@@ -38,7 +39,7 @@ public class LeaveServiceImpl extends BaseServiceImpl<Leave> implements LeaveSer
 		leave.setId(UUID.randomUUID().toString());
 		leaveMapper.insert(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("inputUser2", UserUtil.getUser().getId().toString());// 表示惟一用户
+		variables.put("inputUser2", ((User)UserUtil.getUser()).getId().toString());// 表示惟一用户
 		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
 	}
 }
