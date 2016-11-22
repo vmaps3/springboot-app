@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/commons/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/include.jsp"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -23,7 +23,7 @@
 		
 		$(function(){ 
 			$('#tree').tree({
-				url: '${pageContext.request.contextPath}/sys/resources/findResourcesEMUByResources.do',
+				url: '${pageContext.request.contextPath}/system/resources/findResourcesEMUByResources.do',
 			 	onClick: function(node){
 			       if($('#tree').tree('isLeaf',node.target)){//判断是否是叶子节点
 			    	   addTab(node.text,'${pageContext.request.contextPath}'+node.attributes.url)

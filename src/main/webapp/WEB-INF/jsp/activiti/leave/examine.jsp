@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/commons/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/include.jsp"%>
 <html>
 	<head>
 		<title></title>
@@ -11,12 +11,12 @@
 						   url: "${pageContext.request.contextPath}/activiti/leave/examine.do",
 						   data: $('#ff').serializeArray(),
 						   success: function(data){
-								window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
+								window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
 						   }
 						});
 				}
 				function toList(){
-					window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
+					window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
 				}
 				$(function(){ 
 					$.ajax({   
@@ -59,7 +59,7 @@
 			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
 		</div>
 		<table id="dg"  class="easyui-datagrid"  fit="true"  title="批注信息"
-           url="${pageContext.request.contextPath}/activiti/activiti/commentList.do?businessKey=${businessKey}"
+           url="${pageContext.request.contextPath}/activiti/bpm/commentList.do?businessKey=${businessKey}"
            toolbar="#toolbar" 
            rownumbers="true" fitColumns="true" singleSelect="false" >
 	       <thead>

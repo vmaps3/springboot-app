@@ -13,7 +13,7 @@
         <property name="loginUrl" value="/login.do"/>
         <property name="filterChainDefinitions">
             <value>
-                /commons/** = anon <!-- 不需要认证 -->
+                /common/** = anon <!-- 不需要认证 -->
                 /static/** = anon
                 /login.do = anon
                 /haha/**= anon
@@ -22,7 +22,7 @@
         </property>
     </bean>
      <!-- 項目自定义的Realm -->
-    <bean id="shiroDbRealm" class="com.wangsong.commons.util.ShiroDbRealm"/>
+    <bean id="shiroDbRealm" class="com.wangsong.common.util.ShiroDbRealm"/>
 	
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

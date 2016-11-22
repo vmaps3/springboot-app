@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import com.wangsong.activiti.service.ActivitiService;
-import com.wangsong.commons.controller.BaseController;
-import com.wangsong.commons.util.Page;
+import com.wangsong.common.controller.BaseController;
+import com.wangsong.common.model.Page;
 
 /**
  * 字典controller

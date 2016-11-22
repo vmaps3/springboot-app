@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.activiti.dao.LeaveMapper;
 import com.wangsong.activiti.model.Leave;
 import com.wangsong.activiti.service.LeaveService;
-import com.wangsong.commons.service.impl.BaseServiceImpl;
-import com.wangsong.commons.util.UserUtil;
-import com.wangsong.sys.service.DictService;
+import com.wangsong.common.service.impl.BaseServiceImpl;
+import com.wangsong.common.util.UserUtil;
+import com.wangsong.system.service.DictService;
 
 
 

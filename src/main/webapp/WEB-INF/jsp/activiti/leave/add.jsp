@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/commons/include.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/include.jsp"%>
 <html>
 <head>
 <title></title>
@@ -40,13 +40,13 @@ function approval(){
 			   url: "${pageContext.request.contextPath}/activiti/leave/add.do",
 			   data: $('#mainform').serializeArray(),
 			   success: function(data){
-					window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
+					window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
 			   }
 			});
 
 }
 function toList(){
-	window.location="${pageContext.request.contextPath}/activiti/activiti/toList.do";
+	window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
 }
 </script>
 </body>

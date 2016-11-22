@@ -3,9 +3,9 @@
   <process id="Leave" name="请假流程" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <endEvent id="endevent1" name="End"></endEvent>
-    <userTask id="usertask1" name="主管审核" activiti:assignee="${inputUser2}" activiti:formKey="/activiti/leave/toExamine.do"></userTask>
+    <userTask id="usertask1" name="主管审核" activiti:assignee="${inputUser2}" activiti:formKey="/bpm/leave/toExamine.do"></userTask>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
-    <userTask id="usertask2" name="重新申请" activiti:assignee="${inputUser}" activiti:formKey="/activiti/leave/toUpdate.do"></userTask>
+    <userTask id="usertask2" name="重新申请" activiti:assignee="${inputUser}" activiti:formKey="/bpm/leave/toUpdate.do"></userTask>
     <sequenceFlow id="flow5" sourceRef="usertask2" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow6" name="同意" sourceRef="exclusivegateway1" targetRef="endevent1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${message=='同意'}]]></conditionExpression>

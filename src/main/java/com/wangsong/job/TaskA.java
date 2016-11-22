@@ -8,7 +8,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.wangsong.sys.model.ScheduleJob;
+import com.wangsong.system.model.ScheduleJob;
 
 
 /**

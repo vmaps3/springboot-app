@@ -39,7 +39,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 
-				<prop key="org.apache.shiro.authz.UnauthorizedException">commons/unauth</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">common/unauth</prop>
 			 </props> 
 		 </property> 
 	</bean> 
@@ -56,7 +56,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.wangsong.commons.util.LogInterceptor"></bean>
+            <bean class="com.wangsong.common.util.LogInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
     
