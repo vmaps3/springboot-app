@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itextpdf.text.DocumentException;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
-import com.wangsong.common.util.HtmlConverterUtil;
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.service.DictService;
 
@@ -64,76 +63,4 @@ public class HahaController extends BaseController{
 		return "yewu"; 
 	}
 	
-	@RequestMapping(value="/pdf")
-	public void html(HttpServletRequest httpServletRequest,HttpServletResponse response) throws IOException, DocumentException {
-		Map<String,Object> map=new HashMap<>();
-    	map.put("${wangsong}", 1);
-    	map.put("${zhangsan}", "张三");
-    	map.put("${url}", httpServletRequest.getScheme()+"://"+httpServletRequest.getServerName()+":"+httpServletRequest.getServerPort()+httpServletRequest.getContextPath());
-    	List<Map<String,String>> list=new ArrayList<>();
-    	Map<String,String> map2=new HashMap<>();
-    	map2.put("${id}", "1");
-    	map2.put("${name}", "王");
-    	list.add(map2);
-    	Map<String,String> map3=new HashMap<>();
-    	map3.put("${id}", "2");
-    	map3.put("${name}", "松");
-    	list.add(map3);
-    	map.put("${list}", list);
-    	InputStream Html2Pdf=HtmlConverterUtil.class.getResourceAsStream("/htmlConverter/Html2Pdf.html");
-    	String Html2PdfUrl=httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/"+"Html2Pdf-"+UUID.randomUUID()+".pdf";
-    	String Html2PdfName="Html2Pdf.pdf";
-		HtmlConverterUtil.Html2Pdf(null, Html2PdfUrl, map,Html2Pdf);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("multipart/form-data");
-		response.setHeader("Content-Disposition", "attachment;fileName="+Html2PdfName);
-		File f=new File(Html2PdfUrl);
-		InputStream inputStream = new FileInputStream(f);
-		OutputStream os = response.getOutputStream();
-		byte[] b = new byte[2048];
-		int length;
-		while ((length = inputStream.read(b)) > 0) {
-			os.write(b, 0, length);
-		}
-		os.close();
-		inputStream.close();
-		f.delete();
-		
-	}
-	@RequestMapping(value="/img")
-	public void img(HttpServletRequest httpServletRequest,HttpServletResponse response) throws IOException, DocumentException {
-		Map<String,Object> map=new HashMap<>();
-    	map.put("${wangsong}", 1);
-    	map.put("${zhangsan}", "张三");
-    	map.put("${url}", httpServletRequest.getScheme()+"://"+httpServletRequest.getServerName()+":"+httpServletRequest.getServerPort()+httpServletRequest.getContextPath());
-    	List<Map<String,String>> list=new ArrayList<>();
-    	Map<String,String> map2=new HashMap<>();
-    	map2.put("${id}", "1");
-    	map2.put("${name}", "王");
-    	list.add(map2);
-    	Map<String,String> map3=new HashMap<>();
-    	map3.put("${id}", "2");
-    	map3.put("${name}", "松");
-    	list.add(map3);
-    	map.put("${list}", list);
-    	InputStream Html2Img=HtmlConverterUtil.class.getResourceAsStream("/htmlConverter/Html2Img.html");
-    	String Html2ImgUrl=httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/"+"Html2Img-"+UUID.randomUUID()+".png";
-    	String Html2ImgName="Html2Img.png";
-		HtmlConverterUtil.Html2Img(null, Html2ImgUrl, map,Html2Img);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("multipart/form-data");
-		response.setHeader("Content-Disposition", "attachment;fileName="+ Html2ImgName);
-		File f=new File(Html2ImgUrl);
-		InputStream inputStream = new FileInputStream(f);
-		OutputStream os = response.getOutputStream();
-		byte[] b = new byte[2048];
-		int length;
-		while ((length = inputStream.read(b)) > 0) {
-			os.write(b, 0, length);
-		}
-		os.close();
-		inputStream.close();
-		f.delete();
-		
-	}
 }
