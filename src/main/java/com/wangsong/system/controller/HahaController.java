@@ -66,7 +66,6 @@ public class HahaController extends BaseController{
 	
 	@RequestMapping(value="/pdf")
 	public void html(HttpServletRequest httpServletRequest,HttpServletResponse response) throws IOException, DocumentException {
-		String dir = httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/";
 		Map<String,Object> map=new HashMap<>();
     	map.put("${wangsong}", 1);
     	map.put("${zhangsan}", "张三");
@@ -82,26 +81,20 @@ public class HahaController extends BaseController{
     	list.add(map3);
     	map.put("${list}", list);
     	InputStream Html2Pdf=HtmlConverterUtil.class.getResourceAsStream("/htmlConverter/Html2Pdf.html");
-    	
-    	
-    	String Html2PdfName=dir+"Html2Pdf-"+UUID.randomUUID()+".pdf";
-		HtmlConverterUtil.Html2Pdf(null, Html2PdfName, map,Html2Pdf);
-		
+    	String Html2PdfUrl=httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/"+"Html2Pdf-"+UUID.randomUUID()+".pdf";
+    	String Html2PdfName="Html2Pdf.pdf";
+		HtmlConverterUtil.Html2Pdf(null, Html2PdfUrl, map,Html2Pdf);
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
-		response.setHeader("Content-Disposition", "attachment;fileName="+ "Html2Pdf.pdf");
-
-		File f=new File(Html2PdfName);
+		response.setHeader("Content-Disposition", "attachment;fileName="+Html2PdfName);
+		File f=new File(Html2PdfUrl);
 		InputStream inputStream = new FileInputStream(f);
-
 		OutputStream os = response.getOutputStream();
 		byte[] b = new byte[2048];
 		int length;
 		while ((length = inputStream.read(b)) > 0) {
 			os.write(b, 0, length);
 		}
-
-		 // 这里主要关闭。
 		os.close();
 		inputStream.close();
 		f.delete();
@@ -109,7 +102,6 @@ public class HahaController extends BaseController{
 	}
 	@RequestMapping(value="/img")
 	public void img(HttpServletRequest httpServletRequest,HttpServletResponse response) throws IOException, DocumentException {
-		String dir = httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/";
 		Map<String,Object> map=new HashMap<>();
     	map.put("${wangsong}", 1);
     	map.put("${zhangsan}", "张三");
@@ -125,26 +117,20 @@ public class HahaController extends BaseController{
     	list.add(map3);
     	map.put("${list}", list);
     	InputStream Html2Img=HtmlConverterUtil.class.getResourceAsStream("/htmlConverter/Html2Img.html");
-    	
-    	
-    	String Html2ImgName=dir+"Html2Img-"+UUID.randomUUID()+".png";
-		HtmlConverterUtil.Html2Img(null, Html2ImgName, map,Html2Img);
-		
+    	String Html2ImgUrl=httpServletRequest.getSession().getServletContext().getRealPath("/")+"tmp/"+"Html2Img-"+UUID.randomUUID()+".png";
+    	String Html2ImgName="Html2Img.png";
+		HtmlConverterUtil.Html2Img(null, Html2ImgUrl, map,Html2Img);
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("multipart/form-data");
-		response.setHeader("Content-Disposition", "attachment;fileName="+ "Html2Pdf.png");
-
-		File f=new File(Html2ImgName);
+		response.setHeader("Content-Disposition", "attachment;fileName="+ Html2ImgName);
+		File f=new File(Html2ImgUrl);
 		InputStream inputStream = new FileInputStream(f);
-
 		OutputStream os = response.getOutputStream();
 		byte[] b = new byte[2048];
 		int length;
 		while ((length = inputStream.read(b)) > 0) {
 			os.write(b, 0, length);
 		}
-
-		 // 这里主要关闭。
 		os.close();
 		inputStream.close();
 		f.delete();
