@@ -16,7 +16,6 @@
                 /common/** = anon <!-- 不需要认证 -->
                 /static/** = anon
                 /login.do = anon
-                /haha/**= anon
                 /** = authc <!-- 需要认证 -->
             </value>
         </property>
