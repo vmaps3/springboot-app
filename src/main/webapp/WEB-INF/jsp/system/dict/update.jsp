@@ -12,11 +12,12 @@
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
-					        if(data.msg==null){
-					        	window.location="${pageContext.request.contextPath}/system/dict/toList.do";
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
+					    		
+						        if(data.result=="success"){
+						        	window.location="${pageContext.request.contextPath}/system/dict/toList.do";
+						        }else{
+						        	$.messager.alert('提示',data.msg);
+						        }
 					     }
 					});
 				}

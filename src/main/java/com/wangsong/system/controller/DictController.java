@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,9 +47,16 @@ public class DictController extends BaseController{
 	@RequiresPermissions("/system/dict/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(Dict dict) {
+	public Object add(@Valid Dict dict, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		dictService.insert(dict);
+		if (!result.hasErrors()) {
+			dictService.insert(dict);
+			map.put("result", "success");
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
+		
 		return map;
 	}
 	
@@ -61,9 +70,15 @@ public class DictController extends BaseController{
 	@RequiresPermissions("/system/dict/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(Dict dict) {
+	public Object update(@Valid Dict dict, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		dictService.updateByPrimaryKey(dict);
+		if (!result.hasErrors()) {
+			dictService.updateByPrimaryKey(dict);
+			map.put("result", "success");
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	
@@ -73,6 +88,7 @@ public class DictController extends BaseController{
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		dictService.deleteByPrimaryKey(id);
+		map.put("result", "success");
 		return map;
 	}
 	

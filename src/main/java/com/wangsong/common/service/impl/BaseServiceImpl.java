@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.UUID;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import com.wangsong.common.service.BaseService;
 public abstract class BaseServiceImpl<T> implements BaseService<T>{
 	@Autowired
     protected BaseMapper<T> baseMapper;
+	
 	@Override
 	public List<T> selectAll(){
 		return baseMapper.selectAll();

@@ -2,18 +2,26 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Dict  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 3138060792826655366L;
-
+	@NotNull(message="id不能是null")
+	@Length(max=50,message="id长度小于50")
 	private String id;
-
+	@Length(max=50,message="name长度小于50")
     private String name;
-
+	@Length(max=50,message="type长度小于50")
     private String type;
-    
+	@Length(max=50,message="code长度小于50")
     private String code;
 
     public String getId() {

@@ -2,13 +2,17 @@ package com.wangsong.common.controller;
 
 import java.beans.PropertyEditorSupport;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -80,5 +84,15 @@ public class BaseController {
 		map.put("total", page.getTotalCount());
 		return map;
 	}
-
+	public  List<String> resultToList (BindingResult result){
+		List<FieldError>  err=result.getFieldErrors();
+	    FieldError fe;
+	    List<String> list=new ArrayList<String>();
+	    for (int i = 0; i < err.size(); i++) {
+	        fe=err.get(i);
+	        list.add(fe.getDefaultMessage());//得到错误消息
+	    }
+		return list;
+	}
+	
 }
