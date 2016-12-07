@@ -2,22 +2,27 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Resources  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 4125580367922291000L;
-
+	@NotNull(message="id不能是null")
+	@Length(max=50,message="id长度小于50")
 	private String id;
-
+	@Length(max=50,message="pid长度小于50")
     private String pid;
-
+	@Length(max=50,message="name长度小于50")
     private String name;
-
+	@Length(max=50,message="url长度小于50")
     private String url;
-    
+	@Length(max=50,message="type长度小于50")
     private String type;
-    
+	@Length(max=50,message="sort长度小于50")
     private String sort;
     
     public String getType() {

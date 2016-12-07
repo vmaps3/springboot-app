@@ -2,14 +2,20 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Role  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 3582588209589180635L;
-
+	@NotNull(message="id不能是null")
+	@Length(max=50,message="id长度小于50")
 	private String id;
-
+	
+	@Length(max=50,message="name长度小于50")
     private String name;
 
     public String getId() {

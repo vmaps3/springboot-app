@@ -3,23 +3,26 @@ package com.wangsong.system.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Log  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 4947347940116804022L;
-
+	@NotNull(message="id不能是null")
+	@Length(max=50,message="id长度小于50")
 	private String id;
-
+	@Length(max=500,message="url长度小于500")
     private String url;
-
+	@Length(max=400,message="parameter长度小于400")
     private String parameter;
-
+	@Length(max=50,message="remoteAddr长度小于50")
     private String remoteAddr;
-
+	@Length(max=500,message="agent长度小于500")
     private String agent;
-
-    private String userId;
 
     private Date beginTime;
 
@@ -66,14 +69,6 @@ public class Log  implements Serializable{
 
     public void setAgent(String agent) {
         this.agent = agent == null ? null : agent.trim();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
     }
 
 	public Date getBeginTime() {

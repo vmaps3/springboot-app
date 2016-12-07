@@ -47,11 +47,7 @@ public class LogInterceptor implements HandlerInterceptor {
 		log.setAgent(request.getHeader("user-agent"));
 		log.setBeginTime(beginTime);
 		log.setEndTime(endTime);
-		User user=(User) SecurityUtils.getSubject().getPrincipal();
-		if(user!=null){
-			log.setUserId(user.getId());
-		}
-		
+		log.setUser((User) SecurityUtils.getSubject().getPrincipal());
 		logService.insert(log);
 	}
 

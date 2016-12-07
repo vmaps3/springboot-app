@@ -2,6 +2,10 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class User implements Serializable{
 
 
@@ -9,11 +13,12 @@ public class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -7484136779753770396L;
-
+	@NotNull(message="id不能是null")
+	@Length(max=50,message="id长度小于50")
 	private String id;
-
+	@Length(max=50,message="username长度小于50")
     private String username;
-
+	@Length(max=50,message="password长度小于50")
     private String password;
 
     public String getId() {
