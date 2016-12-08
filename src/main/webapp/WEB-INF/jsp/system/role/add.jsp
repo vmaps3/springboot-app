@@ -29,6 +29,7 @@
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/system/role/add.do" method="POST">
+			<input type="hidden" name="id"/>
 			<table>
 				<tr>
 					<td>role:</td>

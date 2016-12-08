@@ -100,6 +100,7 @@ public class UserController extends BaseController{
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		userService.delete(id);
+		map.put("result", "success");
 		return map;
 	}
 	

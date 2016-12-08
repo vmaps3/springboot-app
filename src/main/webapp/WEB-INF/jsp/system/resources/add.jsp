@@ -30,6 +30,7 @@
 
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/system/resources/add.do" method="POST">
+			<input type="hidden" name="id"/>
 			<input type="hidden" name="pid" value="${pid}"/>
 			<table>
 				

@@ -49,6 +49,7 @@
 	</head>
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/system/user/add.do" method="POST">
+			<input type="hidden" name="id"/>
 			<table>
 				<tr>
 					<td>username:</td>

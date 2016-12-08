@@ -8,6 +8,7 @@
 <body>
 <div>
 	<form id="mainform" action="" method="post" >
+		<input type="hidden" name="id"/>
 		<table  class="formTable">
 			<tr>
 				<td>天数：</td>

@@ -29,6 +29,7 @@
 	</head>
 	<body>
 		<form id="ff" action="${pageContext.request.contextPath}/system/scheduleJob/add.do" method="POST">
+			<input type="hidden" name="id"/>
 			<table>
 			
 				<tr>
