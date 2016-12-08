@@ -11,7 +11,11 @@
 				   url: "${pageContext.request.contextPath}/activiti/leave/update.do",
 				   data: $('#ff').serializeArray(),
 				   success: function(data){
-						window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
+					   if(data.result=="success"){
+							window.location="${pageContext.request.contextPath}/activiti/bpm/toList.do";
+					   }else{
+				        	$.messager.alert('提示',data.msg);
+				        }
 				   }
 			});
 		}

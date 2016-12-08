@@ -42,7 +42,11 @@ function submitForm(){
 	          processData: false,  
 		     success:function(data){   
 		        if(data.msg==null){
-		        	window.location="${pageContext.request.contextPath}/activiti/deployment/toList.do";
+		        	  if(data.result=="success"){
+		        			window.location="${pageContext.request.contextPath}/activiti/deployment/toList.do";
+		        	  }else{
+				        	$.messager.alert('提示',data.msg);
+				        }
 		        }else{
 		        	$.messager.alert('提示',data.msg);
 		        }

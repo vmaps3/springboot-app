@@ -43,9 +43,11 @@ public class LeaveController extends BaseController{
 
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public String create(Leave leave, Model model) {
+	public Object create(Leave leave, Model model) {
+		Map<String, Object>	map=new HashMap<>();
 		leaveService.save(leave);
-		return "success";
+		map.put("result", "success");
+		return map;
 	}
 	
 	@RequestMapping(value="/selectByPrimaryKey")
@@ -67,12 +69,14 @@ public class LeaveController extends BaseController{
 
 	@RequestMapping(value = "/examine", method = RequestMethod.POST)
 	@ResponseBody
-	public String examine(@ModelAttribute @RequestBody Leave leave,Model model,String buttonValue,String message) {
+	public Object examine(Leave leave,Model model,String buttonValue,String message) {
+		Map<String, Object>	map=new HashMap<>();
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
 		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
-		return "success";
+		map.put("result", "success");
+		return map;
 	}
 	
 	@RequestMapping(value = "/toUpdate")
@@ -90,13 +94,15 @@ public class LeaveController extends BaseController{
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String update(Leave leave,Model model,String buttonValue,String message) {
+	public Object update(Leave leave,String buttonValue,String message) {
+		Map<String, Object>	map=new HashMap<>();
 		leaveService.updateByPrimaryKey(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
 		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
-		return "success";
+		map.put("result", "success");
+		return map;
 	}
 
 

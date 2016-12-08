@@ -1,5 +1,6 @@
 package com.wangsong.activiti.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,9 +74,11 @@ public class DeploymentController extends BaseController{
 	 */
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public String create(MultipartFile file,String filename, Model model) {
+	public Object create(MultipartFile file,String filename, Model model) {
+		Map<String, Object>	map=new HashMap<>();
 		workflowService.saveNewDeploye(file ,filename);
-		return "success";
+		map.put("result", "success");
+		return map;
 	}
 
 
@@ -88,9 +91,10 @@ public class DeploymentController extends BaseController{
 	 */
 	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public String delete(String id) {
-		
+	public Object delete(String id) {
+		Map<String, Object>	map=new HashMap<>();
 		workflowService.deleteProcessDefinitionByDeploymentId(id);
-		return "success";
+		map.put("result", "success");
+		return map;
 	}
 }
