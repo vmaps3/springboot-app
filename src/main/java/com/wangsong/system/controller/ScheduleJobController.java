@@ -73,9 +73,11 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public String create(ScheduleJob scheduleJob) {
+	public Object create(ScheduleJob scheduleJob) {
+		Map<String, Object>	map=new HashMap<>();
 		scheduleJobService.add(scheduleJob);
-		return "success";
+		map.put("result", "success");	
+		return map;
 	}
 	
 	/**
@@ -83,9 +85,11 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/stop")
 	@ResponseBody
-	public String stop(String[] name,String[] group) {
+	public Object stop(String[] name,String[] group) {
+		Map<String, Object>	map=new HashMap<>();
 		scheduleJobService.stopJob(name,group);
-		return "success";
+		map.put("result", "success");	
+		return map;
 	}
 
 	/**
@@ -93,9 +97,11 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public String delete(String[] name,String[] group) {
+	public Object delete(String[] name,String[] group) {
+		Map<String, Object>	map=new HashMap<>();
 		scheduleJobService.delJob(name,group);
-		return "success";
+		map.put("result", "success");	
+		return map;
 	}
 
 	/**
@@ -103,14 +109,17 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public String update(ScheduleJob scheduleJob) {
+	public Object update(ScheduleJob scheduleJob) {
+		Map<String, Object>	map=new HashMap<>();
 		//验证cron表达式
 		if(CronExpression.isValidExpression(scheduleJob.getCronExpression())){
 			scheduleJobService.modifyTrigger(scheduleJob);
-			return "success";
+			map.put("result", "success");	
 		}else{
-			return "Cron表达式不正确";
+			map.put("result","error");
+			map.put("msg","Cron表达式不正确");	
 		}
+		return map;
 	}
 
 	/**
@@ -118,9 +127,11 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/startNow")
 	@ResponseBody
-	public String stratNow(String[] name,String[] group) {
+	public Object stratNow(String[] name,String[] group) {
+		Map<String, Object>	map=new HashMap<>();
 		scheduleJobService.startNowJob(name,group);
-		return "success";
+		map.put("result", "success");	
+		return map;
 	}
 
 	/**
@@ -128,9 +139,11 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/resume")
 	@ResponseBody
-	public String resume(String[] name,String[] group) {
+	public Object resume(String[] name,String[] group) {
+		Map<String, Object>	map=new HashMap<>();
 		scheduleJobService.restartJob(name,group);
-		return "success";
+		map.put("result", "success");	
+		return map;
 	}
 
 	

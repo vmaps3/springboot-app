@@ -43,6 +43,7 @@ public class LogController extends BaseController{
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		logService.deleteByPrimaryKey(id);
+		map.put("result", "success");
 		return map;
 	}
 }

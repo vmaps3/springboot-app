@@ -49,17 +49,22 @@ public class LoginController  extends BaseController {
     	Map<String, Object>	map=new HashMap<>();
         try {
             user.login(token);
+        	map.put("result", "success");
         } catch (UnknownAccountException e) {
         	e.printStackTrace();
+        	map.put("result","error");
         	map.put("msg", "账号不存在");
         } catch (DisabledAccountException e) {
         	e.printStackTrace();
+        	map.put("result","error");
         	map.put("msg", "账号未启用");
         } catch (IncorrectCredentialsException e) {
         	e.printStackTrace();
+        	map.put("result","error");
         	map.put("msg", "密码错误");
         } catch (RuntimeException e) {
         	e.printStackTrace();
+        	map.put("result","error");
         	map.put("msg", "未知错误,请联系管理员");
         }
         return map;

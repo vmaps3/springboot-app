@@ -5,9 +5,12 @@ package com.wangsong.system.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,10 +42,16 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("/system/resources/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(Resources resources) {
+	public Object add(@Valid Resources resources, BindingResult result) {
 			
 		Map<String, Object>	map=new HashMap<>();
-		resourcesService.insert(resources);
+		if (!result.hasErrors()) {
+			resourcesService.insert(resources);
+			map.put("result", "success");	
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	
@@ -52,6 +61,7 @@ public class ResourcesController extends BaseController {
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		resourcesService.delete(id);
+		map.put("result", "success");
 		return map;
 	}
 	
@@ -65,9 +75,15 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("/system/resources/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(Resources mresources) {
+	public Object update(@Valid Resources resources, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		resourcesService.updateByPrimaryKey(mresources);
+		if (!result.hasErrors()) {
+			resourcesService.updateByPrimaryKey(resources);
+			map.put("result", "success");
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	

@@ -16,7 +16,7 @@
 				     type:$("#ff").attr("method"),   
 				     data:$("#ff").serializeArray(),
 				     success:function(data){   
-				        if(data.msg==null){
+				    	 if(data.result=="success"){
 				        	window.location="${pageContext.request.contextPath}/";
 				        }else{
 				        	$.messager.alert('提示',data.msg);

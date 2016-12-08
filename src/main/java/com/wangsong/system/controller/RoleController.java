@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,9 +52,15 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(Role role,String[] resourcesId) {
+	public Object add(@Valid Role role,String[] resourcesId,BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		roleService.insert(role,resourcesId);
+		if (!result.hasErrors()) {
+			roleService.insert(role,resourcesId);
+			map.put("result", "success");	
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	
@@ -62,6 +70,7 @@ public class RoleController  extends BaseController{
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
 		roleService.delete(id);
+		map.put("result", "success");	
 		return map;
 	}
 	
@@ -75,9 +84,15 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(Role mrole,String[] resourcesId) {
+	public Object update(@Valid Role mrole,String[] resourcesId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		roleService.update(mrole,resourcesId);
+		if (!result.hasErrors()) {
+			roleService.update(mrole,resourcesId);
+			map.put("result", "success");	
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	

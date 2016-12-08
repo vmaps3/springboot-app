@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,9 +47,15 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(User user,String[] roleId) {
+	public Object add(@Valid User user,String[] roleId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		userService.insert(user,roleId);
+		if (!result.hasErrors()) {
+			userService.insert(user,roleId);
+			map.put("result", "success");
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	
@@ -74,9 +82,15 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(User muser,String[] roleId) {
+	public Object update(@Valid User muser,String[] roleId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
-		userService.update(muser,roleId);
+		if (!result.hasErrors()) {
+			userService.update(muser,roleId);
+			map.put("result", "success");
+		}else{
+			map.put("result","error");
+			map.put("msg", resultToList(result));
+		}
 		return map;
 	}
 	

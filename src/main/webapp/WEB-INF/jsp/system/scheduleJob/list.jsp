@@ -24,7 +24,7 @@ function del(){
 					     type:'post',   
 					     data:"name="+myArray+"&group="+myArray2,
 					     success:function(data){   
-					        if(data.msg==null){
+					    	 if(data.result=="success"){
 					        	window.location="${pageContext.request.contextPath}/system/scheduleJob/toList.do";
 					        }else{
 					        	$.messager.alert('提示',data.msg);
@@ -64,7 +64,7 @@ function startNow(){
 					     type:'post',   
 					     data:"name="+myArray+"&group="+myArray2,
 					     success:function(data){   
-					        if(data.msg==null){
+					    	 if(data.result=="success"){
 					        	window.location="${pageContext.request.contextPath}/system/scheduleJob/toList.do";
 					        }else{
 					        	$.messager.alert('提示',data.msg);
@@ -94,7 +94,7 @@ function resume(){
 					     type:'post',   
 					     data:"name="+myArray+"&group="+myArray2,
 					     success:function(data){   
-					        if(data.msg==null){
+					    	 if(data.result=="success"){
 					        	window.location="${pageContext.request.contextPath}/system/scheduleJob/toList.do";
 					        }else{
 					        	$.messager.alert('提示',data.msg);
@@ -124,7 +124,7 @@ function stop(){
 					     type:'post',   
 					     data:"name="+myArray+"&group="+myArray2,
 					     success:function(data){   
-					        if(data.msg==null){
+					    	 if(data.result=="success"){
 					        	window.location="${pageContext.request.contextPath}/system/scheduleJob/toList.do";
 					        }else{
 					        	$.messager.alert('提示',data.msg);

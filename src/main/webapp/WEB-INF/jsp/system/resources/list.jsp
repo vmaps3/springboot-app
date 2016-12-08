@@ -23,7 +23,7 @@ function removeit(){
 				     type:'post',   
 				     data:"id="+node.id,
 				     success:function(data){   
-				        if(data.msg==null){
+				    	 if(data.result=="success"){
 				        	window.location="${pageContext.request.contextPath}/system/resources/toList.do";
 				        }else{
 				        	$.messager.alert('提示',data.msg);

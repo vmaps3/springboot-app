@@ -22,7 +22,7 @@ function del(){
 					     type:'post',   
 					     data:"id="+myArray,
 					     success:function(data){   
-					        if(data.msg==null){
+					    	 if(data.result=="success"){
 					        	window.location="${pageContext.request.contextPath}/system/user/toList.do";
 					        }else{
 					        	$.messager.alert('提示',data.msg);
