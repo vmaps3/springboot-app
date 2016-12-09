@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.wangsong.activiti.service.ActivitiService;
+import com.wangsong.activiti.service.DeploymentService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 
@@ -26,7 +26,7 @@ import com.wangsong.common.model.Page;
 public class DeploymentController extends BaseController{
 	
 	@Autowired
-	private ActivitiService workflowService;
+	private DeploymentService deploymentService;
 	
 	/**
 	 * 默认页面
@@ -44,7 +44,7 @@ public class DeploymentController extends BaseController{
 	public Map<String, Object> list(HttpServletRequest request) {
 		Page<Map<String,Object>> page = getPage(request);
 		//1:查询部署对象信息，对应表（act_re_deployment）
-		page = workflowService.findDeploymentList(page);
+		page = deploymentService.findDeploymentList(page);
 		//2:查询流程定义的信息，对应表（act_re_procdef）
 		
 		return getEasyUIData(page);
@@ -70,7 +70,7 @@ public class DeploymentController extends BaseController{
 	@ResponseBody
 	public Object create(MultipartFile file,String filename) {
 		Map<String, Object>	map=new HashMap<>();
-		workflowService.saveNewDeploye(file ,filename);
+		deploymentService.saveNewDeploye(file ,filename);
 		map.put("result", "success");
 		return map;
 	}
@@ -87,7 +87,7 @@ public class DeploymentController extends BaseController{
 	@ResponseBody
 	public Object delete(String id) {
 		Map<String, Object>	map=new HashMap<>();
-		workflowService.deleteProcessDefinitionByDeploymentId(id);
+		deploymentService.deleteProcessDefinitionByDeploymentId(id);
 		map.put("result", "success");
 		return map;
 	}

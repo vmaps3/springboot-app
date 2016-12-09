@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.activiti.model.Leave;
-import com.wangsong.activiti.service.ActivitiService;
+import com.wangsong.activiti.service.BPMService;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.util.UserUtil;
@@ -30,7 +30,7 @@ public class LeaveController extends BaseController{
 	@Autowired
 	private LeaveService leaveService;
 	@Autowired
-	private ActivitiService workflowService;
+	private BPMService bpmService;
 	
 
 	@RequestMapping(value = "/toAdd")
@@ -71,7 +71,7 @@ public class LeaveController extends BaseController{
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
+		bpmService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
 		map.put("result", "success");
 		return map;
 	}
@@ -97,7 +97,7 @@ public class LeaveController extends BaseController{
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
+		bpmService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
 		map.put("result", "success");
 		return map;
 	}

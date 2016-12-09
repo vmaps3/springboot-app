@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wangsong.activiti.dao.LeaveMapper;
 import com.wangsong.activiti.model.Leave;
+import com.wangsong.activiti.service.BPMService;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.service.impl.BaseServiceImpl;
 import com.wangsong.common.util.UserUtil;
@@ -29,7 +30,7 @@ public class LeaveServiceImpl extends BaseServiceImpl<Leave> implements LeaveSer
 	private LeaveMapper leaveMapper;
 	
 	@Autowired
-	private ActivitiServiceImpl workflowService;
+	private BPMService BMPService;
 	
 	
 	/**更新请假状态，启动流程实例，让启动的流程实例关联业务*/
@@ -39,6 +40,6 @@ public class LeaveServiceImpl extends BaseServiceImpl<Leave> implements LeaveSer
 		leaveMapper.insert(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("inputUser2", ((User)UserUtil.getUser()).getId().toString());// 表示惟一用户
-		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
+		BMPService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
 	}
 }

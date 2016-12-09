@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wangsong.activiti.service.ActivitiService;
+import com.wangsong.activiti.service.ProcessDefinitionService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 
@@ -27,7 +27,7 @@ import com.wangsong.common.model.Page;
 public class ProcessDefinitionController extends BaseController{
 	
 	@Autowired
-	private ActivitiService processDefinitionService;
+	private ProcessDefinitionService processDefinitionService;
 	
 	/**
 	 * 默认页面
