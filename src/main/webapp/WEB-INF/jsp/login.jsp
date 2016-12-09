@@ -9,7 +9,12 @@
     
     <title></title>
 	<script type="text/javascript">
+		if(window.parent!=window){
+			parent.location.href="${pageContext.request.contextPath}/login.do";
+		}
+		
 		function submitForm(){
+			
 			if($("#ff").form('validate')==true){
 				$.ajax({   
 				     url:$("#ff").attr("action"),   
