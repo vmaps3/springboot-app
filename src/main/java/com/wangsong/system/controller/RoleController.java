@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.service.RoleService;
 
 

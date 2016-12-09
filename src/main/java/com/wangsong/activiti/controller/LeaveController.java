@@ -1,15 +1,12 @@
 package com.wangsong.activiti.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,7 +40,7 @@ public class LeaveController extends BaseController{
 
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public Object create(Leave leave, Model model) {
+	public Object create(Leave leave) {
 		Map<String, Object>	map=new HashMap<>();
 		leaveService.save(leave);
 		map.put("result", "success");
@@ -69,7 +66,7 @@ public class LeaveController extends BaseController{
 
 	@RequestMapping(value = "/examine", method = RequestMethod.POST)
 	@ResponseBody
-	public Object examine(Leave leave,Model model,String buttonValue,String message) {
+	public Object examine(Leave leave,String buttonValue,String message) {
 		Map<String, Object>	map=new HashMap<>();
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);

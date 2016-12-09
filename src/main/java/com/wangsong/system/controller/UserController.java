@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 import com.wangsong.system.model.User;
-import com.wangsong.system.model.UserRole;
 import com.wangsong.system.service.UserService;
 
 @Controller

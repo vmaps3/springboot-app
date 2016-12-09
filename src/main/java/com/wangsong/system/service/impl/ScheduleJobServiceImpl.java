@@ -11,7 +11,6 @@ import org.quartz.JobDetail;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import com.wangsong.system.model.ScheduleJob;
 import com.wangsong.system.service.ScheduleJobService;
-import com.wangsong.system.service.UserService;
 
 
 /**
