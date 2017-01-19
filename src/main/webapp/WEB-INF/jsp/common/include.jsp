@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.5/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
-
+var url = "${pageContext.request.contextPath}";
 jQuery.prototype.serializeObject=function(){  
     var obj=new Object();  
     $.each(this.serializeArray(),function(index,param){  
