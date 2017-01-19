@@ -1,6 +1,8 @@
 package com.wangsong.system.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,8 +43,15 @@ public class LogInterceptor implements HandlerInterceptor {
 		endTime = new Date();
 		
 		Log log=new Log();
-		log.setUrl(request.getRequestURL().toString());
-		log.setParameter(JSONObject.toJSONString(request.getParameterMap()));
+		String url =request.getRequestURL().toString();
+		log.setUrl(url);
+		Map<String, Object> map2=request.getParameterMap();
+		Map<String, Object> map=new HashMap<>();
+		map.putAll(map2);
+		if(url.endsWith("login.do")){
+			map.put("password","******");
+		}
+		log.setParameter(JSONObject.toJSONString(map));
 		log.setRemoteAddr(request.getRemoteAddr());
 		log.setAgent(request.getHeader("user-agent"));
 		log.setBeginTime(beginTime);

@@ -10,6 +10,7 @@
 	<context:property-placeholder location="classpath:config.properties" />
 
 	<context:component-scan base-package="com.wangsong.*.service" />
+	<bean id="SpringApplicationContext" class="com.wangsong.common.util.ApplicationContextHelper"></bean>  
 	
 	<import resource="classpath:spring-quartz.xml" />
 	<import resource="classpath:spring-activiti.xml" />
