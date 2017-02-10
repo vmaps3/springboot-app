@@ -38,7 +38,7 @@
 				<tr>
 					<td>resources:</td>
 					<td>
-						<input name="resourcesId" required="true" class="easyui-combotree" cascadeCheck ="false" data-options="url:'${pageContext.request.contextPath}/system/resources/list.do'" multiple >
+						<input name="resourcesId" required="true" class="easyui-combotree" cascadeCheck ="false" panelHeight="auto" data-options="url:'${pageContext.request.contextPath}/system/resources/list.do'" multiple >
 
 					</td>
 				</tr>
