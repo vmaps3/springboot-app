@@ -49,7 +49,7 @@ public class UserController extends BaseController{
 	public Object add(@Valid User user,String[] roleId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			userService.insert(user,roleId);
+			userService.insertUser(user,roleId);
 			map.put("result", "success");
 		}else{
 			map.put("result","error");
@@ -84,7 +84,7 @@ public class UserController extends BaseController{
 	public Object update(@Valid User muser,String[] roleId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			userService.update(muser,roleId);
+			userService.updateUser(muser,roleId);
 			map.put("result", "success");
 		}else{
 			map.put("result","error");
@@ -98,7 +98,7 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
-		userService.delete(id);
+		userService.deleteUser(id);
 		map.put("result", "success");
 		return map;
 	}

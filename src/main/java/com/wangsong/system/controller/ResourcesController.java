@@ -46,7 +46,7 @@ public class ResourcesController extends BaseController {
 			
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			resourcesService.insert(resources);
+			resourcesService.insertResources(resources);
 			map.put("result", "success");	
 		}else{
 			map.put("result","error");
@@ -60,7 +60,7 @@ public class ResourcesController extends BaseController {
 	@ResponseBody
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
-		resourcesService.delete(id);
+		resourcesService.deleteResources(id);
 		map.put("result", "success");
 		return map;
 	}
@@ -78,7 +78,7 @@ public class ResourcesController extends BaseController {
 	public Object update(@Valid Resources resources, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			resourcesService.updateByPrimaryKey(resources);
+			resourcesService.updateResources(resources);
 			map.put("result", "success");
 		}else{
 			map.put("result","error");

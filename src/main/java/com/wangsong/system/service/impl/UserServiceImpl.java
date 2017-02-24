@@ -35,24 +35,24 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int insert(User user,String[] roleId) {
-		String id = UUID.randomUUID().toString();
-		user.setId(id);
+	public int insertUser(User user,String[] roleId) {
+		
 		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+		int j=insert(user);
 		if(roleId!=null){
 			for(int i=0;i<roleId.length;i++){
 				UserRole userRole=new UserRole();
 				userRole.setId(UUID.randomUUID().toString());
-				userRole.setUserId(id);
+				userRole.setUserId(user.getId());
 				userRole.setRoleId(roleId[i]);
 				userRoleMapper.insert(userRole);
 			}
 		}
-		return userMapper.insert(user);
+		return j;
 	}
 
 	@Override
-	public int update(User user,String[] roleId) {
+	public int updateUser(User user,String[] roleId) {
 		if(!"".equals(user.getPassword())){
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		}
@@ -72,7 +72,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int delete(String[] id) {
+	public int deleteUser(String[] id) {
 		UserRole[] u=new UserRole[id.length];
 		for(int i=0;i<id.length;i++){
 			UserRole user=new UserRole();

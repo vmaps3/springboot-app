@@ -8,11 +8,14 @@ import com.wangsong.system.model.Resources;
 
 public interface ResourcesService extends BaseService<Resources>{
 
-	int delete(String[] id);
+	int deleteResources(String[] id);
+	
+	int insertResources(Resources resources);
 	
 	List<JsonTreeData> findResources();
 
 	List<JsonTreeData> findResourcesEMUByResources();
 
+	int updateResources(Resources resources);
 	
 }

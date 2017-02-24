@@ -54,7 +54,7 @@ public class RoleController  extends BaseController{
 	public Object add(@Valid Role role,String[] resourcesId,BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			roleService.insert(role,resourcesId);
+			roleService.insertRole(role,resourcesId);
 			map.put("result", "success");	
 		}else{
 			map.put("result","error");
@@ -68,7 +68,7 @@ public class RoleController  extends BaseController{
 	@ResponseBody
 	public Object delete(String[] id) {
 		Map<String, Object>	map=new HashMap<>();
-		roleService.delete(id);
+		roleService.deleteRole(id);
 		map.put("result", "success");	
 		return map;
 	}
@@ -86,7 +86,7 @@ public class RoleController  extends BaseController{
 	public Object update(@Valid Role mrole,String[] resourcesId, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			roleService.update(mrole,resourcesId);
+			roleService.updateRole(mrole,resourcesId);
 			map.put("result", "success");	
 		}else{
 			map.put("result","error");

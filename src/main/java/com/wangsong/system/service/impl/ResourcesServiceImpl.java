@@ -31,7 +31,7 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	private RoleResourcesMapper roleResourcesMapper;
 	
 	@Override
-	public int delete(String[] id) {
+	public int deleteResources(String[] id) {
 		int j=0;
 		for(int i=0;i<id.length;i++){
 			if(!"1".equals(id[i])){
@@ -54,17 +54,15 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 	
 	@Override
-	public int insert(Resources resources) {
-		String id = UUID.randomUUID().toString();
-		resources.setId(id);
+	public int insertResources(Resources resources) {
 		if("".equals(resources.getUrl())){
 			resources.setUrl("/");
 		}
-		return resourcesMapper.insert(resources);
+		return insert(resources);
 	}
 	
 	@Override
-	public int updateByPrimaryKey(Resources resources) {
+	public int updateResources(Resources resources) {
 		if("".equals(resources.getUrl())){
 			resources.setUrl("/");
 		}

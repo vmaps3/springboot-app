@@ -8,11 +8,11 @@ import com.wangsong.system.model.RoleResources;
 
 public interface RoleService extends BaseService<Role>{
 
-    int insert(Role role, String[] resourcesId);
+    int insertRole(Role role, String[] resourcesId);
     
-    int update(Role role, String[] resourcesId);
+    int updateRole(Role role, String[] resourcesId);
     
-    int delete(String[] id);
+    int deleteRole(String[] id);
 
 	List<RoleResources> findRoleResourcesByRole(Role role);
 
