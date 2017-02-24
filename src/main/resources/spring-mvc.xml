@@ -11,10 +11,7 @@
 		http://www.springframework.org/schema/mvc 
 		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
    
-	<context:component-scan base-package="com.wangsong.*.controller" />
-
-	<mvc:annotation-driven/>
-	
+	<context:component-scan base-package="com.wangsong.*.controller" />	
 	<mvc:annotation-driven validator="validator" />
 
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
@@ -35,13 +32,7 @@
 		</property>
 	</bean>
 
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<ref bean="mappingJacksonHttpMessageConverter" />
-			</list>
-		</property>
-	</bean>
+	
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
 		  p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
