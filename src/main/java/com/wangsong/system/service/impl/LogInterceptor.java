@@ -45,7 +45,7 @@ public class LogInterceptor implements HandlerInterceptor {
 		Log log=new Log();
 		String url =request.getRequestURL().toString();
 		log.setUrl(url);
-		Map<String, Object> map2=request.getParameterMap();
+		Map map2=request.getParameterMap();
 		Map<String, Object> map=new HashMap<>();
 		map.putAll(map2);
 		if(url.endsWith("login.do")){
