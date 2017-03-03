@@ -10,9 +10,9 @@ public interface UserService extends BaseService<User>{
 	
 	User selectByPrimaryKey(String id);
 	
-    int insertUser(User muser, String[] roleId);
+    int insertUser(User muser);
     
-    int updateUser(User muser, String[] roleId);
+    int updateUser(User muser);
     
     int deleteUser(String[] id);
     

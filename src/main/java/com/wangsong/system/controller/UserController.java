@@ -46,10 +46,10 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(@Valid User user,String[] roleId, BindingResult result) {
+	public Object add(@Valid User user,BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			userService.insertUser(user,roleId);
+			userService.insertUser(user);
 			map.put("result", "success");
 		}else{
 			map.put("result","error");
@@ -81,10 +81,10 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(@Valid User muser,String[] roleId, BindingResult result) {
+	public Object update(@Valid User muser, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			userService.updateUser(muser,roleId);
+			userService.updateUser(muser);
 			map.put("result", "success");
 		}else{
 			map.put("result","error");

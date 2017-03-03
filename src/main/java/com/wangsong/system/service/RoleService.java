@@ -8,9 +8,9 @@ import com.wangsong.system.model.RoleResources;
 
 public interface RoleService extends BaseService<Role>{
 
-    int insertRole(Role role, String[] resourcesId);
+    int insertRole(Role role);
     
-    int updateRole(Role role, String[] resourcesId);
+    int updateRole(Role role);
     
     int deleteRole(String[] id);
 

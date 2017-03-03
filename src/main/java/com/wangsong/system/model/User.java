@@ -21,7 +21,19 @@ public class User implements Serializable{
 	@Length(max=50,message="password长度小于50")
     private String password;
 
-    public String getId() {
+	private String[] roleId;
+	
+	
+	
+    public String[] getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String[] roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getId() {
         return id;
     }
 

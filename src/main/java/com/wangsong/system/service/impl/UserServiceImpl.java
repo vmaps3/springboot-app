@@ -35,16 +35,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int insertUser(User user,String[] roleId) {
-		
+	public int insertUser(User user) {
 		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		int j=insert(user);
-		if(roleId!=null){
-			for(int i=0;i<roleId.length;i++){
+		if(user.getRoleId()!=null){
+			for(int i=0;i<user.getRoleId().length;i++){
 				UserRole userRole=new UserRole();
 				userRole.setId(UUID.randomUUID().toString());
 				userRole.setUserId(user.getId());
-				userRole.setRoleId(roleId[i]);
+				userRole.setRoleId(user.getRoleId()[i]);
 				userRoleMapper.insert(userRole);
 			}
 		}
@@ -52,19 +51,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public int updateUser(User user,String[] roleId) {
+	public int updateUser(User user) {
 		if(!"".equals(user.getPassword())){
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		}
 		UserRole userRole2=new UserRole();
 		userRole2.setUserId(user.getId());
 		userRoleMapper.deleteByT(new UserRole[]{userRole2});
-		if(roleId!=null){
-			for(int i=0;i<roleId.length;i++){
+		if(user.getRoleId()!=null){
+			for(int i=0;i<user.getRoleId().length;i++){
 				UserRole userRole=new UserRole();
 				userRole.setId(UUID.randomUUID().toString());
 				userRole.setUserId(user.getId());
-				userRole.setRoleId(roleId[i]);
+				userRole.setRoleId(user.getRoleId()[i]);
 				userRoleMapper.insert(userRole);
 			}
 		}

@@ -29,15 +29,15 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	
 
 	@Override
-	public int insertRole(Role role, String[] resourcesId) {
+	public int insertRole(Role role) {
 		
 		int j=insert(role);
 		
-		if(resourcesId!=null){
-			for(int i=0;i<resourcesId.length;i++){
+		if(role.getResourcesId()!=null){
+			for(int i=0;i<role.getResourcesId().length;i++){
 				RoleResources roleResources=new RoleResources();
 				roleResources.setId(UUID.randomUUID().toString());
-				roleResources.setResourcesId(resourcesId[i]);
+				roleResources.setResourcesId(role.getResourcesId()[i]);
 				roleResources.setRoleId(role.getId());
 				roleResourcesMapper.insert(roleResources);
 			}
@@ -47,16 +47,16 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public int updateRole(Role role,String[] resourcesId) {
+	public int updateRole(Role role) {
 		RoleResources roleResources2=new RoleResources();
 		roleResources2.setRoleId(role.getId());
 		roleResourcesMapper.deleteByT(new RoleResources[]{roleResources2});
-		if(resourcesId!=null){
-			for(int i=0;i<resourcesId.length;i++){
+		if(role.getResourcesId()!=null){
+			for(int i=0;i<role.getResourcesId().length;i++){
 				RoleResources roleResources=new RoleResources();
 				roleResources.setId(UUID.randomUUID().toString());
 				roleResources.setRoleId(role.getId());
-				roleResources.setResourcesId(resourcesId[i]);
+				roleResources.setResourcesId(role.getResourcesId()[i]);
 				roleResourcesMapper.insert(roleResources);
 			}
 		}

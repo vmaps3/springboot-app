@@ -51,10 +51,10 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(@Valid Role role,String[] resourcesId,BindingResult result) {
+	public Object add(@Valid Role role,BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			roleService.insertRole(role,resourcesId);
+			roleService.insertRole(role);
 			map.put("result", "success");	
 		}else{
 			map.put("result","error");
@@ -83,10 +83,10 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(@Valid Role mrole,String[] resourcesId, BindingResult result) {
+	public Object update(@Valid Role mrole, BindingResult result) {
 		Map<String, Object>	map=new HashMap<>();
 		if (!result.hasErrors()) {
-			roleService.updateRole(mrole,resourcesId);
+			roleService.updateRole(mrole);
 			map.put("result", "success");	
 		}else{
 			map.put("result","error");

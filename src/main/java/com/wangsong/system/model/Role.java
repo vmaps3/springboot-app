@@ -18,6 +18,8 @@ public class Role  implements Serializable{
 	@Length(max=50,message="name长度小于50")
     private String name;
 
+	private String[] resourcesId;
+	
     public String getId() {
         return id;
     }
@@ -33,4 +35,14 @@ public class Role  implements Serializable{
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+	public String[] getResourcesId() {
+		return resourcesId;
+	}
+
+	public void setResourcesId(String[] resourcesId) {
+		this.resourcesId = resourcesId;
+	}
+    
+    
 }
