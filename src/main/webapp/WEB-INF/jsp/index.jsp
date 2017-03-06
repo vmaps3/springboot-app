@@ -45,23 +45,25 @@
     
    
   <body class="easyui-layout">
-    <div data-options="region:'north',split:true" style="height:70px;">
+    <div data-options="region:'north'" style="height:70px;">
     	<div style="margin-top: 20px;padding-left: 50px;">
-	    	 <span style="font-size: 20px;">spring-app</span>
-	    	  <a href="javascript:void(0)" class="easyui-linkbutton"  style="float: right;margin-right: 50px;" onclick="logout()">退出</a>
-           </div>
+	    	<span style="font-size: 20px;">spring-app</span>
+         </div>
     </div>
     
    
-    <div data-options="region:'west',title:'菜单',split:true" style="width:200px;">
+    <div data-options="region:'west',title:'菜单'" style="width:200px;">
     	<div id="tree"></div>
     </div>
-    <div id="tt"   class="easyui-tabs" data-options="region:'center'" >
+    <div id="tt"   class="easyui-tabs" data-options="region:'center',border:false,tools:'#tab-tools'" >
     	<div title="首页" style="padding:10px">
 			<p style="font-size:14px">spring-app</p>
 			
 		</div>
 	
     </div>
+    <div id="tab-tools">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-no'" onclick=" logout()">退出</a>
+	</div>
 </body>
 </html>
