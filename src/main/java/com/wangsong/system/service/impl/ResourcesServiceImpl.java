@@ -72,7 +72,20 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	@Override
 	public List<JsonTreeData> findResources() {
 		List<Resources> resourcesList =resourcesMapper.selectAll();
-		 List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
+		return resourcesToJsonTreeData(resourcesList);
+	}
+	
+	@Override
+	public List<JsonTreeData> findResourcesEMUByResources() {
+		Resources resources=new Resources();
+		resources.setId(((User)SecurityUtils.getSubject().getPrincipal()).getId());
+		resources.setType("1");
+		List<Resources> resourcesList =resourcesMapper.findTByT(resources);
+		return resourcesToJsonTreeData(resourcesList);
+	}
+	
+	private List<JsonTreeData> resourcesToJsonTreeData(List<Resources> resourcesList){
+		List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
         /*为了整理成公用的方法，所以将查询结果进行二次转换。
          * 其中specid为主键ID，varchar类型UUID生成
          * parentid为父ID
@@ -90,34 +103,8 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
        }
        //最后得到结果集,经过FirstJSON转换后就可得所需的json格式
        List<JsonTreeData> newTreeDataList = TreeNodeUtil.getfatherNode(treeDataList);
-		return newTreeDataList;
+       return newTreeDataList;
 	}
 	
-	@Override
-	public List<JsonTreeData> findResourcesEMUByResources() {
-		Resources resources=new Resources();
-		resources.setId(((User)SecurityUtils.getSubject().getPrincipal()).getId());
-		resources.setType("1");
-		List<Resources> resourcesList =resourcesMapper.findTByT(resources);
-		List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
-         /*为了整理成公用的方法，所以将查询结果进行二次转换。
-          * 其中specid为主键ID，varchar类型UUID生成
-          * parentid为父ID
-          * specname为节点名称
-          * */
-        for (Resources htSpecifications : resourcesList) {
-            JsonTreeData treeData = new JsonTreeData();
-            treeData.setId(htSpecifications.getId());
-            treeData.setPid(htSpecifications.getPid());
-            treeData.setText(htSpecifications.getName());
-            Attributes attributes=new Attributes();
-            attributes.setUrl(htSpecifications.getUrl()); 
-            treeData.setAttributes(attributes);
-            treeDataList.add(treeData);
-        }
-        //最后得到结果集,经过FirstJSON转换后就可得所需的json格式
-        List<JsonTreeData> newTreeDataList = TreeNodeUtil.getfatherNode(treeDataList);
-		return newTreeDataList;
-	}
 	
 }
