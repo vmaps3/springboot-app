@@ -48,7 +48,7 @@
 				
 				<tr>
 					<td>
-						name: 
+						名称: 
 					</td>
 					<td>
 						<input type="text" name="name"  class="easyui-textbox" required="true" validType="length[1,25]">
@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td>
-						url: 
+						地址: 
 					</td>
 					<td>
 						<input type="text" name="url" class="easyui-textbox" validType="length[0,50]">
@@ -64,7 +64,7 @@
 				</tr>
 				<tr>
 					<td>
-						type: 
+						类型: 
 					</td>
 					<td>
 						<input id="cc" class="easyui-combobox" name="type" required="true"
@@ -78,7 +78,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>sort:</td>
+					<td>排序:</td>
 					<td><input type="text" name="sort" class="easyui-textbox" validType="length[0,25]"></td>
 				</tr>
 			

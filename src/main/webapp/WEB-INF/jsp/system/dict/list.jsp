@@ -61,16 +61,16 @@ function upd(){
         <thead>
             <tr>
                	<th field=""  data-options="checkbox:true"></th>
-                <th field="code" width="50">code</th>
-                <th field="name" width="50">name</th>
-                <th field="type" width="50">type</th>
+                <th field="code" width="50">编码</th>
+                <th field="name" width="50">名称</th>
+                <th field="type" width="50">类型</th>
             </tr>
         </thead>
     </table>
     <div id="toolbar">
     	<form id="searchFrom" action="">
-			name:<input type="text" name="name" class="easyui-validatebox" />
-			type:<input type="text" name="type" class="easyui-validatebox" />
+			名称:<input type="text" name="name" class="easyui-validatebox" />
+			类型:<input type="text" name="type" class="easyui-validatebox" />
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
 		</form>
     	<shiro:hasPermission name="/system/dict/add">

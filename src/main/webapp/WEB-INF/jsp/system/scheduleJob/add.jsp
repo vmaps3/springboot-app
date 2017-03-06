@@ -33,19 +33,19 @@
 			<table>
 			
 				<tr>
-					<td>name:</td>
+					<td>名称:</td>
 					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>group:</td>
+					<td>组名称:</td>
 					<td><input type="text" name="group" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>cronExpression:</td>
+					<td>表达式:</td>
 					<td><input type="text" value="0/30 * * * * ?" name="cronExpression" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>className:</td>
+					<td>类:</td>
 					<td><input type="text" name="className" value="com.wangsong.job.TaskA"  class="easyui-textbox" required="true" validType="length[1,50]"></td>
 				</tr>
 				

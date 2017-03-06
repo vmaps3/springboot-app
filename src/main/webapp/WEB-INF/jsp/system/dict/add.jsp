@@ -32,15 +32,15 @@
 			<input type="hidden" name="id" >
 			<table>
 				<tr>
-					<td>code:</td>
+					<td>编码:</td>
 					<td><input type="text" name="code" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>name:</td>
+					<td>名称:</td>
 					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>type:</td>
+					<td>类型:</td>
 					<td><input type="text" name="type" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 			

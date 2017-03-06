@@ -62,13 +62,13 @@ function cx(){
         <thead>
             <tr>
             	<th field=""  data-options="checkbox:true"></th>
-                <th field="username"  width="50">username</th>
+                <th field="username"  width="50">账号</th>
             </tr>
         </thead>
     </table>
     <div id="toolbar" >
     	<form id="searchFrom" action="">
-			username:<input type="text" name="username" class="easyui-validatebox" />
+			账号:<input type="text" name="username" class="easyui-validatebox" />
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
 		</form>
 		<shiro:hasPermission name="/system/user/add">

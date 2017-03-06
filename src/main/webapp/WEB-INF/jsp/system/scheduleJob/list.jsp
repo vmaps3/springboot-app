@@ -152,11 +152,11 @@ function cron(){
         <thead>
             <tr>
             	<th field=""  data-options="checkbox:true"></th>
-                <th field="name"  width="50">name</th>
-                <th field="group"  width="50">group</th>
-                <th field="cronExpression"  width="50">cronExpression</th>
-                <th field="status"  width="50">status</th>
-                <th field="className"  width="50">className</th>
+                <th field="name"  width="50">名称</th>
+                <th field="group"  width="50">组成名</th>
+                <th field="cronExpression"  width="50">表达式</th>
+                <th field="status"  width="50">状态</th>
+                <th field="className"  width="50">类</th>
             </tr>
         </thead>
     </table>

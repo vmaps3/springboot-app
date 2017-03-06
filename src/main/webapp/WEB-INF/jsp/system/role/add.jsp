@@ -32,11 +32,11 @@
 			<input type="hidden" name="id"/>
 			<table>
 				<tr>
-					<td>role:</td>
+					<td>名称:</td>
 					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>resources:</td>
+					<td>权限:</td>
 					<td>
 						<input name="resourcesId" required="true" class="easyui-combotree" cascadeCheck ="false" panelHeight="auto" data-options="url:'${pageContext.request.contextPath}/system/resources/list.do'" multiple >
 

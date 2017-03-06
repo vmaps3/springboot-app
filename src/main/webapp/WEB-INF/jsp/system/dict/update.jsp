@@ -45,7 +45,7 @@
 			<table>
 				<tr>
 					<td>
-						code: 
+						编码: 
 					</td>
 					<td>
 						<input type="text" name="code" class="easyui-textbox" required="true" validType="length[1,25]">
@@ -53,7 +53,7 @@
 				</tr>
 				<tr>
 					<td>
-						name: 
+						名称: 
 					</td>
 					<td>
 						<input type="text" name="name"  class="easyui-textbox" required="true" validType="length[1,25]">
@@ -61,7 +61,7 @@
 				</tr>
 				<tr>
 					<td>
-						type:
+						类型:
 					</td>
 					<td>
 						<input type="text" name="type"  class="easyui-textbox" required="true" validType="length[1,25]">

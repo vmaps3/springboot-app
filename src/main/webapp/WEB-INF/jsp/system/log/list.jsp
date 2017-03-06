@@ -58,13 +58,13 @@
         <thead>
             <tr>
                <th field=""  data-options="checkbox:true"></th>
-                <th field="url" width="50">url</th>
-                <th field="parameter" width="50">parameter</th>
-                <th field="remoteAddr" width="50">remoteAddr</th>
-                <th field="agent" width="50">agent</th>
-                <th field="user"  width="50"  formatter="usernameFormatter">username</th>
-                <th field="beginTime" width="50" formatter="DateFormatter">begintime</th>
-                <th field="endTime" width="50" formatter="DateFormatter">endtime</th>
+                <th field="url" width="50">地址</th>
+                <th field="parameter" width="50">参数</th>
+                <th field="remoteAddr" width="50">客户端地址</th>
+                <th field="agent" width="50">客户端相关信息</th>
+                <th field="user"  width="50"  formatter="usernameFormatter">账号</th>
+                <th field="beginTime" width="50" formatter="DateFormatter">开始时间</th>
+                <th field="endTime" width="50" formatter="DateFormatter">结束时间</th>
              
             </tr>
         </thead>

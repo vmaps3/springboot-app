@@ -52,15 +52,15 @@
 			<input type="hidden" name="id"/>
 			<table>
 				<tr>
-					<td>username:</td>
+					<td>账号:</td>
 					<td><input type="text" id="username" name="username" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>password:</td>
+					<td>密码:</td>
 					<td><input type="password" name="password" class="easyui-textbox" required="true" validType="length[0,25]"></td>
 				</tr>
 				<tr>
-					<td>role:</td>
+					<td>角色:</td>
 					<td>
 						
 						<input class="easyui-combobox" name="roleId"  multiple="multiple" required="true"

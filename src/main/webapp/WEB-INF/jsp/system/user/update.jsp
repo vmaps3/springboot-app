@@ -55,7 +55,7 @@
 			<table>
 				<tr>
 					<td>
-						username: 
+						账号: 
 					</td>
 					<td>
 						<input type="text"  id="username" name="username"  readonly="true" class="easyui-textbox" required="true" validType="length[1,25]">
@@ -63,14 +63,14 @@
 				</tr>
 				<tr>
 					<td>
-						password:
+						密码:
 					</td>
 					<td>
 						<input type="password" name="password" id="password"   class="easyui-textbox"  validType="length[0,25]">
 					</td>
 				</tr>
 				<tr>
-					<td>role:</td>
+					<td>角色:</td>
 					<td>
 					
 						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"

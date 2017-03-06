@@ -35,19 +35,19 @@
 			<input type="hidden" id="id" name="id" value="">
 			<table>
 				<tr>
-					<td>name:</td>
+					<td>名称:</td>
 					<td><input type="text"  value="${scheduleJob.name}" readOnly="true" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>group:</td>
+					<td>组名称:</td>
 					<td><input type="text"  value="${scheduleJob.group}" readOnly="true" name="group" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>cronExpression:</td>
+					<td>表达式:</td>
 					<td><input type="text"  value="${scheduleJob.cronExpression}"  name="cronExpression" class="easyui-textbox" required="true" validType="length[1,25]"></td>
 				</tr>
 				<tr>
-					<td>className:</td>
+					<td>类:</td>
 					<td><input type="text"  value="${scheduleJob.className}" disabled="true" name="className"  class="easyui-textbox" required="true" validType="length[1,50]"></td>
 				</tr>
 				

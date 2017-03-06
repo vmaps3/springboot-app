@@ -56,14 +56,14 @@
 			<table>
 				<tr>
 					<td>
-						role: 
+						名称: 
 					</td>
 					<td>
 						<input type="text"   name="name" required="true" validType="length[1,25]" class="easyui-textbox">
 					</td>
 				</tr>
 				<tr>
-					<td>resources:</td>
+					<td>权限:</td>
 					<td>
 						<input name="resourcesId" id="cc"  panelHeight="auto" cascadeCheck ="false" required="true"  class="easyui-combotree" data-options="url:'${pageContext.request.contextPath}/system/resources/list.do'" multiple >
 					</td>
