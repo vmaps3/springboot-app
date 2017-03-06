@@ -153,7 +153,7 @@ function cron(){
             <tr>
             	<th field=""  data-options="checkbox:true"></th>
                 <th field="name"  width="50">名称</th>
-                <th field="group"  width="50">组成名</th>
+                <th field="group"  width="50">组名称</th>
                 <th field="cronExpression"  width="50">表达式</th>
                 <th field="status"  width="50">状态</th>
                 <th field="className"  width="50">类</th>
