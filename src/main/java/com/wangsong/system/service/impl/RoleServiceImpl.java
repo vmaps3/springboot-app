@@ -89,5 +89,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		roleResources.setRoleId(role.getId());
 		return roleResourcesMapper.findTByT(roleResources);
 	}
-
+	@Override
+	public Role selectByPrimaryKey(String id){
+		Role role =roleMapper.selectByPrimaryKey(id);
+		role.setResourcesId(new String[0]);
+		return role;
+		
+	}
 }

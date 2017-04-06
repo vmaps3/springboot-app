@@ -5,6 +5,7 @@ import java.util.List;
 import com.wangsong.common.service.BaseService;
 import com.wangsong.system.model.Role;
 import com.wangsong.system.model.RoleResources;
+import com.wangsong.system.model.User;
 
 public interface RoleService extends BaseService<Role>{
 
@@ -16,4 +17,5 @@ public interface RoleService extends BaseService<Role>{
 
 	List<RoleResources> findRoleResourcesByRole(Role role);
 
+	Role selectByPrimaryKey(String id);
 }

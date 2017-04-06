@@ -88,6 +88,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public User selectByPrimaryKey(String id){
 		User u=userMapper.selectByPrimaryKey(id);
 		u.setPassword("");
+		u.setRoleId(new String[0]);
 		return u;
 	}
 }
