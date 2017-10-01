@@ -1,0 +1,8 @@
+location /spring-app-admin-html {
+        root   D:/app/workspace/spring-app;
+	index login.html;
+			
+}
+location /spring-app-admin/ {
+	proxy_pass http://127.0.0.1:8080;
+}

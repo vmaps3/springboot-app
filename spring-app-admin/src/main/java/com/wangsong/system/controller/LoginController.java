@@ -1,0 +1,49 @@
+package com.wangsong.system.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.wangsong.common.controller.BaseController;
+import com.wangsong.system.service.UserService;
+
+
+
+@Controller
+public class LoginController  extends BaseController {
+	
+	@Autowired
+	private UserService userService;
+  
+    @RequestMapping(value = "/index")
+    @ResponseBody
+    public Object index() {
+    	return userService.index();
+    }
+
+  
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Object loginPost(String username, String password) {
+    	return userService.loginPost(username,password);
+    }
+
+ 
+    
+
+    @RequestMapping(value = "/logoutJSON")
+    @ResponseBody
+    public Object logoutJSON() {
+    	return userService.logoutJSON();
+    }
+    
+    
+    @RequestMapping(value = "/unauth")
+    @ResponseBody
+    public Object unauth() {
+        return userService.unauth();
+    }
+    
+}
