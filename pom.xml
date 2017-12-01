@@ -9,6 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>spring-app-admin</module>
+		<module>spring-app-web</module>
 		<module>spring-app-service</module>
 	</modules>
 </project>
