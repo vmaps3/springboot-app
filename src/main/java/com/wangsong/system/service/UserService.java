@@ -1,11 +1,8 @@
 package com.wangsong.system.service;
 
-import java.util.List;
-
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserPage;
-import com.wangsong.system.model.UserRole;
 import com.wangsong.system.vo.UserVO;
 
 public interface UserService {

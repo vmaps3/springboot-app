@@ -1,6 +1,5 @@
 package com.wangsong.system.service.impl;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;

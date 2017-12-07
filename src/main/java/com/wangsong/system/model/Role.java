@@ -2,6 +2,11 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import com.wangsong.system.groups.RoleAdd;
+import com.wangsong.system.groups.RoleUpdate;
+
 
 
 public class Role  implements Serializable{
@@ -9,8 +14,9 @@ public class Role  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3582588209589180635L;
+	@NotNull(groups = { RoleUpdate.class }, message = "id不能为空")  
 	private String id;
-	
+	@NotNull(groups = { RoleUpdate.class,RoleAdd.class }, message = "name不能为空")  
     private String name;
 
 	

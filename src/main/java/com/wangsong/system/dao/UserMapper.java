@@ -2,7 +2,6 @@ package com.wangsong.system.dao;
 
 import java.util.List;
 
-import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.vo.UserVO;
