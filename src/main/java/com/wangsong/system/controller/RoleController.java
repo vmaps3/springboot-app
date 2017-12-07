@@ -15,6 +15,7 @@ import com.wangsong.common.controller.BaseController;
 import com.wangsong.system.groups.RoleAdd;
 import com.wangsong.system.groups.RoleUpdate;
 import com.wangsong.system.model.Role;
+import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.service.RoleService;
 
@@ -39,8 +40,8 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(@Validated({RoleAdd.class})  Role role,String[] resourcesId,BindingResult bindingResult) {
-		return roleService.insertRole(role,resourcesId);
+	public Object add(@Validated({RoleAdd.class})  RoleAddModel role,BindingResult bindingResult) {
+		return roleService.insertRole(role);
 	}
 	
 	@RequiresPermissions("/system/role/delete")
@@ -54,8 +55,8 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(@Validated({RoleUpdate.class})  Role mrole,String[] resourcesId,BindingResult bindingResult) {
-		return 	roleService.updateRole(mrole,resourcesId);
+	public Object update(@Validated({RoleUpdate.class})  RoleAddModel mrole,BindingResult bindingResult) {
+		return 	roleService.updateRole(mrole);
 	}
 	
 	@RequestMapping(value="/listAll")

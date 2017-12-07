@@ -12,6 +12,13 @@
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
+  
+   <insert id="insertUserAddModel" parameterType="com.wangsong.system.model.UserAddModel">
+    insert into system_user (id, username, password
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
+  </insert>
  <delete id="deleteByPrimaryKey" parameterType="com.wangsong.system.model.RoleResources">
     delete from system_user
     where id = #{id,jdbcType=VARCHAR}
@@ -22,7 +29,14 @@
 	,password = #{password,jdbcType=VARCHAR}	 
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateNoPasswordByPrimaryKey" parameterType="com.wangsong.system.model.User">
+  <update id="updateByPrimaryKeyUserAddModel" parameterType="com.wangsong.system.model.UserAddModel">
+    update system_user
+    set username = #{username,jdbcType=VARCHAR}
+	,password = #{password,jdbcType=VARCHAR}	 
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateNoPasswordByPrimaryKey" parameterType="com.wangsong.system.model.UserAddModel">
     update system_user
     set username = #{username,jdbcType=VARCHAR}
 	where id = #{id,jdbcType=VARCHAR}

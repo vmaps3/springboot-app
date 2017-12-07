@@ -3,6 +3,7 @@ package com.wangsong.system.dao;
 import java.util.List;
 
 import com.wangsong.system.model.User;
+import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.vo.UserVO;
 
@@ -27,8 +28,12 @@ public interface UserMapper{
 
 	User findTByTOne(User user);
 
-	void updateNoPasswordByPrimaryKey(User user);
+	void updateNoPasswordByPrimaryKey(UserAddModel user);
 
 	UserVO selectVOByPrimaryKey(String id);
+
+	int insertUserAddModel(UserAddModel user);
+
+	int updateByPrimaryKeyUserAddModel(UserAddModel user);
 
 }

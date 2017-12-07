@@ -3,6 +3,7 @@ package com.wangsong.system.dao;
 import java.util.List;
 
 import com.wangsong.system.model.Role;
+import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.vo.RoleVO;
 
@@ -25,5 +26,9 @@ public interface RoleMapper {
 	void deleteBy(String[] id);
 
 	RoleVO selectRoleVOByPrimaryKey(String id);
+
+	int updateByPrimaryKeyRoleAddModel(RoleAddModel role);
+
+	int insertRoleAddModel(RoleAddModel role);
 
 }

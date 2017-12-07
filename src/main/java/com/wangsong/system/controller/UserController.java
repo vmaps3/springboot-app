@@ -14,6 +14,7 @@ import com.wangsong.common.controller.BaseController;
 import com.wangsong.system.groups.UserAdd;
 import com.wangsong.system.groups.UserUpdate;
 import com.wangsong.system.model.User;
+import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.service.UserService;
 
@@ -34,8 +35,8 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(@Validated({UserAdd.class}) User user,String[] roleId,BindingResult bindingResult) {
-		return userService.insertUser(user,roleId);
+	public Object add(@Validated({UserAdd.class}) UserAddModel user,BindingResult bindingResult) {
+		return userService.insertUser(user);
 	}
 	
 
@@ -48,8 +49,8 @@ public class UserController extends BaseController{
 	@RequiresPermissions("/system/user/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(@Validated({UserUpdate.class}) User muser,String[] roleId,BindingResult bindingResult) {
-		return userService.updateUser(muser,roleId);
+	public Object update(@Validated({UserUpdate.class}) UserAddModel muser,BindingResult bindingResult) {
+		return userService.updateUser(muser);
 	}
 	
 	@RequiresPermissions("/system/user/delete")
@@ -73,8 +74,8 @@ public class UserController extends BaseController{
 	
 	@RequestMapping(value="/updatePassword")
 	@ResponseBody
-	public Object updatePassword(User u) {
-		return userService.updatePassword(u);
+	public Object updatePassword(@Validated({UserUpdate.class}) UserAddModel muser,BindingResult bindingResult) {
+		return userService.updatePassword(muser);
 	}
 	
 }
