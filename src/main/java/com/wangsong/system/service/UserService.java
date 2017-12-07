@@ -20,14 +20,6 @@ public interface UserService {
 
 	Object findTByPage(UserPage user);
 
-	Result index();
-
-	Result logoutJSON();
-
-	Result unauth();
-
-	Result loginPost(String username, String password);
-
 	UserVO selectByPrimaryKey(String id);
 
 	User findTByT(User user);

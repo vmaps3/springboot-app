@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.common.controller.BaseController;
+import com.wangsong.system.service.LoginService;
 import com.wangsong.system.service.UserService;
 
 
@@ -15,19 +16,18 @@ import com.wangsong.system.service.UserService;
 public class LoginController  extends BaseController {
 	
 	@Autowired
-	private UserService userService;
+	private LoginService loginService;
   
     @RequestMapping(value = "/index")
     @ResponseBody
     public Object index() {
-    	return userService.index();
+    	return loginService.index();
     }
 
-  
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Object loginPost(String username, String password) {
-    	return userService.loginPost(username,password);
+    	return loginService.loginPost(username,password);
     }
 
  
@@ -36,14 +36,14 @@ public class LoginController  extends BaseController {
     @RequestMapping(value = "/logoutJSON")
     @ResponseBody
     public Object logoutJSON() {
-    	return userService.logoutJSON();
+    	return loginService.logoutJSON();
     }
     
     
     @RequestMapping(value = "/unauth")
     @ResponseBody
     public Object unauth() {
-        return userService.unauth();
+        return loginService.unauth();
     }
     
 }

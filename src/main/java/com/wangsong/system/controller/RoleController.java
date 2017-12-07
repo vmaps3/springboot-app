@@ -36,7 +36,6 @@ public class RoleController  extends BaseController{
 	}
 	
 
-	
 	@RequiresPermissions("/system/role/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
