@@ -1,7 +1,9 @@
-package com.wangsong.system.validator;
+package com.wangsong.common.validator.impi;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import com.wangsong.common.validator.PhoneNo;
 
 /**
  * 手机号码验证

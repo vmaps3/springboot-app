@@ -1,7 +1,10 @@
-package com.wangsong.system.validator;
+package com.wangsong.common.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+
+import com.wangsong.common.validator.impi.PhoneNoValidator;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
