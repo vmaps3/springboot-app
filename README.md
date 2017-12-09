@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- spring-app 是J2EE基础开发平台，架构设计包括（动静分离），技术栈包括（Spring、SpringMVC、MyBatis、Shiro、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
+- spring-app 是J2EE基础开发平台，架构设计包括（动静分离），技术栈包括（SpringBoot、MyBatis、Shiro、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
 
 ## 业务功能
 
@@ -13,7 +13,7 @@
 
 ## 技术栈
 
-- 核心 spring 
+- 核心 springboot 
 - MVC springmvc 
 - ORM mybatis 
 - 权限 shiro 
