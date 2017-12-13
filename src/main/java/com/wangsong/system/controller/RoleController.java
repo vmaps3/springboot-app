@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.system.groups.RoleAdd;
 import com.wangsong.system.groups.RoleUpdate;
-import com.wangsong.system.model.Role;
 import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.service.RoleService;

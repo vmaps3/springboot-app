@@ -2,10 +2,6 @@ package com.wangsong.system.vo;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
-import com.wangsong.system.groups.RoleAdd;
-import com.wangsong.system.groups.RoleUpdate;
 import com.wangsong.system.model.RoleResources;
 
 public class RoleVO {
