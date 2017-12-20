@@ -10,12 +10,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- 导出 spring-app 的数据库结构
-CREATE DATABASE IF NOT EXISTS `spring-app` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `spring-app`;
+-- 导出 springboot-app 的数据库结构
+CREATE DATABASE IF NOT EXISTS `springboot-app` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `springboot-app`;
 
 
--- 导出  表 spring-app.system_dict 结构
+-- 导出  表 springboot-app.system_dict 结构
 CREATE TABLE IF NOT EXISTS `system_dict` (
   `id` varchar(50) NOT NULL,
   `code` varchar(50) DEFAULT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `system_dict` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_dict 的数据：~2 rows (大约)
+-- 正在导出表  springboot-app.system_dict 的数据：~2 rows (大约)
 DELETE FROM `system_dict`;
 /*!40000 ALTER TABLE `system_dict` DISABLE KEYS */;
 INSERT INTO `system_dict` (`id`, `code`, `name`, `type`) VALUES
@@ -33,7 +33,7 @@ INSERT INTO `system_dict` (`id`, `code`, `name`, `type`) VALUES
 /*!40000 ALTER TABLE `system_dict` ENABLE KEYS */;
 
 
--- 导出  表 spring-app.system_resources 结构
+-- 导出  表 springboot-app.system_resources 结构
 CREATE TABLE IF NOT EXISTS `system_resources` (
   `id` varchar(50) NOT NULL,
   `pid` varchar(50) DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `system_resources` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_resources 的数据：~22 rows (大约)
+-- 正在导出表  springboot-app.system_resources 的数据：~22 rows (大约)
 DELETE FROM `system_resources`;
 /*!40000 ALTER TABLE `system_resources` DISABLE KEYS */;
 INSERT INTO `system_resources` (`id`, `pid`, `name`, `url`, `type`, `sort`) VALUES
@@ -73,14 +73,14 @@ INSERT INTO `system_resources` (`id`, `pid`, `name`, `url`, `type`, `sort`) VALU
 /*!40000 ALTER TABLE `system_resources` ENABLE KEYS */;
 
 
--- 导出  表 spring-app.system_role 结构
+-- 导出  表 springboot-app.system_role 结构
 CREATE TABLE IF NOT EXISTS `system_role` (
   `id` varchar(50) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_role 的数据：~0 rows (大约)
+-- 正在导出表  springboot-app.system_role 的数据：~0 rows (大约)
 DELETE FROM `system_role`;
 /*!40000 ALTER TABLE `system_role` DISABLE KEYS */;
 INSERT INTO `system_role` (`id`, `name`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `system_role` (`id`, `name`) VALUES
 /*!40000 ALTER TABLE `system_role` ENABLE KEYS */;
 
 
--- 导出  表 spring-app.system_role_resources 结构
+-- 导出  表 springboot-app.system_role_resources 结构
 CREATE TABLE IF NOT EXISTS `system_role_resources` (
   `id` varchar(50) NOT NULL,
   `role_id` varchar(50) DEFAULT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `system_role_resources` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_role_resources 的数据：~24 rows (大约)
+-- 正在导出表  springboot-app.system_role_resources 的数据：~24 rows (大约)
 DELETE FROM `system_role_resources`;
 /*!40000 ALTER TABLE `system_role_resources` DISABLE KEYS */;
 INSERT INTO `system_role_resources` (`id`, `role_id`, `resources_id`) VALUES
@@ -127,7 +127,7 @@ INSERT INTO `system_role_resources` (`id`, `role_id`, `resources_id`) VALUES
 /*!40000 ALTER TABLE `system_role_resources` ENABLE KEYS */;
 
 
--- 导出  表 spring-app.system_user 结构
+-- 导出  表 springboot-app.system_user 结构
 CREATE TABLE IF NOT EXISTS `system_user` (
   `id` varchar(50) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `system_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_user 的数据：~2 rows (大约)
+-- 正在导出表  springboot-app.system_user 的数据：~2 rows (大约)
 DELETE FROM `system_user`;
 /*!40000 ALTER TABLE `system_user` DISABLE KEYS */;
 INSERT INTO `system_user` (`id`, `username`, `password`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `system_user` (`id`, `username`, `password`) VALUES
 /*!40000 ALTER TABLE `system_user` ENABLE KEYS */;
 
 
--- 导出  表 spring-app.system_user_role 结构
+-- 导出  表 springboot-app.system_user_role 结构
 CREATE TABLE IF NOT EXISTS `system_user_role` (
   `id` varchar(50) NOT NULL,
   `user_id` varchar(50) DEFAULT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `system_user_role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  spring-app.system_user_role 的数据：~0 rows (大约)
+-- 正在导出表  springboot-app.system_user_role 的数据：~0 rows (大约)
 DELETE FROM `system_user_role`;
 /*!40000 ALTER TABLE `system_user_role` DISABLE KEYS */;
 INSERT INTO `system_user_role` (`id`, `user_id`, `role_id`) VALUES
