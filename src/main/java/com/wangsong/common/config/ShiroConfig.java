@@ -3,20 +3,28 @@ package com.wangsong.common.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Component;
 
 @Configuration
 public class ShiroConfig {
+	@Value(value = "${globalSessionTimeout}")
+	private long globalSessionTimeout;
+	
+	
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -50,8 +58,7 @@ public class ShiroConfig {
      * 
      * @return
      */
-    @Bean(name = "ehCacheManager")
-    @DependsOn("lifecycleBeanPostProcessor")
+    @Bean
     public EhCacheManager ehCacheManager() {
         EhCacheManager cacheManager = new EhCacheManager();
         cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
@@ -73,21 +80,27 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    @DependsOn({"lifecycleBeanPostProcessor"})
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
     }
-    
-    /**
-     * Shiro生命周期处理器
-     * @return
-     */
+
     @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
-        return new LifecycleBeanPostProcessor();
+    public DefaultWebSessionManager sessionManager() {
+    	DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
+    	defaultWebSessionManager.setSessionIdCookie(sessionIdCookie());
+    	defaultWebSessionManager.setGlobalSessionTimeout(globalSessionTimeout);
+        return defaultWebSessionManager;
     }
+    
+    @Bean
+    public SimpleCookie sessionIdCookie() {
+    	SimpleCookie simpleCookie = new SimpleCookie("shiroSessionId");
+        return simpleCookie;
+    }
+    
+    
     
     
     @Bean
