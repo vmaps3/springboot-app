@@ -1,8 +1,8 @@
-# spring-app
+# springboot-app
 
 ## 系统介绍
 
-- spring-app 是J2EE基础开发平台，架构设计包括（动静分离），技术栈包括（SpringBoot、MyBatis、Shiro、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
+- springboot-app 是J2EE基础开发平台，架构设计包括（动静分离），技术栈包括（SpringBoot、MyBatis、Shiro、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
 
 ## 业务功能
 
@@ -22,13 +22,6 @@
 - 构建 maven
 - 容器 tomcat
 - 数据库 mysql
-
-## 部署方法
-
-- 1.使用maven导入工程项目
-- 2.导入数据库文件spring-app.sql
-- 3.更改配置文件相关参数config.properties
-- 4.tomcat加载web启动
 
 ## 预览
 
