@@ -23,6 +23,14 @@
 - 容器 tomcat
 - 数据库 mysql
 
+
+##部署
+
+- 1.导入数据库脚本springboot-app.sql
+- 2.安装nginx配置参考nginx.txt
+- 3.启动sprtingboot-app-service位置com.wangsong.Application
+- 4.访问nginx端口/sprtingboot-app-html
+
 ## 预览
 
 ![](http://git.oschina.net/uploads/images/2016/1116/164543_5571d631_420150.png "登录")
