@@ -17,6 +17,7 @@
 - MVC springmvc 
 - ORM mybatis 
 - 权限 shiro 
+- 验证 hibernate-validation
 - 连接池 druid
 - 页面UI easyui
 - 构建 maven
