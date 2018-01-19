@@ -3,6 +3,7 @@ package com.wangsong.system.dao;
 import java.util.List;
 
 import com.wangsong.system.model.Resources;
+import com.wangsong.system.model.RoleResources;
 
 public interface ResourcesMapper{
 	int deleteByPrimaryKey(String id);
@@ -16,4 +17,6 @@ public interface ResourcesMapper{
     int updateByPrimaryKey(Resources record);
 
 	void deleteBy(String[] id);
+	
+	List<Resources> findResourcesByT(Resources resources);
 }

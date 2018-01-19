@@ -15,11 +15,8 @@ public interface RoleResourcesMapper {
     List<RoleResources> selectAll();
 
     int updateByPrimaryKey(RoleResources record);
-    
-	List<Resources> findResourcesByT(Resources resources);
 
 	void deleteByT(RoleResources[] roleResources);
 
 	List<RoleResources> findTByT(RoleResources roleResources);
-		
 }
