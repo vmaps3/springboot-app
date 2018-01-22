@@ -1,6 +1,5 @@
 package com.wangsong.common.config;
 
-import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

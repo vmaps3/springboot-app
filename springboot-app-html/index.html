@@ -20,7 +20,7 @@
 		
 		$(function(){ 
 			$('#tree').tree({
-				url: url+'/system/resources/findResourcesEMUByResources.do',
+				url: url+'/system/resources/findResourcesEMUByResources',
 			 	onClick: function(node){
 			       if($('#tree').tree('isLeaf',node.target)){//判断是否是叶子节点
 			    	   addTab(node.text,htmlURL+node.attributes.url)
@@ -32,7 +32,7 @@
 			  $.messager.confirm("确认", "确认注销吗？", function (r) {
 			        if (r) {
 						$.ajax({   
-							url:url+"/logoutJSON.do",   
+							url:url+"/logoutJSON",   
 							success:function(data){   	
 							}
 						});
