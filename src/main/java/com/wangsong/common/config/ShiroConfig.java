@@ -68,6 +68,8 @@ public class ShiroConfig {
         securityManager.setRealm(myShiroRealm());
      // <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->
         securityManager.setCacheManager(ehCacheManager());
+        securityManager.setSessionManager(sessionManager());
+
         return securityManager;
     }
     
