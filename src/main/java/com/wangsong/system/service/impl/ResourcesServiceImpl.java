@@ -18,6 +18,7 @@ import com.wangsong.system.dao.RoleResourcesMapper;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.service.ResourcesService;
+import com.wangsong.system.service.RoleService;
 
 
 
@@ -27,7 +28,7 @@ public class ResourcesServiceImpl  implements ResourcesService {
 	@Autowired
 	private ResourcesMapper resourcesMapper;
 	@Autowired
-	private RoleResourcesMapper roleResourcesMapper;
+	private RoleService roleService;
 	
 	@Override
 	public Result deleteResources(String[] id) {
@@ -48,7 +49,7 @@ public class ResourcesServiceImpl  implements ResourcesService {
 		if(j==0){
 			return new Result("success",null);
 		}
-		roleResourcesMapper.deleteByT(r);
+		roleService.deleteByT(r);
 		resourcesMapper.deleteBy(id);
 		return new Result("success",null);
 	}
@@ -85,7 +86,7 @@ public class ResourcesServiceImpl  implements ResourcesService {
 	}
 	@Override
 	public List<Resources> findTByT(Resources resources){
-		List<Resources> resourcesList =roleResourcesMapper.findResourcesByT(resources);
+		List<Resources> resourcesList =roleService.findResourcesByT(resources);
 		return resourcesList;
 	}
 	

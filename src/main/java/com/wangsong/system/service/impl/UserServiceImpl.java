@@ -115,5 +115,11 @@ public class UserServiceImpl  implements UserService{
 	public User findTByT(User user) {
 		return userMapper.findTByT(user);
 	}
+
+	@Override
+	public void deleteByT(UserRole[] u) {
+		userRoleMapper.deleteByT(u);
+		
+	}
 	
 }
