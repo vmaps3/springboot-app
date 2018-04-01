@@ -30,7 +30,7 @@
 - 1.导入数据库脚本springboot-app.sql
 - 2.安装nginx配置参考nginx.txt
 - 3.启动sprtingboot-app-service位置com.wangsong.Application
-- 4.访问nginx端口/sprtingboot-app-html
+- 4.访问nginx端口/springboot-app-html
 
 ## 预览
 
