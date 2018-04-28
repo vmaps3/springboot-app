@@ -1,7 +1,0 @@
-location /springboot-app-html {
-        root   D:/app/workspace/springboot-app;
-	index login.html;		
-}
-location /springboot-app/ {
-	proxy_pass http://127.0.0.1:8082;
-}
