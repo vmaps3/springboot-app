@@ -23,6 +23,7 @@
 - 构建 maven
 - 容器 tomcat
 - 数据库 mysql
+- 定时任务 quartz
 
 
 ## 部署
