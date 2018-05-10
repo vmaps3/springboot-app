@@ -26,13 +26,11 @@
 - 数据库 mysql
 - 定时任务 quartz
 
-
 ## 部署
 
 - 1.导入数据库脚本springboot-app.sql
 - 2.启动sprtingboot-app位置com.wangsong.Application
 - 3.访问/springboot-app/html/login.html
-
 
 ## qq交流群
 
