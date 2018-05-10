@@ -9,10 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.wangsong.*.dao")
 public class Application {
 
-	public static void main(String[] args) {
-
-		SpringApplication.run(Application.class, args);
-
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
 }
