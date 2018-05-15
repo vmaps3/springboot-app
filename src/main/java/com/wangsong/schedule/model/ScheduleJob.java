@@ -4,83 +4,83 @@ import java.io.Serializable;
 
 /**
  * 定时任务pojo
+ *
  * @author ty
  * @date 2015年1月13日
  */
 public class ScheduleJob implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7443454565979676171L;
-	private String name;	//任务名
-	private String group;	//任务组
-	private String cronExpression;	//cron表达式
-	private String status;	//状态
-	private String className;	//要执行的任务类路径名
-	private String previousFireTime;
-	private String nextFireTime;
-	
-	
-	
-	public String getPreviousFireTime() {
-		return previousFireTime;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 7443454565979676171L;
+    private String name;    //任务名
+    private String group;    //任务组
+    private String cronExpression;    //cron表达式
+    private String status;    //状态
+    private String className;    //要执行的任务类路径名
+    private String previousFireTime;
+    private String nextFireTime;
 
-	public void setPreviousFireTime(String previousFireTime) {
-		this.previousFireTime = previousFireTime;
-	}
 
-	public String getNextFireTime() {
-		return nextFireTime;
-	}
+    public String getPreviousFireTime() {
+        return previousFireTime;
+    }
 
-	public void setNextFireTime(String nextFireTime) {
-		this.nextFireTime = nextFireTime;
-	}
+    public void setPreviousFireTime(String previousFireTime) {
+        this.previousFireTime = previousFireTime;
+    }
 
-	public ScheduleJob() {
-		super();
-	}
+    public String getNextFireTime() {
+        return nextFireTime;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setNextFireTime(String nextFireTime) {
+        this.nextFireTime = nextFireTime;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public ScheduleJob() {
+        super();
+    }
 
-	public String getGroup() {
-		return group;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setGroup(String group) {
-		this.group = group;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getGroup() {
+        return group;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setGroup(String group) {
+        this.group = group;
+    }
 
-	public String getCronExpression() {
-		return cronExpression;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setCronExpression(String cronExpression) {
-		this.cronExpression = cronExpression;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getCronExpression() {
+        return cronExpression;
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    public void setCronExpression(String cronExpression) {
+        this.cronExpression = cronExpression;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
 }

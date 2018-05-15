@@ -18,36 +18,34 @@ import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private ResourcesService resourcesService;
+    @Autowired
+    private ResourcesService resourcesService;
 
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = userService.findTByT(new User(null,token.getUsername(),null));
-		// 认证缓存信息
-		return new SimpleAuthenticationInfo(user.getId(), user.getPassword().toCharArray(), getName());
-	}
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        User user = userService.findTByT(new User(null, token.getUsername(), null));
+        // 认证缓存信息
+        return new SimpleAuthenticationInfo(user.getId(), user.getPassword().toCharArray(), getName());
+    }
 
-	/**
-	 * 
-	 * Shiro权限认证
-	 * 
-	 */
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		String shiroUser =(String) principals.getPrimaryPrincipal();
-		List<Resources> roleList = resourcesService.findTByT(new Resources(shiroUser,null,null,null,"2",null));
-		Set<String> urlSet = new HashSet<String>();
-		for (Resources roleId : roleList) {
-			urlSet.add(roleId.getUrl());
-		}
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.addStringPermissions(urlSet);
-		return info;
-	}
+    /**
+     * Shiro权限认证
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        String shiroUser = (String) principals.getPrimaryPrincipal();
+        List<Resources> roleList = resourcesService.findTByT(new Resources(shiroUser, null, null, null, "2", null));
+        Set<String> urlSet = new HashSet<String>();
+        for (Resources roleId : roleList) {
+            urlSet.add(roleId.getUrl());
+        }
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addStringPermissions(urlSet);
+        return info;
+    }
 
 }

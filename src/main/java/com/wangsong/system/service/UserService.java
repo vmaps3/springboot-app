@@ -8,25 +8,24 @@ import com.wangsong.system.model.UserRole;
 import com.wangsong.system.vo.UserVO;
 
 public interface UserService {
-	
-	User selectByPrimaryKey();
-	
-	Result insertUser(UserAddModel muser);
-    
+
+    User selectByPrimaryKey();
+
+    Result insertUser(UserAddModel muser);
+
     Result updateUser(UserAddModel muser);
-    
+
     Result deleteUser(String[] id);
-    
+
     Result updatePassword(UserAddModel u);
 
-	Object findTByPage(UserPage user);
+    Object findTByPage(UserPage user);
 
-	UserVO selectByPrimaryKey(String id);
+    UserVO selectByPrimaryKey(String id);
 
-	User findTByT(User user);
+    User findTByT(User user);
 
-	void deleteByT(UserRole[] u);
+    void deleteByT(UserRole[] u);
 
 
-	
 }

@@ -5,14 +5,14 @@ import javax.servlet.http.HttpServletRequest;
 import com.wangsong.common.model.Result;
 
 public interface LoginService {
-	
-	Result loginPost(String username, String password);
 
-	Result logoutJSON();
-	
-	Result index();
+    Result loginPost(String username, String password);
 
-	Result unauth();
+    Result logoutJSON();
 
-	Result getStatus(HttpServletRequest request);
+    Result index();
+
+    Result unauth();
+
+    Result getStatus(HttpServletRequest request);
 }

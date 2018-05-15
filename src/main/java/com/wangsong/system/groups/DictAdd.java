@@ -1,5 +1,5 @@
 package com.wangsong.system.groups;
 
-public interface  DictAdd {
+public interface DictAdd {
 
 }

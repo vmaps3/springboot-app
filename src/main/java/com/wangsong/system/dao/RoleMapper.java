@@ -9,7 +9,7 @@ import com.wangsong.system.vo.RoleVO;
 
 public interface RoleMapper {
 
-	int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Role record);
 
@@ -18,17 +18,17 @@ public interface RoleMapper {
     List<Role> selectAll();
 
     int updateByPrimaryKey(Role record);
-	
-	List<Role> findTByPage(RolePage role);
 
-	int findTCountByT(RolePage role);
+    List<Role> findTByPage(RolePage role);
 
-	void deleteBy(String[] id);
+    int findTCountByT(RolePage role);
 
-	RoleVO selectRoleVOByPrimaryKey(String id);
+    void deleteBy(String[] id);
 
-	int updateByPrimaryKeyRoleAddModel(RoleAddModel role);
+    RoleVO selectRoleVOByPrimaryKey(String id);
 
-	int insertRoleAddModel(RoleAddModel role);
+    int updateByPrimaryKeyRoleAddModel(RoleAddModel role);
+
+    int insertRoleAddModel(RoleAddModel role);
 
 }

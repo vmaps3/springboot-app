@@ -18,16 +18,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ShiroConfig {
-	@Value(value = "${globalSessionTimeout}")
-	private long globalSessionTimeout;
-	
-	
+    @Value(value = "${globalSessionTimeout}")
+    private long globalSessionTimeout;
+
+
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //拦截器.
-        Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/login", "anon");
@@ -44,14 +44,15 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ShiroDbRealm myShiroRealm(){
-    	ShiroDbRealm myShiroRealm = new ShiroDbRealm();
+    public ShiroDbRealm myShiroRealm() {
+        ShiroDbRealm myShiroRealm = new ShiroDbRealm();
         return myShiroRealm;
     }
+
     /**
      * EhCacheManager，缓存管理，用户登陆成功后，把用户信息和权限信息缓存起来，
      * 然后每次用户请求时，放入用户的session中，如果不设置这个bean，每个请求都会查询一次数据库。
-     * 
+     *
      * @return
      */
     @Bean
@@ -62,23 +63,24 @@ public class ShiroConfig {
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+    public DefaultWebSecurityManager securityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
-     // <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->
+        // <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->
         securityManager.setCacheManager(ehCacheManager());
         securityManager.setSessionManager(sessionManager());
 
         return securityManager;
     }
-    
+
     /**
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     *
      * @return
      */
     @Bean
-    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
@@ -86,24 +88,22 @@ public class ShiroConfig {
 
     @Bean
     public DefaultWebSessionManager sessionManager() {
-    	DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
-    	defaultWebSessionManager.setSessionIdCookie(sessionIdCookie());
-    	defaultWebSessionManager.setGlobalSessionTimeout(globalSessionTimeout);
+        DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
+        defaultWebSessionManager.setSessionIdCookie(sessionIdCookie());
+        defaultWebSessionManager.setGlobalSessionTimeout(globalSessionTimeout);
         return defaultWebSessionManager;
     }
-    
+
     @Bean
     public SimpleCookie sessionIdCookie() {
-    	SimpleCookie simpleCookie = new SimpleCookie("shiroSessionId");
+        SimpleCookie simpleCookie = new SimpleCookie("shiroSessionId");
         return simpleCookie;
     }
-    
-    
-    
-    
+
+
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager manager) {
-        AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(manager);
         return advisor;
     }

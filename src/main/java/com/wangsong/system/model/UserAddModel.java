@@ -8,38 +8,41 @@ import com.wangsong.system.groups.UserAdd;
 import com.wangsong.system.groups.UserUpdate;
 
 
+public class UserAddModel implements Serializable {
 
-public class UserAddModel implements Serializable{
 
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7484136779753770396L;
-	@NotNull(groups = { UserUpdate.class }, message = "id不能为空")  
-	private String id;
-	@NotNull(groups = { UserUpdate.class,UserAdd.class  }, message = "username不能为空")  
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7484136779753770396L;
+    @NotNull(groups = {UserUpdate.class}, message = "id不能为空")
+    private String id;
+    @NotNull(groups = {UserUpdate.class, UserAdd.class}, message = "username不能为空")
     private String username;
-	@NotNull(groups = { UserUpdate.class,UserAdd.class }, message = "password不能为空")  
+    @NotNull(groups = {UserUpdate.class, UserAdd.class}, message = "password不能为空")
     private String password;
-	private String[] roleId;
-	
-	public String[] getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(String[] roleId) {
-		this.roleId = roleId;
-	}
-	public UserAddModel(String id, String username, String password) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-	}
-	public UserAddModel(){
-		
-	}
-	public String getId() {
+    private String[] roleId;
+
+    public String[] getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String[] roleId) {
+        this.roleId = roleId;
+    }
+
+    public UserAddModel(String id, String username, String password) {
+        super();
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserAddModel() {
+
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -63,10 +66,10 @@ public class UserAddModel implements Serializable{
         this.password = password == null ? null : password.trim();
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
-	}
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+    }
 
 
 }

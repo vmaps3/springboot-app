@@ -25,86 +25,85 @@ import com.wangsong.system.vo.RoleVO;
 
 @Service
 @Transactional
-public class RoleServiceImpl  implements RoleService {
-	@Autowired
-	private RoleMapper roleMapper;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private RoleResourcesMapper roleResourcesMapper;
-	
-	
+public class RoleServiceImpl implements RoleService {
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RoleResourcesMapper roleResourcesMapper;
 
-	@Override
-	public Result insertRole(RoleAddModel role) {
-		String[] resourcesId =role.getResourcesId();
-		role.setId(UUID.randomUUID().toString());
-		roleMapper.insertRoleAddModel(role);
-		if(resourcesId==null){
-			return  new Result("success",null);
-		}
-		for(int i=0;i<resourcesId.length;i++){		
-			roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString()
-					,resourcesId[i],role.getId()));
-		}
-		return  new Result("success",null);
-	}
 
-	@Override
-	public Result updateRole(RoleAddModel role) {
-		String[] resourcesId =role.getResourcesId();
-		roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null,null,role.getId())});
-		roleMapper.updateByPrimaryKeyRoleAddModel(role);
-		if(resourcesId==null){
-			return  new Result("success",null);
-		}
-		for(int i=0;i<resourcesId.length;i++){
-			roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString(),resourcesId[i],role.getId()));
-		}
-		return  new Result("success",null);
-	}
+    @Override
+    public Result insertRole(RoleAddModel role) {
+        String[] resourcesId = role.getResourcesId();
+        role.setId(UUID.randomUUID().toString());
+        roleMapper.insertRoleAddModel(role);
+        if (resourcesId == null) {
+            return new Result("success", null);
+        }
+        for (int i = 0; i < resourcesId.length; i++) {
+            roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString()
+                    , resourcesId[i], role.getId()));
+        }
+        return new Result("success", null);
+    }
 
-	@Override
-	public Result deleteRole(String[] id) {
-		RoleResources[] r=new RoleResources[id.length];
-		UserRole[] u=new UserRole[id.length];
-		for(int i=0;i<id.length;i++){
-			r[i]=new RoleResources(null,null,id[i]);
-			u[i]=new UserRole(null,null,id[i]);
-		}
+    @Override
+    public Result updateRole(RoleAddModel role) {
+        String[] resourcesId = role.getResourcesId();
+        roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null, null, role.getId())});
+        roleMapper.updateByPrimaryKeyRoleAddModel(role);
+        if (resourcesId == null) {
+            return new Result("success", null);
+        }
+        for (int i = 0; i < resourcesId.length; i++) {
+            roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString(), resourcesId[i], role.getId()));
+        }
+        return new Result("success", null);
+    }
 
-		userService.deleteByT(u);
-		roleResourcesMapper.deleteByT(r);
-		roleMapper.deleteBy(id);
-		return  new Result("success",null);
-	}
+    @Override
+    public Result deleteRole(String[] id) {
+        RoleResources[] r = new RoleResources[id.length];
+        UserRole[] u = new UserRole[id.length];
+        for (int i = 0; i < id.length; i++) {
+            r[i] = new RoleResources(null, null, id[i]);
+            u[i] = new UserRole(null, null, id[i]);
+        }
 
-	@Override
-	public Object findTByPage(RolePage role) {
-		role.setFirst((role.getPage() - 1) * role.getRows());
-		return new GetEasyUIData(roleMapper.findTByPage(role)
-				,roleMapper.findTCountByT(role));
-	}
+        userService.deleteByT(u);
+        roleResourcesMapper.deleteByT(r);
+        roleMapper.deleteBy(id);
+        return new Result("success", null);
+    }
 
-	@Override
-	public RoleVO selectByPrimaryKey(String id) {
-		RoleVO role=roleMapper.selectRoleVOByPrimaryKey(id);
-		role.setRoleResourcesList(roleResourcesMapper.findTByT(new RoleResources(null,null,id)));
-		return role;
-	}
+    @Override
+    public Object findTByPage(RolePage role) {
+        role.setFirst((role.getPage() - 1) * role.getRows());
+        return new GetEasyUIData(roleMapper.findTByPage(role)
+                , roleMapper.findTCountByT(role));
+    }
 
-	@Override
-	public List<Role> selectAll() {
-		return roleMapper.selectAll();
-	}
+    @Override
+    public RoleVO selectByPrimaryKey(String id) {
+        RoleVO role = roleMapper.selectRoleVOByPrimaryKey(id);
+        role.setRoleResourcesList(roleResourcesMapper.findTByT(new RoleResources(null, null, id)));
+        return role;
+    }
 
-	@Override
-	public void deleteByT(RoleResources[] r) {
-		roleResourcesMapper.deleteByT(r);
-	}
+    @Override
+    public List<Role> selectAll() {
+        return roleMapper.selectAll();
+    }
 
-	@Override
-	public List<Resources> findResourcesByT(Resources resources) {
-		return roleResourcesMapper.findResourcesByT(resources);
-	}
+    @Override
+    public void deleteByT(RoleResources[] r) {
+        roleResourcesMapper.deleteByT(r);
+    }
+
+    @Override
+    public List<Resources> findResourcesByT(Resources resources) {
+        return roleResourcesMapper.findResourcesByT(resources);
+    }
 }

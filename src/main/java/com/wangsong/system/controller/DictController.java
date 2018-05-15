@@ -17,48 +17,48 @@ import com.wangsong.system.service.DictService;
 
 @Controller
 @RequestMapping("/system/dict")
-public class DictController extends BaseController{
-	@Autowired
-	private DictService dictService;
-	
-	@RequiresPermissions("/system/dict/list")
-	@RequestMapping(value="/list")
-	@ResponseBody
-	public Object list(DictPage dict) {
-		return dictService.findTByPage(dict);
-	}
+public class DictController extends BaseController {
+    @Autowired
+    private DictService dictService;
 
-	@RequiresPermissions("/system/dict/add")
-	@RequestMapping(value="/add")
-	@ResponseBody
-	public Object add(@Validated({DictAdd.class}) Dict dict,BindingResult bindingResult) {
-		return dictService.insertDict(dict);
-	}
-	
-	@RequiresPermissions("/system/dict/update")
-	@RequestMapping(value="/update")
-	@ResponseBody
-	public Object update(@Validated({DictUpdate.class}) Dict dict,BindingResult bindingResult) {
-		return dictService.updateByPrimaryKeyDict(dict);
-	}
-	
-	@RequiresPermissions("/system/dict/delete")
-	@RequestMapping(value="/delete")
-	@ResponseBody
-	public Object delete(String[] id) {
-		return dictService.deleteByPrimaryKeyDict(id);
-	}
-	
-	@RequestMapping(value="/findDictByDict")
-	@ResponseBody
-	public Object findDictByDict(Dict dict) {
-		return dictService.findTByT(dict);
-	}
-	
-	@RequestMapping(value="/selectByPrimaryKey")
-	@ResponseBody
-	public Object selectByPrimaryKey(String id) {
-		return dictService.selectByPrimaryKey(id);
-	}
-	
+    @RequiresPermissions("/system/dict/list")
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list(DictPage dict) {
+        return dictService.findTByPage(dict);
+    }
+
+    @RequiresPermissions("/system/dict/add")
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public Object add(@Validated({DictAdd.class}) Dict dict, BindingResult bindingResult) {
+        return dictService.insertDict(dict);
+    }
+
+    @RequiresPermissions("/system/dict/update")
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public Object update(@Validated({DictUpdate.class}) Dict dict, BindingResult bindingResult) {
+        return dictService.updateByPrimaryKeyDict(dict);
+    }
+
+    @RequiresPermissions("/system/dict/delete")
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(String[] id) {
+        return dictService.deleteByPrimaryKeyDict(id);
+    }
+
+    @RequestMapping(value = "/findDictByDict")
+    @ResponseBody
+    public Object findDictByDict(Dict dict) {
+        return dictService.findTByT(dict);
+    }
+
+    @RequestMapping(value = "/selectByPrimaryKey")
+    @ResponseBody
+    public Object selectByPrimaryKey(String id) {
+        return dictService.selectByPrimaryKey(id);
+    }
+
 }

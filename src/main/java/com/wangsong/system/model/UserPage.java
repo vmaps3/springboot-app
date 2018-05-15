@@ -3,46 +3,45 @@ package com.wangsong.system.model;
 import java.io.Serializable;
 
 
+public class UserPage implements Serializable {
 
-public class UserPage implements Serializable{
 
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7484136779753770396L;
-	private String id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7484136779753770396L;
+    private String id;
     private String username;
     private String password;
     private int page;
     private int rows;
     private int first;
-    
-	public int getPage() {
-		return page;
-	}
 
-	public void setPage(int page) {
-		this.page = page;
-	}
+    public int getPage() {
+        return page;
+    }
 
-	public int getRows() {
-		return rows;
-	}
+    public void setPage(int page) {
+        this.page = page;
+    }
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+    public int getRows() {
+        return rows;
+    }
 
-	public int getFirst() {
-		return first;
-	}
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
 
-	public void setFirst(int first) {
-		this.first = first;
-	}
+    public int getFirst() {
+        return first;
+    }
 
-	public String getId() {
+    public void setFirst(int first) {
+        this.first = first;
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -66,10 +65,10 @@ public class UserPage implements Serializable{
         this.password = password == null ? null : password.trim();
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
-	}
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+    }
 
 
 }

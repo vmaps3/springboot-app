@@ -8,15 +8,15 @@ import com.wangsong.system.model.DictPage;
 
 public interface DictService {
 
-	Object findTByPage(DictPage dict);
+    Object findTByPage(DictPage dict);
 
-	Result insertDict(Dict dict);
+    Result insertDict(Dict dict);
 
-	Result updateByPrimaryKeyDict(Dict dict);
+    Result updateByPrimaryKeyDict(Dict dict);
 
-	Result deleteByPrimaryKeyDict(String[] id);
+    Result deleteByPrimaryKeyDict(String[] id);
 
-	Dict selectByPrimaryKey(String id);
+    Dict selectByPrimaryKey(String id);
 
-	List<Dict> findTByT(Dict dict);	
+    List<Dict> findTByT(Dict dict);
 }

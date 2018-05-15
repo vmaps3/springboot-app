@@ -12,20 +12,20 @@ import com.wangsong.system.vo.RoleVO;
 
 public interface RoleService {
 
-	Result insertRole(RoleAddModel role);
-    
+    Result insertRole(RoleAddModel role);
+
     Result updateRole(RoleAddModel role);
-    
+
     Result deleteRole(String[] id);
 
-	Object findTByPage(RolePage role);
+    Object findTByPage(RolePage role);
 
-	RoleVO selectByPrimaryKey(String id);
+    RoleVO selectByPrimaryKey(String id);
 
-	List<Role> selectAll();
+    List<Role> selectAll();
 
-	void deleteByT(RoleResources[] r);
+    void deleteByT(RoleResources[] r);
 
-	List<Resources> findResourcesByT(Resources resources);
+    List<Resources> findResourcesByT(Resources resources);
 
 }

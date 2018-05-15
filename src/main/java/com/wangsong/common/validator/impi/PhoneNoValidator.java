@@ -11,8 +11,8 @@ import com.wangsong.common.validator.PhoneNo;
  * Date: 14-11-1
  * Time: 上午10:45
  */
-public class PhoneNoValidator implements ConstraintValidator<PhoneNo,String> {
-	
+public class PhoneNoValidator implements ConstraintValidator<PhoneNo, String> {
+
     @Override
     public void initialize(PhoneNo constraintAnnotation) {
     }
@@ -20,7 +20,7 @@ public class PhoneNoValidator implements ConstraintValidator<PhoneNo,String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if(value.equals("138")){
+        if (value.equals("138")) {
             return true;
         }
         return false;

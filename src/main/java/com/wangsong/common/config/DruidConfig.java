@@ -97,6 +97,7 @@ public class DruidConfig {
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
+            e.printStackTrace();
         }
         return datasource;
     }

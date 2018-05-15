@@ -8,18 +8,18 @@ import com.wangsong.system.model.Resources;
 
 public interface ResourcesService {
 
-	Result deleteResources(String[] id);
-	
-	Result insertResources(Resources resources);
-	
-	List<JsonTreeData> findResources();
+    Result deleteResources(String[] id);
 
-	List<JsonTreeData> findResourcesEMUByResources();
+    Result insertResources(Resources resources);
 
-	Result updateResources(Resources resources);
+    List<JsonTreeData> findResources();
 
-	List<Resources> findTByT(Resources resources);
+    List<JsonTreeData> findResourcesEMUByResources();
 
-	Resources selectByPrimaryKey(String id);
-	
+    Result updateResources(Resources resources);
+
+    List<Resources> findTByT(Resources resources);
+
+    Resources selectByPrimaryKey(String id);
+
 }

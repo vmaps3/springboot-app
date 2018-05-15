@@ -6,7 +6,7 @@ import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserRole;
 
 public interface UserRoleMapper {
-	int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String id);
 
     int insert(UserRole record);
 
@@ -16,7 +16,7 @@ public interface UserRoleMapper {
 
     int updateByPrimaryKey(User record);
 
-	void deleteByT(UserRole[] u);
+    void deleteByT(UserRole[] u);
 
-	List<UserRole> findTByT(UserRole userRole);
+    List<UserRole> findTByT(UserRole userRole);
 }

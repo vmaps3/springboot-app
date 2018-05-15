@@ -1,7 +1,6 @@
 package com.wangsong.system.controller;
 
 
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,55 +16,53 @@ import com.wangsong.system.model.Resources;
 import com.wangsong.system.service.ResourcesService;
 
 
-
 @Controller
 @RequestMapping("/system/resources")
 public class ResourcesController extends BaseController {
-	@Autowired
-	private ResourcesService resourcesService;
-	
-	@RequiresPermissions("/system/resources/add")
-	@RequestMapping(value="/add")
-	@ResponseBody
-	public Object add(@Validated({ResourcesAdd.class}) Resources resources,BindingResult bindingResult) {
-		return resourcesService.insertResources(resources);
-	}
-	
-	@RequiresPermissions("/system/resources/delete")
-	@RequestMapping(value="/delete")
-	@ResponseBody
-	public Object delete(String[] id) {
-		return resourcesService.deleteResources(id);
-	}
-	
-	
-	
-	@RequiresPermissions("/system/resources/update")
-	@RequestMapping(value="/update")
-	@ResponseBody
-	public Object update(@Validated({ResourcesUpdate.class}) Resources resources,BindingResult bindingResult) {
-		return resourcesService.updateResources(resources);
-	}
-	
-	@RequiresPermissions("/system/resources/list")
-	@RequestMapping(value="/list")
-	@ResponseBody
-	public Object list() {
-		return resourcesService.findResources();
-	}
-	
+    @Autowired
+    private ResourcesService resourcesService;
 
-	@RequestMapping(value="/findResourcesEMUByResources")
-	@ResponseBody
-	public Object findResourcesEMUByResources() {
-		return resourcesService.findResourcesEMUByResources();
-	}
-	
-	
-	@RequestMapping(value="/selectByPrimaryKey")
-	@ResponseBody
-	public Object selectByPrimaryKey(String id) {
-		return resourcesService.selectByPrimaryKey(id);
-	}
-	
+    @RequiresPermissions("/system/resources/add")
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public Object add(@Validated({ResourcesAdd.class}) Resources resources, BindingResult bindingResult) {
+        return resourcesService.insertResources(resources);
+    }
+
+    @RequiresPermissions("/system/resources/delete")
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(String[] id) {
+        return resourcesService.deleteResources(id);
+    }
+
+
+    @RequiresPermissions("/system/resources/update")
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public Object update(@Validated({ResourcesUpdate.class}) Resources resources, BindingResult bindingResult) {
+        return resourcesService.updateResources(resources);
+    }
+
+    @RequiresPermissions("/system/resources/list")
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list() {
+        return resourcesService.findResources();
+    }
+
+
+    @RequestMapping(value = "/findResourcesEMUByResources")
+    @ResponseBody
+    public Object findResourcesEMUByResources() {
+        return resourcesService.findResourcesEMUByResources();
+    }
+
+
+    @RequestMapping(value = "/selectByPrimaryKey")
+    @ResponseBody
+    public Object selectByPrimaryKey(String id) {
+        return resourcesService.selectByPrimaryKey(id);
+    }
+
 }

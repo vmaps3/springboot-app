@@ -11,18 +11,18 @@ import org.quartz.JobExecutionException;
 import com.wangsong.schedule.model.ScheduleJob;
 
 
-
 /**
  * 定时任务工作类
+ *
  * @author ty
  * @date 2015年1月13日
  */
-@DisallowConcurrentExecution  
+@DisallowConcurrentExecution
 public class TaskA implements Job {
-	 
+
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        ScheduleJob scheduleJob = (ScheduleJob)context.getMergedJobDataMap().get("scheduleJob");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");    
-	    System.out.println("任务名称 = [" + scheduleJob.getName() + "]"+ " 在 " + dateFormat.format(new Date())+" 时运行"); 
+        ScheduleJob scheduleJob = (ScheduleJob) context.getMergedJobDataMap().get("scheduleJob");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        System.out.println("任务名称 = [" + scheduleJob.getName() + "]" + " 在 " + dateFormat.format(new Date()) + " 时运行");
     }
 }

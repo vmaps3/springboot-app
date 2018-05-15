@@ -21,105 +21,105 @@ import com.wangsong.system.vo.UserVO;
 
 @Service
 @Transactional
-public class UserServiceImpl  implements UserService{
-	@Autowired
-	private UserMapper userMapper;
-	
-	@Autowired
-	private UserRoleMapper userRoleMapper;
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserMapper userMapper;
 
-	@Override
-	public Result insertUser(UserAddModel user) {
-		String [] roleId=user.getRoleId();
-		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-		user.setId(UUID.randomUUID().toString());
-		userMapper.insertUserAddModel(user);
-		if(roleId==null){
-			return new Result("success",null);
-		}
-		for(int i=0;i<roleId.length;i++){	
-			userRoleMapper.insert(new UserRole(UUID.randomUUID().toString()
-					,user.getId(),roleId[i]));
-		}
-		return new Result("success",null);
-	}
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
-	@Override
-	public Result updateUser(UserAddModel user) {
-		String [] roleId=user.getRoleId();
-		if(!"".equals(user.getPassword())){
-			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-			userMapper.updateByPrimaryKeyUserAddModel(user);
-		}
-		userMapper.updateNoPasswordByPrimaryKey(user);
-		
-		userRoleMapper.deleteByT(new UserRole[]{new UserRole(null,user.getId(),null)});
-		
-		
-		if(roleId==null){
-			return new Result("success",null);
-		}
-		for(int i=0;i<roleId.length;i++){
-			userRoleMapper.insert(new UserRole(UUID.randomUUID().toString()
-					,user.getId(),roleId[i]));
-		}
-		return new Result("success",null);
-	}
+    @Override
+    public Result insertUser(UserAddModel user) {
+        String[] roleId = user.getRoleId();
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        user.setId(UUID.randomUUID().toString());
+        userMapper.insertUserAddModel(user);
+        if (roleId == null) {
+            return new Result("success", null);
+        }
+        for (int i = 0; i < roleId.length; i++) {
+            userRoleMapper.insert(new UserRole(UUID.randomUUID().toString()
+                    , user.getId(), roleId[i]));
+        }
+        return new Result("success", null);
+    }
 
-	@Override
-	public Result deleteUser(String[] id) {
-		UserRole[] u=new UserRole[id.length];
-		for(int i=0;i<id.length;i++){
-			u[i]=new UserRole(null,id[i],null);
-		}
-		userRoleMapper.deleteByT(u);
-		userMapper.deleteBy(id);
-		
-		return new Result("success",null);
-	}
+    @Override
+    public Result updateUser(UserAddModel user) {
+        String[] roleId = user.getRoleId();
+        if (!"".equals(user.getPassword())) {
+            user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+            userMapper.updateByPrimaryKeyUserAddModel(user);
+        }
+        userMapper.updateNoPasswordByPrimaryKey(user);
 
-	@Override
-	public User selectByPrimaryKey(){
-		User u=userMapper.selectByPrimaryKey((String)SecurityUtils.getSubject().getPrincipal());
-		u.setPassword("");
-		return u;
-	}
-
-	@Override
-	public Result updatePassword(UserAddModel user) {
-		if(!"".equals(user.getPassword())){
-			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-			userMapper.updateByPrimaryKeyUserAddModel(user);
-		}
-		userMapper.updateNoPasswordByPrimaryKey(user);
-		return new Result("success",null);
-	}
-
-	@Override
-	public Object findTByPage(UserPage user) {
-		user.setFirst((user.getPage() - 1) * user.getRows());
-		return new GetEasyUIData(userMapper.findTByPage(user)
-				,userMapper.findTCountByT(user));
-	}
+        userRoleMapper.deleteByT(new UserRole[]{new UserRole(null, user.getId(), null)});
 
 
-	@Override
-	public UserVO selectByPrimaryKey(String id) {
-		UserVO u=userMapper.selectVOByPrimaryKey(id);
-		u.setPassword("");
-		u.setUserRoleList(userRoleMapper.findTByT(new UserRole(null,id,null)));
-		return u;
-	}
+        if (roleId == null) {
+            return new Result("success", null);
+        }
+        for (int i = 0; i < roleId.length; i++) {
+            userRoleMapper.insert(new UserRole(UUID.randomUUID().toString()
+                    , user.getId(), roleId[i]));
+        }
+        return new Result("success", null);
+    }
 
-	@Override
-	public User findTByT(User user) {
-		return userMapper.findTByT(user);
-	}
+    @Override
+    public Result deleteUser(String[] id) {
+        UserRole[] u = new UserRole[id.length];
+        for (int i = 0; i < id.length; i++) {
+            u[i] = new UserRole(null, id[i], null);
+        }
+        userRoleMapper.deleteByT(u);
+        userMapper.deleteBy(id);
 
-	@Override
-	public void deleteByT(UserRole[] u) {
-		userRoleMapper.deleteByT(u);
-		
-	}
-	
+        return new Result("success", null);
+    }
+
+    @Override
+    public User selectByPrimaryKey() {
+        User u = userMapper.selectByPrimaryKey((String) SecurityUtils.getSubject().getPrincipal());
+        u.setPassword("");
+        return u;
+    }
+
+    @Override
+    public Result updatePassword(UserAddModel user) {
+        if (!"".equals(user.getPassword())) {
+            user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+            userMapper.updateByPrimaryKeyUserAddModel(user);
+        }
+        userMapper.updateNoPasswordByPrimaryKey(user);
+        return new Result("success", null);
+    }
+
+    @Override
+    public Object findTByPage(UserPage user) {
+        user.setFirst((user.getPage() - 1) * user.getRows());
+        return new GetEasyUIData(userMapper.findTByPage(user)
+                , userMapper.findTCountByT(user));
+    }
+
+
+    @Override
+    public UserVO selectByPrimaryKey(String id) {
+        UserVO u = userMapper.selectVOByPrimaryKey(id);
+        u.setPassword("");
+        u.setUserRoleList(userRoleMapper.findTByT(new UserRole(null, id, null)));
+        return u;
+    }
+
+    @Override
+    public User findTByT(User user) {
+        return userMapper.findTByT(user);
+    }
+
+    @Override
+    public void deleteByT(UserRole[] u) {
+        userRoleMapper.deleteByT(u);
+
+    }
+
 }

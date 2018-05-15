@@ -22,8 +22,8 @@ public class ScheduleConfig {
 
     @Autowired
     private DataSource datasource;
-    
-    public static String applicationContextKey="applicationContextKey";
+
+    public static String applicationContextKey = "applicationContextKey";
 
     /**
      * config Scheduler
@@ -40,14 +40,14 @@ public class ScheduleConfig {
         return factoryBean;
     }
 
-    public Properties quartzProperties(){
+    public Properties quartzProperties() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource("classpath:quartz.properties"));
         try {
             propertiesFactoryBean.afterPropertiesSet();
             return propertiesFactoryBean.getObject();
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }
