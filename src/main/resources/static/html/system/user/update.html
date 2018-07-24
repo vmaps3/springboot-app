@@ -25,6 +25,7 @@
 				window.location=htmlURL+"/system/user/list.html";
 			}
 			$(function(){
+				
 				$.ajax({
 				     url:url+'/system/user/selectByPrimaryKey',
 				     type:'post',   
@@ -35,8 +36,7 @@
 						for(var i=0;i<data.userRoleList.length;i++){
 							s.push(data.userRoleList[i].roleId);
 						}
-						$('#cc').combotree({url: url+"/system/role/list"});
-						$('#cc').combotree('setValues',s);
+						$('#cc').combobox('setValues',s);
 				     }
 				});
 			})
@@ -67,10 +67,15 @@
 					<td>角色:</td>
 					<td>
 					
-
-						<input name="roleId"  id="cc" class="easyui-combotree" cascadeCheck ="false" panelHeight="auto"  multiple>
-
-
+						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
+							data-options="
+								url:url+'/system/role/listAll',
+								method:'get',
+								valueField:'id',
+								textField:'name',
+								panelHeight:'auto'
+							">
+					
 					</td>
 				</tr>
 				

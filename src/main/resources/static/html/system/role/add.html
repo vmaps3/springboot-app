@@ -8,7 +8,6 @@
 		<script type="text/javascript">
 			function submitForm(){
 				if($("#ff").form('validate')==true){
-					$("#pid").val(getQueryString("pid"));
 					$.ajax({   
 					     url:url+"/system/role/add",   
 					     type:$("#ff").attr("method"),   
@@ -35,7 +34,6 @@
 	<body>
 		<form id="ff" method="POST">
 			<input type="hidden" name="id"/>
-			<input type="hidden" name="pid" id="pid"/>
 			<table>
 				<tr>
 					<td>名称:</td>

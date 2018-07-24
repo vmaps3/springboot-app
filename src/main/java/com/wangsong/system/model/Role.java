@@ -17,15 +17,7 @@ public class Role implements Serializable {
     private String id;
     @NotNull(groups = {RoleUpdate.class, RoleAdd.class}, message = "name不能为空")
     private String name;
-    private String pid;
 
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
 
     public Role(String id, String name) {
         super();

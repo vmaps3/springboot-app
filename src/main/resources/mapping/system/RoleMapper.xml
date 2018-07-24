@@ -4,17 +4,16 @@
     <resultMap id="BaseResultMap" type="com.wangsong.system.model.Role">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="pid" jdbcType="VARCHAR" property="pid"/>
     </resultMap>
     <insert id="insert" parameterType="com.wangsong.system.model.Role">
-        insert into system_role (id, name,pid)
-        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR})
+        insert into system_role (id, name)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
     </insert>
 
 
     <insert id="insertRoleAddModel" parameterType="com.wangsong.system.model.RoleAddModel">
-        insert into system_role (id, name,pid)
-        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR})
+        insert into system_role (id, name)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
     </insert>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -24,24 +23,24 @@
 
     <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Role">
         update system_role
-        set name = #{name,jdbcType=VARCHAR},pid = #{pid,jdbcType=VARCHAR}
+        set name = #{name,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
 
     <update id="updateByPrimaryKeyRoleAddModel" parameterType="com.wangsong.system.model.RoleAddModel">
         update system_role
-        set name = #{name,jdbcType=VARCHAR},pid =  #{pid,jdbcType=VARCHAR}
+        set name = #{name,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select id, name,pid
+        select id, name
         from system_role
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
-        select id, name,pid
+        select id, name
         from system_role
     </select>
 
@@ -56,7 +55,7 @@
     </select>
 
     <select id="findTByPage" parameterType="com.wangsong.system.model.RolePage" resultMap="BaseResultMap">
-        select id, name,pid
+        select id, name
         from system_role
         where 1=1
         <if test="name!= null and name != ''">
@@ -70,14 +69,10 @@
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
-        or pid in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
     </delete>
 
     <select id="selectRoleVOByPrimaryKey" parameterType="java.lang.String" resultType="com.wangsong.system.vo.RoleVO">
-        select id, name,pid
+        select id, name
         from system_role
         where id = #{id,jdbcType=VARCHAR}
     </select>

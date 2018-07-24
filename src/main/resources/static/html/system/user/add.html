@@ -42,10 +42,6 @@
 			function toList(){
 				window.location=htmlURL+"/system/user/list.html";
 			}
-
-			$(function(){
-				$('#roleId').combotree({url: url+"/system/role/list"});
-			});
 		</script>
 	</head>
 	<body>
@@ -64,7 +60,14 @@
 					<td>角色:</td>
 					<td>
 						
-						<input name="roleId"  id="roleId" class="easyui-combotree" cascadeCheck ="false" panelHeight="auto"  multiple>
+						<input class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
+							data-options="
+								url:url+'/system/role/listAll',
+								method:'get',
+								valueField:'id',
+								textField:'name',
+								panelHeight:'auto'
+							">
 					</td>
 				</tr>
 				
