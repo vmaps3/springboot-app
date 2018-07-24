@@ -16,6 +16,7 @@ public class RoleAddModel implements Serializable {
     private String id;
     @NotNull(groups = {RoleUpdate.class, RoleAddModel.class}, message = "name不能为空")
     private String name;
+    private String pid;
     private String[] resourcesId;
 
 
@@ -53,5 +54,11 @@ public class RoleAddModel implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getPid() {
+        return pid;
+    }
 
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
 }

@@ -9,6 +9,8 @@ public class RoleVO {
 
     private String id;
     private String name;
+    private String pid;
+
 
     public List<RoleResources> getRoleResourcesList() {
         return roleResourcesList;
@@ -34,4 +36,11 @@ public class RoleVO {
         this.name = name;
     }
 
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
 }

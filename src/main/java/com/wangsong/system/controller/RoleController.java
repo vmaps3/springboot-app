@@ -29,8 +29,8 @@ public class RoleController extends BaseController {
     @RequiresPermissions("/system/role/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(HttpServletRequest request, RolePage role) {
-        return roleService.findTByPage(role);
+    public Object list() {
+        return roleService.findTByPage();
     }
 
 

@@ -18,7 +18,7 @@ public interface RoleService {
 
     Result deleteRole(String[] id);
 
-    Object findTByPage(RolePage role);
+    Object findTByPage();
 
     RoleVO selectByPrimaryKey(String id);
 

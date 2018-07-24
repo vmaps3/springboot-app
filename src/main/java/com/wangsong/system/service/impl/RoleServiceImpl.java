@@ -1,26 +1,21 @@
 package com.wangsong.system.service.impl;
 
-import java.util.List;
-import java.util.UUID;
-
+import com.wangsong.common.model.JsonTreeData;
+import com.wangsong.common.model.Result;
+import com.wangsong.common.util.TreeNodeUtil;
+import com.wangsong.system.dao.RoleMapper;
+import com.wangsong.system.dao.RoleResourcesMapper;
+import com.wangsong.system.model.*;
+import com.wangsong.system.service.RoleService;
+import com.wangsong.system.service.UserService;
+import com.wangsong.system.vo.RoleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.common.model.Result;
-import com.wangsong.system.dao.RoleMapper;
-import com.wangsong.system.dao.RoleResourcesMapper;
-import com.wangsong.system.dao.UserRoleMapper;
-import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleAddModel;
-import com.wangsong.system.model.RolePage;
-import com.wangsong.system.model.RoleResources;
-import com.wangsong.system.model.UserRole;
-import com.wangsong.system.service.RoleService;
-import com.wangsong.system.service.UserService;
-import com.wangsong.system.vo.RoleVO;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -79,10 +74,27 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Object findTByPage(RolePage role) {
-        role.setFirst((role.getPage() - 1) * role.getRows());
-        return new GetEasyUIData(roleMapper.findTByPage(role)
-                , roleMapper.findTCountByT(role));
+    public Object findTByPage() {
+        List<Role> resourcesList = roleMapper.selectAll();
+        return resourcesToJsonTreeData(resourcesList);
+    }
+
+    private List<JsonTreeData> resourcesToJsonTreeData(List<Role> resourcesList) {
+        List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();
+        /*为了整理成公用的方法，所以将查询结果进行二次转换。
+         * 其中specid为主键ID，varchar类型UUID生成
+         * parentid为父ID
+         * specname为节点名称
+         * */
+        for (Role htSpecifications : resourcesList) {
+            JsonTreeData treeData = new JsonTreeData(htSpecifications.getId()
+                    , htSpecifications.getPid(), htSpecifications.getName(), null
+                    , null, null);
+            treeDataList.add(treeData);
+        }
+        //最后得到结果集,经过FirstJSON转换后就可得所需的json格式
+        List<JsonTreeData> newTreeDataList = TreeNodeUtil.getfatherNode(treeDataList);
+        return newTreeDataList;
     }
 
     @Override
