@@ -24,7 +24,7 @@
 ## 部署
 
 - 1.导入数据库脚本springboot-app.sql
-- 2.将https://gitee.com/vmaps/app-ui放入\src\main\resources\static\html
+- 2.将https://gitee.com/vmaps/app-ui放入\src\main\resources\static\html 更改对应include.js
 - 3.启动sprtingboot-app位置com.wangsong.Application
 - 4.访问/springboot-app/html/login.html
 
