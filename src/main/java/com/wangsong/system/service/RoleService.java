@@ -2,6 +2,7 @@ package com.wangsong.system.service;
 
 import java.util.List;
 
+import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.Role;
@@ -12,13 +13,13 @@ import com.wangsong.system.vo.RoleVO;
 
 public interface RoleService {
 
-    Result insertRole(RoleAddModel role);
+    void insertRole(RoleAddModel role);
 
-    Result updateRole(RoleAddModel role);
+    void updateRole(RoleAddModel role);
 
-    Result deleteRole(String[] id);
+    void deleteRole(String[] id);
 
-    Object findTByPage(RolePage role);
+    GetEasyUIData findTByPage(RolePage role);
 
     RoleVO selectByPrimaryKey(String id);
 

@@ -3,6 +3,8 @@ package com.wangsong.system.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,28 +24,26 @@ public class DictServiceImpl implements DictService {
 
     @Override
     public GetEasyUIData findTByPage(DictPage dict) {
-        dict.setFirst((dict.getPage() - 1) * dict.getRows());
-        return new GetEasyUIData(dictMapper.findTByPage(dict)
-                , dictMapper.findTCountByT(dict));
+        Page<Object> objects = PageHelper.startPage(dict.getPage(), dict.getRows());
+        List<Dict> tByPage = dictMapper.findTByPage(dict);
+        return new GetEasyUIData(tByPage, objects.getTotal());
     }
 
     @Override
-    public Result insertDict(Dict dict) {
+    public void insertDict(Dict dict) {
         dict.setId(UUID.randomUUID().toString());
         dictMapper.insert(dict);
-        return new Result("success", null);
+        ;
     }
 
     @Override
-    public Result updateByPrimaryKeyDict(Dict dict) {
+    public void updateByPrimaryKeyDict(Dict dict) {
         dictMapper.updateByPrimaryKey(dict);
-        return new Result("success", null);
     }
 
     @Override
-    public Result deleteByPrimaryKeyDict(String[] id) {
+    public void deleteByPrimaryKeyDict(String[] id) {
         dictMapper.deleteBy(id);
-        return new Result("success", null);
     }
 
     @Override

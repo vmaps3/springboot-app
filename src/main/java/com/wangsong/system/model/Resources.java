@@ -2,28 +2,17 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
-import com.wangsong.system.groups.ResourcesAdd;
-import com.wangsong.system.groups.ResourcesUpdate;
-
 
 public class Resources implements Serializable {
     /**
      *
      */
     private static final long serialVersionUID = 4125580367922291000L;
-    @NotNull(groups = {ResourcesUpdate.class}, message = "id不能为空")
     private String id;
-    @NotNull(groups = {ResourcesUpdate.class, ResourcesAdd.class}, message = "pid不能为空")
     private String pid;
-    @NotNull(groups = {ResourcesUpdate.class, ResourcesAdd.class}, message = "name不能为空")
     private String name;
-    @NotNull(groups = {ResourcesUpdate.class, ResourcesAdd.class}, message = "url不能为空")
     private String url;
-    @NotNull(groups = {ResourcesUpdate.class, ResourcesAdd.class}, message = "type不能为空")
     private String type;
-    @NotNull(groups = {ResourcesUpdate.class, ResourcesAdd.class}, message = "sort不能为空")
     private String sort;
 
     public Resources(String id, String pid, String name, String url, String type, String sort) {

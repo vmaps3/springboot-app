@@ -1,9 +1,11 @@
 package com.wangsong.system.model;
 
+import com.wangsong.common.model.Page;
+
 import java.io.Serializable;
 
 
-public class DictPage implements Serializable {
+public class DictPage extends Page implements Serializable {
     /**
      *
      */
@@ -12,34 +14,7 @@ public class DictPage implements Serializable {
     private String name;
     private String type;
     private String code;
-    private int page;
-    private int rows;
-    private int first;
 
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    public int getFirst() {
-        return first;
-    }
-
-    public void setFirst(int first) {
-        this.first = first;
-    }
 
     public String getId() {
         return id;

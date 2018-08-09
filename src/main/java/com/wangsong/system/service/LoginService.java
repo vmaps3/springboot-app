@@ -6,13 +6,9 @@ import com.wangsong.common.model.Result;
 
 public interface LoginService {
 
-    Result loginPost(String username, String password);
+    String loginPost(String username, String password);
 
-    Result logoutJSON();
+    void logoutJSON();
 
-    Result index();
-
-    Result unauth();
-
-    Result getStatus(HttpServletRequest request);
+    String getStatus(HttpServletRequest request);
 }

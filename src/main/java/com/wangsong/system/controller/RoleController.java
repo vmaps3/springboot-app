@@ -1,22 +1,23 @@
 package com.wangsong.system.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.wangsong.common.controller.BaseController;
-import com.wangsong.system.groups.RoleAdd;
-import com.wangsong.system.groups.RoleUpdate;
+import com.wangsong.common.model.CodeEnum;
+import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.common.model.Result;
+import com.wangsong.system.model.Role;
 import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.service.RoleService;
+import com.wangsong.system.vo.RoleVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class RoleController extends BaseController {
     @RequiresPermissions("/system/role/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(HttpServletRequest request, RolePage role) {
+    public GetEasyUIData list(HttpServletRequest request, RolePage role) {
         return roleService.findTByPage(role);
     }
 
@@ -37,34 +38,37 @@ public class RoleController extends BaseController {
     @RequiresPermissions("/system/role/add")
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(@Validated({RoleAdd.class}) RoleAddModel role, BindingResult bindingResult) {
-        return roleService.insertRole(role);
+    public Result add(RoleAddModel role) {
+        roleService.insertRole(role);
+        return new Result(CodeEnum.SUCCESS.getCode(), null);
+
     }
 
     @RequiresPermissions("/system/role/delete")
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(String[] id) {
-        return roleService.deleteRole(id);
-
+    public Result delete(String[] id) {
+        roleService.deleteRole(id);
+        return new Result(CodeEnum.SUCCESS.getCode(), null);
     }
 
     @RequiresPermissions("/system/role/update")
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update(@Validated({RoleUpdate.class}) RoleAddModel mrole, BindingResult bindingResult) {
-        return roleService.updateRole(mrole);
+    public Result update(RoleAddModel mrole) {
+        roleService.updateRole(mrole);
+        return new Result(CodeEnum.SUCCESS.getCode(), null);
     }
 
     @RequestMapping(value = "/listAll")
     @ResponseBody
-    public Object listAll() {
+    public List<Role> listAll() {
         return roleService.selectAll();
     }
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public Object selectByPrimaryKey(String id) {
+    public RoleVO selectByPrimaryKey(String id) {
         return roleService.selectByPrimaryKey(id);
     }
 

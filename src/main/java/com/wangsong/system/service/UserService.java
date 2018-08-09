@@ -1,5 +1,6 @@
 package com.wangsong.system.service;
 
+import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
@@ -11,15 +12,15 @@ public interface UserService {
 
     User selectByPrimaryKey();
 
-    Result insertUser(UserAddModel muser);
+    void insertUser(UserAddModel muser);
 
-    Result updateUser(UserAddModel muser);
+    void updateUser(UserAddModel muser);
 
-    Result deleteUser(String[] id);
+    void deleteUser(String[] id);
 
-    Result updatePassword(UserAddModel u);
+    void updatePassword(UserAddModel u);
 
-    Object findTByPage(UserPage user);
+    GetEasyUIData findTByPage(UserPage user);
 
     UserVO selectByPrimaryKey(String id);
 

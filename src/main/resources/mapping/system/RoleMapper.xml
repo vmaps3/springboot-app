@@ -44,15 +44,7 @@
         from system_role
     </select>
 
-    <select id="findTCountByT" resultType="java.lang.Integer" parameterType="com.wangsong.system.model.RolePage">
-        select count(*)
-        from system_role
-        where 1=1
-        <if test="name!= null and name != ''">
-            and name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
-        </if>
 
-    </select>
 
     <select id="findTByPage" parameterType="com.wangsong.system.model.RolePage" resultMap="BaseResultMap">
         select id, name
@@ -61,7 +53,6 @@
         <if test="name!= null and name != ''">
             and name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
         </if>
-        limit #{first}, #{rows}
     </select>
     <delete id="deleteBy">
         delete from system_role

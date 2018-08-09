@@ -1,8 +1,8 @@
 package com.wangsong.common.model;
 
-public class Result {
+public class Result<T> {
     private String result;
-    private Object data;
+    private T data;
 
     public String getResult() {
         return result;
@@ -12,22 +12,18 @@ public class Result {
         this.result = result;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public Result(String result, Object data) {
+    public Result(String result, T data) {
         super();
         this.result = result;
         this.data = data;
     }
-
-    public Result() {
-    }
-
     ;
 }

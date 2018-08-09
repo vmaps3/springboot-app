@@ -1,9 +1,11 @@
 package com.wangsong.system.model;
 
+import com.wangsong.common.model.Page;
+
 import java.io.Serializable;
 
 
-public class RolePage implements Serializable {
+public class RolePage extends Page implements Serializable {
     /**
      *
      */
@@ -11,33 +13,7 @@ public class RolePage implements Serializable {
     private String id;
 
     private String name;
-    private int page;
-    private int rows;
-    private int first;
 
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    public int getFirst() {
-        return first;
-    }
-
-    public void setFirst(int first) {
-        this.first = first;
-    }
 
     public String getId() {
         return id;

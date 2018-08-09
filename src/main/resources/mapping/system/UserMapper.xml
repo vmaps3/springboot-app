@@ -51,14 +51,7 @@
         from system_user
     </select>
 
-    <select id="findTCountByT" resultType="java.lang.Integer" parameterType="com.wangsong.system.model.UserPage">
-        select count(*)
-        from system_user
-        where 1=1
-        <if test="username!= null and username != ''">
-            and username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
-        </if>
-    </select>
+
     <select id="findTByT" parameterType="com.wangsong.system.model.User" resultMap="BaseResultMap">
         select id, username, password
         from system_user
@@ -72,7 +65,6 @@
         <if test="username!= null and username != ''">
             and username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
         </if>
-        limit #{first}, #{rows}
     </select>
     <delete id="deleteBy">
         delete from system_user

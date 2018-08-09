@@ -1,26 +1,20 @@
 package com.wangsong.system.service.impl;
 
-import java.util.List;
-import java.util.UUID;
-
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.system.dao.RoleMapper;
+import com.wangsong.system.dao.RoleResourcesMapper;
+import com.wangsong.system.model.*;
+import com.wangsong.system.service.RoleService;
+import com.wangsong.system.service.UserService;
+import com.wangsong.system.vo.RoleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.common.model.Result;
-import com.wangsong.system.dao.RoleMapper;
-import com.wangsong.system.dao.RoleResourcesMapper;
-import com.wangsong.system.dao.UserRoleMapper;
-import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleAddModel;
-import com.wangsong.system.model.RolePage;
-import com.wangsong.system.model.RoleResources;
-import com.wangsong.system.model.UserRole;
-import com.wangsong.system.service.RoleService;
-import com.wangsong.system.service.UserService;
-import com.wangsong.system.vo.RoleVO;
+import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -35,36 +29,34 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public Result insertRole(RoleAddModel role) {
+    public void insertRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         role.setId(UUID.randomUUID().toString());
         roleMapper.insertRoleAddModel(role);
         if (resourcesId == null) {
-            return new Result("success", null);
+            return;
         }
         for (int i = 0; i < resourcesId.length; i++) {
             roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString()
                     , resourcesId[i], role.getId()));
         }
-        return new Result("success", null);
     }
 
     @Override
-    public Result updateRole(RoleAddModel role) {
+    public void updateRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null, null, role.getId())});
         roleMapper.updateByPrimaryKeyRoleAddModel(role);
         if (resourcesId == null) {
-            return new Result("success", null);
+            return;
         }
         for (int i = 0; i < resourcesId.length; i++) {
             roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString(), resourcesId[i], role.getId()));
         }
-        return new Result("success", null);
     }
 
     @Override
-    public Result deleteRole(String[] id) {
+    public void deleteRole(String[] id) {
         RoleResources[] r = new RoleResources[id.length];
         UserRole[] u = new UserRole[id.length];
         for (int i = 0; i < id.length; i++) {
@@ -75,14 +67,13 @@ public class RoleServiceImpl implements RoleService {
         userService.deleteByT(u);
         roleResourcesMapper.deleteByT(r);
         roleMapper.deleteBy(id);
-        return new Result("success", null);
     }
 
     @Override
-    public Object findTByPage(RolePage role) {
-        role.setFirst((role.getPage() - 1) * role.getRows());
+    public GetEasyUIData findTByPage(RolePage role) {
+        Page<Object> objects = PageHelper.startPage(role.getPage(), role.getRows());
         return new GetEasyUIData(roleMapper.findTByPage(role)
-                , roleMapper.findTCountByT(role));
+                , objects.getTotal());
     }
 
     @Override

@@ -35,20 +35,6 @@
         from system_dict
     </select>
 
-    <select id="findTCountByT" resultType="java.lang.Integer" parameterType="com.wangsong.system.model.DictPage">
-        select count(*)
-        from system_dict
-        where 1=1
-        <if test="name!= null and name != ''">
-            and name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
-        </if>
-        <if test="type != null and type != ''">
-            and type = #{type,jdbcType=VARCHAR}
-        </if>
-        <if test="code!= null and code != ''">
-            and code = #{code,jdbcType=VARCHAR}
-        </if>
-    </select>
 
 
     <select id="findTByPage" parameterType="com.wangsong.system.model.DictPage" resultMap="BaseResultMap">
@@ -65,7 +51,6 @@
             and code = #{code,jdbcType=VARCHAR}
         </if>
         ORDER BY type
-        limit #{first}, #{rows}
     </select>
     <delete id="deleteBy">
         delete from system_dict

@@ -1,22 +1,21 @@
 package com.wangsong.system.service;
 
-import java.util.List;
-
 import com.wangsong.common.model.JsonTreeData;
-import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
+
+import java.util.List;
 
 public interface ResourcesService {
 
-    Result deleteResources(String[] id);
+    void deleteResources(String[] id);
 
-    Result insertResources(Resources resources);
+    void insertResources(Resources resources);
 
     List<JsonTreeData> findResources();
 
     List<JsonTreeData> findResourcesEMUByResources();
 
-    Result updateResources(Resources resources);
+    void updateResources(Resources resources);
 
     List<Resources> findTByT(Resources resources);
 

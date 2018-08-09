@@ -1,24 +1,21 @@
 package com.wangsong.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
+import com.wangsong.common.model.Attributes;
+import com.wangsong.common.model.JsonTreeData;
+import com.wangsong.common.util.TreeNodeUtil;
+import com.wangsong.system.dao.ResourcesMapper;
+import com.wangsong.system.model.Resources;
+import com.wangsong.system.model.RoleResources;
+import com.wangsong.system.service.ResourcesService;
+import com.wangsong.system.service.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.model.Attributes;
-import com.wangsong.common.model.JsonTreeData;
-import com.wangsong.common.model.Result;
-import com.wangsong.common.util.TreeNodeUtil;
-import com.wangsong.system.dao.ResourcesMapper;
-import com.wangsong.system.dao.RoleResourcesMapper;
-import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.RoleResources;
-import com.wangsong.system.service.ResourcesService;
-import com.wangsong.system.service.RoleService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -30,7 +27,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     private RoleService roleService;
 
     @Override
-    public Result deleteResources(String[] id) {
+    public void deleteResources(String[] id) {
         int j = 0;
         for (int i = 0; i < id.length; i++) {
             if ("1".equals(id[i])) {
@@ -46,30 +43,27 @@ public class ResourcesServiceImpl implements ResourcesService {
             r[i] = new RoleResources(null, id[i], null);
         }
         if (j == 0) {
-            return new Result("success", null);
+            return;
         }
         roleService.deleteByT(r);
         resourcesMapper.deleteBy(id);
-        return new Result("success", null);
     }
 
     @Override
-    public Result insertResources(Resources resources) {
+    public void insertResources(Resources resources) {
         if ("".equals(resources.getUrl())) {
             resources.setUrl("/");
         }
         resources.setId(UUID.randomUUID().toString());
         resourcesMapper.insert(resources);
-        return new Result("success", null);
     }
 
     @Override
-    public Result updateResources(Resources resources) {
+    public void updateResources(Resources resources) {
         if ("".equals(resources.getUrl())) {
             resources.setUrl("/");
         }
         resourcesMapper.updateByPrimaryKey(resources);
-        return new Result("success", null);
     }
 
     @Override

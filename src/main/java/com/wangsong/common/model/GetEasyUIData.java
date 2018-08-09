@@ -1,26 +1,26 @@
 package com.wangsong.common.model;
 
-public class GetEasyUIData {
-    private Object rows;
-    private int total;
+public class GetEasyUIData<T> {
+    private T rows;
+    private long total;
 
-    public Object getRows() {
+    public T getRows() {
         return rows;
     }
 
-    public void setRows(Object rows) {
+    public void setRows(T rows) {
         this.rows = rows;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 
-    public GetEasyUIData(Object rows, int total) {
+    public GetEasyUIData(T rows, long total) {
         super();
         this.rows = rows;
         this.total = total;
