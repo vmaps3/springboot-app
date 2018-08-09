@@ -11,10 +11,7 @@
     </insert>
 
 
-    <insert id="insertRoleAddModel" parameterType="com.wangsong.system.model.RoleAddModel">
-        insert into system_role (id, name)
-        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
-    </insert>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete from system_role
@@ -28,11 +25,7 @@
     </update>
 
 
-    <update id="updateByPrimaryKeyRoleAddModel" parameterType="com.wangsong.system.model.RoleAddModel">
-        update system_role
-        set name = #{name,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=VARCHAR}
-    </update>
+
 
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select id, name

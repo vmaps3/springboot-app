@@ -32,8 +32,5 @@ public interface UserMapper {
 
     UserVO selectVOByPrimaryKey(String id);
 
-    int insertUserAddModel(UserAddModel user);
-
-    int updateByPrimaryKeyUserAddModel(UserAddModel user);
 
 }

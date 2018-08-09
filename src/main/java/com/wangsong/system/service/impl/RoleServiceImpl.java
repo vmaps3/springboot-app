@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService {
     public void insertRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         role.setId(UUID.randomUUID().toString());
-        roleMapper.insertRoleAddModel(role);
+        roleMapper.insert(role);
         if (resourcesId == null) {
             return;
         }
@@ -46,7 +46,7 @@ public class RoleServiceImpl implements RoleService {
     public void updateRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null, null, role.getId())});
-        roleMapper.updateByPrimaryKeyRoleAddModel(role);
+        roleMapper.updateByPrimaryKey(role);
         if (resourcesId == null) {
             return;
         }

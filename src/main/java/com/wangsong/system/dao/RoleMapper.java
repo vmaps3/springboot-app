@@ -27,8 +27,4 @@ public interface RoleMapper {
 
     RoleVO selectRoleVOByPrimaryKey(String id);
 
-    int updateByPrimaryKeyRoleAddModel(RoleAddModel role);
-
-    int insertRoleAddModel(RoleAddModel role);
-
 }

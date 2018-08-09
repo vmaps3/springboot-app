@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         String[] roleId = user.getRoleId();
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         user.setId(UUID.randomUUID().toString());
-        userMapper.insertUserAddModel(user);
+        userMapper.insert(user);
         if (roleId == null) {
             return;
         }
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         String[] roleId = user.getRoleId();
         if (!"".equals(user.getPassword())) {
             user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-            userMapper.updateByPrimaryKeyUserAddModel(user);
+            userMapper.updateByPrimaryKey(user);
         }
         userMapper.updateNoPasswordByPrimaryKey(user);
 
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
     public void updatePassword(UserAddModel user) {
         if (!"".equals(user.getPassword())) {
             user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-            userMapper.updateByPrimaryKeyUserAddModel(user);
+            userMapper.updateByPrimaryKey(user);
         }
         userMapper.updateNoPasswordByPrimaryKey(user);
     }
