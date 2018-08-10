@@ -17,7 +17,6 @@ import com.wangsong.system.model.DictPage;
 import com.wangsong.system.service.DictService;
 
 @Service
-@Transactional
 public class DictServiceImpl implements DictService {
     @Autowired
     private DictMapper dictMapper;
@@ -30,6 +29,7 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    @Transactional
     public void insertDict(Dict dict) {
         dict.setId(UUID.randomUUID().toString());
         dictMapper.insert(dict);
@@ -37,11 +37,13 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    @Transactional
     public void updateByPrimaryKeyDict(Dict dict) {
         dictMapper.updateByPrimaryKey(dict);
     }
 
     @Override
+    @Transactional
     public void deleteByPrimaryKeyDict(String[] id) {
         dictMapper.deleteBy(id);
     }
