@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Service("loginService")
+@Service
 public class LoginServiceImpl implements LoginService {
 
 
