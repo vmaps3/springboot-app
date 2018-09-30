@@ -100,11 +100,4 @@ public class ShiroConfig {
         return simpleCookie;
     }
 
-
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager manager) {
-        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-        advisor.setSecurityManager(manager);
-        return advisor;
-    }
 }
