@@ -27,8 +27,8 @@ public class UserController extends BaseController {
     @RequiresPermissions("/system/user/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(HttpServletRequest request, UserPage user) {
-        return userService.findTByPage(user);
+    public Result list(HttpServletRequest request, UserPage user) {
+        return  new Result(CodeEnum.SUCCESS.getCode(),userService.findTByPage(user));
     }
 
     @RequiresPermissions("/system/user/add")
@@ -43,8 +43,8 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public UserVO selectByPrimaryKey(String id) {
-        return userService.selectByPrimaryKey(id);
+    public Result selectByPrimaryKey(String id) {
+        return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey(id));
     }
 
     @RequiresPermissions("/system/user/update")
@@ -77,8 +77,8 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/toUpdatePassword")
     @ResponseBody
-    public User toUpdatePassword() {
-        return userService.selectByPrimaryKey();
+    public Result toUpdatePassword() {
+        return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey());
     }
 
     @RequestMapping(value = "/updatePassword")

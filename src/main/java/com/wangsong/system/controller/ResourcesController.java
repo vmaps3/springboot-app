@@ -3,6 +3,7 @@ package com.wangsong.system.controller;
 
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.CodeEnum;
+import com.wangsong.common.model.JsonTreeData;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.service.ResourcesService;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 @Controller
@@ -48,22 +51,22 @@ public class ResourcesController extends BaseController {
     @RequiresPermissions("/system/resources/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list() {
-        return resourcesService.findResources();
+    public Result list() {
+        return new Result(CodeEnum.SUCCESS.getCode(),  resourcesService.findResources());
     }
 
 
     @RequestMapping(value = "/findResourcesEMUByResources")
     @ResponseBody
-    public Object findResourcesEMUByResources() {
-        return resourcesService.findResourcesEMUByResources();
+    public Result findResourcesEMUByResources() {
+        return  new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources());
     }
 
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public Object selectByPrimaryKey(String id) {
-        return resourcesService.selectByPrimaryKey(id);
+    public Result selectByPrimaryKey(String id) {
+        return new Result(CodeEnum.SUCCESS.getCode(),resourcesService.selectByPrimaryKey(id));
     }
 
 }
