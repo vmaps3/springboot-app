@@ -2,6 +2,8 @@ package com.wangsong.system.service.impl;
 
 
 import com.wangsong.common.model.CodeEnum;
+import com.wangsong.common.model.JWTToken;
+import com.wangsong.common.util.JWTUtil;
 import com.wangsong.system.service.LoginService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,11 +19,12 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public String loginPost(String username, String password) {
+    public String loginPost(String str) {
         Subject user = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, DigestUtils.md5Hex(password).toCharArray());
+
         try {
-            user.login(token);
+
+            user.login(new JWTToken(str));
             return CodeEnum.SUCCESS.getCode();
         } catch (RuntimeException e) {
             return CodeEnum.LOGIN_EXCEPTION.getCode();//未知错误,请联系管理员
