@@ -23,9 +23,6 @@ import javax.servlet.Filter;
 
 @Configuration
 public class ShiroConfig {
-    @Value(value = "${globalSessionTimeout}")
-    private long globalSessionTimeout;
-
 
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
