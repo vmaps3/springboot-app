@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,8 @@ public class ResourcesController extends BaseController {
     @RequestMapping(value = "/findResourcesEMUByResources")
     @ResponseBody
     public Result findResourcesEMUByResources() {
-        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources());
+        String id= (String) SecurityUtils.getSubject().getPrincipal();
+        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(id));
     }
 
     @ApiOperation(value = "单条", httpMethod = "POST")

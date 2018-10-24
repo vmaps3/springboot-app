@@ -75,8 +75,8 @@ public class ResourcesServiceImpl implements ResourcesService {
     }
 
     @Override
-    public List<Resources> findResourcesEMUByResources() {
-        return findTByT(new Resources((String) SecurityUtils.getSubject().getPrincipal(), null, null, null, null, null));
+    public List<Resources> findResourcesEMUByResources(String id) {
+        return findTByT(new Resources(id, null, null, null, null, null));
     }
 
     @Override
