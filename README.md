@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- springboot-app 是J2EE基础开发平台，技术栈包括：SpringBoot、MyBatis、Shiro、JWT，SpringTask，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- springboot-app 是J2EE基础开发平台，技术栈包括：SpringBoot、MyBatis、Shiro、JWT，swagger，lombok，SpringTask，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 业务功能
 
@@ -19,6 +19,8 @@
 - shiro 权限
 - springTask 定时任务 
 - JWT 会话 
+- swagger api
+- lombok 代码优化
 
 ## 部署
 
