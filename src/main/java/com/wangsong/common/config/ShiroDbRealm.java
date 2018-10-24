@@ -16,6 +16,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,12 +38,16 @@ public class ShiroDbRealm extends AuthorizingRealm {
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) {
         String token = (String) authcToken.getCredentials();
         // 解密获得username，用于和数据库进行对比
         String username = JWTUtil.getUsername(token);
         User user = userService.findTByT(new User(null, username, null));
-        if (!JWTUtil.verify(token, username, user.getPassword())) {
+        try {
+            if (!JWTUtil.verify(token, username, user.getPassword())) {
+                throw new AuthenticationException("密码不对");
+            }
+        } catch (UnsupportedEncodingException e) {
             throw new AuthenticationException("密码不对");
         }
         // 认证缓存信息

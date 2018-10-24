@@ -10,7 +10,7 @@ import com.wangsong.system.vo.UserVO;
 
 public interface UserService {
 
-    User selectByPrimaryKey();
+    User selectByPrimaryKey(String id);
 
     void insertUser(UserAddModel muser);
 
@@ -22,7 +22,7 @@ public interface UserService {
 
     GetEasyUIData findTByPage(UserPage user);
 
-    UserVO selectByPrimaryKey(String id);
+    UserVO selectVOByPrimaryKey(String id);
 
     User findTByT(User user);
 
