@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+    <el-form id="searchFrom" label-width="80px">
+        <el-form-item>
+        名称<el-input  name="name" value=""></el-input>
+        类型<el-input  name="type"  value=""></el-input>
+        <el-button type="primary"  @click="cx">查询</el-button>
+        </el-form-item>
+    </el-form>
+    <el-button-group>
+        <el-button type="primary" icon="el-icon-edit"></el-button>
+        <el-button type="primary" icon="el-icon-share"></el-button>
+        <el-button type="primary" icon="el-icon-delete"></el-button>
+    </el-button-group>
+    <el-table :data="tableData" >
+        <el-table-column prop="code" label="编码" width="180">
+        </el-table-column>
+        <el-table-column prop="name" label="名称" width="180">
+        </el-table-column>
+        <el-table-column prop="type" label="类型">
+        </el-table-column>
+    </el-table>
+    <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[10, 50, 100, 500]"
+            :page-size="10"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
+    </el-pagination>
+</div>
+</body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            tableData: [{
+                code: '',
+                name: '',
+                type: ''
+            }],
+            total:0
+        } ,
+        methods: {
+             cx(){
+                var obj=$("#searchFrom").serializeObject();
+                 var self = this;
+                $.ajax({
+                    url:url+"/system/dict/list",
+                    data:obj,
+                    type:'post',
+                    success:function(data){
+                        self.tableData=data.data.rows;
+                        self.total==data.data.total;
+                    }
+                });
+            }
+        },
+        mounted () {
+            this.cx();
+        }, handleSizeChange(val) {
+            alert(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            alert(`当前页: ${val}`);
+        }
+    })
+
+</script>
+</html>

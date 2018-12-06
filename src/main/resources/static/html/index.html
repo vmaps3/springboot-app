@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header>
+            <h1>vue element jquery cookie</h1>
+        </el-header>
+        <el-container>
+            <el-aside>
+                <el-row >
+                    <el-col >
+                        <el-menu
+                                @select="handleSelect">
+                            <el-submenu index="1">
+                                <template slot="title">
+                                    <span>菜单</span>
+                                </template>
+                                <el-submenu index="1-1">
+                                    <template slot="title">
+                                        <span>系统管理</span>
+                                    </template>
+                                    <el-menu-item index="1-1-1" route="www.baidu.com">用户管理</el-menu-item>
+                                    <el-menu-item index="1-1-2">角色管理</el-menu-item>
+                                    <el-menu-item index="1-1-3" >权限管理</el-menu-item>
+                                    <el-menu-item index="1-1-4" >字典管理</el-menu-item>
+
+                                </el-submenu>
+                            </el-submenu>
+
+                        </el-menu>
+                    </el-col>
+
+                </el-row>
+            </el-aside>
+            <el-main >
+                <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit" >
+                    <el-tab-pane
+                            :key="item.name"
+                            v-for="(item, index) in editableTabs"
+                            :label="item.title"
+                            :name="item.name"
+                    >
+                        <iframe scrolling="auto" frameborder="0"  :src="item.content" style="width:100%;height:100%;"></iframe>
+                    </el-tab-pane>
+                </el-tabs>
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+</body>
+<script type="text/javascript" src="js/include.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            editableTabsValue: '0',
+            editableTabs: [],
+            tabIndex: 0
+
+        },
+        methods: {
+            handleSelect(key){
+                var url=htmlURL;
+                if(key=='1-1-1'){
+                    url+="/system/user/list.html";
+                }else if(key=='1-1-2'){
+                    url+="/system/role/list.html";
+                }else if(key=='1-1-3'){
+                    url+="/system/resources/list.html";
+                }else if(key=='1-1-4'){
+                    url+="/system/dict/list.html";
+                }
+                var content = '';
+                this.handleTabsEdit(null,'add',url)
+            },
+
+            handleTabsEdit(targetName, action,url) {
+                if (action === 'add') {
+                    let newTabName = ++this.tabIndex + '';
+                    this.editableTabs.push({
+                        title: 'New Tab',
+                        name: newTabName,
+                        content: url
+                    });
+                    this.editableTabsValue = newTabName;
+                }
+                if (action === 'remove') {
+                    let tabs = this.editableTabs;
+                    let activeName = this.editableTabsValue;
+                    if (activeName === targetName) {
+                        tabs.forEach((tab, index) => {
+                            if (tab.name === targetName) {
+                                let nextTab = tabs[index + 1] || tabs[index - 1];
+                                if (nextTab) {
+                                    activeName = nextTab.name;
+                                }
+                            }
+                        });
+                    }
+
+                    this.editableTabsValue = activeName;
+                    this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+                }
+            }
+        }
+    })
+</script>
+</html>
