@@ -4,40 +4,42 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div id="app">
-    <el-container>
-        <el-header>
-            <h1>vue element jquery cookie</h1>
+<div id="app" >
+    <el-button-group>
+        <el-button type="primary" @click="submitForm1">注销</el-button>
+        <el-button type="primary" @click="submitForm2">更改密码</el-button>
+    </el-button-group>
+    <el-container >
+        <el-header >
+            <h1>jquery-element-admin</h1>
+
         </el-header>
-        <el-container>
-            <el-aside>
-                <el-row >
-                    <el-col >
-                        <el-menu
-                                @select="handleSelect">
-                            <el-submenu index="1">
-                                <template slot="title">
-                                    <span>菜单</span>
-                                </template>
-                                <el-submenu index="1-1">
-                                    <template slot="title">
-                                        <span>系统管理</span>
-                                    </template>
-                                    <el-menu-item index="1-1-1">用户管理</el-menu-item>
-                                    <el-menu-item index="1-1-2">角色管理</el-menu-item>
-                                    <el-menu-item index="1-1-3" >权限管理</el-menu-item>
-                                    <el-menu-item index="1-1-4" >字典管理</el-menu-item>
+        <el-container >
+            <el-aside >
 
-                                </el-submenu>
-                            </el-submenu>
+                <el-menu
+                        @select="handleSelect">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <span>菜单</span>
+                        </template>
+                        <el-submenu index="1-1">
+                            <template slot="title">
+                                <span>系统管理</span>
+                            </template>
+                            <el-menu-item index="1-1-1">用户管理</el-menu-item>
+                            <el-menu-item index="1-1-2">角色管理</el-menu-item>
+                            <el-menu-item index="1-1-3" >权限管理</el-menu-item>
+                            <el-menu-item index="1-1-4" >字典管理</el-menu-item>
 
-                        </el-menu>
-                    </el-col>
+                        </el-submenu>
+                    </el-submenu>
 
-                </el-row>
+                </el-menu>
+
             </el-aside>
             <el-main >
-                <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit" >
+                <el-tabs v-model="editableTabsValue"  type="card" closable @tab-remove="removeTab">
                     <el-tab-pane
                             :key="item.name"
                             v-for="(item, index) in editableTabs"
@@ -75,36 +77,47 @@
                     url+="/system/dict/list.html";
                 }
                 var content = '';
-                this.handleTabsEdit(null,'add',url,key)
+                this.addTab(null,url,key)
+            },addTab(targetName,url,key) {
+                let newTabName = ++this.tabIndex + '';
+                this.editableTabs.push({
+                    title: key,
+                    name: newTabName,
+                    content: url
+                });
+                this.editableTabsValue = newTabName;
             },
-
-            handleTabsEdit(targetName, action,url,key) {
-                if (action === 'add') {
-                    let newTabName = ++this.tabIndex + '';
-                    this.editableTabs.push({
-                        title: key,
-                        name: newTabName,
-                        content: url
-                    });
-                    this.editableTabsValue = newTabName;
-                }
-                if (action === 'remove') {
-                    let tabs = this.editableTabs;
-                    let activeName = this.editableTabsValue;
-                    if (activeName === targetName) {
-                        tabs.forEach((tab, index) => {
-                            if (tab.name === targetName) {
-                                let nextTab = tabs[index + 1] || tabs[index - 1];
-                                if (nextTab) {
-                                    activeName = nextTab.name;
-                                }
+            removeTab(targetName) {
+                let tabs = this.editableTabs;
+                let activeName = this.editableTabsValue;
+                if (activeName === targetName) {
+                    tabs.forEach((tab, index) => {
+                        if (tab.name === targetName) {
+                            let nextTab = tabs[index + 1] || tabs[index - 1];
+                            if (nextTab) {
+                                activeName = nextTab.name;
                             }
-                        });
-                    }
-
-                    this.editableTabsValue = activeName;
-                    this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+                        }
+                    });
                 }
+                this.editableTabsValue = activeName;
+                this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+            },submitForm1(){
+                this.$confirm('是否注销?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    $.ajax({
+                        url:url+"/logoutJSON",
+                        success:function(data){
+                            window.location=htmlURL+"/login.html";
+                        }
+                    });
+
+                })
+            },submitForm2(){
+                this.addTab(null, htmlURL+"/system/user/updatePassword.html","更改密码");
             }
         }
     })
