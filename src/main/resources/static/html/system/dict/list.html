@@ -10,13 +10,12 @@
         名称<el-input  name="name" value=""></el-input>
         类型<el-input  name="type"  value=""></el-input>
         <el-button type="primary"  @click="cx">查询</el-button>
+            <el-button type="primary"  @click="add">新增</el-button>
+            <el-button type="primary"  @click="up">更改</el-button>
+            <el-button type="primary" @click="del">删除</el-button>
         </el-form-item>
     </el-form>
-    <el-button-group>
-        <el-button type="primary" icon="el-icon-edit" @click="add"></el-button>
-        <el-button type="primary" icon="el-icon-share" @click="up"></el-button>
-        <el-button type="primary" icon="el-icon-delete" @click="del"></el-button>
-    </el-button-group>
+
     <el-table :data="tableData" @selection-change="changeFun">
         <el-table-column type="selection" prop="id" width="55"></el-table-column>
         <el-table-column prop="code" label="编码" width="180">
