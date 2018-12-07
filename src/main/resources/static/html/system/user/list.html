@@ -1,99 +1,105 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User list</title>
-<script type="text/javascript" src="../../js/include.js"></script>
-<script type="text/javascript">
-//删除
-function del(){
-	var row = $("#dg").datagrid('getSelections');
-	if(row.length!=0) {
-		 $.messager.confirm("确认", "确认删除吗？", function (r) {
-		        if (r) {
-		        	var myArray=new Array();
-		        	for(var i=0;i<row.length;i++){
-		        		myArray.push(row[i].id);
-		        	}
-		        	$.ajax({   
-					     url:url+'/system/user/delete',   
-					     type:'post',   
-					     data:"id="+myArray,
-					     success:function(data){   
-					    	 if(data.result=="success"){
-					        	window.location=htmlURL+"/system/user/list.html";
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
-					     }
-					});
-		        }
-		 });
-	}else{
-		$.messager.alert('提示','请选择一条');
-	}
-}
-
-//弹窗修改
-function upd(){
-	var row =  $("#dg").datagrid('getSelections');
-	if(row.length==1){
-		window.location=htmlURL+"/system/user/update.html?id="+row[0].id;
-	}else{
-		$.messager.alert('提示','请选择一条');
-	}
-}
-
-function cx(){
-	var obj=$("#searchFrom").serializeObject();
-	  $.ajax({
-             url:url+"/system/user/list",
-             data:obj,
-             type:'post',
-             success:function(data){
-                	$('#dg').datagrid('loadData',data.data);
-             }
-        });
-}
-function add(){
-	window.location=htmlURL+"/system/user/add.html";
-}
-$(function(){
-cx();
-	if(!getResources("/system/user/add")){
-        $('#add').hide();
-	}
-
-	if(!getResources("/system/user/update")){
-        $('#update').hide();
-	}
-
-	if(!getResources("/system/user/delete")){
-        $('#delete').hide();
-	}
-});
-</script>
+    <meta charset="UTF-8">
 </head>
 <body>
-  	
-   <table id="dg"  class="easyui-datagrid"  fit="true"
-            toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="false" >
-        <thead>
-            <tr>
-            	<th field=""  data-options="checkbox:true"></th>
-                <th field="username"  width="50">账号</th>
-            </tr>
-        </thead>
-    </table>
-    <div id="toolbar" >
-    	<form id="searchFrom" action="">
-			账号:<input type="text" name="username" class="easyui-validatebox" />
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
-		</form>
-			<a id="add" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add()">新增</a>
-        	<a id="update" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
-        	<a id="delete" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
-    </div>
+<div id="app">
+    <el-form id="searchFrom" label-width="80px">
+        <el-form-item>
+            账户<el-input  name="username" value=""></el-input>
+            <el-button type="primary"  @click="cx">查询</el-button>
+        </el-form-item>
+    </el-form>
+    <el-button-group>
+        <el-button type="primary" icon="el-icon-edit" @click="add"></el-button>
+        <el-button type="primary" icon="el-icon-share" @click="up"></el-button>
+        <el-button type="primary" icon="el-icon-delete" @click="del"></el-button>
+    </el-button-group>
+    <el-table :data="tableData" @selection-change="changeFun">
+        <el-table-column type="selection" prop="id" width="55"></el-table-column>
+        <el-table-column prop="username" label="编码" width="180">
+        </el-table-column>
+
+    </el-table>
+    <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[10, 50, 100, 500]"
+            :page-size="10"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
+    </el-pagination>
+</div>
 </body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            tableData: [{
+                code: '',
+                name: '',
+                type: ''
+            }],
+            total:0,
+            currentPage4: 4,
+            page: 1,
+            rows:10,
+            multipleSelection:[]
+        } ,
+        methods: {
+            cx(){
+                var obj=$("#searchFrom").serializeObject();
+                obj.page= this.page
+                obj.rows=this.rows
+                var self = this;
+                $.ajax({
+                    url:url+"/system/user/list",
+                    data:obj,
+                    type:'post',
+                    success:function(data){
+                        self.tableData=data.data.rows;
+                        self.total=data.data.total;
+                    }
+                });
+            }, handleSizeChange(val) {
+                this.rows=val
+                this.cx()
+            },handleCurrentChange(val) {
+                this.page=val
+                this.cx()
+            },add(){
+                window.location=htmlURL+"/system/user/add.html";
+            },del(){
+
+                var myArray=new Array();
+                for(var i=0;i<this.multipleSelection.length;i++){
+                    myArray.push(this.multipleSelection[i].id);
+                }
+                $.ajax({
+                    url:url+'/system/user/delete',
+                    type:'post',
+                    data:"id="+myArray,
+                    success:function(data){
+
+                        if(data.result=="success"){
+                            window.location=htmlURL+"/system/user/list.html";
+                        }
+                    }
+                });
+            },up(){
+                window.location=htmlURL+"/system/user/update.html?id="+this.multipleSelection [0].id;
+            },changeFun(val) {
+                this.multipleSelection = val;
+            }
+        },
+        mounted () {
+            this.cx();
+        }
+    })
+
+</script>
 </html>

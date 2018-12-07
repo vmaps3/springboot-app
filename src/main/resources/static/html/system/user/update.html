@@ -1,95 +1,94 @@
-
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>My JSP 'updateUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
-			function submitForm(){
-				if($("#ff").form('validate')==true){
-					$.ajax({   
-					     url:url+"/system/user/update",
-					     type:$("#ff").attr("method"),   
-					     data:$("#ff").serializeArray(),
-					     success:function(data){   
-					    	 if(data.result=="success"){
-					        	 toList();
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
-					     }
-					});
-				}
-			}
-			function toList(){
-				window.location=htmlURL+"/system/user/list.html";
-			}
-			$(function(){
-				$.ajax({
-					 url:url+"/system/role/listAll",
-					 type:'post',
-					 success:function(data){
-					 	$('#cc').combobox('loadData',data.data);
-						$.ajax({
-							 url:url+'/system/user/selectByPrimaryKey',
-							 type:'post',
-							 data:'id='+getQueryString("id"),
-							 success:function(data){
-								var v=data.data;
-								$('#ff').form('load',v);
-								var s= new Array();
-								for(var i=0;i<v.userRoleList.length;i++){
-									s.push(v.userRoleList[i].roleId);
-								}
-								$('#cc').combobox('setValues',s);
-							 }
-						});
-					}
-				});
-			})
-		</script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+	<el-form id="ff" label-width="80px">
+		<el-form-item label="账号">
+			<el-input  name="username" :value="username"></el-input>
+		</el-form-item>
+		<el-form-item label="密码">
+			<el-input  name="password"  :value="password"></el-input>
+		</el-form-item>
+		<el-form-item label="角色">
+			<el-select v-model="value13"  multiple placeholder="请选择">
+				<el-option
+						v-for="item in options"
+						:key="item.id"
+						:label="item.name"
+						:value="item.id">
+				</el-option>
+			</el-select>
+		</el-form-item>
+		<el-form-item>
+			<el-button type="primary" @click="submitForm">提交</el-button>
+		</el-form-item>
+	</el-form>
+</div>
+</body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            username:'',
+            id:'',
+            password:'',
+            options: [],
+            value13:[]
+        },
+        methods: {
+            submitForm() {
+                var self = this;
+                var obj=$("#ff").serializeObject()
+                obj.id=this.id;
+                obj.type=this.value13.toString();
+                $.ajax({
+                    url:url+'/system/user/update',
+                    type:'post',
+                    data:obj,
+                    success:function(data){
 
-	<body>
-		<form id="ff" method="POST">
-			<input type="hidden" id="id" name="id" value="">
-			<table>
-				<tr>
-					<td>
-						账号: 
-					</td>
-					<td>
-						<input type="text"  id="username" name="username"  readonly="true" class="easyui-textbox" required="true" validType="length[1,25]">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						密码:
-					</td>
-					<td>
-						<input type="password" name="password" id="password"   class="easyui-textbox"  validType="length[0,25]">
-					</td>
-				</tr>
-				<tr>
-					<td>角色:</td>
-					<td>
-					
-						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
-							data-options="
-								valueField:'id',
-								textField:'name',
-								panelHeight:'auto'
-							">
-					
-					</td>
-				</tr>
-				
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-		
-	</body>
+                        if(data.result=="success"){
+                            self.toList();
+                        }
+                    }
+                });
+            },toList(){
+                window.location=htmlURL+"/system/user/list.html";
+            },init(){
+                var self = this;
+                $.ajax({
+                    url:url+"/system/dict/findDictByDict?type=1",
+                    type:'post',
+                    success:function(data){
+                        self.options=data.data;
+                        $.ajax({
+                            url:url+'/system/user/selectByPrimaryKey',
+                            type:'post',
+                            data:'id='+getQueryString("id"),
+                            success:function(data){
+                                var v=data.data;
+                                self.username=v.username
+                                self.password=v.password
+                                self.id=v.id
+                                var s= new Array();
+                                for(var i=0;i<v.userRoleList.length;i++){
+                                    s.push(v.userRoleList[i].roleId);
+                                }
+                                self.value13=s;
+
+                            }
+                        });
+                    }
+                });
+            }
+        },
+        mounted () {
+            this.init();
+        }
+    })
+</script>
 </html>

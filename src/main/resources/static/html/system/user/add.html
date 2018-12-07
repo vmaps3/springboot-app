@@ -1,88 +1,95 @@
+<!DOCTYPE html>
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<head>
-		<title>My JSP 'addUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
-			function submitForm(){
-				if($("#ff").form('validate')&&findUserByUser()){
-					$.ajax({   
-					     url:url+"/system/user/add",
-					     type:$("#ff").attr("method"),   
-					     data:$("#ff").serializeArray(),
-					     success:function(data){   
-					    	 if(data.result=="success"){
-					        	window.location=htmlURL+"/system/user/list.html";
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
-					     }
-					});
-				}
-			}
-			function findUserByUser(){
-				var a=false;
-				$.ajax({   
-					     url:url+'/system/user/findUserByUser',   
-					     type:'post',   
-					     async : false,
-					     data:'username='+$("#username").val(), 
-					     success:function(data){   
-					        if(data.result=="success"){
-					        	a= true;
-					        }else{
-					        	$.messager.alert('提示','用户名重名');
-					        	a= false;
-					        }
-					     }
-				});
-				return a;
-			}
-			
-			function toList(){
-				window.location=htmlURL+"/system/user/list.html";
-			}
-			$(function(){
-				$.ajax({
-					 url:url+"/system/role/listAll",
-					 type:'post',
-					 success:function(data){
-							$('#ec').combobox('loadData',data.data);
-					 }
-				});
-			});
-		</script>
-	</head>
-	<body>
-		<form id="ff" method="POST">
-			<input type="hidden" name="id"/>
-			<table>
-				<tr>
-					<td>账号:</td>
-					<td><input type="text" id="username" name="username" class="easyui-textbox" required="true" validType="length[1,25]"></td>
-				</tr>
-				<tr>
-					<td>密码:</td>
-					<td><input type="password" name="password" class="easyui-textbox" required="true" validType="length[0,25]"></td>
-				</tr>
-				<tr>
-					<td>角色:</td>
-					<td>
-						
-						<input id="ec" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
-							data-options="
-								valueField:'id',
-								textField:'name',
-								panelHeight:'auto'
-							">
-					</td>
-				</tr>
-				
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-	</body>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+	<el-form id="ff" label-width="80px">
+		<el-form-item label="账号">
+			<el-input  v-model="username" name="username" value="" @blur="findUserByUser"></el-input>
+		</el-form-item>
+		<el-form-item label="密码">
+			<el-input  name="password"  value=""></el-input>
+		</el-form-item>
+		<el-form-item label="角色">
+		<el-select v-model="value13" multiple placeholder="请选择">
+			<el-option
+					v-for="item in options"
+					:key="item.id"
+					:label="item.name"
+					:value="item.id">
+			</el-option>
+		</el-select>
+		</el-form-item>
+		<el-form-item>
+			<el-button type="primary" @click="submitForm">提交</el-button>
+		</el-form-item>
+	</el-form>
+</div>
+</body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+		data:{
+            username:'',
+            options: [],
+            value13:[]
+		},
+        methods: {
+            submitForm() {
+                var self = this;
+                var obj=$("#ff").serializeObject()
+                obj.roleId=this.value13.toString()
+                getQueryString("pid")
+                $.ajax({
+                    url:url+"/system/user/add",
+                    type:'post',
+                    data:obj,
+                    success:function(data){
+                        if(data.result=="success"){
+                            self.toList();
+                        }
+                    }
+                });
+            },toList(){
+                window.location=htmlURL+"/system/user/list.html";
+            }, cx(){
+                var self = this;
+                $.ajax({
+                    url:url+"/system/role/listAll",
+                    type:'post',
+                    success:function(data){
+                        self.options=data.data;
+                    }
+                });
+            },findUserByUser(){
+                var self = this;
+                var a=false;
+                $.ajax({
+                    url:url+'/system/user/findUserByUser',
+                    type:'post',
+                    async : false,
+                    data:'username='+self.username,
+                    success:function(data){
+                        if(data.result=="success"){
+                            a= true;
+                        }else{
+                            self.$alert('用户名重名', '提示', {
+                                confirmButtonText: '确定',
+                            });
+                            a= false;
+                        }
+                    }
+                });
+                return a;
+            }
+
+        },
+        mounted () {
+            this.cx();
+        }
+    })
+</script>
 </html>

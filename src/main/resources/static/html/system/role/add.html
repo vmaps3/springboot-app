@@ -1,65 +1,74 @@
-
-
+<!DOCTYPE html>
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<head>
-		<title>My JSP 'addUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
-			function submitForm(){
-				if($("#ff").form('validate')==true){
-					$.ajax({   
-					     url:url+"/system/role/add",   
-					     type:$("#ff").attr("method"),   
-					     data:$("#ff").serializeArray(),
-					     success:function(data){   
-					    	 if(data.result=="success"){
-					        	window.location=htmlURL+"/system/role/list.html";
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
-					     }
-					});
-				}
-			}
-			function toList(){
-				window.location=htmlURL+"/system/role/list.html";
-			}
-			$(function(){
-			$.ajax({
-             url:url+"/system/resources/list",
-             type:'post',
-             success:function(data){
-                	$('#resourcesId').combotree('loadData',data.data);
-             }
-        });
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+	<el-form id="ff" label-width="80px">
 
-			}); 
-		</script>
-	</head>
-
-	<body>
-		<form id="ff" method="POST">
-			<input type="hidden" name="id"/>
-			<table>
-				<tr>
-					<td>名称:</td>
-					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
-				</tr>
-				<tr>
-					<td>权限:</td>
-					<td>
-						<input name="resourcesId" id="resourcesId" required="true" class="easyui-combotree" cascadeCheck ="false" panelHeight="auto"  multiple >
-
-					</td>
-				</tr>
-				
-			
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-	</body>
+		<el-form-item label="名称">
+			<el-input  name="name"  value=""></el-input>
+		</el-form-item>
+		<el-form-item label="类型">
+			<el-tree
+					:data="data2"
+					show-checkbox
+					ref="tree"
+					node-key="id"
+					:default-expanded-keys="[2, 3]"
+					:default-checked-keys="[5]"
+					:props="defaultProps">
+			</el-tree>
+		</el-form-item>
+		<el-form-item>
+			<el-button type="primary" @click="submitForm">提交</el-button>
+		</el-form-item>
+	</el-form>
+</div>
+</body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+		data:{
+            data2:[],
+            defaultProps: {
+                children: 'children',
+                label: 'text'
+            }
+		},
+        methods: {
+            submitForm() {
+                var self = this;
+                var obj=$("#ff").serializeObject()
+                obj.resourcesId=this.$refs.tree.getCheckedKeys().toString()
+                $.ajax({
+                    url:url+"/system/role/add",
+                    type:"post",
+                    data:obj,
+                    success:function(data){
+                        if(data.result=="success"){
+                            self.toList();
+                        }
+                    }
+                });
+            },toList(){
+                window.location=htmlURL+"/system/role/list.html";
+            }, cx(){
+                var self = this;
+                $.ajax({
+                    url:url+"/system/resources/list",
+                    type:'post',
+                    success:function(data){
+                        self.data2=data.data;
+                    }
+                })
+            }
+        },
+        mounted () {
+            this.cx();
+        }
+    })
+</script>
 </html>

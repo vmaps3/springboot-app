@@ -1,83 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>My JSP 'addUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
-			function submitForm(){
-				if($("#ff").form('validate')==true){
-					$("#pid").val(getQueryString("pid"));
-					$.ajax({   
-					     url:url+"/system/resources/add",   
-					     type:$("#ff").attr("method"),   
-					     data:$("#ff").serializeArray(),
-					     success:function(data){   
-					    	 if(data.result=="success"){
-					        	window.location=htmlURL+"/system/resources/list.html";
-					        }else{
-					        	$.messager.alert('提示',data.msg);
-					        }
-					     }
-					});
-				}
-			}
-			function toList(){
-				window.location=htmlURL+"/system/resources/list.html";
-			}
-				$(function(){
-			$.ajax({
-             url:url+"/system/dict/findDictByDict?type=1",
-             type:'get',
-             success:function(data){
-                	$('#ec').combobox('loadData',data.data);
-             }
-              });
-        });
-			
-		</script>
-	</head>
-
-	<body>
-		<form id="ff" action="" method="POST">
-			<input type="hidden" name="id"/>
-			<input type="hidden" name="pid" id="pid"/>
-			<table>
-				
-				
-				<tr>
-					<td>名称:</td>
-					<td><input type="text" name="name" class="easyui-textbox" required="true" validType="length[1,25]"></td>
-				</tr>
-				<tr>
-					<td>地址:</td>
-					<td><input type="text" name="url" class="easyui-textbox" validType="length[0,50]"></td>
-				</tr>
-				<tr>
-					<td>类型:</td>
-					<td>
-						<input id="ec" class="easyui-combobox" name="type" required="true"
-							data-options="
-								valueField:'code',
-								textField:'name',
-								panelHeight:'auto'
-							">
-					</td>
-				</tr>
-				<tr>
-					<td>排序:</td>
-					<td><input type="text" name="sort" class="easyui-textbox" validType="length[0,25]"></td>
-				</tr>
-				
-				
-				
-				
-			
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-	</body>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+	<el-form id="ff" label-width="80px">
+		<el-form-item label="名称">
+			<el-input  name="name" value=""></el-input>
+		</el-form-item>
+		<el-form-item label="地址">
+			<el-input  name="url"  value=""></el-input>
+		</el-form-item>
+		<el-form-item label="角色">
+			<el-select v-model="value13" placeholder="请选择">
+				<el-option
+						v-for="item in options"
+						:key="item.id"
+						:label="item.name"
+						:value="item.id">
+				</el-option>
+			</el-select>
+		</el-form-item>
+		<el-form-item label="排序">
+			<el-input  name="sort"  value=""></el-input>
+		</el-form-item>
+		<el-form-item>
+			<el-button type="primary" @click="submitForm">提交</el-button>
+		</el-form-item>
+	</el-form>
+</div>
+</body>
+<script type="text/javascript" src="../../js/include.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            options: [],
+            value13:[]
+        },
+        methods: {
+            submitForm() {
+                var self = this;
+                var obj=$("#ff").serializeObject()
+                obj.type=this.value13.toString()
+                obj.pid=getQueryString("pid")
+                $.ajax({
+                    url:url+"/system/resources/add",
+                    type:'post',
+                    data:obj,
+                    success:function(data){
+                        if(data.result=="success"){
+                            self.toList();
+                        }
+                    }
+                });
+            },toList(){
+                window.location=htmlURL+"/system/resources/list.html";
+            }, cx(){
+                var self = this;
+                $.ajax({
+                    url: url + "/system/dict/findDictByDict?type=1",
+                    type: 'get',
+                    success: function (data) {
+                        self.options=data.data;
+                    }
+                });
+            }
+        },
+        mounted () {
+            this.cx();
+        }
+    })
+</script>
 </html>

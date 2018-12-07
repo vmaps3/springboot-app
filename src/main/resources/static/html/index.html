@@ -23,7 +23,7 @@
                                     <template slot="title">
                                         <span>系统管理</span>
                                     </template>
-                                    <el-menu-item index="1-1-1" route="www.baidu.com">用户管理</el-menu-item>
+                                    <el-menu-item index="1-1-1">用户管理</el-menu-item>
                                     <el-menu-item index="1-1-2">角色管理</el-menu-item>
                                     <el-menu-item index="1-1-3" >权限管理</el-menu-item>
                                     <el-menu-item index="1-1-4" >字典管理</el-menu-item>
@@ -75,14 +75,14 @@
                     url+="/system/dict/list.html";
                 }
                 var content = '';
-                this.handleTabsEdit(null,'add',url)
+                this.handleTabsEdit(null,'add',url,key)
             },
 
-            handleTabsEdit(targetName, action,url) {
+            handleTabsEdit(targetName, action,url,key) {
                 if (action === 'add') {
                     let newTabName = ++this.tabIndex + '';
                     this.editableTabs.push({
-                        title: 'New Tab',
+                        title: key,
                         name: newTabName,
                         content: url
                     });
