@@ -56,16 +56,22 @@
             },
 
             remove(node, data) {
-                $.ajax({
-                    url:url+'/system/resources/delete',
-                    type:'post',
-                    data:"id="+data.id,
-                    success:function(data){
-                        if(data.result=="success") {
-                            window.location = htmlURL + "/system/resources/list.html";
-                        }
-                    }
-                });
+            	this.$confirm('确认操作?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+					$.ajax({
+						url:url+'/system/resources/delete',
+						type:'post',
+						data:"id="+data.id,
+						success:function(data){
+							if(data.result=="success") {
+								window.location = htmlURL + "/system/resources/list.html";
+							}
+						}
+					});
+				})
             },up(data){
                 window.location=htmlURL+'/system/resources/update.html?id='+data.id;
 			}, cx(){

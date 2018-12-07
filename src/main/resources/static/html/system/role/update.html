@@ -22,6 +22,7 @@
 		</el-form-item>
 		<el-form-item>
 			<el-button type="primary" @click="submitForm">提交</el-button>
+			<el-button type="primary" @click="toList">返回</el-button>
 		</el-form-item>
 	</el-form>
 </div>
@@ -41,21 +42,27 @@
         },
         methods: {
             submitForm() {
-                var self = this;
-                var obj=$("#ff").serializeObject()
-                obj.id=this.id;
-                obj.resourcesId=this.$refs.tree.getCheckedKeys().toString()
-                $.ajax({
-                    url:url+'/system/role/update',
-                    type:'post',
-                    data:obj,
-                    success:function(data){
+            	this.$confirm('确认操作?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+					var self = this;
+					var obj=$("#ff").serializeObject()
+					obj.id=this.id;
+					obj.resourcesId=this.$refs.tree.getCheckedKeys().toString()
+					$.ajax({
+						url:url+'/system/role/update',
+						type:'post',
+						data:obj,
+						success:function(data){
 
-                        if(data.result=="success"){
-                            self.toList();
-                        }
-                    }
-                });
+							if(data.result=="success"){
+								self.toList();
+							}
+						}
+					});
+				})
             },toList(){
                 window.location=htmlURL+"/system/role/list.html";
             }, cx(){

@@ -74,22 +74,27 @@
             },add(){
                 window.location=htmlURL+"/system/user/add.html";
             },del(){
-
-                var myArray=new Array();
-                for(var i=0;i<this.multipleSelection.length;i++){
-                    myArray.push(this.multipleSelection[i].id);
-                }
-                $.ajax({
-                    url:url+'/system/user/delete',
-                    type:'post',
-                    data:"id="+myArray,
-                    success:function(data){
-
-                        if(data.result=="success"){
-                            window.location=htmlURL+"/system/user/list.html";
-                        }
+                this.$confirm('确认操作?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    var myArray=new Array();
+                    for(var i=0;i<this.multipleSelection.length;i++){
+                        myArray.push(this.multipleSelection[i].id);
                     }
-                });
+                    $.ajax({
+                        url:url+'/system/user/delete',
+                        type:'post',
+                        data:"id="+myArray,
+                        success:function(data){
+
+                            if(data.result=="success"){
+                                window.location=htmlURL+"/system/user/list.html";
+                            }
+                        }
+                    });
+                })
             },up(){
                 window.location=htmlURL+"/system/user/update.html?id="+this.multipleSelection [0].id;
             },changeFun(val) {
