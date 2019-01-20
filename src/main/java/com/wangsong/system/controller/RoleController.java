@@ -12,8 +12,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +32,7 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @ApiOperation(value = "列表", httpMethod = "POST")
-    @RequiresPermissions("/system/role/list")
+    @PreAuthorize("hasAuthority('/system/role/list')")
     @RequestMapping(value = "/list")
     @ResponseBody
     public Result list(@ModelAttribute RolePage role) {
@@ -39,7 +40,7 @@ public class RoleController extends BaseController {
     }
 
     @ApiOperation(value = "增加", httpMethod = "POST")
-    @RequiresPermissions("/system/role/add")
+    @PreAuthorize("hasAuthority('/system/role/add')")
     @RequestMapping(value = "/add")
     @ResponseBody
     public Result add(@ModelAttribute RoleAddModel role) {
@@ -52,7 +53,7 @@ public class RoleController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
-    @RequiresPermissions("/system/role/delete")
+    @PreAuthorize("hasAuthority('/system/role/delete')")
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Result delete(String[] id) {
@@ -61,7 +62,7 @@ public class RoleController extends BaseController {
     }
 
     @ApiOperation(value = "更新", httpMethod = "POST")
-    @RequiresPermissions("/system/role/update")
+    @PreAuthorize("hasAuthority('/system/role/update')")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(@ModelAttribute RoleAddModel mrole) {

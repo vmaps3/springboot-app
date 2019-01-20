@@ -12,9 +12,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +33,7 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @ApiOperation(value = "列表", httpMethod = "POST")
-    @RequiresPermissions("/system/user/list")
+    @PreAuthorize("hasAuthority('/system/user/list')")
     @RequestMapping(value = "/list")
     @ResponseBody
     public Result list(@ModelAttribute UserPage user) {
@@ -39,7 +41,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation(value = "增加", httpMethod = "POST")
-    @RequiresPermissions("/system/user/add")
+    @PreAuthorize("hasAuthority('/system/user/add')")
     @RequestMapping(value = "/add")
     @ResponseBody
     public Result add(@ModelAttribute UserAddModel user) {
@@ -59,7 +61,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation(value = "更新", httpMethod = "POST")
-    @RequiresPermissions("/system/user/update")
+    @PreAuthorize("hasAuthority('/system/user/update')")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(@ModelAttribute UserAddModel muser) {
@@ -73,7 +75,7 @@ public class UserController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
-    @RequiresPermissions("/system/user/delete")
+    @PreAuthorize("hasAuthority('/system/user/delete')")
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Result delete(String[] id) {
@@ -96,7 +98,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/toUpdatePassword")
     @ResponseBody
     public Result toUpdatePassword() {
-        String id=(String) SecurityUtils.getSubject().getPrincipal();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String id= ((User)userDetails).getId();
         return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey(id));
     }
 

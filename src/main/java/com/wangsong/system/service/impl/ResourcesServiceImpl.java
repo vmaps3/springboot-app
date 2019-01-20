@@ -8,7 +8,6 @@ import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.service.ResourcesService;
 import com.wangsong.system.service.RoleService;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
