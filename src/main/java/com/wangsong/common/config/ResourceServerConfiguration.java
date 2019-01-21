@@ -23,8 +23,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers( "/html/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .headers().frameOptions().disable()
-        .and().csrf().disable();;
+                .headers().frameOptions().disable();
     }
 
 }
