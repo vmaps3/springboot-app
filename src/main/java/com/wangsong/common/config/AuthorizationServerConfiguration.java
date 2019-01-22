@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -38,8 +40,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         clients
             .inMemory()
                 .withClient("client")
-                    .scopes("success")
-                    ;
+                    .scopes("success");
     }
 
     @Override
@@ -50,6 +51,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .userDetailsService(userService);
     }
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security
+                // 开启/oauth/token_key验证端口无权限访问
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients();
+    }
 
 
 }
