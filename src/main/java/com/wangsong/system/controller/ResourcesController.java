@@ -29,7 +29,7 @@ public class ResourcesController extends BaseController {
     private ResourcesService resourcesService;
 
     @ApiOperation(value = "增加", httpMethod = "POST")
-    @Secured("/system/resources/add")
+    @PreAuthorize("hasAuthority('/system/resources/add')")
     @RequestMapping(value = "/add")
     @ResponseBody
     public Result add(@ModelAttribute Resources resources) {
@@ -41,7 +41,7 @@ public class ResourcesController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
-    @Secured("/system/resources/delete")
+    @PreAuthorize("hasAuthority('/system/resources/delete')")
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Result delete(String[] id) {
@@ -50,7 +50,7 @@ public class ResourcesController extends BaseController {
     }
 
     @ApiOperation(value = "更新", httpMethod = "POST")
-    @Secured("/system/resources/update")
+    @PreAuthorize("hasAuthority('/system/resources/update')")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(@ModelAttribute Resources resources) {
