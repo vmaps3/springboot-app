@@ -1,5 +1,5 @@
 //spirnboot-app
-var url = "/springboot-app";
+var url = "";
 var htmlURL = url+ "/html" ;
 
 //dubbo-app
