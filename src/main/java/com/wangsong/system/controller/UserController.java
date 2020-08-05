@@ -98,11 +98,12 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/toUpdatePassword")
     @ResponseBody
     public Result toUpdatePassword() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        String id= ((User)userDetails).getId();
-        return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey(id));
+        String userDetails = (String) SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getPrincipal();
+        User u=new User();
+        u.setUsername(userDetails);
+        return new Result(CodeEnum.SUCCESS.getCode(),userService.findTByT(u));
     }
 
     @ApiOperation(value = "更改密码", httpMethod = "POST")
