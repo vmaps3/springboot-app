@@ -1,10 +1,10 @@
 package com.wangsong.common.model;
 
-import com.wangsong.system.model.User;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
+import com.wangsong.system.entity.User;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,8 +30,8 @@ public class CustomUserDetails extends User implements UserDetails {
 
     public CustomUserDetails(User user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         if (user != null
-                && !StringUtils.isBlank(user.getUsername())
-                && !StringUtils.isBlank(user.getPassword())) {
+                && StrUtil.isNotBlank(user.getUsername())
+                && StrUtil.isNotBlank(user.getPassword())) {
             setId(user.getId());
             setUsername(user.getUsername());
             setPassword(user.getPassword());
@@ -39,7 +39,8 @@ public class CustomUserDetails extends User implements UserDetails {
             this.accountNonExpired = accountNonExpired;
             this.credentialsNonExpired = credentialsNonExpired;
             this.accountNonLocked = accountNonLocked;
-            this.authorities = Collections.unmodifiableSet(new HashSet<>(CollectionUtils.emptyIfNull(authorities)));
+            this.authorities = Collections.unmodifiableSet(new HashSet<>(
+                    null == authorities ? Collections.emptyList() : authorities));
         } else {
             throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
         }

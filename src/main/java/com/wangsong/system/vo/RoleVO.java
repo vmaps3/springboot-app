@@ -2,8 +2,8 @@ package com.wangsong.system.vo;
 
 import java.util.List;
 
-import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleResources;
+import com.wangsong.system.entity.Role;
+import com.wangsong.system.entity.RoleResources;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

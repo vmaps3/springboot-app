@@ -2,27 +2,21 @@ package com.wangsong.common.config;
 
 
 import com.wangsong.common.model.CustomUserDetails;
-import com.wangsong.system.service.UserService;
+import com.wangsong.system.service.IUserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -36,12 +30,12 @@ import java.util.Date;
 public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
   private AuthenticationManager authenticationManager;
-  private UserService userService;
+  private IUserService userService;
   public JWTLoginFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
-  public JWTLoginFilter(AuthenticationManager authenticationManager, UserService userService) {
+  public JWTLoginFilter(AuthenticationManager authenticationManager, IUserService userService) {
     this.authenticationManager = authenticationManager;
     this.userService = userService;
   }

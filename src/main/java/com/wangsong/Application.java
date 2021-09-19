@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-@MapperScan("com.wangsong.*.dao")
+@MapperScan("com.wangsong.*.mapper")
 public class Application {
 
     public static void main(String[] args) {

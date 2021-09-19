@@ -3,23 +3,14 @@ package com.wangsong.common.config;
 
 
 
-import com.wangsong.system.service.UserService;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.context.annotation.Bean;
+import com.wangsong.system.service.IUserService;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.DigestUtils;
-
-import java.util.Objects;
 
 /**
  * SpringSecurity的配置
@@ -30,10 +21,10 @@ import java.util.Objects;
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled =true)//激活方法上的PreAuthorize注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private UserService userService;
+  private IUserService userService;
 
 
-  public WebSecurityConfig(UserService userService) {
+  public WebSecurityConfig(IUserService userService) {
     this.userService = userService;
   }
 

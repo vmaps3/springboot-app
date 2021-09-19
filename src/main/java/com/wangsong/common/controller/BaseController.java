@@ -4,11 +4,10 @@ import java.beans.PropertyEditorSupport;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.EscapeUtil;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-
-import com.wangsong.common.util.DateUtils;
 
 
 public class BaseController {
@@ -19,7 +18,7 @@ public class BaseController {
         binder.registerCustomEditor(String.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                setValue(text == null ? null : StringEscapeUtils.escapeHtml4(text.trim()));
+                setValue(text == null ? null : EscapeUtil.escapeHtml4(text.trim()));
             }
 
             @Override
@@ -33,7 +32,7 @@ public class BaseController {
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                setValue(DateUtils.parseDate(text));
+                setValue(DateUtil.parseDate(text));
             }
         });
 
@@ -41,7 +40,7 @@ public class BaseController {
         binder.registerCustomEditor(Timestamp.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                Date date = DateUtils.parseDate(text);
+                Date date = DateUtil.parseDate(text);
                 setValue(date == null ? null : new Timestamp(date.getTime()));
             }
         });
