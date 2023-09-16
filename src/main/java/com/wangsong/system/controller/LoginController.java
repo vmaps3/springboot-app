@@ -11,6 +11,7 @@ import com.wangsong.system.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -43,8 +44,11 @@ public class LoginController extends BaseController implements ErrorController {
     @RequestMapping(value = "/login")
     @ResponseBody
     public Result loginPost(@ModelAttribute User user) throws UnsupportedEncodingException {
+
         String data = loginService.loginPost(user);
         return new Result(CodeEnum.SUCCESS.getCode(), data);
+
+
     }
 
     @ApiOperation(value = "退出", httpMethod = "POST")
@@ -68,10 +72,10 @@ public class LoginController extends BaseController implements ErrorController {
         return ERROR_PATH;
     }
 
-    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Result illegalArgumentException(IllegalArgumentException e) {
-        return new Result(e.getMessage(), null);
+    public Result illegalArgumentException(Exception e) {
+        return new Result(CodeEnum.ERROR.getCode(), e.getMessage());
     }
 
 }

@@ -24,21 +24,17 @@ public class LoginServiceImpl implements LoginService {
     public String loginPost(User user) throws UnsupportedEncodingException {
 
 
-        try {
-            Date date = new Date(System.currentTimeMillis() + 1800000);
-            String md5Hex = DigestUtils.md5Hex(user.getPassword());
-            Algorithm algorithm = Algorithm.HMAC256(md5Hex);
-            // 附带username信息
-            String sign = JWT.create()
-                    .withClaim("username", user.getUsername())
-                    .withExpiresAt(date)
-                    .sign(algorithm);
-            Subject subject = SecurityUtils.getSubject();
-            subject.login(new JWTToken(sign));
-            return sign;
-        } catch (Exception e) {
-            throw e;
-        }
+        Date date = new Date(System.currentTimeMillis() + 1800000);
+        String md5Hex = DigestUtils.md5Hex(user.getPassword());
+        Algorithm algorithm = Algorithm.HMAC256(md5Hex);
+        // 附带username信息
+        String sign = JWT.create()
+                .withClaim("username", user.getUsername())
+                .withExpiresAt(date)
+                .sign(algorithm);
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(new JWTToken(sign));
+        return sign;
 
 
     }

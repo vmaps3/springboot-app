@@ -73,7 +73,7 @@ public class ShiroRealm extends AuthorizingRealm {
                     .build();
             verifier.verify(token);
         } catch (Exception e) {
-            throw new AuthenticationException("密码不对");
+            throw new AuthenticationException(e.getMessage());
         }
         // 认证缓存信息
         return new SimpleAuthenticationInfo(user.getId(), token, getName());
