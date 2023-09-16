@@ -7,11 +7,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangsong.common.model.CodeEnum;
-import com.wangsong.common.model.CustomUserDetails;
 import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.system.entity.*;
 import com.wangsong.system.mapper.UserMapper;
-import com.wangsong.system.mapper.UserRoleMapper;
 import com.wangsong.system.service.IResourcesService;
 import com.wangsong.system.service.IRoleResourcesService;
 import com.wangsong.system.service.IUserRoleService;
@@ -22,13 +20,11 @@ import com.wangsong.system.vo.UserPage;
 import com.wangsong.system.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -136,48 +132,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public User findTByUsername(String userDetails) {
+    public User findTByUsername(Long userDetails) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username", userDetails);
+        queryWrapper.eq("id", userDetails);
         User userOne = getOne(queryWrapper);
         return userOne;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String userDetails) throws UsernameNotFoundException {
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username", userDetails);
-        User user = getOne(queryWrapper);
 
-        if (user == null) {
-            throw new UsernameNotFoundException("Could not find the user '" + userDetails + "'");
-        }
-        QueryWrapper queryWrapper2 = new QueryWrapper();
-        queryWrapper2.eq("user_id", user.getId());
-        List<UserRole> userRoleList = userRoleMapper.list(queryWrapper2);
-        List<Long> roleIds = new ArrayList<>();
-        for (UserRole userRole : userRoleList) {
-            roleIds.add(userRole.getRoleId());
-        }
-        QueryWrapper queryWrapper3 = new QueryWrapper();
-        queryWrapper3.in("role_id", roleIds);
-        List<RoleResources> roleResourcesList = roleResourcesService.list(queryWrapper3);
-        List<Long> roleResourcesLists = new ArrayList<>();
-
-        for (RoleResources roleResources : roleResourcesList) {
-            roleResourcesLists.add(roleResources.getResourcesId());
-        }
-        QueryWrapper queryWrapper4 = new QueryWrapper();
-        queryWrapper4.in("id", roleResourcesLists);
-        queryWrapper4.eq("type", 2);
-        queryWrapper4.orderByAsc("sort");
-        List<Resources> resourcesList = resourcesService.list(queryWrapper4);
-
-
-        // Not involve authorities, so pass null to authorities
-        return new CustomUserDetails(user, true, true, true, true, resourcesList);
-
-    }
 
 
     @Override

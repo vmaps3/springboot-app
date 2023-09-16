@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.security.core.GrantedAuthority;
 
 /**
  * <p>
@@ -19,7 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("system_resources")
-public class Resources implements Serializable, GrantedAuthority {
+public class Resources implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,8 +36,5 @@ public class Resources implements Serializable, GrantedAuthority {
     private Integer sort;
 
 
-    @Override
-    public String getAuthority() {
-        return url;
-    }
+
 }

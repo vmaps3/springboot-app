@@ -9,9 +9,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,7 +36,7 @@ public class ResourcesController extends BaseController {
     private IResourcesService resourcesService;
 
     @ApiOperation(value = "增加", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/resources/add')")
+    @RequiresPermissions("/system/resources/add")
     @RequestMapping(value = "/add")
     public Result add(@ModelAttribute Resources resources) {
         resourcesService.insertResources(resources);
@@ -46,7 +47,7 @@ public class ResourcesController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
-    @PreAuthorize("hasAuthority('/system/resources/delete')")
+    @RequiresPermissions("/system/resources/delete")
     @RequestMapping(value = "/delete")
     @ResponseBody
     public Result delete(Long[] id) {
@@ -55,7 +56,7 @@ public class ResourcesController extends BaseController {
     }
 
     @ApiOperation(value = "更新", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/resources/update')")
+    @RequiresPermissions("/system/resources/update")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(@ModelAttribute Resources resources) {
@@ -65,7 +66,7 @@ public class ResourcesController extends BaseController {
     }
 
     @ApiOperation(value = "列表", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/resources/list')")
+    @RequiresPermissions("/system/resources/list")
     @RequestMapping(value = "/list")
     @ResponseBody
     public Result list() {
@@ -77,10 +78,8 @@ public class ResourcesController extends BaseController {
     @RequestMapping(value = "/findResourcesEMUByResources")
     @ResponseBody
     public Result findResourcesEMUByResources() {
-        String userDetails = (String) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(userDetails));
+        Long username= (Long) SecurityUtils.getSubject().getPrincipal();
+        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(username));
     }
 
     @ApiOperation(value = "单条", httpMethod = "POST")

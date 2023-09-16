@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.wangsong.system.vo.UserAddModel;
 import com.wangsong.system.vo.UserPage;
 import com.wangsong.system.vo.UserVO;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <p>
@@ -16,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author jobob
  * @since 2021-09-18
  */
-public interface IUserService extends IService<User>, UserDetailsService {
+public interface IUserService extends IService<User> {
 
     GetEasyUIData list(UserPage user);
 
@@ -32,5 +31,5 @@ public interface IUserService extends IService<User>, UserDetailsService {
 
     void updatePassword(UserAddModel muser);
 
-    User findTByUsername(String userDetails);
+    User findTByUsername(Long userDetails);
 }

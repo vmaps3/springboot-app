@@ -16,10 +16,12 @@
 				     type:$("#ff").attr("method"),   
 				     data:$("#ff").serializeArray(),
 						success: function(data, textStatus, jqXHR) {
-
-							 $.cookie('token', "Bearer "+jqXHR.getResponseHeader("Authorization"));
-							 window.location=htmlURL+"/index.html";
-
+							if(data.result=='success'){
+								$.cookie('token', data.data);
+							 	window.location=htmlURL+"/index.html";
+							}else{
+								$.messager.alert('提示',data.result);
+							}
 				     }
 				});
 			}

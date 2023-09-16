@@ -7,7 +7,6 @@ import com.wangsong.common.model.JsonTreeData;
 import com.wangsong.common.util.TreeNodeUtil;
 import com.wangsong.system.entity.Resources;
 import com.wangsong.system.entity.RoleResources;
-import com.wangsong.system.entity.User;
 import com.wangsong.system.entity.UserRole;
 import com.wangsong.system.mapper.ResourcesMapper;
 import com.wangsong.system.service.IResourcesService;
@@ -35,10 +34,11 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
     @Autowired
     private IRoleResourcesService roleResourcesService;
     @Autowired
-    private IUserService  userService;
+    private IUserService userService;
 
     @Autowired
     private IUserRoleService userRoleService;
+
     @Override
     @Transactional
     public void deleteResources(Long[] ids) {
@@ -68,12 +68,19 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
     }
 
     @Override
-    public List<Resources> findResourcesEMUByResources(String username) {
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username",username);
-        User user = userService.getOne(queryWrapper);
+    public List<Resources> findResourcesEMUByResources(Long userId) {
+        List<Long> roleResourcesLists = findResourcesy(userId);
+
+        QueryWrapper queryWrapper4 = new QueryWrapper();
+        queryWrapper4.in("id", roleResourcesLists);
+        queryWrapper4.orderByAsc("sort");
+        List<Resources> resourcesList = list(queryWrapper4);
+        return resourcesList;
+    }
+
+    private List<Long> findResourcesy(Long userId) {
         QueryWrapper queryWrapper2 = new QueryWrapper();
-        queryWrapper2.eq("user_id", user.getId());
+        queryWrapper2.eq("user_id", userId);
         List<UserRole> userRoleList = userRoleService.list(queryWrapper2);
         List<Long> roleIds = new ArrayList<>();
         for (UserRole userRole : userRoleList) {
@@ -87,8 +94,17 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
         for (RoleResources roleResources : roleResourcesList) {
             roleResourcesLists.add(roleResources.getResourcesId());
         }
+        return roleResourcesLists;
+    }
+
+    @Override
+    public List<Resources> findResourcesyUserId(Long userId) {
+
+        List<Long> roleResourcesLists = findResourcesy(userId);
+
         QueryWrapper queryWrapper4 = new QueryWrapper();
         queryWrapper4.in("id", roleResourcesLists);
+        queryWrapper4.eq("type", 2);
         queryWrapper4.orderByAsc("sort");
         List<Resources> resourcesList = list(queryWrapper4);
         return resourcesList;

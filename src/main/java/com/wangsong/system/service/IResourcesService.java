@@ -21,7 +21,9 @@ public interface IResourcesService extends IService<Resources> {
 
     List<JsonTreeData> findResources();
 
-    List<Resources> findResourcesEMUByResources(String username);
+    List<Resources> findResourcesEMUByResources(Long username);
+
+    List<Resources> findResourcesyUserId(Long id);
 
     void updateResources(Resources resources);
 

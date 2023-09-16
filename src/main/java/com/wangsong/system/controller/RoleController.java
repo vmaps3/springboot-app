@@ -13,8 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author jobob
@@ -41,7 +41,7 @@ public class RoleController extends BaseController {
     private IRoleService roleService;
 
     @ApiOperation(value = "列表", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/role/list')")
+    @RequiresPermissions("/system/role/list")
     @RequestMapping(value = "/list")
     @ResponseBody
     public Result list(@ModelAttribute RolePage role) {
@@ -50,7 +50,7 @@ public class RoleController extends BaseController {
     }
 
     @ApiOperation(value = "增加", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/role/add')")
+    @RequiresPermissions("/system/role/add")
     @RequestMapping(value = "/add")
     @ResponseBody
     public Result add(@ModelAttribute RoleAddModel role) {
@@ -63,16 +63,16 @@ public class RoleController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
-    @PreAuthorize("hasAuthority('/system/role/delete')")
-    @RequestMapping(value = "/delete")
-    @ResponseBody
-    public Result delete(Long[] id) {
+    @RequiresPermissions("/system/role/delete")
+            @RequestMapping(value = "/delete")
+            @ResponseBody
+            public Result delete(Long[]id) {
         roleService.deleteRole(id);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
     }
 
     @ApiOperation(value = "更新", httpMethod = "POST")
-    @PreAuthorize("hasAuthority('/system/role/update')")
+    @RequiresPermissions("/system/role/update")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(@ModelAttribute RoleAddModel mrole) {

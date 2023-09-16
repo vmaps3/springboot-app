@@ -1,21 +1,24 @@
 package com.wangsong.system.controller;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.Result;
+import com.wangsong.system.entity.User;
 import com.wangsong.system.service.LoginService;
+
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 @Api(value = "登录相关")
 @Controller
@@ -33,6 +36,15 @@ public class LoginController extends BaseController implements ErrorController {
     @ResponseBody
     public Result index() {
         return new Result(CodeEnum.INDEX.getCode(), null);
+    }
+
+
+    @ApiOperation(value = "登录", httpMethod = "POST")
+    @RequestMapping(value = "/login")
+    @ResponseBody
+    public Result loginPost(@ModelAttribute User user) throws UnsupportedEncodingException {
+        String data = loginService.loginPost(user);
+        return new Result(CodeEnum.SUCCESS.getCode(), data);
     }
 
     @ApiOperation(value = "退出", httpMethod = "POST")
