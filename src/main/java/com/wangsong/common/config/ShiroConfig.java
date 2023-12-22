@@ -19,15 +19,14 @@ import java.util.Map;
 public class ShiroConfig {
     @Autowired
     private ShiroRealm shiroDbRealm;
-    @Autowired
-    private JWTFilter jwtFilter;
+
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 添加自己的过滤器并且取名为jwt
         Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwt", jwtFilter);
+        filterMap.put("jwt", new JWTFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
