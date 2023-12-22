@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2021-09-18
  */
 public interface IResourcesService extends IService<Resources> {
-    void deleteResources(Long[] id);
+    void deleteResources(Long id);
 
     void insertResources(Resources resources);
 

@@ -1,5 +1,6 @@
 package com.wangsong.system.service.impl;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -59,11 +60,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public void add(UserAddModel user) {
         Long[] roleIds = user.getRoleId();
+
+        Assert.notNull(roleIds, CodeEnum.NO_NULL.getCode());
+
         user.setPassword(DigestUtil.md5Hex(user.getPassword()));
         save(user);
-        if (roleIds == null) {
-            return;
-        }
         for (Long roleId : roleIds) {
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getId());
@@ -76,8 +77,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public void updateUser(UserAddModel user) {
-        Assert.notNull(user.getId(), CodeEnum.NO_NULL.getCode());
         Long[] roleIds = user.getRoleId();
+
+
+        Assert.notNull(user.getId(), CodeEnum.NO_NULL.getCode());
+        Assert.notNull(roleIds, CodeEnum.NO_NULL.getCode());
+
         if (StrUtil.isNotBlank(user.getPassword())) {
             user.setPassword(DigestUtil.md5Hex(user.getPassword()));
         } else {
@@ -89,9 +94,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userRoleMapper.remove(updateWrapper);
 
 
-        if (roleIds == null) {
-            return;
-        }
         for (Long roleId : roleIds) {
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getId());
@@ -103,12 +105,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public void deleteUser(Long[] id) {
-        for (Long ids : id) {
-            UpdateWrapper deleteWrapper = new UpdateWrapper();
-            deleteWrapper.eq("user_id", ids);
-            userRoleMapper.remove(deleteWrapper);
-            removeById(ids);
-        }
+        UpdateWrapper deleteWrapper = new UpdateWrapper();
+        deleteWrapper.in("user_id", id);
+        userRoleMapper.remove(deleteWrapper);
+        removeByIds(ListUtil.toList(id));
+
     }
 
 
@@ -127,8 +128,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("username", user.getUsername());
         User userOne = getOne(queryWrapper);
-        String r = userOne == null ? CodeEnum.SUCCESS.getCode() : CodeEnum.NO_NULL.getCode();
-        return r;
+        if (userOne == null) {
+            return CodeEnum.SUCCESS.getCode();
+        } else {
+            return CodeEnum.NO_NULL.getCode();
+        }
     }
 
     @Override
@@ -136,10 +140,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("id", userDetails);
         User userOne = getOne(queryWrapper);
+        userOne.setPassword("");
         return userOne;
     }
-
-
 
 
     @Override

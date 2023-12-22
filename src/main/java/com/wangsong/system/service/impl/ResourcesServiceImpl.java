@@ -41,23 +41,15 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 
     @Override
     @Transactional
-    public void deleteResources(Long[] ids) {
-        for (Long id : ids) {
-            if ("1".equals(id)) {
-                continue;
-            }
-            removeById(id);
-            UpdateWrapper updateWrapper = new UpdateWrapper();
-            updateWrapper.eq("resources_id", id);
-            roleResourcesService.remove(updateWrapper);
-        }
+    public void deleteResources(Long id) {
+        removeById(id);
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("resources_id", id);
+        roleResourcesService.remove(updateWrapper);
     }
 
     @Override
     public void insertResources(Resources resources) {
-        if ("".equals(resources.getUrl())) {
-            resources.setUrl("/");
-        }
         save(resources);
     }
 
@@ -112,9 +104,6 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
 
     @Override
     public void updateResources(Resources resources) {
-        if ("".equals(resources.getUrl())) {
-            resources.setUrl("/");
-        }
         updateById(resources);
     }
 

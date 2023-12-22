@@ -47,10 +47,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Transactional
     public void insertRole(RoleAddModel role) {
         Long[] resourcesIds = role.getResourcesId();
+
+        Assert.notNull(resourcesIds, CodeEnum.NO_NULL.getCode());
+
         save(role);
-        if (resourcesIds == null) {
-            return;
-        }
+
         for (Long resourcesId : resourcesIds) {
             RoleResources roleResources = new RoleResources();
             roleResources.setResourcesId(resourcesId);
@@ -62,16 +63,17 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Override
     @Transactional
     public void updateRole(RoleAddModel role) {
-        Assert.notNull(role.getId(), CodeEnum.NO_NULL.getCode());
         Long[] resourcesIds = role.getResourcesId();
+
+        Assert.notNull(role.getId(), CodeEnum.NO_NULL.getCode());
+        Assert.notNull(resourcesIds, CodeEnum.NO_NULL.getCode());
+
         updateById(role);
 
         UpdateWrapper updateWrapper = new UpdateWrapper();
         updateWrapper.eq("role_id", role.getId());
         roleResourcesService.remove(updateWrapper);
-        if (resourcesIds == null) {
-            return;
-        }
+
         for (Long resourcesId : resourcesIds) {
             RoleResources roleResources = new RoleResources();
             roleResources.setResourcesId(resourcesId);

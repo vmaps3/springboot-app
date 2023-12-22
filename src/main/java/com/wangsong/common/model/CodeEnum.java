@@ -10,7 +10,7 @@ public enum CodeEnum {
 
     private String code;
 
-    private CodeEnum(String code) {
+    CodeEnum(String code) {
         this.code = code;
     }
 

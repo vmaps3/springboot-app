@@ -1,12 +1,10 @@
-
-
 <!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User list</title>
-<script type="text/javascript" src="../../js/include.js"></script>
-<script type="text/javascript">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>User list</title>
+    <script type="text/javascript" src="../../js/include.js"></script>
+    <script type="text/javascript">
 //删除
     function del(){
         var row = $("#dg").datagrid('getSelections');
@@ -70,17 +68,7 @@
 
     $(function(){
         cx()
-        if(!getResources("/system/role/add")){
-            $('#add').hide();
-        }
 
-        if(!getResources("/system/role/update")){
-            $('#update').hide();
-        }
-
-        if(!getResources("/system/role/delete")){
-            $('#delete').hide();
-        }
         $("#dg").datagrid("getPager").pagination({
             onSelectPage: function(pageNumber, pageSize) {
                 cx(pageNumber,pageSize);
@@ -90,29 +78,33 @@
     function add(){
         window.location=htmlURL+"/system/role/add.html";
     }
-</script>
+
+    </script>
 </head>
 <body>
-   <table id="dg"  class="easyui-datagrid"  fit="true" 
-            toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="false" >
-        <thead>
-            <tr>
-               	<th field=""  data-options="checkbox:true"></th>
-                <th field="name" width="50">名称</th>
-               
-            </tr>
-        </thead>
-    </table>
-    <div id="toolbar">
-    	<form id="searchFrom" action="">
-			名称:<input type="text" name="name" class="easyui-validatebox" />
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="cx()">查询</a><br>
-		</form>
-        	<a id="add" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"  onclick="add()">新增</a>
-        	<a id="update" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
-        	<a id="delete" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
-    </div>
-   
+<table id="dg" class="easyui-datagrid" fit="true"
+       toolbar="#toolbar" pagination="true"
+       rownumbers="true" fitColumns="true" singleSelect="false">
+    <thead>
+    <tr>
+        <th field="" data-options="checkbox:true"></th>
+        <th field="name" width="50">名称</th>
+
+    </tr>
+    </thead>
+</table>
+<div id="toolbar">
+    <form id="searchFrom" action="">
+        名称:<input type="text" name="name" class="easyui-validatebox"/>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="cx()">查询</a><br>
+    </form>
+    <a id="add" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+       onclick="add()">新增</a>
+    <a id="update" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
+    <a id="delete" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+       onclick="del()">删除</a>
+</div>
+
 </body>
 </html>

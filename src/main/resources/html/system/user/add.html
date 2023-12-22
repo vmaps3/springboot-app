@@ -1,9 +1,9 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<head>
-		<title>My JSP 'addUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
+<head>
+    <title>My JSP 'addUser.jsp' starting page</title>
+    <script type="text/javascript" src="../../js/include.js"></script>
+    <script type="text/javascript">
 			function submitForm(){
 				if($("#ff").form('validate')&&findUserByUser()){
 					$.ajax({   
@@ -51,38 +51,41 @@
 					 }
 				});
 			});
-		</script>
-	</head>
-	<body>
-		<form id="ff" method="POST">
-			<input type="hidden" name="id"/>
-			<table>
-				<tr>
-					<td>账号:</td>
-					<td><input type="text" id="username" name="username" class="easyui-textbox" required="true" validType="length[1,25]"></td>
-				</tr>
-				<tr>
-					<td>密码:</td>
-					<td><input type="password" name="password" class="easyui-textbox" required="true" validType="length[0,25]"></td>
-				</tr>
-				<tr>
-					<td>角色:</td>
-					<td>
-						
-						<input id="ec" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
-							data-options="
+
+    </script>
+</head>
+<body>
+<form id="ff" method="POST">
+    <input type="hidden" name="id"/>
+    <table>
+        <tr>
+            <td>账号:</td>
+            <td><input type="text" id="username" name="username" class="easyui-textbox" required="true"
+                       validType="length[1,25]"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="password" name="password" class="easyui-textbox" required="true" validType="length[0,25]">
+            </td>
+        </tr>
+        <tr>
+            <td>角色:</td>
+            <td>
+
+                <input id="ec" class="easyui-combobox" name="roleId" multiple="multiple" required="true"
+                       data-options="
 								valueField:'id',
 								textField:'name',
 								panelHeight:'auto'
 							">
-					</td>
-				</tr>
-				
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-	</body>
+            </td>
+        </tr>
+
+    </table>
+</form>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="toList()">返回</a>
+</div>
+</body>
 </html>

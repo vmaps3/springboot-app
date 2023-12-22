@@ -1,10 +1,9 @@
-
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>My JSP 'updateUser.jsp' starting page</title>
-		<script type="text/javascript" src="../../js/include.js"></script>
-		<script type="text/javascript">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>My JSP 'updateUser.jsp' starting page</title>
+    <script type="text/javascript" src="../../js/include.js"></script>
+    <script type="text/javascript">
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
@@ -47,49 +46,51 @@
 					}
 				});
 			})
-		</script>
-	</head>
 
-	<body>
-		<form id="ff" method="POST">
-			<input type="hidden" id="id" name="id" value="">
-			<table>
-				<tr>
-					<td>
-						账号: 
-					</td>
-					<td>
-						<input type="text"  id="username" name="username"  readonly="true" class="easyui-textbox" required="true" validType="length[1,25]">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						密码:
-					</td>
-					<td>
-						<input type="password" name="password" id="password"   class="easyui-textbox"  validType="length[0,25]">
-					</td>
-				</tr>
-				<tr>
-					<td>角色:</td>
-					<td>
-					
-						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
-							data-options="
+    </script>
+</head>
+
+<body>
+<form id="ff" method="POST">
+    <input type="hidden" id="id" name="id" value="">
+    <table>
+        <tr>
+            <td>
+                账号:
+            </td>
+            <td>
+                <input type="text" id="username" name="username" readonly="true" class="easyui-textbox" required="true"
+                       validType="length[1,25]">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                密码:
+            </td>
+            <td>
+                <input type="password" name="password" id="password" class="easyui-textbox" validType="length[0,25]">
+            </td>
+        </tr>
+        <tr>
+            <td>角色:</td>
+            <td>
+
+                <input id="cc" class="easyui-combobox" name="roleId" multiple="multiple" required="true"
+                       data-options="
 								valueField:'id',
 								textField:'name',
 								panelHeight:'auto'
 							">
-					
-					</td>
-				</tr>
-				
-			</table>
-		</form>
-		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"  onclick="toList()">返回</a>
-		</div>
-		
-	</body>
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="toList()">返回</a>
+</div>
+
+</body>
 </html>

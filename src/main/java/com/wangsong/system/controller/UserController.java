@@ -9,10 +9,7 @@ import com.wangsong.system.service.IUserService;
 import com.wangsong.system.vo.UserAddModel;
 import com.wangsong.system.vo.UserPage;
 import com.wangsong.system.vo.UserVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,6 @@ import com.wangsong.common.controller.BaseController;
  * @author jobob
  * @since 2021-09-19
  */
-@Api(value = "用户管理")
 @RestController
 @RequestMapping("/system/user")
 public class UserController extends BaseController {
@@ -41,7 +37,6 @@ public class UserController extends BaseController {
     private IUserService userService;
 
 
-    @ApiOperation(value = "列表", httpMethod = "POST")
     @RequiresPermissions("/system/user/list")
     @RequestMapping(value = "/list")
     public Result list(@ModelAttribute UserPage user) {
@@ -49,7 +44,6 @@ public class UserController extends BaseController {
         return new Result(CodeEnum.SUCCESS.getCode(), list);
     }
 
-    @ApiOperation(value = "增加", httpMethod = "POST")
     @RequiresPermissions("/system/user/add")
     @RequestMapping(value = "/add")
     public Result add(@ModelAttribute UserAddModel user) {
@@ -58,17 +52,13 @@ public class UserController extends BaseController {
 
     }
 
-    @ApiOperation(value = "单条", httpMethod = "POST")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
-    })
+
     @RequestMapping(value = "/selectByPrimaryKey")
     public Result selectByPrimaryKey(Long id) {
         UserVO userVO = userService.selectVOByPrimaryKey(id);
         return new Result(CodeEnum.SUCCESS.getCode(), userVO);
     }
 
-    @ApiOperation(value = "更新", httpMethod = "POST")
     @RequiresPermissions("/system/user/update")
     @RequestMapping(value = "/update")
     public Result update(@ModelAttribute UserAddModel muser) {
@@ -77,10 +67,7 @@ public class UserController extends BaseController {
 
     }
 
-    @ApiOperation(value = "删除", httpMethod = "POST")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
-    })
+
     @RequiresPermissions("/system/user/delete")
     @RequestMapping(value = "/delete")
     public Result delete(Long[] id) {
@@ -89,7 +76,6 @@ public class UserController extends BaseController {
 
     }
 
-    @ApiOperation(value = "是否重复", httpMethod = "POST")
     @RequestMapping(value = "/findUserByUser")
     public Result findUserByUser(@ModelAttribute User user) {
         String r = userService.findTByT(user);
@@ -97,7 +83,6 @@ public class UserController extends BaseController {
 
     }
 
-    @ApiOperation(value = "密码查询", httpMethod = "POST")
     @RequestMapping(value = "/toUpdatePassword")
     public Result toUpdatePassword() {
         Long userDetails = (Long) SecurityUtils.getSubject().getPrincipal();
@@ -105,7 +90,6 @@ public class UserController extends BaseController {
         return new Result(CodeEnum.SUCCESS.getCode(), tByUsername);
     }
 
-    @ApiOperation(value = "更改密码", httpMethod = "POST")
     @RequestMapping(value = "/updatePassword")
     public Result updatePassword(@ModelAttribute UserAddModel muser) {
         userService.updatePassword(muser);
