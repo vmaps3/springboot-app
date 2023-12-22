@@ -45,7 +45,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
         response.setContentType("application/json;charset=UTF-8");
 
         PrintWriter writer = response.getWriter();
-        Result result = new Result(CodeEnum.LOGIN_EXCEPTION.getCode(), null);
+        Result result = new Result(CodeEnum.LOGIN_EXCEPTION.getCode(), "");
         writer.write(JSONObject.toJSONString(result));
         return false;
     }
