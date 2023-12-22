@@ -11,6 +11,7 @@ import com.wangsong.system.service.LoginService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -39,11 +40,8 @@ public class LoginController extends BaseController implements ErrorController {
 
     @RequestMapping(value = "/login")
     public Result loginPost(@ModelAttribute User user) throws UnsupportedEncodingException {
-
         String data = loginService.loginPost(user);
         return new Result(CodeEnum.SUCCESS.getCode(), data);
-
-
     }
 
 
@@ -56,7 +54,7 @@ public class LoginController extends BaseController implements ErrorController {
 
     @RequestMapping(value = ERROR_PATH)
     public Result getStatus(HttpServletRequest request) {
-        return new Result(loginService.getStatus(request), null);
+        return new Result(CodeEnum.ERROR.getCode(), loginService.getStatus(request));
     }
 
     @Override
@@ -71,7 +69,11 @@ public class LoginController extends BaseController implements ErrorController {
 
     @ExceptionHandler(value = UnauthenticatedException.class)
     public Result unauthenticatedException(Exception e) {
-        return new Result(CodeEnum.LOGIN_EXCEPTION.getCode(), e.getMessage());
+        return new Result(CodeEnum.LOGIN_EXCEPTION.getCode(), "未登录");
     }
 
+    @ExceptionHandler(value = UnauthorizedException.class)
+    public Result unauthorizedException(Exception e) {
+        return new Result(CodeEnum.UNAUTH.getCode(), "无权限");
+    }
 }

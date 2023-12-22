@@ -15,16 +15,16 @@
 				
 				$.messager.confirm("确认", "确认删除吗？", function (r) {
 					if (r) {
-						$('#tt').tree('remove', node.target);
-						$.ajax({   
+						$.ajax({
 							url:url+'/system/resources/delete',
 							type:'post',   
 							data:"id="+node.id,
 							success:function(data){   
 								if(data.result=="success"){
+									$('#tt').tree('remove', node.target);
 									window.location=htmlURL+"/system/resources/list.html";
 								}else{
-									$.messager.alert('提示',data.msg);
+									$.messager.alert('提示',data.data);
 								}
 							}
 						});
@@ -47,6 +47,7 @@
 				});
 
 			});
+
 
 
     </script>
