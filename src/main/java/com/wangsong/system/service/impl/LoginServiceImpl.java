@@ -9,6 +9,7 @@ import com.wangsong.system.entity.User;
 import com.wangsong.system.service.LoginService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +25,21 @@ public class LoginServiceImpl implements LoginService {
     public String loginPost(User user) throws UnsupportedEncodingException {
 
 
-        Date date = new Date(System.currentTimeMillis() + 1800000);
         String md5Hex = DigestUtils.md5Hex(user.getPassword());
+
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), md5Hex);
+
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(token);
+
+        Date date = new Date(System.currentTimeMillis() + 1800000);
+
         Algorithm algorithm = Algorithm.HMAC256(md5Hex);
         // 附带username信息
         String sign = JWT.create()
                 .withClaim("username", user.getUsername())
                 .withExpiresAt(date)
                 .sign(algorithm);
-        Subject subject = SecurityUtils.getSubject();
-        subject.login(new JWTToken(sign));
         return sign;
 
 

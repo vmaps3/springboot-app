@@ -9,6 +9,7 @@ import com.wangsong.system.entity.User;
 import com.wangsong.system.service.LoginService;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -75,5 +76,10 @@ public class LoginController extends BaseController implements ErrorController {
     @ExceptionHandler(value = UnauthorizedException.class)
     public Result unauthorizedException(Exception e) {
         return new Result(CodeEnum.UNAUTH.getCode(), "无权限");
+    }
+
+    @ExceptionHandler(value = AuthenticationException.class)
+    public Result authenticationException(Exception e) {
+        return new Result(CodeEnum.ERROR.getCode(), "密码错误");
     }
 }
